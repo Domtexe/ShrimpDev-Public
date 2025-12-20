@@ -1,0 +1,12 @@
+ShrimpDev Architektur-Notiz – R2080
+---------------------------------------------------------
+
+Fix:
+  - Korrigiert die Einrückung der Zeile:
+        text_detail.configure(yscrollcommand=scroll_detail.set)
+
+Ursache:
+  - Der vorherige Runner hatte die Zeile an falscher Einrückung eingefügt.
+
+Auswirkung:
+  - LearningJournal-Tab kompiliert wieder korrekt.

@@ -1,0 +1,106 @@
+# --- Core junk / caches ---
+__pycache__/
+*.py[cod]
+*.pyd
+.pytest_cache/
+.mypy_cache/
+
+# --- Virtual env ---
+.venv/
+venv/
+env/
+
+# --- Build artifacts ---
+build/
+dist/
+*.spec
+
+# --- Project internal heavy folders (keep local) ---
+_Archiv/
+_Reports/
+_Snapshots/
+
+# --- IDE ---
+.vscode/
+.idea/
+
+# --- OS ---
+Thumbs.db
+.DS_Store
+
+# --- Logs (optional; keep if you want them in git) ---
+# *.log
+# debug_output.txt
+# --- ShrimpDev hygiene (R2140) ---
+# Backup/artefacts should stay local
+*.bak
+*.tmp
+*.old
+*.log
+debug_output*.txt
+debug_output*.log
+learning_journal*.bak
+learning_journal*.tmp
+
+# Optional: local configs (uncomment if you don't want them in git)
+# ShrimpDev.ini
+# config.json
+# dev_intake.ini
+
+# Local exports/packaging (if present)
+Exports/
+Packs/
+
+# --- Local trash / scratch ---
+_Trash/
+push*
+
+# --- Local only ---
+_Trash/
+push*
+tools/Archiv/
+tools/_Archiv/
+open/
+save()/
+ini_writer/
+ConfigManager/
+config_manager/
+MasterRules.md
+docs/Report_*.md
+docs/Incidents/
+docs/Obsolete_*.md
+docs/CHANGELOG.md
+
+# --- local-only artifacts ---
+_Trash/
+push*
+tools/Archiv/
+tools/_Archiv/
+open/
+save()/
+
+# --- generated / local reports ---
+docs/Report_*.md
+docs/Incidents/
+docs/Obsolete_*.md
+docs/CHANGELOG.md
+
+# local dev scratch (never commit)
+[/]ConfigManager/
+[/]config_manager/
+[/]ini_writer/
+[/]open/
+save\(\)
+
+# ShrimpDev: local-only archives
+tools/Archiv/
+tools/Archiv/**
+
+__pycache__/
+*.pyc
+
+# local dev-only folders
+ConfigManager/
+config_manager/
+ini_writer/
+open/

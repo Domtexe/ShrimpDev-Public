@@ -1,0 +1,7 @@
+ShrimpDev Architektur-Notiz – R2084
+
+Aenderung:
+  - _build_stats_text zaehlt nun zusaetzlich Fehler anhand von level
+    (error/critical/warn/warning) und haengt dies als 'errors=N'
+    an die Statistikzeile an, falls N > 0.
+  - Keine weiteren Aenderungen in module_learningjournal.py.

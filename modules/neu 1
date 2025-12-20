@@ -1,0 +1,81 @@
+# =====================================================================
+# R1618 – Unified Intake-Detect Wrapper (append-only, nicht-destruktiv)
+# =====================================================================
+
+def guess_ext_latest(text: str) -> str:
+    """
+    Zentrale Intake-Endungs-Heuristik.
+
+    Versucht zuerst die neueste Heuristik (R1608),
+    fällt bei Problemen schrittweise auf ältere Versionen zurück.
+    """
+    # Neueste Version zuerst
+    try:
+        return _guess_ext_r1608(text)
+    except Exception:
+        pass
+
+    # Falls R1608 aus irgendeinem Grund nicht greift
+    try:
+        return _guess_ext_r1607(text)
+    except Exception:
+        pass
+
+    try:
+        return _guess_ext_r1606(text)
+    except Exception:
+        pass
+
+    try:
+        return _guess_ext_r1604(text)
+    except Exception:
+        pass
+
+    # letzter Fallback
+    return "txt"
+
+
+def action_detect_latest(app) -> None:
+    """
+    Zentrale Intake-Erkennung:
+
+    - Bestmögliche Erkennung von Name (Runner-ID) und Endung
+    - schreibt sie ins UI (Dateiname / Endung / Zielpfad)
+
+    Implementiert aktuell einfach über die stabilste Version (R1608)
+    und fällt im Fehlerfall auf ältere Varianten zurück.
+    """
+    # Neueste Version zuerst
+    try:
+        return action_detect_r1608(app)
+    except Exception:
+        pass
+
+    # Fallbacks – lieber eine "ältere" Erkennung als gar keine
+    try:
+        return action_detect_r1607(app)
+    except Exception:
+        pass
+
+    try:
+        return action_detect_r1604(app)
+    except Exception:
+        pass
+
+    # letzter Fallback: freundlich scheitern
+    try:
+        _status(app, "Erkennen (latest) fehlgeschlagen – bitte Intake prüfen.")
+    except Exception:
+        pass
+
+
+# Öffentliche Bindings, die von UI / anderen Modulen erwartet werden
+try:
+    _guess_ext = guess_ext_latest
+except Exception:
+    pass
+
+try:
+    action_detect = action_detect_latest
+except Exception:
+    pass
