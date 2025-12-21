@@ -137,3 +137,21 @@
 ## Prio / P0
 
 - [ ] (HIGH) UI: Entferne doppeltes Workspace-Dropdown in Push-Zone (oben rechts). Push-Zone nur für Push/Purge.
+
+## P1 – Architektur & Stabilität
+- Enable/Disable-Logik für Purge-Buttons (Basis: R2218 / R2224, dokumentiert in Architecture_Purge_Actions.md)
+- Architekturregel: `logic_actions` ist die Quelle der Wahrheit für Button ↔ Runner-Zuordnung
+- Diagnose-Runner verpflichtend, wenn ein Fix nicht sofort verifiziert ist
+
+## P2 – Runner-Lifecycle & Ordnung
+- Runner-Lifecycle explizit:
+  - Alte Runner → Archiv (nicht reparieren, nicht löschen)
+  - Archiv = gültig für Scan / Learning / Diagnose
+  - `tools/` enthält nur Runner mit aktiver Funktion
+- Langfristig: separater Ordner für Button-/SonderRunner
+
+## P3 – Cleanup (geparkt)
+- Falsch erzeugte `*_UPDATED_*.md` Dateien
+  - Entfernung ausschließlich per Cleanup-Runner
+  - **Nicht jetzt**, nur vorgemerkt
+
