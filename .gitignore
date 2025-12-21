@@ -51,3 +51,6 @@ __pycache__/
 
 # internal system artifacts (public export)
 _System/
+
+# never publish executable tools in public repo
+tools/
