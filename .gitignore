@@ -1,106 +1,50 @@
-# --- Core junk / caches ---
+# Python
 __pycache__/
-*.py[cod]
-*.pyd
-.pytest_cache/
-.mypy_cache/
+*.pyc
+*.pyo
 
-# --- Virtual env ---
+# Virtual envs
 .venv/
 venv/
-env/
 
-# --- Build artifacts ---
-build/
-dist/
-*.spec
-
-# --- Project internal heavy folders (keep local) ---
-_Archiv/
-_Reports/
-_Snapshots/
-
-# --- IDE ---
+# OS / Editor
+.DS_Store
+Thumbs.db
 .vscode/
 .idea/
 
-# --- OS ---
-Thumbs.db
-.DS_Store
+# Local-only dev scratch
+/ConfigManager/
+/config_manager/
+/ini_writer/
+/open/
 
-# --- Logs (optional; keep if you want them in git) ---
-# *.log
-# debug_output.txt
-# --- ShrimpDev hygiene (R2140) ---
-# Backup/artefacts should stay local
-*.bak
-*.tmp
-*.old
+# Logs
 *.log
+debug_output.txt
+
+# =========================
+# Public export hard ignores
+# =========================
+
+# local scratch / temp
 debug_output*.txt
-debug_output*.log
-learning_journal*.bak
-learning_journal*.tmp
-
-# Optional: local configs (uncomment if you don't want them in git)
-# ShrimpDev.ini
-# config.json
-# dev_intake.ini
-
-# Local exports/packaging (if present)
-Exports/
-Packs/
-
-# --- Local trash / scratch ---
-_Trash/
+debug_output_OLD_*.txt
+push *
 push*
-
-# --- Local only ---
-_Trash/
-push*
-tools/Archiv/
-tools/_Archiv/
-open/
-save()/
-ini_writer/
-ConfigManager/
-config_manager/
-MasterRules.md
-docs/Report_*.md
-docs/Incidents/
-docs/Obsolete_*.md
-docs/CHANGELOG.md
-
-# --- local-only artifacts ---
-_Trash/
-push*
-tools/Archiv/
-tools/_Archiv/
-open/
-save()/
-
-# --- generated / local reports ---
-docs/Report_*.md
-docs/Incidents/
-docs/Obsolete_*.md
-docs/CHANGELOG.md
-
-# local dev scratch (never commit)
-[/]ConfigManager/
-[/]config_manager/
-[/]ini_writer/
-[/]open/
 save\(\)
 
-# ShrimpDev: local-only archives
-tools/Archiv/
-tools/Archiv/**
+# local-only top-level docs/files (keep only docs/Master/...)
+/MasterRules.md
 
+# incidents & generated reports
+/docs/Incidents/
+/docs/Report_*.md
+
+# archive folders must never be published
+/tools/Archiv/
+/tools/Archiv/**
+
+# common python cache
 __pycache__/
 *.pyc
-
-# local dev-only folders
-ConfigManager/
-config_manager/
-ini_writer/
-open/
