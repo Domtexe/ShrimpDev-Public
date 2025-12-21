@@ -106,3 +106,5 @@
 - **P1:** GUI Autopush Buttons + Toggle
 - **P1:** Registry- & Purge-Integration Fix (R2416)
 - **P1 (done):** GUI Autopush Buttons (Private/Public) + Toggle (R2413) + Combo Runner (R2414)
+- **P2:** Purge Buttons sauber ausrichten (rechter Toolbar-Bereich, sauberes Spacing)
+- **P1:** Workspace-Manager: Workspaces hinzufügen/löschen + Dropdown-Auswahl (keine Hardcodes auf alte Ordner)
