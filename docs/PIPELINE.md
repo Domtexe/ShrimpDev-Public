@@ -69,6 +69,11 @@
 # P2 — Medium
 
 ## Runner-Produkte / Artefakte UX
+
+- [ ] (P1) Artefakte - Tab: Treeview auto-refresh, wenn Tab aktiv wird
+  - Trigger: NotebookTabChanged -> Artefakte
+  - Prefer: refresh_runner_products_tab() falls vorhanden
+  - Fallback: Tab-Inhalt neu aufbauen (safe rebuild)
 - [ ] Runner-Produkte-Tab: Kontextmenü (Copy Path, Copy Content, Open Folder)
 - [ ] Filter/Sort (Dateityp, Datum, Runner-ID)
 - [ ] Preview (Text/MD/JSON) Read-only
@@ -78,7 +83,22 @@
 - [ ] Kurzer Workflow: “Aktueller Fokus” oben pflegen (1–3 Tasks max)
 
 ## Intake / Qualität
+
+- [ ] (P1) GitHub-Update-Indikator an Push-Buttons (Private/Public)
+  - Visual: kleiner Wimpel/Badge/Punkt am Button; sehr schwach rosa -> zunehmend rot je nach Dringlichkeit
+  - Dringlichkeit (Heuristik): Zeit seit letztem Push ODER Anzahl unpushed Commits (oder kombiniert)
+  - Datenquelle: git log origin/main..HEAD (unpushed count) + Zeitstempel aus letztem Push-Report/Registry
+  - Polling: UI after()-Loop (30–60s), respektiert Busy-Flag (pausiert während Runner läuft)
+  - Reset: nach erfolgreichem Push zurück auf „frisch“
+  - Architektur: READ-ONLY Status -> registry/push_status.json; UI rendert nur (keine Git-Logik im UI)
 - [ ] Intake: Autosave nach Paste **wenn Syntax OK**
+
+- [ ] (P1) Intake UI: Right-Panel global alignment (oben/rechts bündig, vertikal gestapelt; keine geerbten Padding/Inserts)
+  - Push/Link/Purge-Stack exakt an obere rechte Kante (flush), aber weiterhin untereinander wie jetzt
+  - Workspace + Suche + Tree-Area: rechts bündig/sauber, ohne Drift bei Resize
+- [ ] (P1) Intake UI: Tree-Action-Row (Run/Löschen/Rename/Undo) linksbündig direkt über der Treeview platzieren
+  - visuell als „Tree-Toolbar“ erkennbar (nicht im Header-Stack)
+- [ ] (P1) Intake UI: Purge-Buttons sauber ausrichten (rechte Kante, gleiche Spaltenbreite wie Push-Row; Reihen/Abstände konsistent)
 - [ ] Runner-Ausführung: Policy-Popup (wo wird geloggt, was passiert, wo sind Outputs)
 - [ ] LearningEngine: Products READ-ONLY scannen (Index + Findings) + Report
 
@@ -91,6 +111,10 @@
 ---
 
 # Done / Archive
+- [x] R2453: Docking offiziell geschlossen (Runner R2453, 20251221_234813)
+
+- [x] R2453: Docking-Thema offiziell geschlossen (inhaltlich abgeschlossen; jetzt kanonisch in der Pipeline markiert)
+
 - [x] Docking Restore Bug resolved (R2395) — nur hier führen
 - [x] (weitere erledigte Items hier sammeln, nicht im Backlog lassen)
 
@@ -108,3 +132,8 @@
 - **P1 (done):** GUI Autopush Buttons (Private/Public) + Toggle (R2413) + Combo Runner (R2414)
 - **P2:** Purge Buttons sauber ausrichten (rechter Toolbar-Bereich, sauberes Spacing)
 - **P1:** Workspace-Manager: Workspaces hinzufügen/löschen + Dropdown-Auswahl (keine Hardcodes auf alte Ordner)
+
+
+## Prio / P0
+
+- [ ] (HIGH) UI: Entferne doppeltes Workspace-Dropdown in Push-Zone (oben rechts). Push-Zone nur für Push/Purge.
