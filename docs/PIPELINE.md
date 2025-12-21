@@ -99,3 +99,10 @@
 # Notizen (nur Kontext, keine Task-Duplikate)
 - Reports in `docs/Report_R23xx_*.md` sind Belege/History, keine zweite Pipeline.
 - Wenn etwas unklar ist: erst Diagnose-Runner, dann Fix.
+
+### Registry / Public Export
+- **P0 (done):** Public Whitelist System (R2411)
+- **P1:** Private Push SAFE (R2412)
+- **P1:** GUI Autopush Buttons + Toggle
+- **P1:** Registry- & Purge-Integration Fix (R2416)
+- **P1 (done):** GUI Autopush Buttons (Private/Public) + Toggle (R2413) + Combo Runner (R2414)
