@@ -48,3 +48,6 @@ save\(\)
 # common python cache
 __pycache__/
 *.pyc
+
+# internal system artifacts (public export)
+_System/
