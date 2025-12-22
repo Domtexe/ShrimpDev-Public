@@ -155,3 +155,31 @@
   - Entfernung ausschließlich per Cleanup-Runner
   - **Nicht jetzt**, nur vorgemerkt
 
+## P1 – Performance: Artefakte schlank halten
+- **Artefakte: Purge-Button** (verworfen) im Artefakte-Tab
+  - Ziel: Output-/Artefakt-Daten reduzieren, Performance stabilisieren
+  - Purge-Scope klar definieren (keine Kanon-Dokus, keine Rules/Pipeline)
+  - Optional: Dry-Run/Preview + Report vor Apply
+  - Logging/Report verpflichtend (welche Dateien/Ordner betroffen)
+
+
+
+## Architektur-Referenzen
+- `docs/Architecture_Actions_and_Gating.md`
+- `docs/Architecture_Lessons_Learned.md`
+
+## Abandoned
+- **Artefakte: Purge-Button** (verworfen)
+  - Begründung: Löschen/Purge ist nicht der richtige Ansatz für Performance/Schlankheit.
+  - Alternative: gezielte Archiv-/Rotation-Strategien (später, falls nötig), aber kein Purge-Button.
+
+## P1 – UX: Kontextmenüs & Bedienkomfort
+- Kontextmenü (Tree/Explorer): **Datei kopieren**
+- Kontextmenü (Tree/Explorer): **Backup wiederherstellen** (nur wenn selektiertes Item ein Backup ist)
+- Preview: Kontextmenü + Buttonleiste darunter (übliche Standardaktionen)
+- Refresh-Button: Position **oben rechts → unten rechts**
+
+## P2 – UX/Layout: Scrollbars & Splitter
+- Beide Hauptfenster: Scrollbars **rechts und unten**
+- Splitter zwischen Bereichen **schiebbar** (Resizable Panes)
+
