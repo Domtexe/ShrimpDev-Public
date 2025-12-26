@@ -26,12 +26,12 @@ jobs:
       - name: Ruff (syntax only) -> Reports/ci_ruff.txt
         shell: pwsh
         run: |
-          ruff check modules --select E9 2>&1 | Tee-Object -FilePath Reports/ci_ruff.txt
+          ruff check modules main_gui.py --select E9 2>&1 | Tee-Object -FilePath Reports/ci_ruff.txt
 
       - name: Compileall (syntax gate) -> Reports/ci_compileall.txt
         shell: pwsh
         run: |
-          python -m compileall -q modules 2>&1 | Tee-Object -FilePath Reports/ci_compileall.txt
+          python -m compileall -q main_gui.py modules 2>&1 | Tee-Object -FilePath Reports/ci_compileall.txt
 
       - name: Upload Reports artifact
         if: always()
