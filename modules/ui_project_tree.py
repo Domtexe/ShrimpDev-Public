@@ -3,14 +3,15 @@ import time
 import tkinter as tk
 from tkinter import ttk
 
+import shutil
 from modules import ui_theme_classic
 from modules import config_loader as _cfg_tree
+
 try:
     from modules.config_loader import load_tree_state, save_tree_state
 except Exception:
     load_tree_state = None
     save_tree_state = None
-
 
 
 def _fmt(ts: float) -> tuple[str, str]:
@@ -100,6 +101,7 @@ def build_tree(parent: tk.Widget, app) -> tk.Frame:
     # Auto-Scan: Parent-Verzeichnis nach 'Shrimp*'-Ordnern
     try:
         from pathlib import Path as _Path
+
         base = _Path.cwd().resolve().parent
         for d in base.iterdir():
             try:
@@ -126,7 +128,11 @@ def build_tree(parent: tk.Widget, app) -> tk.Frame:
     # Aenderungen in Tree-State zurueckschreiben
     def _on_workspace_change(*_args) -> None:
         try:
-            if _cfg_tree is not None and load_tree_state is not None and save_tree_state is not None:
+            if (
+                _cfg_tree is not None
+                and load_tree_state is not None
+                and save_tree_state is not None
+            ):
                 cfg_ws = _cfg_tree.load()
                 state_ws = load_tree_state(cfg_ws) or {}
                 state_ws["workspace_current"] = workspace_var.get()
@@ -234,6 +240,7 @@ def build_tree(parent: tk.Widget, app) -> tk.Frame:
         # Versuche, die rechte Liste zu aktualisieren
         try:
             from modules.logic_actions import refresh_right_list
+
             refresh_right_list(app)
         except Exception:
             # Wenn nicht verfuegbar, einfach nichts tun
@@ -256,10 +263,15 @@ def build_tree(parent: tk.Widget, app) -> tk.Frame:
 
     btn_root = ui_theme_classic.Button(row_actions, text="Ordner", command=_btn_open_root, width=8)
     btn_tools = ui_theme_classic.Button(row_actions, text="Tools", command=_btn_open_tools, width=8)
-    btn_reports = ui_theme_classic.Button(row_actions, text="Reports", command=_btn_open_reports, width=8)
-    btn_snaps = ui_theme_classic.Button(row_actions, text="Snapshots", command=_btn_open_snapshots, width=10)
-    btn_explorer = ui_theme_classic.Button(row_actions, text="Explorer", command=_btn_open_explorer, width=10)
-
+    btn_reports = ui_theme_classic.Button(
+        row_actions, text="Reports", command=_btn_open_reports, width=8
+    )
+    btn_snaps = ui_theme_classic.Button(
+        row_actions, text="Snapshots", command=_btn_open_snapshots, width=10
+    )
+    btn_explorer = ui_theme_classic.Button(
+        row_actions, text="Explorer", command=_btn_open_explorer, width=10
+    )
 
     # Tree + Scrollbar
     cols = ("name", "ext", "date", "time")
@@ -306,6 +318,7 @@ def build_tree(parent: tk.Widget, app) -> tk.Frame:
     def _sort_cmd(col: str):
         def _cb():
             _sort_by(app, col, toggle=True)
+
         return _cb
 
     for cid in cols:
@@ -466,7 +479,7 @@ def _load_dir(app) -> None:
         rows.append((name, ext, path, mtime))
 
     # Standard-Sortierung nach Name (ohne Endungsabhängigkeit)
-        # Sortierung: neueste Datei oben
+    # Sortierung: neueste Datei oben
     rows.sort(key=lambda r: r[3], reverse=True)
 
     for name, ext, path, mtime in rows:
@@ -537,6 +550,7 @@ def _sort_by(app, col: str, reverse: bool | None = None, toggle: bool = True) ->
     # Tree-Sortierzustand in INI speichern
     try:
         from modules import config_loader as _cfg_tree_save2
+
         try:
             from modules.config_loader import save_tree_state as _save_tree_state2
         except Exception:
@@ -672,6 +686,7 @@ def open_selected_in_intake(app) -> None:
 
 def wire_tree_buttons(app, wrap) -> None:
     import tkinter as tk
+
     try:
         from modules import logic_actions
     except Exception:
@@ -701,16 +716,21 @@ def wire_tree_buttons(app, wrap) -> None:
 
     for btn in buttons:
         try:
-            label = str(btn.cget('text')).strip().lower()
+            label = str(btn.cget("text")).strip().lower()
         except Exception:
             continue
-        if 'löschen' in label or 'delete' in label:
+        if "löschen" in label or "delete" in label:
             if delete_btn is None:
                 delete_btn = btn
-        elif 'rename' in label or 'umbenennen' in label or 'name ändern' in label or 'namensänderung' in label:
+        elif (
+            "rename" in label
+            or "umbenennen" in label
+            or "name ändern" in label
+            or "namensänderung" in label
+        ):
             if rename_btn is None:
                 rename_btn = btn
-        elif 'undo' in label or 'rückgängig' in label:
+        elif "undo" in label or "rückgängig" in label:
             if undo_btn is None:
                 undo_btn = btn
 
@@ -718,10 +738,10 @@ def wire_tree_buttons(app, wrap) -> None:
         sequence = []
         for btn in buttons:
             try:
-                label = str(btn.cget('text')).strip().lower()
+                label = str(btn.cget("text")).strip().lower()
             except Exception:
-                label = ''
-            if 'run' in label or 'start' in label or 'ausführen' in label:
+                label = ""
+            if "run" in label or "start" in label or "ausführen" in label:
                 continue
             sequence.append(btn)
         if not delete_btn and len(sequence) > 1:
@@ -825,6 +845,239 @@ def enable_context_menu(app) -> None:
     # Lokaler Import, um keine globalen Abhaengigkeiten zu erzwingen
     import tkinter as tk
 
+    # --- R2477_START ---
+    # Owner marker to avoid double context menus (logic_actions also binds Button-3 with add="+")
+    try:
+        setattr(app, "_tree_ctx_owner", "ui_project_tree")
+    except Exception:
+        pass
+
+    def _r2477_is_backup_path(p: str) -> bool:
+        if not p:
+            return False
+        ap = os.path.abspath(p)
+        if (os.sep + "_Archiv" + os.sep) not in ap:
+            return False
+        if not ap.lower().endswith(".bak"):
+            return False
+        # canonical: name.ext.R####_YYYYMMDD_HHMMSS.bak
+        if re.search(r"\.R\d{3,6}_\d{8}_\d{6}\.bak$", os.path.basename(ap)):
+            return True
+        # allow safety backups like: foo.py.pre_restore_YYYYMMDD_HHMMSS.bak
+        if re.search(r"\.pre_restore_\d{8}_\d{6}\.bak$", os.path.basename(ap)):
+            return True
+        return True
+
+    def _r2477_guess_restore_target(backup_path: str) -> str | None:
+        ap = os.path.abspath(backup_path)
+        parts = ap.split(os.sep + "_Archiv" + os.sep)
+        if len(parts) != 2:
+            return None
+        root2 = parts[0]
+        bname = os.path.basename(parts[1])
+
+        m = re.match(r"^(?P<orig>.+?)\.R\d{3,6}_\d{8}_\d{6}\.bak$", bname)
+        if m:
+            return os.path.join(root2, m.group("orig"))
+        m2 = re.match(r"^(?P<orig>.+?)\.pre_restore_\d{8}_\d{6}\.bak$", bname)
+        if m2:
+            return os.path.join(root2, m2.group("orig"))
+        return None
+
+    def _r2477_set_clipboard_file_drop_windows(paths: list[str]) -> bool:
+        # Windows Explorer clipboard: CF_HDROP (+ Preferred DropEffect=Copy)
+        try:
+            import ctypes
+            from ctypes import wintypes
+        except Exception:
+            return False
+
+        CF_HDROP = 15
+        GMEM_MOVEABLE = 0x0002
+        CFSTR_PREFERREDDROPEFFECT = "Preferred DropEffect"
+        DROPEFFECT_COPY = 1
+
+        class DROPFILES(ctypes.Structure):
+            _fields_ = [
+                ("pFiles", wintypes.DWORD),
+                ("pt_x", wintypes.LONG),
+                ("pt_y", wintypes.LONG),
+                ("fNC", wintypes.BOOL),
+                ("fWide", wintypes.BOOL),
+            ]
+
+        # Double-null-terminated wide string list
+        flist = ""
+        for p in paths:
+            flist += str(p) + "\x00"
+        flist += "\x00"
+        data = flist.encode("utf-16le")
+
+        df = DROPFILES()
+        df.pFiles = ctypes.sizeof(DROPFILES)
+        df.pt_x = 0
+        df.pt_y = 0
+        df.fNC = False
+        df.fWide = True
+
+        kernel32 = ctypes.windll.kernel32
+        user32 = ctypes.windll.user32
+
+        total_size = ctypes.sizeof(DROPFILES) + len(data)
+        hglob = kernel32.GlobalAlloc(GMEM_MOVEABLE, total_size)
+        if not hglob:
+            return False
+        ptr = kernel32.GlobalLock(hglob)
+        if not ptr:
+            kernel32.GlobalFree(hglob)
+            return False
+
+        ctypes.memmove(ptr, ctypes.addressof(df), ctypes.sizeof(DROPFILES))
+        ctypes.memmove(ptr + ctypes.sizeof(DROPFILES), data, len(data))
+        kernel32.GlobalUnlock(hglob)
+
+        # Preferred DropEffect
+        fmt = user32.RegisterClipboardFormatW(CFSTR_PREFERREDDROPEFFECT)
+        hdropfx = kernel32.GlobalAlloc(GMEM_MOVEABLE, 4)
+        if not hdropfx:
+            # still can proceed without effect
+            hdropfx = None
+        else:
+            pfx = kernel32.GlobalLock(hdropfx)
+            if pfx:
+                ctypes.memmove(pfx, ctypes.byref(ctypes.c_uint(DROPEFFECT_COPY)), 4)
+                kernel32.GlobalUnlock(hdropfx)
+
+        try:
+            if not user32.OpenClipboard(None):
+                kernel32.GlobalFree(hglob)
+                if hdropfx:
+                    kernel32.GlobalFree(hdropfx)
+                return False
+            user32.EmptyClipboard()
+            if not user32.SetClipboardData(CF_HDROP, hglob):
+                user32.CloseClipboard()
+                kernel32.GlobalFree(hglob)
+                if hdropfx:
+                    kernel32.GlobalFree(hdropfx)
+                return False
+            if hdropfx:
+                # ownership transferred
+                user32.SetClipboardData(fmt, hdropfx)
+            user32.CloseClipboard()
+            return True
+        except Exception:
+            try:
+                user32.CloseClipboard()
+            except Exception:
+                pass
+            try:
+                kernel32.GlobalFree(hglob)
+            except Exception:
+                pass
+            if hdropfx:
+                try:
+                    kernel32.GlobalFree(hdropfx)
+                except Exception:
+                    pass
+            return False
+
+    def _r2477_copy_files_for_paste(selected_paths: list[str]) -> None:
+        files = [p for p in selected_paths if p and os.path.isfile(p)]
+        if not files:
+            try:
+                from tkinter import messagebox
+
+                messagebox.showinfo("Datei kopieren", "Keine Datei ausgewählt.")
+            except Exception:
+                pass
+            return
+        ok = _r2477_set_clipboard_file_drop_windows(files)
+        try:
+            from tkinter import messagebox
+
+            if ok:
+                messagebox.showinfo(
+                    "Datei kopieren", f"{len(files)} Datei(en) im Clipboard (Paste bereit)."
+                )
+            else:
+                messagebox.showwarning(
+                    "Datei kopieren", "Clipboard File-Copy ist nur unter Windows verfügbar."
+                )
+        except Exception:
+            pass
+
+    def _r2477_restore_backup(backup_path: str) -> None:
+        if not _r2477_is_backup_path(backup_path):
+            try:
+                from tkinter import messagebox
+
+                messagebox.showinfo(
+                    "Backup wiederherstellen", "Bitte ein .bak aus _Archiv auswählen."
+                )
+            except Exception:
+                pass
+            return
+
+        dst = _r2477_guess_restore_target(backup_path)
+        if not dst:
+            try:
+                from tkinter import messagebox
+
+                messagebox.showerror("Backup wiederherstellen", "Konnte Zielpfad nicht ableiten.")
+            except Exception:
+                pass
+            return
+
+        try:
+            from tkinter import messagebox
+
+            ok = messagebox.askyesno(
+                "Backup wiederherstellen",
+                f"Backup:\n{backup_path}\n\nWiederherstellen nach:\n{dst}\n\nFortfahren?",
+            )
+        except Exception:
+            ok = False
+        if not ok:
+            return
+
+        # safety backup existing dst
+        try:
+            if os.path.isfile(dst):
+                arch = os.path.join(os.path.dirname(os.path.dirname(backup_path)), "_Archiv")
+                ensure(arch)
+                safety = os.path.join(arch, f"{os.path.basename(dst)}.pre_restore_{ts()}.bak")
+                shutil.copy2(dst, safety)
+        except Exception:
+            pass
+
+        try:
+            os.makedirs(os.path.dirname(dst), exist_ok=True)
+            shutil.copy2(backup_path, dst)
+        except Exception as exc:
+            try:
+                from tkinter import messagebox
+
+                messagebox.showerror("Backup wiederherstellen", f"Fehler:\n{exc!r}")
+            except Exception:
+                pass
+            return
+
+        # refresh if possible
+        try:
+            app.right_list.refresh()
+        except Exception:
+            pass
+
+        try:
+            from tkinter import messagebox
+
+            messagebox.showinfo("Backup wiederherstellen", "OK: Wiederhergestellt.")
+        except Exception:
+            pass
+
+    # --- R2477_END ---
+
     menu = tk.Menu(tree, tearoff=False)
 
     def _copy_selected():
@@ -854,6 +1107,14 @@ def enable_context_menu(app) -> None:
             pass
 
     menu.add_command(label="Pfad(e) kopieren", command=_copy_selected)
+    menu.add_command(
+        label="Datei(en) kopieren (Paste)",
+        command=lambda: _r2477_copy_files_for_paste(get_selected_paths(app)),
+    )
+    menu.add_command(
+        label="Backup wiederherstellen…",
+        command=lambda: _r2477_restore_backup(get_selected_path(app) or ""),
+    )
 
     def _on_context(event):
         try:
@@ -869,7 +1130,7 @@ def enable_context_menu(app) -> None:
                 if row not in current_sel:
                     # Strg gedrueckt? -> additiv, sonst Selektion ersetzen
                     try:
-                        if (event.state & 0x0004):  # Control-Key
+                        if event.state & 0x0004:  # Control-Key
                             tree.selection_add(row)
                         else:
                             tree.selection_set(row)
@@ -886,4 +1147,3 @@ def enable_context_menu(app) -> None:
         tree.bind("<Button-3>", _on_context, add="+")
     except Exception:
         pass
-

@@ -71,6 +71,7 @@ def save(cfg) -> None:
     # R2402: SingleWriter delegation – DO NOT write INI directly here
     try:
         from modules import config_manager as _cfgm  # type: ignore
+
         mgr = _cfgm.get_manager()
         # Bestehende cfg Instanz übernehmen (Kompatibilität zu bisherigen Call-Sites)
         try:
@@ -82,7 +83,8 @@ def save(cfg) -> None:
         # Fallback: niemals GUI crashen (log best-effort)
         try:
             from modules.logic_actions import log_debug as _log_debug  # type: ignore
-            _log_debug('[R2402] save delegation failed: ' + repr(_e))
+
+            _log_debug("[R2402] save delegation failed: " + repr(_e))
         except Exception:
             pass
 

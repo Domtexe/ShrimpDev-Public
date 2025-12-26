@@ -8,6 +8,7 @@ ADDR = ("127.0.0.1", PORT)
 ROOT = Path(r"D:\ShrimpDev")
 INBOX = ROOT / "_Reports" / "Agent" / "inbox"
 
+
 def send_event(ev: dict):
     ev = dict(ev or {})
     ev.setdefault("ts", time.strftime("%m-%d %H:%M:%S", time.localtime()))
@@ -20,12 +21,13 @@ def send_event(ev: dict):
     except Exception:
         try:
             INBOX.mkdir(parents=True, exist_ok=True)
-            (INBOX / f"{int(time.time())}_{os.getpid()}.jsonl").open(
-                "a", encoding="utf-8"
-            ).write(json.dumps(ev, ensure_ascii=False) + "\n")
+            (INBOX / f"{int(time.time())}_{os.getpid()}.jsonl").open("a", encoding="utf-8").write(
+                json.dumps(ev, ensure_ascii=False) + "\n"
+            )
             return True
         except Exception:
             return False
+
 
 def main():
     ap = argparse.ArgumentParser()
@@ -48,6 +50,7 @@ def main():
     ok = send_event(payload)
     if not ok:
         raise SystemExit(2)
+
 
 if __name__ == "__main__":
     main()

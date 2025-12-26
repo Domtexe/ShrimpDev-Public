@@ -1,12 +1,5 @@
 # ShrimpDev
 
-> ⚠️ **Read-only architecture mirror**
->
-> This repository intentionally **cannot be executed**.
-> Runtime entrypoints, configurations, pipelines and tools are private by design.
->  
-> The public code is provided for **architecture review, discussion and analysis only**.
-
 ShrimpDev ist ein modulares Python/Tkinter-System zur Entwicklung, Diagnose und Reparatur – umgesetzt über strikt nummerierte Runner (R####).
 
 ## Kernprinzipien
@@ -17,7 +10,7 @@ ShrimpDev ist ein modulares Python/Tkinter-System zur Entwicklung, Diagnose und 
 
 ## Quickstart
 ```bat
-cd /d D:\ShrimpDev
+cd /d C:\Users\rasta\OneDrive\ShrimpDev
 python main_gui.py
 ```
 

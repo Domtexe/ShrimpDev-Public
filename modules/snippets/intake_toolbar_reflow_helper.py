@@ -1,12 +1,10 @@
-# -*- coding: utf-8 -*-
 def intake_toolbar_reflow_helper(self):
     """
     Ordnet die Toolbar-Buttons harmonisch an.
     Vorsichtig: Nur vorhandene Widgets werden angefasst. Idempotent.
     """
     try:
-        import tkinter as tk
-        from tkinter import ttk
+        pass
     except Exception:
         return
     try:
@@ -15,15 +13,26 @@ def intake_toolbar_reflow_helper(self):
             return
 
         # Buttons einsammeln - nur existierende werden berücksichtigt.
-        btn_names = ["btn_guard", "btn_pack", "btn_refresh", "btn_repair",
-                     "btn_run", "btn_save", "btn_open", "btn_detect", "btn_clear"]
+        btn_names = [
+            "btn_guard",
+            "btn_pack",
+            "btn_refresh",
+            "btn_repair",
+            "btn_run",
+            "btn_save",
+            "btn_open",
+            "btn_detect",
+            "btn_clear",
+        ]
         btns = [getattr(self, n, None) for n in btn_names]
         btns = [b for b in btns if b is not None]
 
         # Spalten frei machen & gleichmäßig verteilen
         for i, b in enumerate(btns):
-            try: b.grid_configure(row=0, column=i, padx=(6 if i else 0, 0), sticky="w")
-            except Exception: pass
+            try:
+                b.grid_configure(row=0, column=i, padx=(6 if i else 0, 0), sticky="w")
+            except Exception:
+                pass
 
         # Mindestbreite
         try:

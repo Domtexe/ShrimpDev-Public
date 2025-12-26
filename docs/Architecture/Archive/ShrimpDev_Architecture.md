@@ -287,7 +287,7 @@ LearningJournal ist persistenter Wissensspeicher – Änderungen nur nachvollzie
 Zentrale INI-Datei im Projektroot. Beispiele:
 
 - [Core]
-  - workspace_root = D:\ShrimpDev
+  - workspace_root = C:\Users\rasta\OneDrive\ShrimpDev
   - quiet_mode = false
 - [LogWindow]
   - geometry = 900x600+100+100
@@ -332,7 +332,7 @@ Geplante Erweiterungen:
 ## 5. Startup-Sequenz (vereinfacht)
 
 1. Start:
-   - D:\ShrimpDev\main_gui.py
+   - C:\Users\rasta\OneDrive\ShrimpDev\main_gui.py
 
 2. main_gui.main():
    - erstellt ShrimpDevApp()
@@ -524,7 +524,7 @@ Damit wird diese Datei zur Referenz für alle zukünftigen Entscheidungen rund u
 ```
 ShrimpDev Architecture Integrity Check
 Generated: 2025-12-03 20:27:03
-Project root: D:\ShrimpDev
+Project root: C:\Users\rasta\OneDrive\ShrimpDev
 =====================================
 
 ERRORS:

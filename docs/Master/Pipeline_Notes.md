@@ -1,3 +1,10 @@
+<!-- LEGACY_NON_CANONICAL -->
+**⚠️ Legacy / Nicht-kanonisch** (gesetzt: 2025-12-24 00:04:38)  
+Kanonisch: `docs/PIPELINE.md`  
+Bitte diese Datei nicht mehr als Quelle verwenden.
+
+---
+
 # Pipeline Notes
 
 

@@ -2,11 +2,11 @@ import tkinter as tk
 from tkinter import ttk
 
 # Klassische Standardfarben (hell)
-BG_MAIN   = "#e0e0d6"
-BG_BTN    = "#f2f2ef"
-BG_ENTRY  = "white"
-BG_STATUS = "#d4d4cc"     # << NEU: Status-Bar Farbe
-FG_TEXT   = "black"
+BG_MAIN = "#e0e0d6"
+BG_BTN = "#f2f2ef"
+BG_ENTRY = "white"
+BG_STATUS = "#d4d4cc"  # << NEU: Status-Bar Farbe
+FG_TEXT = "black"
 
 FONT_BASE = ("Segoe UI", 10)
 
@@ -18,24 +18,18 @@ def apply(app: tk.Tk) -> None:
     style = ttk.Style(app)
     try:
         style.theme_use("clam")
-    except:
+    except Exception:
         pass
 
     # Notebook
     style.configure("TNotebook", background=BG_MAIN)
-    style.configure("TNotebook.Tab",
-                    background=BG_BTN,
-                    foreground=FG_TEXT,
-                    padding=(8, 3))
-    style.map("TNotebook.Tab",
-              background=[("selected", "white")],
-              foreground=[("selected", "black")])
+    style.configure("TNotebook.Tab", background=BG_BTN, foreground=FG_TEXT, padding=(8, 3))
+    style.map(
+        "TNotebook.Tab", background=[("selected", "white")], foreground=[("selected", "black")]
+    )
 
     # Treeview
-    style.configure("Treeview",
-                    background="white",
-                    fieldbackground="white",
-                    foreground="black")
+    style.configure("Treeview", background="white", fieldbackground="white", foreground="black")
 
 
 def Button(parent, **kw) -> tk.Button:

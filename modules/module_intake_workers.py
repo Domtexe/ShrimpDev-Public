@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 module_intake_workers - R1177b
 (Reserviert für zukünftige spezialisierte Worker. Derzeit in module_code_intake integriert.)

@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import os
 import ast
-import warnings
 import tkinter as tk
 
 BG = "#e7e5d8"
@@ -47,6 +46,7 @@ class LEDBar:
 
         # Klick-Handler, falls ein Callback fuer diese LED registriert ist
         if hasattr(self, "_callbacks") and key in self._callbacks:
+
             def _on_click(_event, k=key):
                 cb = self._callbacks.get(k)
                 if callable(cb):
@@ -55,9 +55,9 @@ class LEDBar:
                     except Exception:
                         # LED-Callbacks duerfen die UI nie crashen
                         pass
+
             canvas.bind("<Button-1>", _on_click)
             holder.bind("<Button-1>", _on_click)
-
 
     def _set_color(self, key: str, color: str) -> None:
         canvas = self._items.get(key)
@@ -223,7 +223,9 @@ def evaluate(app) -> None:
                     pass
                 try:
                     if hasattr(app, "set_status") and callable(getattr(app, "set_status")):
-                        app.set_status("Hinweis: Inhalt wirkt nicht wie Python (Endung .py pruefen)")
+                        app.set_status(
+                            "Hinweis: Inhalt wirkt nicht wie Python (Endung .py pruefen)"
+                        )
                 except Exception:
                     pass
                 return
@@ -232,6 +234,7 @@ def evaluate(app) -> None:
         pass
 
     import warnings
+
     try:
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", SyntaxWarning)
@@ -241,6 +244,7 @@ def evaluate(app) -> None:
         # Echte Syntaxfehler -> ROT + Log (nur einmal pro App-Lebensdauer)
         try:
             from modules.logic_actions import log_debug
+
             if not getattr(app, "_syntax_led_syntax_error_logged", False):
                 log_debug(f"SyntaxLED: Parsefehler im Intake-Code: {exc}")
                 setattr(app, "_syntax_led_syntax_error_logged", True)
@@ -303,6 +307,7 @@ def evaluate(app) -> None:
         # Andere Fehler im Parser -> neutral + Log (nur einmal pro App-Lebensdauer)
         try:
             from modules.logic_actions import log_debug
+
             if not getattr(app, "_syntax_led_other_error_logged", False):
                 log_debug(f"SyntaxLED: unerwarteter Fehler im Syntax-Check: {exc}")
                 setattr(app, "_syntax_led_other_error_logged", True)
@@ -310,9 +315,11 @@ def evaluate(app) -> None:
             pass
         ledbar.set_unknown("syntax")
 
+
 # ---------------------------------------------------------------------------
 # Helper fuer SyntaxLED (R1813): Code vor ast.parse() bereinigen
 # ---------------------------------------------------------------------------
+
 
 def _sanitize_code_for_syntax_check(code: str) -> str:
     """

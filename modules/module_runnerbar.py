@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
 from __future__ import annotations
-import os, datetime, subprocess, sys
+import datetime, subprocess
 from pathlib import Path
 import tkinter as tk
 from tkinter import ttk
@@ -9,11 +8,13 @@ ROOT = Path(__file__).resolve().parents[1]
 TOOLS = ROOT / "tools"
 LOG = ROOT / "debug_output.txt"
 
+
 def _log(msg: str) -> None:
     ts = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     LOG.parent.mkdir(exist_ok=True, parents=True)
     with LOG.open("a", encoding="utf-8", newline="") as f:
         f.write(f"[RunnerBar {ts}] {msg}\n")
+
 
 def _run_cmd(cmd_path: Path) -> None:
     if not cmd_path.exists():
@@ -27,8 +28,8 @@ def _run_cmd(cmd_path: Path) -> None:
     except Exception as ex:
         _log(f"ERROR: {ex!r}")
 
-def build_runnerbar(parent: tk.Widget,
-                    mapping: dict[str, str] | None = None) -> ttk.Frame:
+
+def build_runnerbar(parent: tk.Widget, mapping: dict[str, str] | None = None) -> ttk.Frame:
     """
     Erzeugt eine Button-Leiste für Runner .cmd-Dateien.
     mapping: {button_text: 'Rxxxx.cmd', ...}
@@ -50,12 +51,11 @@ def build_runnerbar(parent: tk.Widget,
         cmd = TOOLS / fname
         if cmd.exists():
             b = ttk.Button(bar, text=label, command=lambda p=cmd: _run_cmd(p))
-            b.grid(row=0, column=c, padx=(0,6), pady=4, sticky="w")
+            b.grid(row=0, column=c, padx=(0, 6), pady=4, sticky="w")
             c += 1
 
     # wenn nichts existiert, trotzdem einen Hinweis anzeigen
     if c == 0:
-        lab = ttk.Label(bar, text="Keine Runner gefunden (tools\\*.cmd).",
-                        foreground="#888")
+        lab = ttk.Label(bar, text="Keine Runner gefunden (tools\\*.cmd).", foreground="#888")
         lab.grid(row=0, column=0, padx=0, pady=4, sticky="w")
     return bar

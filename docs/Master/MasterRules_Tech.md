@@ -18,7 +18,7 @@ _Automatisch generiert oder aktualisiert durch R2037 am 2025-12-09 09:39:55_
 
 ShrimpDev Architektur-Übersicht (Snapshot)
 Generiert durch R1931b am 2025-12-04 08:46:52
-Projekt-Root: D:\ShrimpDev
+Projekt-Root: C:\Users\rasta\OneDrive\ShrimpDev
 
 MODULES:
 
@@ -1375,7 +1375,7 @@ Regeln für zukünftige Intake-Patches
 
 ShrimpDev Architektur-Übersicht
 Generiert durch R1931 am 2025-12-03 20:02:09
-Projekt-Root: D:\ShrimpDev
+Projekt-Root: C:\Users\rasta\OneDrive\ShrimpDev
 
 Hinweis:
 - Diese Datei wird automatisch erzeugt.

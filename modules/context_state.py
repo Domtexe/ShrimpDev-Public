@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Context State (Runtime)
 
 Zweck:
@@ -14,9 +13,9 @@ from __future__ import annotations
 import json
 import time
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 
-_CONTEXT: Dict[str, Any] = {
+_CONTEXT: dict[str, Any] = {
     "active_tab": None,
     "last_action": None,
     "last_runner": None,
@@ -29,26 +28,31 @@ _CONTEXT: Dict[str, Any] = {
 
 _DEFAULT_PATH = Path(__file__).resolve().parent.parent / "_State" / "context_state.json"
 
+
 def _now() -> str:
     return time.strftime("%Y-%m-%d %H:%M:%S")
 
-def get_context() -> Dict[str, Any]:
+
+def get_context() -> dict[str, Any]:
     """Gibt eine Kopie des aktuellen Context zurück."""
     return dict(_CONTEXT)
 
-def update_context(**kwargs: Any) -> Dict[str, Any]:
+
+def update_context(**kwargs: Any) -> dict[str, Any]:
     """Aktualisiert Context-Felder (bewusst flach gehalten)."""
     for k, v in kwargs.items():
         _CONTEXT[k] = v
     _CONTEXT["timestamp"] = _now()
     return dict(_CONTEXT)
 
-def reset_context() -> Dict[str, Any]:
+
+def reset_context() -> dict[str, Any]:
     """Setzt Context auf Initialzustand zurück."""
     for k in list(_CONTEXT.keys()):
         _CONTEXT[k] = None
     _CONTEXT["timestamp"] = _now()
     return dict(_CONTEXT)
+
 
 def save_context(path: Path | None = None) -> Path:
     """Persistiert Context als JSON (optional, Debug/Pipeline)."""
@@ -57,7 +61,8 @@ def save_context(path: Path | None = None) -> Path:
     p.write_text(json.dumps(_CONTEXT, indent=2, ensure_ascii=False), encoding="utf-8")
     return p
 
-def load_context(path: Path | None = None) -> Dict[str, Any]:
+
+def load_context(path: Path | None = None) -> dict[str, Any]:
     """Lädt Context aus JSON (falls vorhanden) und merged."""
     p = path or _DEFAULT_PATH
     if p.exists():

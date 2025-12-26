@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
 from __future__ import annotations
 
-import os, time, io
+import os, time
 
 _MAX_BYTES = 1_000_000  # einfache Rotation bei ~1MB
+
 
 def _target_path() -> str:
     # Root = Ordner von main_gui.py / Projekt-Root
@@ -11,17 +11,23 @@ def _target_path() -> str:
     root = os.path.abspath(os.path.join(root, ".."))  # zurück zum Projekt-Root
     return os.path.join(root, "debug_output.txt")
 
+
 def _rotate_if_needed(p: str) -> None:
     try:
         if os.path.exists(p) and os.path.getsize(p) > _MAX_BYTES:
             bak = p + ".1"
             if os.path.exists(bak):
-                try: os.remove(bak)
-                except Exception: pass
-            try: os.replace(p, bak)
-            except Exception: pass
+                try:
+                    os.remove(bak)
+                except Exception:
+                    pass
+            try:
+                os.replace(p, bak)
+            except Exception:
+                pass
     except Exception:
         pass
+
 
 def write_log(prefix: str, message: str) -> None:
     """Zentraler Logger mit Fallback & einfacher Rotation."""
@@ -31,7 +37,7 @@ def write_log(prefix: str, message: str) -> None:
         _rotate_if_needed(p)
         ts = time.strftime("%Y-%m-%d %H:%M:%S")
         line = f"[{prefix}] {ts} {message}\n"
-        with io.open(p, "a", encoding="utf-8", newline="\n") as f:
+        with open(p, "a", encoding="utf-8", newline="\n") as f:
             f.write(line)
     except Exception:
         # Harter Fallback: still - wir wollen niemals das UI crashen

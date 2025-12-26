@@ -18,13 +18,11 @@ import subprocess
 import sys
 import threading
 from pathlib import Path
-from typing import Optional, Union
 
 import tkinter as tk
 from tkinter import ttk
 import os
 import re
-from tkinter import messagebox
 
 
 # Flag für "kein Fenster" unter Windows
@@ -38,7 +36,7 @@ def _append_text(
     text_widget: tk.Text,
     text: str,
     auto_scroll: bool = True,
-    tag: Optional[str] = None,
+    tag: str | None = None,
 ) -> None:
     """
     Text anhängen und optional mit einem Tag versehen.
@@ -104,7 +102,7 @@ def _center_window(win: tk.Toplevel) -> None:
     x = mx + (mw - ww) // 2
     y = my + (mh - wh) // 2
 
-    win.geometry("+{}+{}".format(x, y))
+    win.geometry(f"+{x}+{y}")
 
 
 def _start_runner_thread(
@@ -138,7 +136,7 @@ def _start_runner_thread(
                 creationflags=CREATE_NO_WINDOW,
             )
         except Exception as exc:
-            text_widget.after(0, fn, "Fehler beim Starten des Runners:\n{}\n".format(exc))
+            text_widget.after(0, fn, f"Fehler beim Starten des Runners:\n{exc}\n")
             if on_finished is not None:
                 text_widget.after(0, lambda rc=-1: on_finished(rc))
             return
@@ -148,7 +146,7 @@ def _start_runner_thread(
                 text_widget.after(0, fn, line)
 
         rc = proc.wait()
-        text_widget.after(0, fn, "\n[Runner beendet mit Code {}]\n".format(rc))
+        text_widget.after(0, fn, f"\n[Runner beendet mit Code {rc}]\n")
         if on_finished is not None:
             text_widget.after(0, lambda rc=rc: on_finished(rc))
 
@@ -338,7 +336,9 @@ def run_runner_with_popup(app, path: str) -> None:
         )
 
         ttk.Button(bottom, text="Text kopieren", command=_copy_all).grid(row=0, column=2, padx=4)
-        ttk.Button(bottom, text="Kopieren & schließen", command=_copy_and_close).grid(row=0, column=3, padx=4)
+        ttk.Button(bottom, text="Kopieren & schließen", command=_copy_and_close).grid(
+            row=0, column=3, padx=4
+        )
         ttk.Button(bottom, text="Schließen", command=_close).grid(row=0, column=4, padx=4)
 
         _set_status("RUNNING")
@@ -352,3 +352,80 @@ def run_runner_with_popup(app, path: str) -> None:
 
     except Exception:
         return
+
+# --- R2665: restore runner description for popup ---
+def _read_runner_description(path):
+    p = Path(path)
+    try:
+        txt = p.read_text(encoding='utf-8', errors='replace')
+    except Exception:
+        return ''
+    low = p.name.lower()
+    if low.endswith('.cmd') or low.endswith('.bat'):
+        lines = []
+        for ln in txt.splitlines():
+            s = ln.strip()
+            if s.lower().startswith('rem '):
+                lines.append(s[4:].rstrip())
+                continue
+            if s == '':
+                if lines:
+                    break
+                continue
+            break
+        return '\n'.join(lines).strip()
+    if low.endswith('.py'):
+        m = re.search(r'^[\s\n]*(["\']{3})(.*?)\1', txt, re.DOTALL)
+        if m:
+            return m.group(2).strip()
+    return ''
+
+
+# --- R2668: runner popup description helpers ---
+def _read_runner_description(path):
+    from pathlib import Path as _P
+    import re as _re
+    p = _P(path)
+    try:
+        txt = p.read_text(encoding="utf-8", errors="replace")
+    except Exception:
+        return ""
+    name = p.name.lower()
+    if name.endswith(".cmd") or name.endswith(".bat"):
+        out = []
+        for ln in txt.splitlines():
+            s = ln.strip()
+            if s.lower().startswith("rem "):
+                out.append(s[4:].rstrip())
+                continue
+            if s == "":
+                if out:
+                    break
+                continue
+            break
+        return "\n".join(out).strip()
+    if name.endswith(".py"):
+        m = _re.search(r'^[\s\n]*([\"\']{3})(.*?)\1', txt, _re.DOTALL)
+        if m:
+            return (m.group(2) or "").strip()
+    return ""
+
+def _fill_popup_description(widget, path):
+    desc = _read_runner_description(path) or "Keine Beschreibung vorhanden."
+    try:
+        # Text widget
+        widget.configure(state="normal")
+        widget.delete("1.0", "end")
+        widget.insert("1.0", desc)
+        widget.configure(state="disabled")
+        return True
+    except Exception:
+        pass
+    try:
+        # Label-like widgets
+        widget.configure(text=desc)
+        return True
+    except Exception:
+        pass
+    return False
+

@@ -4,6 +4,7 @@ from pathlib import Path
 
 DB = Path(r"D:\ShrimpDev\learning_journal.json")
 
+
 class LearningPersistence:
     def __init__(self):
         self.data = []

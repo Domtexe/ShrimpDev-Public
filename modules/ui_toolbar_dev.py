@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 """
 Toolbar-Modul für ShrimpDev.
 
@@ -18,14 +19,12 @@ from .logic_actions import (
     action_undo,
     action_run,
     action_delete,
-    action_learning_journal,
     action_guard_futurefix,
     action_guard_futurefix_safe,
     action_r9998,
     action_r9999,
     log_debug,
 )
-
 
 
 def _call_logic_action(app, name: str) -> None:
@@ -66,7 +65,6 @@ def _call_logic_action(app, name: str) -> None:
                 pass
 
 
-
 def _make_button(
     parent: tk.Widget,
     text: str,
@@ -82,6 +80,7 @@ def _make_button(
 
 def _wrap_with_led(app, func):
     """Wrappt eine Toolbar-Aktion und aktualisiert danach sicher die Intake-LEDs."""
+
     def _inner():
         try:
             func(app)
@@ -94,8 +93,8 @@ def _wrap_with_led(app, func):
                     log_debug(f"LED evaluate failed in _wrap_with_led: {exc}")
                 except Exception:
                     pass
-    return _inner
 
+    return _inner
 
 
 def _get_intake_widget(app):
@@ -153,6 +152,7 @@ def _action_insert_and_detect(app):
 
     try:
         from .logic_actions import action_detect
+
         action_detect(app)
     except Exception:
         status = getattr(app, "status", None)
@@ -161,6 +161,7 @@ def _action_insert_and_detect(app):
                 status.configure(text="Erkennung nach Einfügen fehlgeschlagen.")
             except Exception:
                 pass
+
 
 def build_toolbar_left(parent: tk.Widget, app: Any) -> tk.Frame:
     """

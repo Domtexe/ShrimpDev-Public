@@ -16,7 +16,6 @@ from __future__ import annotations
 
 import configparser
 from pathlib import Path
-from typing import Optional
 
 
 CONFIG_FILENAME = "ShrimpDev.ini"
@@ -29,8 +28,8 @@ class ShrimpDevConfigManager:
     """
 
     def __init__(self) -> None:
-        self._config: Optional[configparser.ConfigParser] = None
-        self._project_root: Optional[Path] = None
+        self._config: configparser.ConfigParser | None = None
+        self._project_root: Path | None = None
 
     def _get_default_project_root(self) -> Path:
         """
@@ -38,7 +37,7 @@ class ShrimpDevConfigManager:
         """
         return Path.cwd()
 
-    def ensure_loaded(self, project_root: Optional[Path] = None) -> None:
+    def ensure_loaded(self, project_root: Path | None = None) -> None:
         """
         Stellt sicher, dass die Konfiguration geladen ist.
         """
@@ -77,7 +76,9 @@ class ShrimpDevConfigManager:
 
     def save(self) -> None:
         # SingleWriter delegation: write ONLY via modules/ini_writer.py
-        self.ensure_loaded(project_root=self._project_root if hasattr(self, "_project_root") else None)
+        self.ensure_loaded(
+            project_root=self._project_root if hasattr(self, "_project_root") else None
+        )
         cfg_path = self.get_config_path()
         cfg = getattr(self, "_config", None)
 
@@ -95,6 +96,7 @@ class ShrimpDevConfigManager:
         # Write through single writer (supports both get_writer() and direct merge_write_ini)
         try:
             from modules.ini_writer import get_writer
+
             w = get_writer()
             if hasattr(w, "merge_write_ini"):
                 w.merge_write_ini(str(cfg_path), updates)
@@ -103,8 +105,10 @@ class ShrimpDevConfigManager:
             pass
 
         from modules.ini_writer import merge_write_ini
+
         merge_write_ini(str(cfg_path), updates)
         return
+
     def get_section(self, section: str = SETTINGS_SECTION):
         """
         Liefert eine mutable Section-View.
@@ -118,9 +122,9 @@ class ShrimpDevConfigManager:
     def get_value(
         self,
         key: str,
-        default: Optional[str] = None,
+        default: str | None = None,
         section: str = SETTINGS_SECTION,
-    ) -> Optional[str]:
+    ) -> str | None:
         """
         Liest einen String-Wert aus der Konfiguration.
         """

@@ -4,8 +4,8 @@
 #   build_agent_tab(parent, app)
 # Bitte diese Datei nicht mehr erweitern. Neue Agent-Features gehören in module_agent.py.
 
-import tkinter as tk
 from tkinter import ttk
+
 
 class AgentFrame(ttk.Frame):
     def __init__(self, parent):

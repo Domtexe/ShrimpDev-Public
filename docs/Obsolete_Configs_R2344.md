@@ -3,5 +3,5 @@
 - Canonical bleibt: `modules/config_manager.py`
 
 ## Archivierte Dateien
-- `D:\ShrimpDev\modules\config_mgr.py` → `D:\ShrimpDev\_Archiv\obsolete_configs\modules__config_mgr.py.R2344_20251218_122000.bak`
-- `D:\ShrimpDev\modules\config_loader.py` → `D:\ShrimpDev\_Archiv\obsolete_configs\modules__config_loader.py.R2344_20251218_122000.bak`
+- `C:\Users\rasta\OneDrive\ShrimpDev\modules\config_mgr.py` → `C:\Users\rasta\OneDrive\ShrimpDev\_Archiv\obsolete_configs\modules__config_mgr.py.R2344_20251218_122000.bak`
+- `C:\Users\rasta\OneDrive\ShrimpDev\modules\config_loader.py` → `C:\Users\rasta\OneDrive\ShrimpDev\_Archiv\obsolete_configs\modules__config_loader.py.R2344_20251218_122000.bak`

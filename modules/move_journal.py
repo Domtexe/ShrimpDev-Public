@@ -3,10 +3,10 @@ from pathlib import Path
 from datetime import datetime
 import json
 import shutil
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any
 
 
-OperationEntry = Dict[str, Any]
+OperationEntry = dict[str, Any]
 
 
 def _ensure_dir(path: Path) -> None:
@@ -39,7 +39,7 @@ def new_entry_id() -> str:
     return datetime.now().strftime("%Y%m%d_%H%M%S_%f")
 
 
-def append_entries(root: Path, entries: List[OperationEntry]) -> Path:
+def append_entries(root: Path, entries: list[OperationEntry]) -> Path:
     """Haengt die Operationseintraege als JSON-Lines an die Tages-Journaldatei an."""
     journal_dir = get_journal_dir(root)
     _ensure_dir(journal_dir)
@@ -53,10 +53,10 @@ def append_entries(root: Path, entries: List[OperationEntry]) -> Path:
 def plan_delete_batch(
     root: Path,
     user: str,
-    src_paths: List[Path],
+    src_paths: list[Path],
     reason: str,
-    runner_id: Optional[str] = None,
-) -> Tuple[str, List[OperationEntry]]:
+    runner_id: str | None = None,
+) -> tuple[str, list[OperationEntry]]:
     """
     Legt einen Delete-Batch im Journal an (Status: planned), ohne das Dateisystem zu veraendern.
 
@@ -65,7 +65,7 @@ def plan_delete_batch(
     """
     now = datetime.now().isoformat(timespec="seconds")
     batch_id = new_batch_id()
-    entries: List[OperationEntry] = []
+    entries: list[OperationEntry] = []
     for src in src_paths:
         entry: OperationEntry = {
             "id": new_entry_id(),
@@ -90,7 +90,7 @@ def plan_delete_batch(
     return batch_id, entries
 
 
-def apply_delete_batch(root: Path, entries: List[OperationEntry]) -> List[OperationEntry]:
+def apply_delete_batch(root: Path, entries: list[OperationEntry]) -> list[OperationEntry]:
     """
     Fuehrt den Delete-Batch aus:
     - Dateien werden aus src nach _Trash verschoben.
@@ -99,7 +99,7 @@ def apply_delete_batch(root: Path, entries: List[OperationEntry]) -> List[Operat
     """
     trash_root = get_trash_dir(root)
     now = datetime.now().isoformat(timespec="seconds")
-    updated: List[OperationEntry] = []
+    updated: list[OperationEntry] = []
     for entry in entries:
         if entry.get("op_type") != "delete":
             updated.append(entry)
@@ -149,12 +149,12 @@ def apply_delete_batch(root: Path, entries: List[OperationEntry]) -> List[Operat
     return updated
 
 
-def load_all_entries(root: Path) -> List[OperationEntry]:
+def load_all_entries(root: Path) -> list[OperationEntry]:
     """Liest alle Journaldateien unter _Journal ein und gibt alle Eintraege zurueck."""
     journal_dir = get_journal_dir(root)
     if not journal_dir.exists():
         return []
-    entries: List[OperationEntry] = []
+    entries: list[OperationEntry] = []
     for jf in sorted(journal_dir.glob("moves_*.jsonl")):
         try:
             with jf.open("r", encoding="utf-8") as f:
@@ -182,6 +182,7 @@ def load_all_entries(root: Path) -> List[OperationEntry]:
 # -------------------------------------------------------------------------
 # Undo-Funktionen fuer Delete-Batches (R2064)
 # -------------------------------------------------------------------------
+
 
 def _collect_delete_batches(entries):
     batches = {}
@@ -249,9 +250,10 @@ def undo_delete_batch(root, batch_id):
             # Zielverzeichnis sicherstellen
             if src is not None:
                 target_dir = src.parent
-                from pathlib import Path as _P2
+
                 target_dir.mkdir(parents=True, exist_ok=True)
                 import shutil as _sh
+
                 _sh.move(str(backup), str(src))
             e["status"] = "undone"
             e["timestamp"] = now
@@ -298,4 +300,3 @@ def undo_last_delete_batch(root):
         return []
 
     return undo_delete_batch(root, latest_batch_id)
-

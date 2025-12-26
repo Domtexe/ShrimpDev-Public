@@ -23,3 +23,8 @@ Dieses Dokument beschreibt die Architektur von ShrimpDev.
 - Kein Zentrieren nach erfolgreichem Restore (Center ist nur Offscreen-/No-Geo-Fallback).
 - Keine Fenstererzeugung (`tk.Toplevel`) in Tab-Buildern.
 
+## Registry as Single Source of Truth
+- `registry/tools_keep.txt` ist die **kanonische Purge-Whitelist**.
+- `registry/public_allowlist.txt` steuert den **Public Export**.
+- Root-basierte Policy-Dateien sind **obsolete** und dürfen nicht verwendet werden.
+- GUI triggert Aktionen, **Runner führen aus**.

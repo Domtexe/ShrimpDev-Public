@@ -9,7 +9,8 @@ import threading
 import configparser
 from datetime import datetime
 
-class IniWriter(object):
+
+class IniWriter:
     def __init__(self, ini_path=None, logger=None):
         self._lock = threading.Lock()
         self._logger = logger
@@ -20,8 +21,8 @@ class IniWriter(object):
             self._ini_path = self._default_ini_path()
 
     def _default_ini_path(self):
-        base = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-        return os.path.join(base, 'ShrimpDev.ini')
+        base = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+        return os.path.join(base, "ShrimpDev.ini")
 
     def _new_cfg(self):
         cfg = configparser.ConfigParser(interpolation=None)
@@ -36,7 +37,7 @@ class IniWriter(object):
         except Exception:
             pass
         try:
-            print('[INI] ' + msg)
+            print("[INI] " + msg)
         except Exception:
             pass
 
@@ -54,7 +55,7 @@ class IniWriter(object):
             if not self._mem.has_section(section):
                 self._mem.add_section(section)
             self._mem.set(section, str(key), str(value))
-            self._log('set ' + section + '.' + str(key) + ' source=' + str(source))
+            self._log("set " + section + "." + str(key) + " source=" + str(source))
             return True
 
     def update_many(self, section, dict_values, source=None):
@@ -65,7 +66,14 @@ class IniWriter(object):
                 self._mem.add_section(section)
             for k in dict_values:
                 self._mem.set(section, str(k), str(dict_values[k]))
-            self._log('update_many ' + section + ' keys=' + str(len(dict_values)) + ' source=' + str(source))
+            self._log(
+                "update_many "
+                + section
+                + " keys="
+                + str(len(dict_values))
+                + " source="
+                + str(source)
+            )
             return True
 
     def snapshot(self):
@@ -82,7 +90,7 @@ class IniWriter(object):
         cfg = self._new_cfg()
         if path and os.path.isfile(path):
             try:
-                cfg.read(path, encoding='utf-8')
+                cfg.read(path, encoding="utf-8")
             except Exception:
                 try:
                     cfg.read(path)
@@ -110,12 +118,12 @@ class IniWriter(object):
                 except Exception:
                     pass
 
-            tmp = path + '.tmp'
+            tmp = path + ".tmp"
             try:
-                with open(tmp, 'w', encoding='utf-8') as f:
+                with open(tmp, "w", encoding="utf-8") as f:
                     base.write(f)
                 os.replace(tmp, path)
-                self._log('save_merge_atomic ok path=' + path + ' source=' + str(source))
+                self._log("save_merge_atomic ok path=" + path + " source=" + str(source))
                 return True
             except Exception as e:
                 try:
@@ -123,11 +131,13 @@ class IniWriter(object):
                         os.remove(tmp)
                 except Exception:
                     pass
-                self._log('save_merge_atomic FAILED ' + repr(e) + ' source=' + str(source))
+                self._log("save_merge_atomic FAILED " + repr(e) + " source=" + str(source))
                 return False
+
 
 # Singleton helper (optional use)
 _SINGLETON = None
+
 
 def get_writer():
     global _SINGLETON
@@ -143,21 +153,27 @@ from datetime import datetime
 
 PRESERVE_SECTIONS_DEFAULT = {"Docking"}
 
+
 def _ts() -> str:
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
+
 def ini_path(project_root: Path) -> Path:
     return (project_root / "ShrimpDev.ini").resolve()
+
 
 def read_ini(path: Path) -> configparser.ConfigParser:
     cfg = configparser.ConfigParser()
     cfg.read(path, encoding="utf-8")
     return cfg
 
-def merge_write_ini(project_root: Path,
-                    updates: dict,
-                    preserve_sections: set | None = None,
-                    add_timestamp: bool = True) -> Path:
+
+def merge_write_ini(
+    project_root: Path,
+    updates: dict,
+    preserve_sections: set | None = None,
+    add_timestamp: bool = True,
+) -> Path:
     preserve = set(PRESERVE_SECTIONS_DEFAULT)
     if preserve_sections:
         preserve |= set(preserve_sections)
@@ -174,7 +190,7 @@ def merge_write_ini(project_root: Path,
         for k, v in (kv or {}).items():
             base.set(sec, str(k), str(v))
 
-    if "Docking" not in updates and 'docking_items' in locals():
+    if "Docking" not in updates and "docking_items" in locals():
         if not base.has_section("Docking"):
             base.add_section("Docking")
         for k, v in docking_items.items():

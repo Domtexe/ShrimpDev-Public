@@ -1,99 +1,41 @@
-name: CI - python compile (product only)
+name: CI
 
 on:
   push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
-
-permissions:
-  contents: read
 
 jobs:
-  python-smoke:
-    runs-on: ubuntu-latest
-
+  lint:
+    runs-on: windows-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.12"
 
-      - name: Compile (syntax check) - exclude legacy/trash/tools archive
-        shell: bash
+      - name: Install ruff
+        run: python -m pip install --upgrade pip ruff
+
+      - name: Prepare Reports folder
+        shell: pwsh
         run: |
-          python - <<'PY'
-          import os, sys, py_compile, traceback
+          New-Item -ItemType Directory -Force -Path Reports | Out-Null
 
-          # Directories we do NOT want to compile in CI (legacy, trash, archives, caches)
-          SKIP_DIRS = {
-              ".git",
-              ".github",
-              "__pycache__",
-              "_OldStuff",
-              "_oldstuff",
-              "_Trash",
-              "_trash",
-              "tools/Archiv",
-              "tools/archiv",
-              "tools/archive",
-              "_Archiv",
-              "_Snapshots",
-              "_Reports",
-              "venv",
-              ".venv",
-          }
+      - name: Ruff (syntax only) -> Reports/ci_ruff.txt
+        shell: pwsh
+        run: |
+          ruff check modules main_gui.py --select E9 2>&1 | Tee-Object -FilePath Reports/ci_ruff.txt
 
-          # Files we do NOT want to compile (rare, but keep hook)
-          SKIP_FILES = set()
+      - name: Compileall (syntax gate) -> Reports/ci_compileall.txt
+        shell: pwsh
+        run: |
+          python -m compileall -q main_gui.py modules 2>&1 | Tee-Object -FilePath Reports/ci_compileall.txt
 
-          def norm(p: str) -> str:
-              return p.replace("\\", "/").strip("/")
-
-          # Build a normalized skip set that matches prefixes cleanly
-          SKIP_PREFIXES = tuple(sorted({norm(d) for d in SKIP_DIRS}, key=len, reverse=True))
-
-          def should_skip_dir(rel_dir: str) -> bool:
-              rd = norm(rel_dir)
-              if rd == "":
-                  return False
-              # skip exact or any path under that prefix
-              return any(rd == s or rd.startswith(s + "/") for s in SKIP_PREFIXES)
-
-          root = os.getcwd()
-          errors = []
-
-          for dirpath, dirnames, filenames in os.walk(root):
-              rel_dir = norm(os.path.relpath(dirpath, root))
-              if should_skip_dir(rel_dir):
-                  dirnames[:] = []  # don't descend
-                  continue
-
-              # filter subdirs early
-              dirnames[:] = [d for d in dirnames if not should_skip_dir(norm(f"{rel_dir}/{d}" if rel_dir else d))]
-
-              for fn in filenames:
-                  if not fn.endswith(".py"):
-                      continue
-                  rel_file = norm(os.path.join(rel_dir, fn)) if rel_dir else fn
-                  if rel_file in SKIP_FILES:
-                      continue
-                  try:
-                      py_compile.compile(os.path.join(dirpath, fn), doraise=True)
-                  except Exception as e:
-                      errors.append((rel_file, e))
-
-          if errors:
-              print("\n=== PYTHON COMPILE ERRORS ===")
-              for rel_file, e in errors:
-                  print(f"\n--- {rel_file} ---")
-                  print(f"{type(e).__name__}: {e}")
-                  traceback.print_exception(type(e), e, e.__traceback__)
-              print(f"\nFAILED: {len(errors)} file(s) have syntax/compile errors.")
-              sys.exit(1)
-
-          print("OK: All checked Python files compile (product-only scan).")
-          PY
+      - name: Upload Reports artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-reports
+          path: Reports/

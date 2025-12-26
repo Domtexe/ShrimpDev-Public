@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 snippet_intake_detect_v2
 Robuste Intake-Erkennung:
@@ -12,16 +11,28 @@ Robuste Intake-Erkennung:
     self._hilite_err(line_no|None)
     self._update_leds()
 """
+
 from __future__ import annotations
 import re, time
 
+
 def detect_ext(text: str) -> str:
-    t = (text or "")
+    t = text or ""
     tl = t.lstrip().lower()
 
     # .bat sehr eindeutig
     if tl.startswith("@echo off") or any(
-        kw in tl for kw in ("\nrem ", "\r\nrem ", "\n::", "\r\n::", "\ngoto ", "\r\ngoto ", "\n set ", "\r\n set ")
+        kw in tl
+        for kw in (
+            "\nrem ",
+            "\r\nrem ",
+            "\n::",
+            "\r\n::",
+            "\ngoto ",
+            "\r\ngoto ",
+            "\n set ",
+            "\r\n set ",
+        )
     ):
         return ".bat"
 
@@ -40,6 +51,7 @@ def detect_ext(text: str) -> str:
 
     return ".txt"
 
+
 def _detect_name(text: str, current: str | None) -> str:
     for line in text.splitlines():
         s = line.strip()
@@ -51,6 +63,7 @@ def _detect_name(text: str, current: str | None) -> str:
     if current and current.strip():
         return current.strip()
     return "snippet_" + time.strftime("%Y%m%d_%H%M%S")
+
 
 def run_detect(self) -> None:
     txt = self.editor.get("1.0", "end-1c")
@@ -100,5 +113,8 @@ def run_detect(self) -> None:
     except Exception:
         pass
 
-    self.var_stat.set(("Alles OK" if (name and ext and syntax_ok) else
-                       ("Syntaxfehler" if not syntax_ok else "Name/Endung prüfen")))
+    self.var_stat.set(
+        "Alles OK"
+        if (name and ext and syntax_ok)
+        else ("Syntaxfehler" if not syntax_ok else "Name/Endung prüfen")
+    )

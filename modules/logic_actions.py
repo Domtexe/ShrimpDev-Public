@@ -1,4 +1,3 @@
-
 # ============================================================
 # logic_actions.py - FULL RESTORE VERSION (R1514)
 # Kompatibel mit:
@@ -9,22 +8,15 @@
 
 from __future__ import annotations
 
-import os
-import re
-import ast
-from datetime import datetime
-from tkinter import messagebox
-import tkinter as tk
-
-
-
 
 def log_debug(msg: str):
     from datetime import datetime
     from pathlib import Path
+
     try:
         root = Path(__file__).resolve().parent.parent
         from modules.config_loader import ConfigLoader
+
         cfg = ConfigLoader(root / "ShrimpDev.ini")
 
         do_log = cfg.get_logging_bool("gui_debug", True)
@@ -62,7 +54,7 @@ def log_debug(msg: str):
                 for idx in range(max_rot - 1, 0, -1):
                     src = Path(str(path) + f".{idx}")
                     if src.exists():
-                        dst = Path(str(path) + f".{idx+1}")
+                        dst = Path(str(path) + f".{idx + 1}")
                         src.rename(dst)
                 backup_path = Path(str(path) + ".1")
                 if path.exists():
@@ -75,7 +67,6 @@ def log_debug(msg: str):
             f.write(msg + "\n")
     except Exception:
         pass
-
 
 
 def _get_intake(app):
@@ -98,6 +89,7 @@ def _get_name_var(app):
     """
     try:
         import tkinter as tk  # lokaler Alias, falls noetig
+
         for attr in ("var_name", "name_var", "file_name_var"):
             v = getattr(app, attr, None)
             if isinstance(v, tk.StringVar):
@@ -113,6 +105,7 @@ def _get_ext_var(app):
     """
     try:
         import tkinter as tk
+
         for attr in ("var_ext", "ext_var", "file_ext_var"):
             v = getattr(app, attr, None)
             if isinstance(v, tk.StringVar):
@@ -146,8 +139,6 @@ def _status(app, msg: str) -> None:
                 pass
     except Exception:
         pass
-
-
 
 
 def _intake_syntax_check(app, for_save: bool = False) -> bool:
@@ -216,6 +207,7 @@ def _intake_syntax_check(app, for_save: bool = False) -> bool:
             pass
         return False
 
+
 def action_delete(app, *args, **kwargs):
     """Auto-generiert durch R1822: Platzhalter-Aktion fuer action_delete."""
     try:
@@ -226,7 +218,9 @@ def action_delete(app, *args, **kwargs):
         except Exception:
             pass
 
+
 # ------------------------------------------------------------
+
 
 # ------------------------------------------------------------
 # Erkennung (R1832)
@@ -237,13 +231,17 @@ def action_guard_futurefix(app, *args, **kwargs):
         _status(app, "Aktion 'action_guard_futurefix' ist noch nicht implementiert.")
     except Exception:
         try:
-            print("[R1822] Aktion 'action_guard_futurefix' aufgerufen, aber _status nicht verfuegbar.")
+            print(
+                "[R1822] Aktion 'action_guard_futurefix' aufgerufen, aber _status nicht verfuegbar."
+            )
         except Exception:
             pass
+
 
 # ------------------------------------------------------------
 # Auto-Placeholder (R1822) fuer action_guard_futurefix_safe
 # ------------------------------------------------------------
+
 
 def action_guard_futurefix_safe(app, *args, **kwargs):
     """Auto-generiert durch R1822: Platzhalter-Aktion fuer action_guard_futurefix_safe."""
@@ -251,13 +249,17 @@ def action_guard_futurefix_safe(app, *args, **kwargs):
         _status(app, "Aktion 'action_guard_futurefix_safe' ist noch nicht implementiert.")
     except Exception:
         try:
-            print("[R1822] Aktion 'action_guard_futurefix_safe' aufgerufen, aber _status nicht verfuegbar.")
+            print(
+                "[R1822] Aktion 'action_guard_futurefix_safe' aufgerufen, aber _status nicht verfuegbar."
+            )
         except Exception:
             pass
+
 
 # ------------------------------------------------------------
 # Auto-Placeholder (R1822) fuer action_learning_journal
 # ------------------------------------------------------------
+
 
 def action_learning_journal(app, *args, **kwargs):
     """Auto-generiert durch R1822: Platzhalter-Aktion fuer action_learning_journal."""
@@ -265,13 +267,17 @@ def action_learning_journal(app, *args, **kwargs):
         _status(app, "Aktion 'action_learning_journal' ist noch nicht implementiert.")
     except Exception:
         try:
-            print("[R1822] Aktion 'action_learning_journal' aufgerufen, aber _status nicht verfuegbar.")
+            print(
+                "[R1822] Aktion 'action_learning_journal' aufgerufen, aber _status nicht verfuegbar."
+            )
         except Exception:
             pass
+
 
 # ------------------------------------------------------------
 # Auto-Placeholder (R1822) fuer action_r9998
 # ------------------------------------------------------------
+
 
 def action_r9998(app, *args, **kwargs):
     """Auto-generiert durch R1822: Platzhalter-Aktion fuer action_r9998."""
@@ -283,9 +289,11 @@ def action_r9998(app, *args, **kwargs):
         except Exception:
             pass
 
+
 # ------------------------------------------------------------
 # Auto-Placeholder (R1822) fuer action_r9999
 # ------------------------------------------------------------
+
 
 def action_r9999(app, *args, **kwargs):
     """Auto-generiert durch R1822: Platzhalter-Aktion fuer action_r9999."""
@@ -297,9 +305,11 @@ def action_r9999(app, *args, **kwargs):
         except Exception:
             pass
 
+
 # ------------------------------------------------------------
 # Auto-Placeholder (R1822) fuer action_rename
 # ------------------------------------------------------------
+
 
 def action_rename(app, *args, **kwargs):
     """Auto-generiert durch R1822: Platzhalter-Aktion fuer action_rename."""
@@ -310,6 +320,7 @@ def action_rename(app, *args, **kwargs):
             print("[R1822] Aktion 'action_rename' aufgerufen, aber _status nicht verfuegbar.")
         except Exception:
             pass
+
 
 # ------------------------------------------------------------
 # Auto-Placeholder (R1822) fuer action_run
@@ -324,11 +335,10 @@ def action_tree_delete(app, *args, **kwargs):
         except Exception:
             pass
 
+
 # ------------------------------------------------------------
 # Auto-Placeholder (R1822) fuer action_tree_rename
 # ------------------------------------------------------------
-
-
 
 
 def action_tree_rename(app, *args, **kwargs):
@@ -336,6 +346,7 @@ def action_tree_rename(app, *args, **kwargs):
 
     try:
         from modules import ui_project_tree as _uipt
+
         try:
             paths = _uipt.get_selected_paths(app)
         except Exception:
@@ -352,7 +363,7 @@ def action_tree_rename(app, *args, **kwargs):
 
     if not paths:
         try:
-            _r1840_msg_info('Rename', 'Bitte zuerst eine oder mehrere Dateien im Tree markieren.')
+            _r1840_msg_info("Rename", "Bitte zuerst eine oder mehrere Dateien im Tree markieren.")
         except Exception:
             pass
         return
@@ -367,7 +378,7 @@ def action_tree_rename(app, *args, **kwargs):
         folder = _os.path.dirname(path)
         old_name = _os.path.basename(path)
         try:
-            new_name = _r1840_ask_string('Rename', 'Neuer Dateiname (ohne Pfad):', old_name)
+            new_name = _r1840_ask_string("Rename", "Neuer Dateiname (ohne Pfad):", old_name)
         except Exception:
             new_name = None
         if not new_name:
@@ -378,7 +389,7 @@ def action_tree_rename(app, *args, **kwargs):
         new_path = _os.path.join(folder, new_name)
         if _os.path.exists(new_path):
             try:
-                _r1840_msg_error('Rename', 'Es existiert bereits eine Datei mit diesem Namen.')
+                _r1840_msg_error("Rename", "Es existiert bereits eine Datei mit diesem Namen.")
             except Exception:
                 pass
             return
@@ -386,18 +397,19 @@ def action_tree_rename(app, *args, **kwargs):
             _os.rename(path, new_path)
         except Exception as exc:
             try:
-                _r1840_msg_error('Rename', 'Fehler beim Umbenennen: ' + repr(exc))
+                _r1840_msg_error("Rename", "Fehler beim Umbenennen: " + repr(exc))
             except Exception:
                 pass
             return
         try:
             from time import time as _time_now
+
             stack = _r1840_get_undo_stack(app)
             entry = {
-                'action': 'rename',
-                'old_path': path,
-                'new_path': new_path,
-                'time': _time_now(),
+                "action": "rename",
+                "old_path": path,
+                "new_path": new_path,
+                "time": _time_now(),
             }
             stack.append(entry)
         except Exception:
@@ -407,7 +419,11 @@ def action_tree_rename(app, *args, **kwargs):
         folder0 = _os.path.dirname(first)
         base0 = _os.path.splitext(_os.path.basename(first))[0]
         try:
-            base = _r1840_ask_string('Mehrfach-Rename', 'Basisname fuer Mehrfach-Umbenennung (Index wird angehaengt):', base0)
+            base = _r1840_ask_string(
+                "Mehrfach-Rename",
+                "Basisname fuer Mehrfach-Umbenennung (Index wird angehaengt):",
+                base0,
+            )
         except Exception:
             base = None
         if not base:
@@ -418,9 +434,12 @@ def action_tree_rename(app, *args, **kwargs):
         try:
             from time import time as _time_now
         except Exception:
+
             def _time_now():
                 import time as _t
+
                 return _t.time()
+
         try:
             stack = _r1840_get_undo_stack(app)
         except Exception:
@@ -434,12 +453,12 @@ def action_tree_rename(app, *args, **kwargs):
             folder = _os.path.dirname(path)
             old_name = _os.path.basename(path)
             root, ext = _os.path.splitext(old_name)
-            new_name = base + '_' + str(idx) + ext
+            new_name = base + "_" + str(idx) + ext
             idx += 1
             new_path = _os.path.join(folder, new_name)
             if _os.path.exists(new_path):
                 try:
-                    _r1840_msg_error('Mehrfach-Rename', 'Ziel existiert bereits: ' + new_path)
+                    _r1840_msg_error("Mehrfach-Rename", "Ziel existiert bereits: " + new_path)
                 except Exception:
                     pass
                 continue
@@ -447,29 +466,28 @@ def action_tree_rename(app, *args, **kwargs):
                 _os.rename(path, new_path)
             except Exception as exc:
                 try:
-                    _r1840_msg_error('Mehrfach-Rename', 'Fehler bei ' + path + ': ' + repr(exc))
+                    _r1840_msg_error("Mehrfach-Rename", "Fehler bei " + path + ": " + repr(exc))
                 except Exception:
                     pass
                 continue
             if stack is not None:
                 try:
                     entry = {
-                        'action': 'rename',
-                        'old_path': path,
-                        'new_path': new_path,
-                        'time': _time_now(),
+                        "action": "rename",
+                        "old_path": path,
+                        "new_path": new_path,
+                        "time": _time_now(),
                     }
                     stack.append(entry)
                 except Exception:
                     pass
 
     try:
-        proxy = getattr(app, 'right_list', None)
-        if proxy is not None and hasattr(proxy, 'refresh'):
+        proxy = getattr(app, "right_list", None)
+        if proxy is not None and hasattr(proxy, "refresh"):
             proxy.refresh()
     except Exception:
         pass
-
 
 
 def action_tree_undo(app, *args, **kwargs):
@@ -482,9 +500,11 @@ def action_tree_undo(app, *args, **kwargs):
         except Exception:
             pass
 
+
 # ------------------------------------------------------------
 # Auto-Placeholder (R1822) fuer action_undo
 # ------------------------------------------------------------
+
 
 def action_undo(app, *args, **kwargs):
     """Auto-generiert durch R1822: Platzhalter-Aktion fuer action_undo."""
@@ -496,9 +516,19 @@ def action_undo(app, *args, **kwargs):
         except Exception:
             pass
 
+
 # R1827: LearningEngine-Logging-Hook (defensiv, Zusatz)
 
+
 def _learning_log_event(app, event_type: str, payload: Optional[dict] | None = None) -> None:
+    # R2636_LJ_GATE_APP_START
+    # Default: do NOT write LJ for noisy startup marker.
+    # Override: set ENV SHRIMPDEV_LJ_LOG_APP_START=1
+    try:
+        if str(event_type) == 'app_start' and os.environ.get('SHRIMPDEV_LJ_LOG_APP_START', '0') != '1':
+            return
+    except Exception:
+        pass
     # R2082: Sicheres Logging-Hook fuer LearningEngine und LearningJournal.
     # Wichtig: Fehler in den Diagnose-Systemen duerfen NIEMALS Intake/Runner crashen.
 
@@ -506,19 +536,20 @@ def _learning_log_event(app, event_type: str, payload: Optional[dict] | None = N
     try:
         try:
             from modules import learning_engine  # type: ignore
+
             has_engine = True
         except Exception:
             learning_engine = None  # type: ignore[assignment]
             has_engine = False
 
         if has_engine:
-            handler = getattr(learning_engine, 'learn_from_event', None)
+            handler = getattr(learning_engine, "learn_from_event", None)
             if handler is not None:
                 data = payload or {}
                 try:
                     safe_data = dict(data)
                 except Exception:
-                    safe_data = {'payload': str(data)}
+                    safe_data = {"payload": str(data)}
                 try:
                     handler(str(event_type), safe_data)
                 except Exception:
@@ -530,32 +561,33 @@ def _learning_log_event(app, event_type: str, payload: Optional[dict] | None = N
     # Neues Ziel: LearningJournal (optional, falls Modul vorhanden)
     try:
         from modules import module_learningjournal as _lj  # type: ignore
-        lj_handler = getattr(_lj, 'learning_log_event', None)
+
+        lj_handler = getattr(_lj, "learning_log_event", None)
         if lj_handler is None:
             return
 
-        msg = ''
+        msg = ""
         if isinstance(payload, dict):
             try:
-                for key in ('message', 'status', 'phase', 'action'):
+                for key in ("message", "status", "phase", "action"):
                     value = payload.get(key)
                     if value:
                         msg = str(value)
                         break
             except Exception:
-                msg = ''
+                msg = ""
         if not msg:
-            msg = 'event ' + str(event_type)
+            msg = "event " + str(event_type)
 
         if isinstance(payload, dict):
             try:
                 lj_data = dict(payload)
             except Exception:
-                lj_data = {'payload': str(payload)}
+                lj_data = {"payload": str(payload)}
         elif payload is None:
             lj_data = {}
         else:
-            lj_data = {'payload': str(payload)}
+            lj_data = {"payload": str(payload)}
 
         try:
             lj_handler(str(event_type), msg, lj_data)
@@ -568,7 +600,9 @@ def _learning_log_event(app, event_type: str, payload: Optional[dict] | None = N
 
 
 # =====================================================================
-def _rR1837_get_intake_widgets(app) -> tuple[Optional[object], Optional[object], Optional[object], Optional[object]]:
+def _rR1837_get_intake_widgets(
+    app,
+) -> tuple[Optional[object], Optional[object], Optional[object], Optional[object]]:
     """
     Versucht, die relevanten Intake-Widgets am App-Objekt zu finden.
 
@@ -637,8 +671,44 @@ def _rR1837_detect_name_ext_from_text(text: str) -> tuple[str, str]:
     if _mod_intake_r1837 is not None and hasattr(_mod_intake_r1837, "detect_name_and_ext"):
         try:
             name, ext = _mod_intake_r1837.detect_name_and_ext(t)  # type: ignore[attr-defined]
+            # --- R2676: Intake fallback name/ext (MR safe, no crashes) ---
+            try:
+                # normalize ext to no-dot lowercase (UI expects: py/cmd/bat)
+                _ext = (ext or "").strip()
+                if _ext.startswith("."):
+                    _ext = _ext[1:]
+                _ext = _ext.lower()
+
+                # if name missing, derive from filename stem
+                _t = str(t) if t is not None else ""
+                _stem = Path(_t).stem if _t else ""
+                if not (name or "").strip() and _stem:
+                    name = _stem
+
+                # if ext missing/unknown, derive from suffix
+                if _ext not in ("py", "cmd", "bat"):
+                    _suf = Path(_t).suffix.lower() if _t else ""
+                    if _suf == ".py":
+                        _ext = "py"
+                    elif _suf == ".cmd":
+                        _ext = "cmd"
+                    elif _suf == ".bat":
+                        _ext = "bat"
+                    else:
+                        _ext = _ext if _ext else ""
+
+                ext = _ext
+            except Exception:
+                # never break Intake
+                try:
+                    if not ext:
+                        ext = "py" if str(t).lower().endswith(".py") else (ext or "")
+                except Exception:
+                    pass
+            # --- /R2676 ---
+
             name = (name or "").strip()
-            ext = (ext or "")
+            ext = ext or ""
             if ext:
                 # Wenn Intake uns eine gueltige Endung liefert, direkt uebernehmen
                 return name, ext
@@ -677,11 +747,10 @@ def _rR1837_detect_name_ext_from_text(text: str) -> tuple[str, str]:
     if is_batch:
         ext = ".cmd"
     elif is_python:
-        ext = ".py"
+        ext = None  # R2665: no default fallback
     else:
         # Default: Python, falls weder Batch noch Python klar erkannt wurde
-        ext = ".py"
-
+        ext = None  # R2665: no default fallback
     return name, ext
 
 
@@ -708,7 +777,10 @@ def action_new(app) -> None:
         _learning_log_event(app, "intake_new", "ok")  # type: ignore[name-defined]
     except Exception:
         pass
+
+
 # [DEPRECATED_PHASE1_R2027]: Aeltere action_detect-Version, ueberlagert durch finale Definition.
+
 
 def action_save(app) -> None:
     "Intake-Inhalt im Zielordner als Datei speichern (R1970 mit Syntax-Check)."
@@ -828,6 +900,7 @@ def action_run(app) -> None:
     # Zentraler Runner-Start: schreibt [RUNNER] START/STDOUT/END in debug_output.txt
     try:
         from modules import module_runner_exec
+
         module_runner_exec.run(path, title=f"Intake Run {name}{ext}")
         _rR1837_status(app, f"Run gestartet: {path}")
         try:
@@ -850,6 +923,7 @@ def action_tree_delete(app, *args, **kwargs):
     paths = []
     try:
         from modules import ui_project_tree as _uipt
+
         try:
             candidates = _uipt.get_selected_paths(app)
         except Exception:
@@ -871,6 +945,7 @@ def action_tree_delete(app, *args, **kwargs):
     if not paths:
         try:
             from tkinter import messagebox as _mb
+
             _mb.showinfo("Loeschen", "Keine Datei ausgewaehlt.")
         except Exception:
             pass
@@ -910,12 +985,7 @@ def action_tree_delete(app, *args, **kwargs):
         except Exception:
             continue
 
-        stack.append({
-            "action": "delete",
-            "original": path,
-            "trash": dest,
-            "time": _time.time()
-        })
+        stack.append({"action": "delete", "original": path, "trash": dest, "time": _time.time()})
 
     try:
         proxy = getattr(app, "right_list", None)
@@ -930,7 +1000,6 @@ def action_tree_delete(app, *args, **kwargs):
 # Kontextmenue fuer rechte Tree-Liste (In Intake laden, Explorer, Pfad kopieren, Umbenennen, In den Papierkorb)
 
 import os as _r1848_os
-import threading as _r1848_thread
 
 try:
     import tkinter as _r1848_tk
@@ -938,6 +1007,7 @@ try:
 except Exception:
     _r1848_tk = None
     _r1848_mb = None
+
 
 def _r1848_get_selected_path(app):
     """Pfad der aktuellen Auswahl aus ui_project_tree.get_selected_path(app)."""
@@ -949,6 +1019,7 @@ def _r1848_get_selected_path(app):
         return _r1848_uipt.get_selected_path(app)
     except Exception:
         return None
+
 
 def action_tree_open_in_explorer(app, *args, **kwargs):
     """Markierte Datei im Explorer oeffnen (oder Info anzeigen)."""
@@ -962,7 +1033,7 @@ def action_tree_open_in_explorer(app, *args, **kwargs):
         return
     try:
         if _r1848_os.path.exists(path):
-            _r1848_module_runner_exec.run(path, title='Intake Run')
+            _r1848_module_runner_exec.run(path, title="Intake Run")
         else:
             if _r1848_mb:
                 try:
@@ -975,6 +1046,7 @@ def action_tree_open_in_explorer(app, *args, **kwargs):
                 _r1848_mb.showerror("Explorer", "Fehler beim Oeffnen:\n" + repr(exc))
             except Exception:
                 pass
+
 
 def action_tree_copy_path(app, *args, **kwargs):
     """Pfad der markierten Datei in die Zwischenablage kopieren."""
@@ -998,7 +1070,16 @@ def action_tree_copy_path(app, *args, **kwargs):
     except Exception:
         pass
 
+
 def _r1848_attach_context_menu(app):
+    # --- R2478_OWNER_GUARD ---
+    # If ui_project_tree owns the Tree context menu, do not attach R1848 menu.
+    try:
+        if getattr(app, "_tree_ctx_owner", "") == "ui_project_tree":
+            return
+    except Exception:
+        pass
+
     """Rechtsklick-Kontextmenue an app.tree anbinden."""
     if _r1848_tk is None:
         return
@@ -1019,6 +1100,7 @@ def _r1848_attach_context_menu(app):
     def _cmd_open_intake():
         try:
             from modules.ui_project_tree import open_selected_in_intake  # type: ignore
+
             open_selected_in_intake(app)
         except Exception:
             pass
@@ -1069,12 +1151,15 @@ def _r1848_attach_context_menu(app):
     except Exception:
         pass
 
+
 # build_tree aus ui_project_tree wrappen, damit Kontextmenue nach dem Aufbau gesetzt wird
 try:
     from modules import ui_project_tree as _r1848_uipt  # type: ignore
+
     _r1848_orig_build_tree = getattr(_r1848_uipt, "build_tree", None)
 except Exception:
     _r1848_orig_build_tree = None
+
 
 def _r1848_install_build_tree_wrapper():
     if _r1848_orig_build_tree is None:
@@ -1092,6 +1177,7 @@ def _r1848_install_build_tree_wrapper():
         _r1848_uipt.build_tree = _wrapped_build_tree  # type: ignore
     except Exception:
         pass
+
 
 _r1848_install_build_tree_wrapper()
 
@@ -1112,8 +1198,9 @@ except Exception:
     _r1851_mb = None
     _r1851_font = None
 
+
 def _r1851_load_ini():
-    '''ShrimpDev.ini ueber modules.config_loader.load() einlesen.'''
+    """ShrimpDev.ini ueber modules.config_loader.load() einlesen."""
     try:
         from modules import config_loader as _r1851_cfg  # type: ignore
     except Exception:
@@ -1123,8 +1210,9 @@ def _r1851_load_ini():
     except Exception:
         return None
 
+
 def _r1851_save_ini(cfg):
-    '''ShrimpDev.ini ueber modules.config_loader.save() speichern.'''
+    """ShrimpDev.ini ueber modules.config_loader.save() speichern."""
     try:
         from modules import config_loader as _r1851_cfg  # type: ignore
     except Exception:
@@ -1134,8 +1222,9 @@ def _r1851_save_ini(cfg):
     except Exception:
         return
 
+
 def _r1851_get_runnerpopup_flag(runner_id: str) -> bool:
-    '''True = Popup anzeigen, False = unterdruecken (Default: True).'''
+    """True = Popup anzeigen, False = unterdruecken (Default: True)."""
     cfg = _r1851_load_ini()
     if cfg is None:
         return True
@@ -1147,6 +1236,7 @@ def _r1851_get_runnerpopup_flag(runner_id: str) -> bool:
     except Exception:
         return True
 
+
 def _r1851_set_runnerpopup_flag(runner_id: str, show: bool) -> None:
     cfg = _r1851_load_ini()
     if cfg is None:
@@ -1157,8 +1247,9 @@ def _r1851_set_runnerpopup_flag(runner_id: str, show: bool) -> None:
     cfg.set(section, runner_id, "true" if show else "false")
     _r1851_save_ini(cfg)
 
+
 def _r1851_show_popup(app, title: str, text: str, runner_id: str):
-    '''Popup fuer Runner-Ausgaben mit Checkbox "nicht mehr anzeigen".'''
+    """Popup fuer Runner-Ausgaben mit Checkbox "nicht mehr anzeigen"."""
     if _r1851_tk is None:
         return
 
@@ -1218,14 +1309,8 @@ def _r1851_show_popup(app, title: str, text: str, runner_id: str):
         ctrl = _r1851_tk.Frame(win)
         ctrl.pack(fill="x", pady=4)
 
-        var_suppress = _r1851_tk.BooleanVar(
-            value=not _r1851_get_runnerpopup_flag(runner_id)
-        )
-        chk = _r1851_tk.Checkbutton(
-            ctrl,
-            text="nicht mehr anzeigen",
-            variable=var_suppress
-        )
+        var_suppress = _r1851_tk.BooleanVar(value=not _r1851_get_runnerpopup_flag(runner_id))
+        chk = _r1851_tk.Checkbutton(ctrl, text="nicht mehr anzeigen", variable=var_suppress)
         chk.pack(side="left", padx=4)
 
         def _on_close():
@@ -1249,15 +1334,14 @@ def _r1851_show_popup(app, title: str, text: str, runner_id: str):
     except Exception:
         return
 
+
 def _r1851_run_cmd_in_background(app, cmd_path: str, label: str, runner_id: str):
-    '''Runner-CMD im Hintergrund ausfuehren und ggf. Popup anzeigen.'''
+    """Runner-CMD im Hintergrund ausfuehren und ggf. Popup anzeigen."""
+
     def worker():
         try:
             proc = _r1851_sub.Popen(
-                ["cmd", "/c", cmd_path],
-                stdout=_r1851_sub.PIPE,
-                stderr=_r1851_sub.PIPE,
-                text=True
+                ["cmd", "/c", cmd_path], stdout=_r1851_sub.PIPE, stderr=_r1851_sub.PIPE, text=True
             )
             out, err = proc.communicate()
 
@@ -1279,6 +1363,7 @@ def _r1851_run_cmd_in_background(app, cmd_path: str, label: str, runner_id: str)
             # Zentraler Runner-Log (exception_logger)
             try:
                 from . import exception_logger as _elog  # type: ignore
+
                 def _trunc(s, lim=8000):
                     try:
                         if s is None:
@@ -1289,6 +1374,7 @@ def _r1851_run_cmd_in_background(app, cmd_path: str, label: str, runner_id: str)
                         return s[:lim] + "\n... (truncated)"
                     except Exception:
                         return ""
+
                 # START/OUTPUT/END
                 try:
                     _elog.log_runner_start(runner_id, label)
@@ -1318,8 +1404,9 @@ def _r1851_run_cmd_in_background(app, cmd_path: str, label: str, runner_id: str)
 
     _r1851_thread.Thread(target=worker, daemon=True).start()
 
+
 def _r1851_run_tools_runner(app, runner_id: str, label: str):
-    '''Wrapper fuer SonderRunner-Buttons (FutureFix etc.).'''
+    """Wrapper fuer SonderRunner-Buttons (FutureFix etc.)."""
     try:
         here = _r1851_os.path.abspath(_r1851_os.path.dirname(__file__))
         root_dir = _r1851_os.path.abspath(_r1851_os.path.join(here, ".."))
@@ -1340,18 +1427,23 @@ def _r1851_run_tools_runner(app, runner_id: str, label: str):
 
     _r1851_run_cmd_in_background(app, cmd_path, label, runner_id)
 
+
 # Actions ueberschreiben (letzte Definition gewinnt)
-def action_guard_futurefix(app, *args, **kwargs):      # type: ignore[override]
+def action_guard_futurefix(app, *args, **kwargs):  # type: ignore[override]
     _r1851_run_tools_runner(app, "R9997", "FutureFix")
+
 
 def action_guard_futurefix_safe(app, *args, **kwargs):  # type: ignore[override]
     _r1851_run_tools_runner(app, "R1351", "FutureFix Safe")
 
-def action_r9998(app, *args, **kwargs):                 # type: ignore[override]
+
+def action_r9998(app, *args, **kwargs):  # type: ignore[override]
     _r1851_run_tools_runner(app, "R9998", "Build Tools")
 
-def action_r9999(app, *args, **kwargs):                 # type: ignore[override]
+
+def action_r9999(app, *args, **kwargs):  # type: ignore[override]
     _r1851_run_tools_runner(app, "R9999", "Diagnose")
+
 
 # R1851_END_RUNNERPOPUPS_INI
 
@@ -1372,6 +1464,7 @@ except Exception:
     _r1852_mb = None
     _r1852_font = None
 
+
 def _r1852_load_ini():
     """ShrimpDev.ini ueber modules.config_loader.load() einlesen."""
     try:
@@ -1383,6 +1476,7 @@ def _r1852_load_ini():
     except Exception:
         return None
 
+
 def _r1852_save_ini(cfg):
     """ShrimpDev.ini ueber modules.config_loader.save() speichern."""
     try:
@@ -1393,6 +1487,7 @@ def _r1852_save_ini(cfg):
         _r1852_cfg.save(cfg)
     except Exception:
         return
+
 
 def _r1852_get_runnerpopup_flag(runner_id: str) -> bool:
     """True = Popup anzeigen, False = unterdruecken (Default: True)."""
@@ -1407,6 +1502,7 @@ def _r1852_get_runnerpopup_flag(runner_id: str) -> bool:
     except Exception:
         return True
 
+
 def _r1852_set_runnerpopup_flag(runner_id: str, show: bool) -> None:
     cfg = _r1852_load_ini()
     if cfg is None:
@@ -1416,6 +1512,7 @@ def _r1852_set_runnerpopup_flag(runner_id: str, show: bool) -> None:
         cfg.add_section(section)
     cfg.set(section, runner_id, "true" if show else "false")
     _r1852_save_ini(cfg)
+
 
 def _r1852_show_popup(app, title: str, text: str, runner_id: str):
     """Popup fuer Runner-Ausgaben mit Checkbox 'nicht mehr anzeigen'."""
@@ -1471,14 +1568,8 @@ def _r1852_show_popup(app, title: str, text: str, runner_id: str):
         ctrl = _r1852_tk.Frame(win)
         ctrl.pack(fill="x", pady=4)
 
-        var_suppress = _r1852_tk.BooleanVar(
-            value=not _r1852_get_runnerpopup_flag(runner_id)
-        )
-        chk = _r1852_tk.Checkbutton(
-            ctrl,
-            text="nicht mehr anzeigen",
-            variable=var_suppress
-        )
+        var_suppress = _r1852_tk.BooleanVar(value=not _r1852_get_runnerpopup_flag(runner_id))
+        chk = _r1852_tk.Checkbutton(ctrl, text="nicht mehr anzeigen", variable=var_suppress)
         chk.pack(side="left", padx=4)
 
         def _on_close():
@@ -1502,15 +1593,14 @@ def _r1852_show_popup(app, title: str, text: str, runner_id: str):
     except Exception:
         return
 
+
 def _r1852_run_cmd_in_background(app, cmd_path: str, label: str, runner_id: str):
     """Runner-CMD im Hintergrund ausfuehren und ggf. Popup anzeigen."""
+
     def worker():
         try:
             proc = _r1852_sub.Popen(
-                ["cmd", "/c", cmd_path],
-                stdout=_r1852_sub.PIPE,
-                stderr=_r1852_sub.PIPE,
-                text=True
+                ["cmd", "/c", cmd_path], stdout=_r1852_sub.PIPE, stderr=_r1852_sub.PIPE, text=True
             )
             out, err = proc.communicate()
 
@@ -1537,6 +1627,7 @@ def _r1852_run_cmd_in_background(app, cmd_path: str, label: str, runner_id: str)
 
     _r1852_thread.Thread(target=worker, daemon=True).start()
 
+
 def _r1852_run_tools_runner(app, runner_id: str, label: str):
     """Wrapper fuer SonderRunner-Buttons (FutureFix etc.)."""
     try:
@@ -1559,24 +1650,30 @@ def _r1852_run_tools_runner(app, runner_id: str, label: str):
 
     _r1852_run_cmd_in_background(app, cmd_path, label, runner_id)
 
+
 # Actions ueberschreiben (letzte Definition gewinnt)
-def action_guard_futurefix(app, *args, **kwargs):      # type: ignore[override]
+def action_guard_futurefix(app, *args, **kwargs):  # type: ignore[override]
     _r1852_run_tools_runner(app, "R9997", "FutureFix")
+
 
 def action_guard_futurefix_safe(app, *args, **kwargs):  # type: ignore[override]
     _r1852_run_tools_runner(app, "R1351", "FutureFix Safe")
 
-def action_r9998(app, *args, **kwargs):                 # type: ignore[override]
+
+def action_r9998(app, *args, **kwargs):  # type: ignore[override]
     _r1852_run_tools_runner(app, "R9998", "Build Tools")
 
-def action_r9999(app, *args, **kwargs):                 # type: ignore[override]
+
+def action_r9999(app, *args, **kwargs):  # type: ignore[override]
     _r1852_run_tools_runner(app, "R9999", "Diagnose")
+
 
 # R1852_END_RUNNERPOPUPS_INI
 
 # [R1901] Hilfsfunktionen fuer zentrale Config-Nutzung
 from pathlib import Path as _PathForActions
-from modules import module_runner_exec, config_manager as _cfg_actions
+from modules import config_manager as _cfg_actions
+
 
 def get_workspace_root_for_actions() -> _PathForActions:
     """Liefert den workspace_root fuer Dateioperationen in logic_actions.
@@ -1586,9 +1683,12 @@ def get_workspace_root_for_actions() -> _PathForActions:
     """
     return _cfg_actions.get_workspace_root()
 
+
 def is_quiet_mode_enabled() -> bool:
     """Liefert True, wenn quiet_mode in der Config aktiviert ist."""
     return _cfg_actions.get_quiet_mode()
+
+
 # --- R1979 Intake Detect Core ---
 
 
@@ -1605,46 +1705,58 @@ def _r2020_detect_name_ext_from_text(text: str) -> tuple[str, str]:
     import re as _re
 
     # 0) Header/FILE-Marker gewinnt (Header-first, verhindert falsche Runner-ID Erkennung)
-    header_path = ''
+    header_path = ""
     try:
-        mfile = _re.search(r'^\s*(?:#|;|//|REM\s+)\s*(?:file|path)\s*:\s*([^\s]+)\s*$', t, _re.IGNORECASE | _re.MULTILINE)
+        mfile = _re.search(
+            r"^\s*(?:#|;|//|REM\s+)\s*(?:file|path)\s*:\s*([^\s]+)\s*$",
+            t,
+            _re.IGNORECASE | _re.MULTILINE,
+        )
         if not mfile:
-            mfile = _re.search(r'@@file=([^@]+)@@', t, _re.IGNORECASE)
+            mfile = _re.search(r"@@file=([^@]+)@@", t, _re.IGNORECASE)
         if not mfile:
-            mfile = _re.search(r'^\s*(?:REM\s+FILE|;\s*FILE)\s+([^\s]+)\s*$', t, _re.IGNORECASE | _re.MULTILINE)
+            mfile = _re.search(
+                r"^\s*(?:REM\s+FILE|;\s*FILE)\s+([^\s]+)\s*$", t, _re.IGNORECASE | _re.MULTILINE
+            )
         if mfile:
-            header_path = (mfile.group(1) or '').strip().strip('"').strip("'")
+            header_path = (mfile.group(1) or "").strip().strip('"').strip("'")
     except Exception:
-        header_path = ''
+        header_path = ""
 
     if header_path:
-        hp = header_path.replace('\\', '/').split('/')[-1]
-        ext2 = '.py'
-        if '.' in hp:
-            ext2 = '.' + hp.split('.')[-1].lower()
-        name2 = hp.rsplit('.', 1)[0] if '.' in hp else hp
+        hp = header_path.replace("\\", "/").split("/")[-1]
+        ext2 = ".py"
+        if "." in hp:
+            ext2 = "." + hp.split(".")[-1].lower()
+        name2 = hp.rsplit(".", 1)[0] if "." in hp else hp
         if name2:
             return name2, ext2
 
     # 0) Header/FILE-Marker gewinnt (Header-first, verhindert falsche Runner-ID Erkennung)
-    header_path = ''
+    header_path = ""
     try:
-        mfile = _re.search(r'^\s*(?:#|;|//|REM\s+)\s*(?:file|path)\s*:\s*([^\s]+)\s*$', t, _re.IGNORECASE | _re.MULTILINE)
+        mfile = _re.search(
+            r"^\s*(?:#|;|//|REM\s+)\s*(?:file|path)\s*:\s*([^\s]+)\s*$",
+            t,
+            _re.IGNORECASE | _re.MULTILINE,
+        )
         if not mfile:
-            mfile = _re.search(r'@@file=([^@]+)@@', t, _re.IGNORECASE)
+            mfile = _re.search(r"@@file=([^@]+)@@", t, _re.IGNORECASE)
         if not mfile:
-            mfile = _re.search(r'^\s*(?:REM\s+FILE|;\s*FILE)\s+([^\s]+)\s*$', t, _re.IGNORECASE | _re.MULTILINE)
+            mfile = _re.search(
+                r"^\s*(?:REM\s+FILE|;\s*FILE)\s+([^\s]+)\s*$", t, _re.IGNORECASE | _re.MULTILINE
+            )
         if mfile:
-            header_path = (mfile.group(1) or '').strip().strip('"').strip("'")
+            header_path = (mfile.group(1) or "").strip().strip('"').strip("'")
     except Exception:
-        header_path = ''
+        header_path = ""
 
     if header_path:
-        hp = header_path.replace('\\', '/').split('/')[-1]
-        ext2 = '.py'
-        if '.' in hp:
-            ext2 = '.' + hp.split('.')[-1].lower()
-        name2 = hp.rsplit('.', 1)[0] if '.' in hp else hp
+        hp = header_path.replace("\\", "/").split("/")[-1]
+        ext2 = ".py"
+        if "." in hp:
+            ext2 = "." + hp.split(".")[-1].lower()
+        name2 = hp.rsplit(".", 1)[0] if "." in hp else hp
         if name2:
             return name2, ext2
 
@@ -1678,8 +1790,7 @@ def _r2020_detect_name_ext_from_text(text: str) -> tuple[str, str]:
         ext = ".cmd"
     else:
         # Standardfall: Python, falls nicht eindeutig Batch
-        ext = ".py"
-
+        ext = None  # R2665: no default fallback
     return name, ext
 
 
@@ -1728,7 +1839,34 @@ def _r1979_intake_detect_core(app, *_args, **_kwargs) -> None:
         name, ext = "", ".py"
 
     name = name or "Intake"
-    ext = ext or ".py"
+    ext = ext  # R2665: no default fallback
+    # --- R2687: normalize ext after R2020 ---
+    # Intake boundary: ext MUST be no-dot lowercase (py/cmd/bat)
+    try:
+        _e = ext
+        if _e is None:
+            _e = ""
+        if isinstance(_e, str):
+            _e = _e.strip()
+            if _e.startswith('.'):
+                _e = _e[1:]
+            _e = _e.lower()
+        else:
+            _e = str(_e).strip().lower()
+        if _e in ("", "none"):
+            _e = "py"
+        elif _e in ("py", "cmd", "bat"):
+            pass
+        elif _e in (".py", ".cmd", ".bat"):
+            _e = _e[1:]
+        else:
+            # unknown -> default python
+            _e = "py"
+        ext = _e
+    except Exception:
+        ext = "py"
+    # --- /R2687 ---
+
 
     # R1992: Batch-Inhalt erzwingt CMD-Endung, auch wenn Fallback ".py" ergibt
     try:
@@ -1804,15 +1942,16 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
     """
     return _r1979_intake_detect_core(app, *args, **kwargs)
 
+
 # --- Ende R1979 Intake Detect Core ---
 
 # --- Legacy-Code archiviert durch R2032 (nicht mehr aktiv, nur Referenz) ---
 # --- LEGACY_R2032: R1840_TOOLBAR_ACTIONS ---
-# 
-# 
-# 
-# 
-# 
+#
+#
+#
+#
+#
 # # R1840_START_TOOLBAR_ACTIONS
 # # [DEPRECATED_PHASE1_R2027]: Toolbar-Aktionen (Tree Delete/Rename) alt – ueberlagert durch R1841B/R1848.
 # # ToolbarRightFix (Soft Delete) - automatische Ergänzung durch R1840
@@ -1824,10 +1963,10 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 # # Abhängigkeiten:
 # #   - ui_project_tree.get_selected_path(app) für Pfadermittlung
 # #   - app.right_list.refresh() (RightListProxy) für Refresh, falls vorhanden
-# 
+#
 # import os as _r1840_os
 # import time as _r1840_time
-# 
+#
 # try:
 #     import tkinter as _r1840_tk
 #     from tkinter import messagebox as _r1840_messagebox
@@ -1836,8 +1975,8 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #     _r1840_tk = None
 #     _r1840_messagebox = None
 #     _r1840_simpledialog = None
-# 
-# 
+#
+#
 # def _r1840_log(msg):
 #     """Lokales Logging fuer Toolbar-Aktionen (R1840)."""
 #     try:
@@ -1850,8 +1989,8 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #             f.write(line)
 #     except Exception:
 #         pass
-# 
-# 
+#
+#
 # def _r1840_msg_info(title, text):
 #     if _r1840_messagebox is not None:
 #         try:
@@ -1860,8 +1999,8 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #         except Exception:
 #             pass
 #     _r1840_log("INFO [" + str(title) + "]: " + str(text))
-# 
-# 
+#
+#
 # def _r1840_msg_error(title, text):
 #     if _r1840_messagebox is not None:
 #         try:
@@ -1870,8 +2009,8 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #         except Exception:
 #             pass
 #     _r1840_log("ERROR [" + str(title) + "]: " + str(text))
-# 
-# 
+#
+#
 # def _r1840_msg_yesno(title, text):
 #     if _r1840_messagebox is not None:
 #         try:
@@ -1880,8 +2019,8 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #             pass
 #     _r1840_log("ASK-YESNO [" + str(title) + "]: " + str(text) + " -> fallback=True")
 #     return True
-# 
-# 
+#
+#
 # def _r1840_ask_string(title, prompt, initial=""):
 #     if _r1840_simpledialog is not None:
 #         try:
@@ -1890,8 +2029,8 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #             pass
 #     _r1840_log("ASK-STRING [" + str(title) + "]: " + str(prompt) + " (kein Dialog verfuegbar)")
 #     return None
-# 
-# 
+#
+#
 # def _r1840_get_undo_stack(app):
 #     """Liefert den Undo-Stack fuer Tree-Aktionen (Liste) am App-Objekt."""
 #     stack = getattr(app, "_tree_undo_stack", None)
@@ -1902,11 +2041,11 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #         except Exception:
 #             pass
 #     return stack
-# 
-# 
+#
+#
 # def _r1840_get_selected_path(app):
 #     """Ermittelt den Pfad der markierten Datei in der rechten Liste.
-# 
+#
 #     Bevorzugt ui_project_tree.get_selected_path(app).
 #     """
 #     # 1) ui_project_tree.get_selected_path(app)
@@ -1920,7 +2059,7 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #             pass
 #     except Exception:
 #         pass
-# 
+#
 #     # 2) Fallback ueber app.tree_paths
 #     tree = getattr(app, "tree", None)
 #     paths = getattr(app, "tree_paths", {})
@@ -1935,8 +2074,8 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #         return None
 #     iid = sel[0]
 #     return paths.get(iid)
-# 
-# 
+#
+#
 # def _r1840_refresh_right_list(app):
 #     """Aktualisiert die rechte Liste / den Tree, ohne Exceptions nach aussen."""
 #     try:
@@ -1947,11 +2086,11 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #     except Exception:
 #         pass
 #     # Fallback: nichts tun
-# 
-# 
+#
+#
 # def _r1840_make_trash_name(path):
 #     """Erzeugt Soft-Delete-Zielnamen im selben Ordner.
-# 
+#
 #     Beispiel:
 #         R1839.py -> .__deleted_R1840_20251130_183000__R1839.py
 #     """
@@ -1966,11 +2105,11 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #         candidate = _r1840_os.path.join(folder, name2)
 #         counter += 1
 #     return candidate
-# 
-# 
+#
+#
 # def action_tree_delete(app, *args, **kwargs):
 #     """Soft Delete fuer markierte Datei in der rechten Liste.
-# 
+#
 #     Umsetzung:
 #     - Pfad ermitteln
 #     - Bestaetigung einholen
@@ -1983,18 +2122,18 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #         if not path:
 #             _r1840_msg_info("Loeschen", "Bitte zuerst eine Datei in der rechten Liste markieren.")
 #             return
-# 
+#
 #         if not _r1840_os.path.exists(path):
 #             _r1840_msg_error("Loeschen", "Die Datei existiert nicht mehr auf dem Datentraeger.")
 #             return
-# 
+#
 #         ok = _r1840_msg_yesno("Loeschen", "Datei wirklich loeschen (Soft Delete)?\n\n" + str(path))
 #         if not ok:
 #             return
-# 
+#
 #         trash = _r1840_make_trash_name(path)
 #         _r1840_os.rename(path, trash)
-# 
+#
 #         stack = _r1840_get_undo_stack(app)
 #         entry = {
 #             "action": "delete",
@@ -2004,13 +2143,13 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #         }
 #         stack.append(entry)
 #         _r1840_log("Delete: " + path + " -> " + trash)
-# 
+#
 #         _r1840_refresh_right_list(app)
-# 
+#
 #     except Exception as exc:
 #         _r1840_msg_error("Loeschen", "Fehler beim Loeschen: " + repr(exc))
-# 
-# 
+#
+#
 # def action_tree_rename(app, *args, **kwargs):
 #     """Markierte Datei in der rechten Liste umbenennen (undo-faehig)."""
 #     try:
@@ -2018,24 +2157,24 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #         if not path:
 #             _r1840_msg_info("Rename", "Bitte zuerst eine Datei in der rechten Liste markieren.")
 #             return
-# 
+#
 #         folder = _r1840_os.path.dirname(path)
 #         old_name = _r1840_os.path.basename(path)
-# 
+#
 #         new_name = _r1840_ask_string("Rename", "Neuer Dateiname (ohne Pfad):", old_name)
 #         if not new_name:
 #             return
 #         new_name = str(new_name).strip()
 #         if not new_name:
 #             return
-# 
+#
 #         new_path = _r1840_os.path.join(folder, new_name)
 #         if _r1840_os.path.exists(new_path):
 #             _r1840_msg_error("Rename", "Es existiert bereits eine Datei mit diesem Namen.")
 #             return
-# 
+#
 #         _r1840_os.rename(path, new_path)
-# 
+#
 #         stack = _r1840_get_undo_stack(app)
 #         entry = {
 #             "action": "rename",
@@ -2045,13 +2184,13 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #         }
 #         stack.append(entry)
 #         _r1840_log("Rename: " + path + " -> " + new_path)
-# 
+#
 #         _r1840_refresh_right_list(app)
-# 
+#
 #     except Exception as exc:
 #         _r1840_msg_error("Rename", "Fehler beim Umbenennen: " + repr(exc))
-# 
-# 
+#
+#
 # def action_tree_undo(app, *args, **kwargs):
 #     """Letzte Tree-Aktion (delete/rename) rueckgaengig machen."""
 #     try:
@@ -2059,10 +2198,10 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #         if not stack:
 #             _r1840_msg_info("Undo", "Kein Undo-Eintrag vorhanden.")
 #             return
-# 
+#
 #         entry = stack.pop()
 #         kind = entry.get("action")
-# 
+#
 #         if kind == "delete":
 #             orig = entry.get("original")
 #             trash = entry.get("trash")
@@ -2076,7 +2215,7 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #                     return
 #             else:
 #                 _r1840_msg_info("Undo Loeschen", "Trash-Datei existiert nicht mehr, nichts zu tun.")
-# 
+#
 #         elif kind == "rename":
 #             old_path = entry.get("old_path")
 #             new_path = entry.get("new_path")
@@ -2090,24 +2229,24 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #                     return
 #             else:
 #                 _r1840_msg_info("Undo Rename", "Neue Datei existiert nicht mehr, nichts zu tun.")
-# 
+#
 #         else:
 #             _r1840_msg_info("Undo", "Unbekannte Aktion: " + str(kind))
-# 
+#
 #         _r1840_refresh_right_list(app)
-# 
+#
 #     except Exception as exc:
 #         _r1840_msg_error("Undo", "Fehler beim Undo: " + repr(exc))
-# 
+#
 # # R1840_END_TOOLBAR_ACTIONS
-# 
-# 
-# 
+#
+#
+#
 
 # --- LEGACY_R2032: R1841_TOOLBAR_TRASH ---
-# 
-# 
-# 
+#
+#
+#
 # # R1841_START_TOOLBAR_TRASH
 # # [DEPRECATED_PHASE1_R2027]: Papierkorb-Variante alt – ueberlagert durch R1841B.
 # # ToolbarRightFix (Papierkorb) - automatische Ergänzung durch R1841
@@ -2115,18 +2254,18 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 # # Diese Implementierung ueberschreibt action_tree_delete aus R1840:
 # # - Datei wandert in ShrimpDev-Papierkorb (_Trash im Projektroot)
 # # - Undo verwendet unverändert den bestehenden R1840-Mechanismus.
-# 
+#
 # import os as _r1841_os
 # import time as _r1841_time
-# 
+#
 # try:
 #     import tkinter as _r1841_tk
 #     from tkinter import messagebox as _r1841_messagebox
 # except Exception:
 #     _r1841_tk = None
 #     _r1841_messagebox = None
-# 
-# 
+#
+#
 # def _r1841_msg_info(title, text):
 #     if _r1841_messagebox is not None:
 #         try:
@@ -2140,8 +2279,8 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #         _r1841_log_debug("[R1841-INFO] " + str(title) + ": " + str(text))
 #     except Exception:
 #         pass
-# 
-# 
+#
+#
 # def _r1841_msg_error(title, text):
 #     if _r1841_messagebox is not None:
 #         try:
@@ -2154,8 +2293,8 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #         _r1841_log_debug("[R1841-ERROR] " + str(title) + ": " + str(text))
 #     except Exception:
 #         pass
-# 
-# 
+#
+#
 # def _r1841_msg_yesno(title, text):
 #     if _r1841_messagebox is not None:
 #         try:
@@ -2169,16 +2308,16 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #     except Exception:
 #         pass
 #     return True
-# 
-# 
+#
+#
 # def _r1841_get_root_dir():
 #     try:
 #         here = _r1841_os.path.abspath(_r1841_os.path.dirname(__file__))
 #         return _r1841_os.path.abspath(_r1841_os.path.join(here, ".."))
 #     except Exception:
 #         return None
-# 
-# 
+#
+#
 # def _r1841_get_trash_dir():
 #     root = _r1841_get_root_dir()
 #     if not root:
@@ -2190,8 +2329,8 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #     except Exception:
 #         pass
 #     return trash
-# 
-# 
+#
+#
 # def _r1841_get_undo_stack(app):
 #     stack = getattr(app, "_tree_undo_stack", None)
 #     if not isinstance(stack, list):
@@ -2201,8 +2340,8 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #         except Exception:
 #             pass
 #     return stack
-# 
-# 
+#
+#
 # def _r1841_get_selected_path(app):
 #     # Bevorzugt ui_project_tree.get_selected_path(app)
 #     try:
@@ -2215,7 +2354,7 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #             pass
 #     except Exception:
 #         pass
-# 
+#
 #     # Fallback ueber tree/tree_paths
 #     tree = getattr(app, "tree", None)
 #     paths = getattr(app, "tree_paths", {})
@@ -2230,8 +2369,8 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #         return None
 #     iid = sel[0]
 #     return paths.get(iid)
-# 
-# 
+#
+#
 # def _r1841_refresh_right_list(app):
 #     try:
 #         proxy = getattr(app, "right_list", None)
@@ -2239,8 +2378,8 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #             proxy.refresh()
 #     except Exception:
 #         pass
-# 
-# 
+#
+#
 # def _r1841_move_to_trash(path):
 #     """Verschiebt die Datei in den ShrimpDev-Papierkorb und gibt den Trash-Pfad zurueck."""
 #     trash_root = _r1841_get_trash_dir()
@@ -2256,11 +2395,11 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #         counter += 1
 #     _r1841_os.rename(path, dest)
 #     return dest
-# 
-# 
+#
+#
 # def action_tree_delete(app, *args, **kwargs):
 #     """Loeschen fuer rechte Liste: Datei wandert in den ShrimpDev-Papierkorb (_Trash).
-# 
+#
 #     Undo verwendet den bestehenden Mechanismus:
 #     - Stack-Eintrag mit action='delete', original=<orig>, trash=<trash>
 #     """
@@ -2269,21 +2408,21 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #         if not path:
 #             _r1841_msg_info("Loeschen", "Bitte zuerst eine Datei in der rechten Liste markieren.")
 #             return
-# 
+#
 #         if not _r1841_os.path.exists(path):
 #             _r1841_msg_error("Loeschen", "Die Datei existiert nicht mehr auf dem Datentraeger.")
 #             return
-# 
+#
 #         text = "Datei in den ShrimpDev-Papierkorb verschieben?\n\n" + str(path)
 #         ok = _r1841_msg_yesno("Loeschen", text)
 #         if not ok:
 #             return
-# 
+#
 #         trash = _r1841_move_to_trash(path)
 #         if not trash:
 #             _r1841_msg_error("Loeschen", "Papierkorb (_Trash) konnte nicht verwendet werden.")
 #             return
-# 
+#
 #         stack = _r1841_get_undo_stack(app)
 #         entry = {
 #             "action": "delete",
@@ -2292,34 +2431,34 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #             "time": _r1841_time.time(),
 #         }
 #         stack.append(entry)
-# 
+#
 #         _r1841_refresh_right_list(app)
 #         _r1841_msg_info("Loeschen", "Datei wurde in den ShrimpDev-Papierkorb verschoben.")
-# 
+#
 #     except Exception as exc:
 #         _r1841_msg_error("Loeschen", "Fehler beim Loeschen: " + repr(exc))
-# 
+#
 # # R1841_END_TOOLBAR_TRASH
-# 
-# 
-# 
+#
+#
+#
 
 # --- LEGACY_R2032: R1846_RUNNER_POPUP ---
 # # R1846_START_RUNNER_POPUP
 # # [DEPRECATED_PHASE1_R2027]: Runner-Popup-System alt – ueberlagert durch neuere Popup-Implementierungen.
 # # Re-Implementierung der SonderRunner-Ausführung in GUI-Popup
-# 
+#
 # import subprocess as _r1846_sub
 # import threading as _r1846_thread
-# 
+#
 # try:
 #     import tkinter as _r1846_tk
 #     from tkinter import messagebox as _r1846_mb
 # except Exception:
 #     _r1846_tk = None
 #     _r1846_mb = None
-# 
-# 
+#
+#
 # def _r1846_show_popup(title, text):
 #     """Zentrales Popup für Runner-Ausgaben."""
 #     if _r1846_tk is None:
@@ -2329,25 +2468,25 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #         win.title(title)
 #         win.geometry("700x600")
 #         win.grab_set()
-# 
+#
 #         txt = _r1846_tk.Text(win, wrap="word")
 #         txt.pack(expand=True, fill="both")
 #         txt.insert("1.0", text)
 #         txt.config(state="disabled")
-# 
+#
 #         btn = _r1846_tk.Button(win, text="Schließen", command=win.destroy)
 #         btn.pack(pady=8)
-# 
+#
 #     except Exception as exc:
 #         try:
 #             _r1846_mb.showinfo(title, text)
 #         except:
 #             pass
-# 
-# 
+#
+#
 # def _r1846_run_cmd_in_background(app, cmd_path, label):
 #     """Startet CMD im Hintergrund und zeigt Ausgabe im Popup."""
-# 
+#
 #     def worker():
 #         try:
 #             proc = _r1846_sub.Popen(
@@ -2362,22 +2501,22 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #                 txt += out
 #             if err:
 #                 txt += "\n--- STDERR ---\n" + err
-# 
+#
 #             title = f"{label} – Ausgabe"
 #             _r1846_show_popup(title, txt)
-# 
+#
 #         except Exception as exc:
 #             _r1846_show_popup(label, "Fehler beim Ausführen:\n" + repr(exc))
-# 
+#
 #     _r1846_thread.Thread(target=worker, daemon=True).start()
-# 
-# 
+#
+#
 # def _r1846_run_tools_runner(app, runner_id, label):
 #     import os as _os
 #     root_dir = _os.path.abspath(_os.path.join(_os.path.dirname(__file__), ".."))
 #     tools_dir = _os.path.join(root_dir, "tools")
 #     cmd_path = _os.path.join(tools_dir, runner_id + ".cmd")
-# 
+#
 #     if not _os.path.isfile(cmd_path):
 #         if _r1846_mb:
 #             try:
@@ -2386,41 +2525,41 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #             except:
 #                 pass
 #         return
-# 
+#
 #     # jetzt GUI-Output statt externem Terminal
 #     _r1846_run_cmd_in_background(app, cmd_path, label)
-# 
+#
 # # override alte Funktionen
 # action_guard_futurefix        = lambda app, *a, **k: _r1846_run_tools_runner(app, "R9997", "FutureFix")
 # action_guard_futurefix_safe   = lambda app, *a, **k: _r1846_run_tools_runner(app, "R1351", "FutureFix Safe")
 # action_r9998                  = lambda app, *a, **k: _r1846_run_tools_runner(app, "R9998", "Build Tools")
 # action_r9999                  = lambda app, *a, **k: _r1846_run_tools_runner(app, "R9999", "Diagnose")
-# 
+#
 # # R1846_END_RUNNER_POPUP
-# 
-# 
-# 
+#
+#
+#
 
 # --- LEGACY_R2032: R1847_SONDERRUNNER_POPUP ---
-# 
-# 
-# 
+#
+#
+#
 # # R1847_START_SONDERRUNNER_POPUP
 # # [DEPRECATED_PHASE1_R2027]: Runner-Popup-System alt – ueberlagert durch neuere Popup-Implementierungen.
 # # SonderRunner-Ausgabe (R9997/R1351/R9998/R9999) in GUI-Popup umleiten.
-# 
+#
 # import os as _r1847_os
 # import subprocess as _r1847_sub
 # import threading as _r1847_thread
-# 
+#
 # try:
 #     import tkinter as _r1847_tk
 #     from tkinter import messagebox as _r1847_mb
 # except Exception:
 #     _r1847_tk = None
 #     _r1847_mb = None
-# 
-# 
+#
+#
 # def _r1847_show_popup(title, text):
 #     """Zentrales Popup-Fenster zur Anzeige von Runner-Ausgaben."""
 #     if _r1847_tk is None:
@@ -2431,24 +2570,24 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #         win.title(title)
 #         win.geometry("900x600")
 #         win.grab_set()
-# 
+#
 #         frame = _r1847_tk.Frame(win)
 #         frame.pack(expand=True, fill="both")
-# 
+#
 #         scrollbar = _r1847_tk.Scrollbar(frame)
 #         scrollbar.pack(side="right", fill="y")
-# 
+#
 #         txt = _r1847_tk.Text(frame, wrap="word")
 #         txt.pack(side="left", expand=True, fill="both")
 #         txt.config(yscrollcommand=scrollbar.set)
 #         scrollbar.config(command=txt.yview)
-# 
+#
 #         txt.insert("1.0", text or "(keine Ausgabe)")
 #         txt.config(state="disabled")
-# 
+#
 #         btn = _r1847_tk.Button(win, text="Schließen", command=win.destroy)
 #         btn.pack(pady=6)
-# 
+#
 #     except Exception as exc:
 #         # Fallback auf einfache Messagebox
 #         if _r1847_mb is not None:
@@ -2456,11 +2595,11 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #                 _r1847_mb.showinfo(title, text)
 #             except Exception:
 #                 pass
-# 
-# 
+#
+#
 # def _r1847_run_cmd_in_background(cmd_path, label):
 #     """Startet cmd_path im Hintergrund und zeigt Ausgabe in Popup."""
-# 
+#
 #     def worker():
 #         try:
 #             proc = _r1847_sub.Popen(
@@ -2470,7 +2609,7 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #                 text=True
 #             )
 #             out, err = proc.communicate()
-# 
+#
 #             lines = []
 #             lines.append("Runner: " + cmd_path)
 #             lines.append("Label : " + label)
@@ -2483,22 +2622,22 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #                 lines.append("")
 #                 lines.append("--- STDERR ---")
 #                 lines.append(err)
-# 
+#
 #             text = "\n".join(lines)
 #             _r1847_show_popup(label + " – Ausgabe", text)
-# 
+#
 #         except Exception as exc:
 #             _r1847_show_popup(label, "Fehler beim Ausführen:\n" + repr(exc))
-# 
+#
 #     _r1847_thread.Thread(target=worker, daemon=True).start()
-# 
-# 
+#
+#
 # def _r1847_run_tools_runner(app, runner_id, label):
 #     """Ermittelt tools\\<runner_id>.cmd und startet es über das Popup-System."""
 #     root_dir = _r1847_os.path.abspath(_r1847_os.path.join(_r1847_os.path.dirname(__file__), ".."))
 #     tools_dir = _r1847_os.path.join(root_dir, "tools")
 #     cmd_path = _r1847_os.path.join(tools_dir, runner_id + ".cmd")
-# 
+#
 #     if not _r1847_os.path.isfile(cmd_path):
 #         msg = "Runner-Datei nicht gefunden:\n" + cmd_path
 #         if _r1847_mb is not None:
@@ -2509,39 +2648,39 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #                 pass
 #         _r1847_show_popup(label, msg)
 #         return
-# 
+#
 #     _r1847_run_cmd_in_background(cmd_path, label)
-# 
-# 
+#
+#
 # # Bestehende Actions aus R1845 ueberschreiben:
 # def action_guard_futurefix(app, *args, **kwargs):      # type: ignore[override]
 #     _r1847_run_tools_runner(app, "R9997", "FutureFix")
-# 
-# 
+#
+#
 # def action_guard_futurefix_safe(app, *args, **kwargs):  # type: ignore[override]
 #     _r1847_run_tools_runner(app, "R1351", "FutureFix Safe")
-# 
-# 
+#
+#
 # def action_r9998(app, *args, **kwargs):                 # type: ignore[override]
 #     _r1847_run_tools_runner(app, "R9998", "Build Tools")
-# 
-# 
+#
+#
 # def action_r9999(app, *args, **kwargs):                 # type: ignore[override]
 #     _r1847_run_tools_runner(app, "R9999", "Diagnose")
-# 
+#
 # # R1847_END_SONDERRUNNER_POPUP
-# 
-# 
+#
+#
 
 # --- LEGACY_R2032: R1849_POPUP_ENHANCED ---
-# 
-# 
+#
+#
 # # R1849_START_POPUP_ENHANCED
 # # [DEPRECATED_PHASE1_R2027]: Runner-Popup-System alt – ueberlagert durch INI-basierte RunnerPopups.
 # # Verbesserte Popup-Ausgabe fuer SonderRunner (Monospace, Copy, Save)
-# 
+#
 # import os as _r1849_os
-# 
+#
 # try:
 #     import tkinter as _r1849_tk
 #     from tkinter import messagebox as _r1849_mb
@@ -2550,14 +2689,14 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #     _r1849_tk = None
 #     _r1849_mb = None
 #     _r1849_font = None
-# 
+#
 # def _r1849_get_root_dir():
 #     try:
 #         here = _r1849_os.path.abspath(_r1849_os.path.dirname(__file__))
 #         return _r1849_os.path.abspath(_r1849_os.path.join(here, ".."))
 #     except Exception:
 #         return None
-# 
+#
 # def _r1849_save_to_file(title, text):
 #     root = _r1849_get_root_dir()
 #     if not root:
@@ -2577,7 +2716,7 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #         return path
 #     except Exception:
 #         return None
-# 
+#
 # def _r1847_show_popup(title, text):
 #     """Zentrales Popup fuer Runner-Ausgaben (verbessert durch R1849)."""
 #     if _r1849_tk is None:
@@ -2588,32 +2727,32 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #         win.title(str(title))
 #         win.geometry("900x600")
 #         win.grab_set()
-# 
+#
 #         frame = _r1849_tk.Frame(win)
 #         frame.pack(expand=True, fill="both")
-# 
+#
 #         scrollbar = _r1849_tk.Scrollbar(frame)
 #         scrollbar.pack(side="right", fill="y")
-# 
+#
 #         txt = _r1849_tk.Text(frame, wrap="word")
 #         txt.pack(side="left", expand=True, fill="both")
 #         txt.config(yscrollcommand=scrollbar.set)
 #         scrollbar.config(command=txt.yview)
-# 
+#
 #         if _r1849_font is not None:
 #             try:
 #                 mono = _r1849_font.Font(family="Courier New", size=10)
 #                 txt.configure(font=mono)
 #             except Exception:
 #                 pass
-# 
+#
 #         txt.insert("1.0", content)
 #         txt.config(state="normal")
-# 
+#
 #         # Button-Leiste
 #         btn_frame = _r1849_tk.Frame(win)
 #         btn_frame.pack(fill="x", pady=4)
-# 
+#
 #         def _copy_to_clipboard():
 #             try:
 #                 win.clipboard_clear()
@@ -2625,7 +2764,7 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #                         pass
 #             except Exception:
 #                 pass
-# 
+#
 #         def _save_to_file():
 #             path = _r1849_save_to_file(title, content)
 #             if not path:
@@ -2640,26 +2779,26 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #                     _r1849_mb.showinfo("Gespeichert", "Datei gespeichert unter:\n" + path)
 #                 except Exception:
 #                     pass
-# 
+#
 #         btn_copy = _r1849_tk.Button(btn_frame, text="In Zwischenablage", command=_copy_to_clipboard)
 #         btn_copy.pack(side="left", padx=4)
-# 
+#
 #         btn_save = _r1849_tk.Button(btn_frame, text="Als Datei speichern", command=_save_to_file)
 #         btn_save.pack(side="left", padx=4)
-# 
+#
 #         btn_close = _r1849_tk.Button(btn_frame, text="Schliessen", command=win.destroy)
 #         btn_close.pack(side="right", padx=4)
-# 
+#
 #     except Exception as exc:
 #         if _r1849_mb is not None:
 #             try:
 #                 _r1849_mb.showinfo(str(title), content)
 #             except Exception:
 #                 pass
-# 
+#
 # # R1849_END_POPUP_ENHANCED
-# 
-# 
+#
+#
 
 
 # ============================================================
@@ -2769,7 +2908,9 @@ def action_tree_rename(app, *args, **kwargs):  # type: ignore[override]
     if not path:
         if _r2066_mb is not None:
             try:
-                _r2066_mb.showinfo("Rename", "Bitte zuerst eine Datei in der rechten Liste markieren.")
+                _r2066_mb.showinfo(
+                    "Rename", "Bitte zuerst eine Datei in der rechten Liste markieren."
+                )
             except Exception:
                 pass
         _r2066_status(app, "Rename: keine Datei ausgewählt.")
@@ -2790,7 +2931,9 @@ def action_tree_rename(app, *args, **kwargs):  # type: ignore[override]
     new_name = None
     if _r2066_sd is not None:
         try:
-            new_name = _r2066_sd.askstring("Rename", "Neuer Dateiname (ohne Pfad):", initialvalue=old_name, parent=app)
+            new_name = _r2066_sd.askstring(
+                "Rename", "Neuer Dateiname (ohne Pfad):", initialvalue=old_name, parent=app
+            )
         except Exception:
             new_name = None
 
@@ -2825,12 +2968,14 @@ def action_tree_rename(app, *args, **kwargs):  # type: ignore[override]
         return
 
     stack = _r2066_get_undo_stack(app)
-    stack.append({
-        "action": "rename",
-        "old_path": path,
-        "new_path": new_path,
-        "time": _r2066_time.time(),
-    })
+    stack.append(
+        {
+            "action": "rename",
+            "old_path": path,
+            "new_path": new_path,
+            "time": _r2066_time.time(),
+        }
+    )
 
     _r2066_status(app, "Umbenannt: " + old_name + " -> " + new_name)
     _r2066_refresh_right_list(app)
@@ -2889,6 +3034,7 @@ def action_tree_undo(app, *args, **kwargs):  # type: ignore[override]
     _r2066_refresh_right_list(app)
     _r2066_safe_led_eval(app)
 
+
 # R2066_TREE_RENAME_UNDO_END
 # ============================================================
 
@@ -2900,6 +3046,7 @@ def action_tree_undo(app, *args, **kwargs):  # type: ignore[override]
 def action_tools_purge_scan(app, *args, **kwargs):  # type: ignore
     # Erstellt Plan: docs\Tools_Purge_Flat_Plan.md (nur tools\ Root-Dateien)
     _r1851_run_tools_runner(app, "R2218", "Tools Purge Scan")
+
 
 def action_tools_purge_apply(app, *args, **kwargs):  # type: ignore
     # Verschiebt NUR Dateien direkt in tools\ nach tools\Archiv (laut Plan). Subfolder werden NICHT angefasst.
@@ -2914,3 +3061,30 @@ def action_tools_purge_apply(app, *args, **kwargs):  # type: ignore
         if not ok:
             return
     _r1851_run_tools_runner(app, "R2224", "Tools Purge Apply")
+
+
+def action_autopush_private(app, *args, **kwargs):  # type: ignore
+    # SAFE: docs-only push in private repo
+    _r1851_run_tools_runner(app, "R2691", "Autopush Private (WRAP)")
+
+
+def action_autopush_public(app, *args, **kwargs):  # type: ignore
+    # Public export via allowlist
+    _r1851_run_tools_runner(app, "R2692", "Autopush Public (WRAP)")
+
+
+def action_autopush_both(app, *args, **kwargs):  # type: ignore
+    # Deterministic: Private -> Public
+    _r1851_run_tools_runner(app, "R2693", "Autopush Both (WRAP: Private -> Public)")
+
+# --- R2665: extension-based runner dispatch (authoritative) ---
+def _runner_kind_from_path(path):
+    try:
+        suf = str(path).lower()
+    except Exception:
+        return None
+    if suf.endswith('.cmd') or suf.endswith('.bat'):
+        return 'cmd'
+    if suf.endswith('.py'):
+        return 'py'
+    return None

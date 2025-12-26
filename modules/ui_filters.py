@@ -5,6 +5,7 @@ from modules import ui_theme_classic
 
 from modules import config_loader
 
+
 def browse_dir(app, var):
     path = filedialog.askdirectory(initialdir=var.get() or os.getcwd())
     if path:
@@ -12,12 +13,14 @@ def browse_dir(app, var):
         _save_target(path)
         actions_refresh(app)
 
+
 def open_dir(path):
     if path:
         try:
             os.startfile(path)
         except Exception:
             pass
+
 
 def refresh(app):
     """Aktualisiert die rechte Projektliste basierend auf dem Zielordner.
@@ -27,6 +30,7 @@ def refresh(app):
     try:
         # Neue Logik: direkt ui_project_tree verwenden
         from modules import ui_project_tree as _pt
+
         _pt._load_dir(app)
     except Exception:
         # Fallback: alter Mechanismus, falls right_list noch existiert
@@ -35,33 +39,38 @@ def refresh(app):
         except Exception:
             pass
 
+
 def _save_target(path: str):
     cfg = config_loader.load()
-    if 'Intake' not in cfg:
-        cfg['Intake'] = {}
-    cfg['Intake']['last_target_dir'] = path
+    if "Intake" not in cfg:
+        cfg["Intake"] = {}
+    cfg["Intake"]["last_target_dir"] = path
     config_loader.save(cfg)
+
 
 def _load_target() -> str:
     cfg = config_loader.load()
     try:
-        return cfg['Intake'].get('last_target_dir', '')
+        return cfg["Intake"].get("last_target_dir", "")
     except Exception:
-        return ''
+        return ""
+
 
 def _save_ext(ext: str) -> None:
     cfg = config_loader.load()
-    if 'Intake' not in cfg:
-        cfg['Intake'] = {}
-    cfg['Intake']['last_ext'] = ext
+    if "Intake" not in cfg:
+        cfg["Intake"] = {}
+    cfg["Intake"]["last_ext"] = ext
     config_loader.save(cfg)
+
 
 def _load_ext() -> str:
     cfg = config_loader.load()
     try:
-        return cfg['Intake'].get('last_ext', '')
+        return cfg["Intake"].get("last_ext", "")
     except Exception:
-        return ''
+        return ""
+
 
 def build_filters(parent: tk.Widget, app):
     """
@@ -93,4 +102,3 @@ def build_filters(parent: tk.Widget, app):
 
     # Keine sichtbaren Widgets mehr - die alte Name/Endung-Zeile ist damit entfernt.
     return frm
-

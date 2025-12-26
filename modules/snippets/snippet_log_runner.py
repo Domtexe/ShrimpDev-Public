@@ -1,8 +1,8 @@
-
 # R2044 – Logging Snippet fuer neue Runner
 from pathlib import Path
 from datetime import datetime
 from modules.config_loader import ConfigLoader
+
 
 def log_runner(msg: str):
     try:
@@ -43,7 +43,7 @@ def log_runner(msg: str):
                 for idx in range(max_rot - 1, 0, -1):
                     src = Path(str(path) + f".{idx}")
                     if src.exists():
-                        dst = Path(str(path) + f".{idx+1}")
+                        dst = Path(str(path) + f".{idx + 1}")
                         src.rename(dst)
                 backup_path = Path(str(path) + ".1")
                 if path.exists():

@@ -1,3 +1,10 @@
+<!-- LEGACY_NON_CANONICAL -->
+**⚠️ Legacy / Nicht-kanonisch** (gesetzt: 2025-12-24 00:04:38)  
+Kanonisch: `docs/CHANGELOG.md`  
+Bitte diese Datei nicht mehr als Quelle verwenden.
+
+---
+
 # CHANGELOG
 
 ## v9.8.2 (2025-10-18)
@@ -375,3 +382,5 @@
 ## R2369
 - Docking: pro Fenster Datensatz (open/docked/geometry/ts)
 - Docking: Diagnose-Logs persist/restore
+
+- 2025-12-25: Fix startup SyntaxError in products tab (_on_copy_content indent/try structure). (R2621, 0101c75)

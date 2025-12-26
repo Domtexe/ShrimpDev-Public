@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import tkinter as tk
-from typing import Optional
 
 
 class _ToolTip:
@@ -11,8 +10,8 @@ class _ToolTip:
         self.widget = widget
         self.text = text
         self.delay_ms = delay_ms
-        self._after_id: Optional[str] = None
-        self._tip: Optional[tk.Toplevel] = None
+        self._after_id: str | None = None
+        self._tip: tk.Toplevel | None = None
 
         widget.bind("<Enter>", self._on_enter, add="+")
         widget.bind("<Leave>", self._on_leave, add="+")

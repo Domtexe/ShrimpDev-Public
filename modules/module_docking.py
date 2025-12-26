@@ -5,7 +5,6 @@
 import tkinter as tk
 import os
 import configparser
-from tkinter import ttk
 
 
 def _center_window(win, width, height, parent=None):
@@ -44,14 +43,14 @@ def _center_window(win, width, height, parent=None):
     if y < 0:
         y = 0
     try:
-        w.geometry(str(width) + 'x' + str(height) + '+' + str(x) + '+' + str(y))
+        w.geometry(str(width) + "x" + str(height) + "+" + str(x) + "+" + str(y))
     except Exception:
         pass
 
 
-
 # R2339_DOCKING_PERSIST_V1
 # Persist/Restore undocked windows in INI (w/h/x/y). Center only on first open.
+
 
 def _r2339_safe_int(v, default=0):
     try:
@@ -63,15 +62,14 @@ def _r2339_safe_int(v, default=0):
 def _r2339_ini_path(app=None):
     # R2343_HARD_INI_GEOMETRY: always write to project-root ShrimpDev.ini
     pr = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
-    return os.path.join(pr, 'ShrimpDev.ini')
-
+    return os.path.join(pr, "ShrimpDev.ini")
 
 
 def _r2339_cfg_read(path):
     cfg = configparser.ConfigParser()
     try:
         if os.path.isfile(path):
-            cfg.read(path, encoding='utf-8')
+            cfg.read(path, encoding="utf-8")
     except Exception:
         try:
             cfg.read(path)
@@ -82,12 +80,12 @@ def _r2339_cfg_read(path):
 
 def _r2339_cfg_write(cfg, path):
     try:
-        with open(path, 'w', encoding='utf-8') as f:
+        with open(path, "w", encoding="utf-8") as f:
             cfg.write(f)
         return True
     except Exception:
         try:
-            with open(path, 'w') as f:
+            with open(path, "w") as f:
                 cfg.write(f)
             return True
         except Exception:
@@ -103,7 +101,7 @@ def _r2339_cfg_set(cfg, sec, key, val):
         pass
 
 
-def _r2339_cfg_get(cfg, sec, key, default=''):
+def _r2339_cfg_get(cfg, sec, key, default=""):
     try:
         return cfg.get(sec, key, fallback=default)
     except Exception:
@@ -129,20 +127,21 @@ def _r2340_is_offscreen(x, y, w, h, sw, sh, margin=20):
     except Exception:
         return True
 
+
 # R2340_WM_GEOMETRY_FIX
 def _r2340_parse_geo(geo_str):
     # returns (w,h,x,y) from 'WxH+X+Y' ; supports negative X/Y
     try:
         s = str(geo_str).strip()
-        if 'x' not in s:
+        if "x" not in s:
             return (0, 0, 0, 0)
-        wh, rest = s.split('+', 1) if '+' in s else (s, '')
-        w_s, h_s = wh.split('x', 1)
+        wh, rest = s.split("+", 1) if "+" in s else (s, "")
+        w_s, h_s = wh.split("x", 1)
         w = _r2339_safe_int(w_s, 0)
         # rest may contain +X+Y or -X+Y etc; easiest: find last '+' or '-' for Y
-        if '+' in s[ s.find('x'): ] or '-' in s[ s.find('x'): ]:
+        if "+" in s[s.find("x") :] or "-" in s[s.find("x") :]:
             # normalize by replacing first 'WxH' part
-            tail = s[len(wh):]
+            tail = s[len(wh) :]
             # tail starts with + or -
             # split into x and y by last sign occurrence
             # find second sign (for y)
@@ -151,7 +150,7 @@ def _r2340_parse_geo(geo_str):
             # tail like '+10+20' or '-10+20' or '+10-20'
             # find separator between x and y (the second sign)
             idx = 2
-            while idx < len(tail) and tail[idx] not in ['+','-']:
+            while idx < len(tail) and tail[idx] not in ["+", "-"]:
                 idx += 1
             x_s = tail[0:idx]
             y_s = tail[idx:]
@@ -162,6 +161,7 @@ def _r2340_parse_geo(geo_str):
         return (w, _r2339_safe_int(h_s, 0), 0, 0)
     except Exception:
         return (0, 0, 0, 0)
+
 
 def _r2340_is_offscreen(x, y, w, h, sw, sh, margin=30):
     # Accept if at least a reasonable part is visible
@@ -191,7 +191,7 @@ class DockManager:
         try:
             return str(title)
         except Exception:
-            return 'Undocked'
+            return "Undocked"
 
     def is_open(self, key):
         w = self._wins.get(key)
@@ -203,91 +203,67 @@ class DockManager:
             return False
 
     def close(self, key):
-
         # R2389_CLOSE_OPEN0: close => open=0 + remove from _wins (best-effort)
 
         w = None
 
         try:
-
             w = self._wins.get(key)
 
         except Exception:
-
             w = None
-
 
         geo = ""
 
         try:
-
             if w is not None:
-
                 geo = str(w.wm_geometry())
 
         except Exception:
-
             geo = ""
 
-
         try:
-
             if w is not None:
-
                 try:
-
                     w.destroy()
 
                 except Exception:
-
                     try:
-
                         w.withdraw()
 
                     except Exception:
-
                         pass
 
         except Exception:
-
             pass
 
-
         try:
-
-            if hasattr(self, '_wins') and isinstance(self._wins, dict):
-
+            if hasattr(self, "_wins") and isinstance(self._wins, dict):
                 self._wins.pop(key, None)
 
         except Exception:
-
             pass
 
-
         try:
-
             from modules import config_loader
 
             cfg = config_loader.load()
 
-            sec = 'Docking'
+            sec = "Docking"
 
             if not cfg.has_section(sec):
-
                 cfg.add_section(sec)
 
-            cfg.set(sec, key + '.open', '0')
+            cfg.set(sec, key + ".open", "0")
 
-            cfg.set(sec, key + '.docked', '0')
+            cfg.set(sec, key + ".docked", "0")
 
             if geo:
-
-                cfg.set(sec, key + '.geometry', geo)
+                cfg.set(sec, key + ".geometry", geo)
 
             config_loader.save(cfg)
 
         except Exception:
-
             pass
 
     def undock_readonly(self, key, title, builder_func, restore_geometry=None):
@@ -309,15 +285,18 @@ class DockManager:
         try:
             ini = _r2339_ini_path(self.app)
             cfg = _r2339_cfg_read(ini)
-            sec = 'Docking'
-            geo = _r2339_cfg_get(cfg, sec, str(key)+'.geometry', '')
-            ww = _r2339_cfg_get(cfg, sec, str(key)+'.w', '')
-            hh = _r2339_cfg_get(cfg, sec, str(key)+'.h', '')
-            xx = _r2339_cfg_get(cfg, sec, str(key)+'.x', '')
-            yy = _r2339_cfg_get(cfg, sec, str(key)+'.y', '')
-            op = _r2339_cfg_get(cfg, sec, str(key)+'.open', '')
-            keys = _r2339_cfg_get(cfg, sec, 'keys', '')
-            _r2355_diag(self.app, f"undock key={key} ini={ini} keys={keys} open={op} geo={geo} w={ww} h={hh} x={xx} y={yy} restore_in={restore_geometry}")
+            sec = "Docking"
+            geo = _r2339_cfg_get(cfg, sec, str(key) + ".geometry", "")
+            ww = _r2339_cfg_get(cfg, sec, str(key) + ".w", "")
+            hh = _r2339_cfg_get(cfg, sec, str(key) + ".h", "")
+            xx = _r2339_cfg_get(cfg, sec, str(key) + ".x", "")
+            yy = _r2339_cfg_get(cfg, sec, str(key) + ".y", "")
+            op = _r2339_cfg_get(cfg, sec, str(key) + ".open", "")
+            keys = _r2339_cfg_get(cfg, sec, "keys", "")
+            _r2355_diag(
+                self.app,
+                f"undock key={key} ini={ini} keys={keys} open={op} geo={geo} w={ww} h={hh} x={xx} y={yy} restore_in={restore_geometry}",
+            )
         except Exception as e:
             _r2355_diag(self.app, f"ini_read_failed key={key} err={e!r}")
         # R2352_RESTORE_FIX: ensure restore_geometry from INI x/y/w/h when caller passes None
@@ -325,31 +304,34 @@ class DockManager:
             if not restore_geometry:
                 ini = _r2339_ini_path(self.app)
                 cfg2 = _r2339_cfg_read(ini)
-                sec2 = 'Docking'
-                ww = _r2339_safe_int(_r2339_cfg_get(cfg2, sec2, str(key)+'.w', '0'), 0)
-                hh = _r2339_safe_int(_r2339_cfg_get(cfg2, sec2, str(key)+'.h', '0'), 0)
-                xx = _r2339_safe_int(_r2339_cfg_get(cfg2, sec2, str(key)+'.x', '0'), 0)
-                yy = _r2339_safe_int(_r2339_cfg_get(cfg2, sec2, str(key)+'.y', '0'), 0)
+                sec2 = "Docking"
+                ww = _r2339_safe_int(_r2339_cfg_get(cfg2, sec2, str(key) + ".w", "0"), 0)
+                hh = _r2339_safe_int(_r2339_cfg_get(cfg2, sec2, str(key) + ".h", "0"), 0)
+                xx = _r2339_safe_int(_r2339_cfg_get(cfg2, sec2, str(key) + ".x", "0"), 0)
+                yy = _r2339_safe_int(_r2339_cfg_get(cfg2, sec2, str(key) + ".y", "0"), 0)
                 if ww > 1 and hh > 1:
                     # offscreen guard; if screen size not ready yet, skip guard and apply anyway
                     try:
                         sw = _r2339_safe_int(self.app.winfo_screenwidth(), 0)
                         sh = _r2339_safe_int(self.app.winfo_screenheight(), 0)
                     except Exception:
-                        sw = 0; sh = 0
+                        sw = 0
+                        sh = 0
                     if sw > 0 and sh > 0:
                         if not _r2340_is_offscreen(xx, yy, ww, hh, sw, sh):
-                            restore_geometry = str(ww)+'x'+str(hh)+'+'+str(xx)+'+'+str(yy)
+                            restore_geometry = (
+                                str(ww) + "x" + str(hh) + "+" + str(xx) + "+" + str(yy)
+                            )
                     else:
-                        restore_geometry = str(ww)+'x'+str(hh)+'+'+str(xx)+'+'+str(yy)
+                        restore_geometry = str(ww) + "x" + str(hh) + "+" + str(xx) + "+" + str(yy)
         except Exception:
             pass
         # R2352_RESTORE_FIX: removed buggy call (cfg/sec undefined)
         try:
-            w.attributes('-topmost', True)
+            w.attributes("-topmost", True)
         except Exception:
             pass
-        w.title(self._safe_title(title) + ' (Undocked)')
+        w.title(self._safe_title(title) + " (Undocked)")
         # R2339: center only on first open; restore geometry if provided
         _r2355_diag(self.app, f"restore_branch key={key} restore_geometry={restore_geometry!r}")
         if restore_geometry:
@@ -381,17 +363,18 @@ class DockManager:
                 pass
 
         outer = tk.Frame(w)
-        outer.pack(fill='both', expand=True)
+        outer.pack(fill="both", expand=True)
 
         # Mini-Header
         hdr = tk.Frame(outer)
-        hdr.pack(fill='x', padx=6, pady=6)
-        tk.Label(hdr, text=self._safe_title(title), anchor='w').pack(side='left')
-                # R2342_FORCE_PERSIST_ON_CLOSE
+        hdr.pack(fill="x", padx=6, pady=6)
+        tk.Label(hdr, text=self._safe_title(title), anchor="w").pack(side="left")
+
+        # R2342_FORCE_PERSIST_ON_CLOSE
         def _request_close():
             try:
                 # persist THIS window right now (geometry + keys)
-                if hasattr(self, '_persist_one'):
+                if hasattr(self, "_persist_one"):
                     self._persist_one(key, w)
             except Exception:
                 pass
@@ -400,18 +383,20 @@ class DockManager:
             except Exception:
                 pass
 
-        btn = tk.Button(hdr, text='Schliessen', command=_request_close)
-        btn.pack(side='right')
+        btn = tk.Button(hdr, text="Schliessen", command=_request_close)
+        btn.pack(side="right")
 
         body = tk.Frame(outer)
-        body.pack(fill='both', expand=True, padx=6, pady=(0, 6))
+        body.pack(fill="both", expand=True, padx=6, pady=(0, 6))
 
         # Build content fresh (read-only viewers)
         try:
             builder_func(body, self.app)
         except Exception as exc:
             try:
-                tk.Label(body, text='Undock-Fehler: ' + repr(exc), anchor='w').pack(anchor='w', padx=8, pady=8)
+                tk.Label(body, text="Undock-Fehler: " + repr(exc), anchor="w").pack(
+                    anchor="w", padx=8, pady=8
+                )
             except Exception:
                 pass
 
@@ -419,21 +404,20 @@ class DockManager:
             _request_close()
 
         try:
-            w.protocol('WM_DELETE_WINDOW', lambda: self.close(key))
+            w.protocol("WM_DELETE_WINDOW", lambda: self.close(key))
         except Exception:
             pass
 
         self._wins[key] = w
 
-
     def _persist_one(self, key, w):
         ini = _r2339_ini_path(self.app)
         try:
-            print('[Docking] INI path:', ini)
+            print("[Docking] INI path:", ini)
         except Exception:
             pass
         cfg = _r2339_cfg_read(ini)
-        sec = 'Docking'
+        sec = "Docking"
         if not cfg.has_section(sec):
             cfg.add_section(sec)
         try:
@@ -449,31 +433,30 @@ class DockManager:
             ww, hh, xx, yy = _r2340_parse_geo(g)
         except Exception:
             pass
-        _r2339_cfg_set(cfg, sec, str(key) + '.w', ww)
-        _r2339_cfg_set(cfg, sec, str(key) + '.h', hh)
-        _r2339_cfg_set(cfg, sec, str(key) + '.x', xx)
-        _r2339_cfg_set(cfg, sec, str(key) + '.y', yy)
-        _r2339_cfg_set(cfg, sec, str(key) + '.open', '1')
-        keys_raw = _r2339_cfg_get(cfg, sec, 'keys', '')
-        keys = [k.strip() for k in str(keys_raw).split(',') if k.strip()]
+        _r2339_cfg_set(cfg, sec, str(key) + ".w", ww)
+        _r2339_cfg_set(cfg, sec, str(key) + ".h", hh)
+        _r2339_cfg_set(cfg, sec, str(key) + ".x", xx)
+        _r2339_cfg_set(cfg, sec, str(key) + ".y", yy)
+        _r2339_cfg_set(cfg, sec, str(key) + ".open", "1")
+        keys_raw = _r2339_cfg_get(cfg, sec, "keys", "")
+        keys = [k.strip() for k in str(keys_raw).split(",") if k.strip()]
         if str(key) not in keys:
             keys.append(str(key))
-        _r2339_cfg_set(cfg, sec, 'keys', ','.join(keys))
+        _r2339_cfg_set(cfg, sec, "keys", ",".join(keys))
         _r2339_cfg_write(cfg, ini)
-
 
     def persist_all(self):
         ini = _r2339_ini_path(self.app)
         try:
-            print('[Docking] INI path:', ini)
+            print("[Docking] INI path:", ini)
         except Exception:
             pass
         cfg = _r2339_cfg_read(ini)
-        sec = 'Docking'
+        sec = "Docking"
         keys = []
         for key, w in list(self._wins.items()):
             try:
-                if w is None or (hasattr(w, 'winfo_exists') and not w.winfo_exists()):
+                if w is None or (hasattr(w, "winfo_exists") and not w.winfo_exists()):
                     continue
                 self._persist_one(key, w)
                 keys.append(str(key))
@@ -481,38 +464,43 @@ class DockManager:
                 pass
         if not cfg.has_section(sec):
             cfg.add_section(sec)
-        _r2339_cfg_set(cfg, sec, 'keys', ','.join(keys))
+        _r2339_cfg_set(cfg, sec, "keys", ",".join(keys))
         _r2339_cfg_write(cfg, ini)
         return True
 
-
     def _restore_window_from_ini(self, cfg, sec, key, lab, builder, sw, sh):
         try:
-            open_v = str(_r2339_cfg_get(cfg, sec, key + '.open', '1')).strip()
-            docked_v = str(_r2339_cfg_get(cfg, sec, key + '.docked', '0')).strip()
+            open_v = str(_r2339_cfg_get(cfg, sec, key + ".open", "1")).strip()
+            docked_v = str(_r2339_cfg_get(cfg, sec, key + ".docked", "0")).strip()
         except Exception:
-            open_v, docked_v = '1', '0'
-        if open_v != '1' or docked_v == '1':
+            open_v, docked_v = "1", "0"
+        if open_v != "1" or docked_v == "1":
             return False
 
-        geo = str(_r2339_cfg_get(cfg, sec, key + '.geometry', '')).strip()
-        ww = _r2339_safe_int(_r2339_cfg_get(cfg, sec, key + '.w', '0'), 0)
-        hh = _r2339_safe_int(_r2339_cfg_get(cfg, sec, key + '.h', '0'), 0)
-        xx = _r2339_safe_int(_r2339_cfg_get(cfg, sec, key + '.x', '0'), 0)
-        yy = _r2339_safe_int(_r2339_cfg_get(cfg, sec, key + '.y', '0'), 0)
+        geo = str(_r2339_cfg_get(cfg, sec, key + ".geometry", "")).strip()
+        ww = _r2339_safe_int(_r2339_cfg_get(cfg, sec, key + ".w", "0"), 0)
+        hh = _r2339_safe_int(_r2339_cfg_get(cfg, sec, key + ".h", "0"), 0)
+        xx = _r2339_safe_int(_r2339_cfg_get(cfg, sec, key + ".x", "0"), 0)
+        yy = _r2339_safe_int(_r2339_cfg_get(cfg, sec, key + ".y", "0"), 0)
 
         restore_geo = None
         if geo:
             try:
                 w2, h2, x2, y2 = _r2340_parse_geo(geo)
-                if w2 > 1 and h2 > 1 and sw > 0 and sh > 0 and not _r2340_is_offscreen(x2, y2, w2, h2, sw, sh):
+                if (
+                    w2 > 1
+                    and h2 > 1
+                    and sw > 0
+                    and sh > 0
+                    and not _r2340_is_offscreen(x2, y2, w2, h2, sw, sh)
+                ):
                     restore_geo = geo
             except Exception:
                 restore_geo = None
 
         if restore_geo is None and ww > 1 and hh > 1 and sw > 0 and sh > 0:
             if not _r2340_is_offscreen(xx, yy, ww, hh, sw, sh):
-                restore_geo = str(ww) + 'x' + str(hh) + '+' + str(xx) + '+' + str(yy)
+                restore_geo = str(ww) + "x" + str(hh) + "+" + str(xx) + "+" + str(yy)
 
         self._restore_window_from_ini(cfg, sec, key, lab, builder, sw, sh)
         return True
@@ -520,30 +508,36 @@ class DockManager:
     def restore_from_ini(self):
         ini = _r2339_ini_path(self.app)
         try:
-            print('[Docking] INI path:', ini)
+            print("[Docking] INI path:", ini)
         except Exception:
             pass
         cfg = _r2339_cfg_read(ini)
-        sec = 'Docking'
-        keys_raw = _r2339_cfg_get(cfg, sec, 'keys', '')
-        keys = [k.strip() for k in str(keys_raw).split(',') if k.strip()]
+        sec = "Docking"
+        keys_raw = _r2339_cfg_get(cfg, sec, "keys", "")
+        keys = [k.strip() for k in str(keys_raw).split(",") if k.strip()]
         if not keys:
             return False
 
         mapping = {}
         try:
             from modules import ui_pipeline_tab
-            mapping['pipeline'] = ('Pipeline', ui_pipeline_tab.build_pipeline_tab)
+
+            mapping["pipeline"] = ("Pipeline", ui_pipeline_tab.build_pipeline_tab)
         except Exception:
             pass
         try:
             from modules import ui_runner_products_tab
-            mapping['runner_products'] = ('Artefakte', ui_runner_products_tab.build_runner_products_tab)
+
+            mapping["runner_products"] = (
+                "Artefakte",
+                ui_runner_products_tab.build_runner_products_tab,
+            )
         except Exception:
             pass
         try:
             from modules import ui_log_tab
-            mapping['log'] = ('Log', ui_log_tab.build_log_tab)
+
+            mapping["log"] = ("Log", ui_log_tab.build_log_tab)
         except Exception:
             pass
 
@@ -564,35 +558,35 @@ class DockManager:
             lab, builder = mapping[key]
             # Respect persisted open/docked flags
             try:
-                open_v = str(_r2339_cfg_get(cfg, sec, key + '.open', '0')).strip()
-                docked_v = str(_r2339_cfg_get(cfg, sec, key + '.docked', '0')).strip()
+                open_v = str(_r2339_cfg_get(cfg, sec, key + ".open", "0")).strip()
+                docked_v = str(_r2339_cfg_get(cfg, sec, key + ".docked", "0")).strip()
             except Exception:
-                open_v, docked_v = '0', '0'
-            if open_v != '1' or docked_v == '1':
+                open_v, docked_v = "0", "0"
+            if open_v != "1" or docked_v == "1":
                 continue
             # Prefer geometry string (WxH+X+Y)
-            restore_geo = ''
+            restore_geo = ""
             try:
-                restore_geo = str(_r2339_cfg_get(cfg, sec, key + '.geometry', '')).strip()
+                restore_geo = str(_r2339_cfg_get(cfg, sec, key + ".geometry", "")).strip()
             except Exception:
-                restore_geo = ''
+                restore_geo = ""
             if restore_geo:
                 try:
                     ww, hh, xx, yy = _r2340_parse_geo(restore_geo)
                     if ww > 1 and hh > 1 and sw > 0 and sh > 0:
                         if _r2340_is_offscreen(xx, yy, ww, hh, sw, sh):
-                            restore_geo = ''
+                            restore_geo = ""
                 except Exception:
-                    restore_geo = ''
+                    restore_geo = ""
             # Fallback: legacy w/h/x/y if geometry missing
             if not restore_geo:
-                ww = _r2339_safe_int(_r2339_cfg_get(cfg, sec, key + '.w', '0'), 0)
-                hh = _r2339_safe_int(_r2339_cfg_get(cfg, sec, key + '.h', '0'), 0)
-                xx = _r2339_safe_int(_r2339_cfg_get(cfg, sec, key + '.x', '0'), 0)
-                yy = _r2339_safe_int(_r2339_cfg_get(cfg, sec, key + '.y', '0'), 0)
+                ww = _r2339_safe_int(_r2339_cfg_get(cfg, sec, key + ".w", "0"), 0)
+                hh = _r2339_safe_int(_r2339_cfg_get(cfg, sec, key + ".h", "0"), 0)
+                xx = _r2339_safe_int(_r2339_cfg_get(cfg, sec, key + ".x", "0"), 0)
+                yy = _r2339_safe_int(_r2339_cfg_get(cfg, sec, key + ".y", "0"), 0)
                 if ww > 1 and hh > 1 and sw > 0 and sh > 0:
                     if not _r2340_is_offscreen(xx, yy, ww, hh, sw, sh):
-                        restore_geo = str(ww) + 'x' + str(hh) + '+' + str(xx) + '+' + str(yy)
+                        restore_geo = str(ww) + "x" + str(hh) + "+" + str(xx) + "+" + str(yy)
             self.undock_readonly(key, lab, builder, restore_geometry=(restore_geo or None))
             any_open = True
         return any_open
@@ -600,7 +594,7 @@ class DockManager:
 
 def install_notebook_context_menu(app, notebook):
     # Right-click context menu on tabs for undock (Phase-1: read-only tabs only)
-    dm = getattr(app, '_dock_manager', None)
+    dm = getattr(app, "_dock_manager", None)
     if dm is None:
         dm = DockManager(app)
         app._dock_manager = dm
@@ -614,36 +608,41 @@ def install_notebook_context_menu(app, notebook):
         targets = []
         try:
             from modules import ui_pipeline_tab
-            targets.append(('Pipeline', 'pipeline', ui_pipeline_tab.build_pipeline_tab))
+
+            targets.append(("Pipeline", "pipeline", ui_pipeline_tab.build_pipeline_tab))
         except Exception:
             pass
         try:
             from modules import ui_runner_products_tab
-            targets.append(('Artefakte', 'runner_products', ui_runner_products_tab.build_runner_products_tab))
+
+            targets.append(
+                ("Artefakte", "runner_products", ui_runner_products_tab.build_runner_products_tab)
+            )
         except Exception:
             pass
         try:
             from modules import ui_log_tab
-            targets.append(('Log', 'log', ui_log_tab.build_log_tab))
+
+            targets.append(("Log", "log", ui_log_tab.build_log_tab))
         except Exception:
             pass
         return targets
 
     def _tab_text_at(idx):
         try:
-            return notebook.tab(idx, 'text')
+            return notebook.tab(idx, "text")
         except Exception:
-            return ''
+            return ""
 
     def _on_right_click(ev):
         try:
-            idx = notebook.index('@%d,%d' % (ev.x, ev.y))
+            idx = notebook.index(f"@{ev.x},{ev.y}")
         except Exception:
             return
         tab_text = _tab_text_at(idx)
         targets = _get_targets()
         chosen = None
-        for (label, key, builder) in targets:
+        for label, key, builder in targets:
             if label == tab_text:
                 chosen = (label, key, builder)
                 break
@@ -652,9 +651,9 @@ def install_notebook_context_menu(app, notebook):
 
         label, key, builder = chosen
         menu = tk.Menu(app, tearoff=0)
-        menu.add_command(label='Undock', command=lambda: dm.undock_readonly(key, label, builder))
+        menu.add_command(label="Undock", command=lambda: dm.undock_readonly(key, label, builder))
         if dm.is_open(key):
-            menu.add_command(label='Dock (Fenster schließen)', command=lambda: dm.close(key))
+            menu.add_command(label="Dock (Fenster schließen)", command=lambda: dm.close(key))
         try:
             menu.tk_popup(ev.x_root, ev.y_root)
         finally:
@@ -664,14 +663,16 @@ def install_notebook_context_menu(app, notebook):
                 pass
 
     try:
-        notebook.bind('<Button-3>', _on_right_click)
+        notebook.bind("<Button-3>", _on_right_click)
     except Exception:
         pass
     return dm
 
+
 # R2342_FORCE_PERSIST_ON_CLOSE
 
 # R2343_HARD_INI_GEOMETRY
+
 
 def _r2351_apply_ini_geometry(w, cfg, sec, key, center_fn=None):
     """Apply geometry from INI.
@@ -681,17 +682,17 @@ def _r2351_apply_ini_geometry(w, cfg, sec, key, center_fn=None):
         # read geometry if present
         geo = None
         try:
-            geo = _r2339_cfg_get(cfg, sec, str(key)+'.geometry', '')
+            geo = _r2339_cfg_get(cfg, sec, str(key) + ".geometry", "")
         except Exception:
-            geo = ''
+            geo = ""
         if not geo:
             try:
-                ww = _r2339_safe_int(_r2339_cfg_get(cfg, sec, str(key)+'.w', 0), 0)
-                hh = _r2339_safe_int(_r2339_cfg_get(cfg, sec, str(key)+'.h', 0), 0)
-                xx = _r2339_safe_int(_r2339_cfg_get(cfg, sec, str(key)+'.x', 0), 0)
-                yy = _r2339_safe_int(_r2339_cfg_get(cfg, sec, str(key)+'.y', 0), 0)
+                ww = _r2339_safe_int(_r2339_cfg_get(cfg, sec, str(key) + ".w", 0), 0)
+                hh = _r2339_safe_int(_r2339_cfg_get(cfg, sec, str(key) + ".h", 0), 0)
+                xx = _r2339_safe_int(_r2339_cfg_get(cfg, sec, str(key) + ".x", 0), 0)
+                yy = _r2339_safe_int(_r2339_cfg_get(cfg, sec, str(key) + ".y", 0), 0)
                 if ww > 0 and hh > 0:
-                    geo = str(ww)+'x'+str(hh)+'+'+str(xx)+'+'+str(yy)
+                    geo = str(ww) + "x" + str(hh) + "+" + str(xx) + "+" + str(yy)
             except Exception:
                 pass
         if geo:
@@ -702,9 +703,13 @@ def _r2351_apply_ini_geometry(w, cfg, sec, key, center_fn=None):
             # offscreen guard (single monitor): clamp to visible area, else center
             try:
                 w.update_idletasks()
-                sx = w.winfo_screenwidth(); sy = w.winfo_screenheight()
-                x = w.winfo_x(); y = w.winfo_y(); ww2 = w.winfo_width(); hh2 = w.winfo_height()
-                if (x + ww2) < 10 or (y + hh2) < 10 or x > (sx-10) or y > (sy-10):
+                sx = w.winfo_screenwidth()
+                sy = w.winfo_screenheight()
+                x = w.winfo_x()
+                y = w.winfo_y()
+                ww2 = w.winfo_width()
+                hh2 = w.winfo_height()
+                if (x + ww2) < 10 or (y + hh2) < 10 or x > (sx - 10) or y > (sy - 10):
                     if center_fn:
                         center_fn(w)
             except Exception:
@@ -730,6 +735,7 @@ def _r2355_diag(app, msg):
     try:
         try:
             from . import exception_logger
+
             exception_logger.log(f"[DOCK_DIAG] {msg}")
             return
         except Exception:
@@ -748,6 +754,7 @@ def _r2355_diag(app, msg):
 # ---------------------------------------------------------------------------
 def _r2367_ini_path():
     import os
+
     try:
         _root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     except Exception:
@@ -757,6 +764,7 @@ def _r2367_ini_path():
 
 def _r2367_read_cfg(path):
     import configparser, os
+
     cfg = configparser.ConfigParser()
     try:
         if path and os.path.isfile(path):
@@ -771,6 +779,7 @@ def _r2367_read_cfg(path):
 
 def _r2367_merge_write(cfg, path):
     import configparser, os
+
     base = configparser.ConfigParser()
     try:
         if path and os.path.isfile(path):
@@ -874,6 +883,7 @@ except Exception:
 # ---------------------------------------------------------------------------
 def _r2368_ini_path():
     import os
+
     try:
         _root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     except Exception:
@@ -883,6 +893,7 @@ def _r2368_ini_path():
 
 def _r2368_read_cfg(path):
     import configparser, os
+
     cfg = configparser.ConfigParser()
     try:
         if path and os.path.isfile(path):
@@ -898,6 +909,7 @@ def _r2368_read_cfg(path):
 def _r2368_parse_geo(geo):
     # "WxH+X+Y"
     import re
+
     m = re.match(r"^\s*(\d+)x(\d+)\+(-?\d+)\+(-?\d+)\s*$", str(geo))
     if not m:
         return None
@@ -987,18 +999,23 @@ except Exception:
 # ---------------------------------------------------------------------------
 def _r2369_now_iso():
     import datetime
+
     return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
 
 def _r2369_ini_path():
     import os
+
     try:
         _root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     except Exception:
         _root = os.getcwd()
     return os.path.join(_root, "ShrimpDev.ini")
 
+
 def _r2369_read_cfg(path):
     import configparser, os
+
     cfg = configparser.ConfigParser()
     try:
         if path and os.path.isfile(path):
@@ -1010,8 +1027,10 @@ def _r2369_read_cfg(path):
             pass
     return cfg
 
+
 def _r2369_merge_write(cfg, path):
     import configparser, os
+
     base = configparser.ConfigParser()
     try:
         if path and os.path.isfile(path):
@@ -1032,6 +1051,7 @@ def _r2369_merge_write(cfg, path):
 
     with open(path, "w", encoding="utf-8") as f:
         base.write(f)
+
 
 def _r2369_set_record(cfg, key, open_flag, docked_flag, geo):
     sec = "Docking"
@@ -1054,6 +1074,7 @@ def _r2369_set_record(cfg, key, open_flag, docked_flag, geo):
         keys.append(key)
     cfg.set(sec, "keys", ",".join(keys))
 
+
 def _r2369_safe_geo(win):
     try:
         win.update_idletasks()
@@ -1064,6 +1085,7 @@ def _r2369_safe_geo(win):
     except Exception:
         return ""
 
+
 def _r2369_persist_one(self, key, win, docked_flag=False):
     ini = _r2369_ini_path()
     cfg = _r2369_read_cfg(ini)
@@ -1071,10 +1093,18 @@ def _r2369_persist_one(self, key, win, docked_flag=False):
     _r2369_set_record(cfg, key, True, bool(docked_flag), geo)
     _r2369_merge_write(cfg, ini)
     try:
-        print("[Docking][R2369] persist key=", key, "geo=", geo, "ts=", cfg.get("Docking", key + ".ts", fallback=""))
+        print(
+            "[Docking][R2369] persist key=",
+            key,
+            "geo=",
+            geo,
+            "ts=",
+            cfg.get("Docking", key + ".ts", fallback=""),
+        )
     except Exception:
         pass
     return True
+
 
 def _r2369_persist_all(self):
     ini = _r2369_ini_path()
@@ -1088,9 +1118,9 @@ def _r2369_persist_all(self):
             # R2388_UI_GEOMETRY_MIRROR: main_gui uses [UI].geometry
             try:
                 if geo_main:
-                    if not cfg.has_section('UI'):
-                        cfg.add_section('UI')
-                    cfg.set('UI', 'geometry', str(geo_main))
+                    if not cfg.has_section("UI"):
+                        cfg.add_section("UI")
+                    cfg.set("UI", "geometry", str(geo_main))
             except Exception:
                 pass
 
@@ -1104,7 +1134,14 @@ def _r2369_persist_all(self):
 
         # 2) Log-Window (best-effort: häufige Attribute)
         log_win = None
-        for name in ("log_window","_log_window","log_toplevel","_log_toplevel","win_log","_win_log"):
+        for name in (
+            "log_window",
+            "_log_window",
+            "log_toplevel",
+            "_log_toplevel",
+            "win_log",
+            "_win_log",
+        ):
             try:
                 cand = getattr(app, name, None)
                 if cand is not None:
@@ -1146,6 +1183,7 @@ def _r2369_persist_all(self):
     _r2369_merge_write(cfg, ini)
     return True
 
+
 def _r2369_restore_one(self, key, win):
     ini = _r2369_ini_path()
     cfg = _r2369_read_cfg(ini)
@@ -1171,10 +1209,20 @@ def _r2369_restore_one(self, key, win):
             applied = 0
 
     try:
-        print("[Docking][R2369] restore key=", key, "geo=", geo, "applied=", applied, "ts=", cfg.get("Docking", key + ".ts", fallback=""))
+        print(
+            "[Docking][R2369] restore key=",
+            key,
+            "geo=",
+            geo,
+            "applied=",
+            applied,
+            "ts=",
+            cfg.get("Docking", key + ".ts", fallback=""),
+        )
     except Exception:
         pass
     return bool(applied)
+
 
 # Monkeypatch
 try:

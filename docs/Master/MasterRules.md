@@ -5,6 +5,14 @@ _Automatisch generiert durch R2037 am 2025-12-09 09:39:55_
 Dieses Dokument ist der Einstiegspunkt für alle Mastermodus-Regeln.
 Die eigentlichen Detailregeln sind in getrennte Kapitel ausgelagert.
 
+## Dokumente nur per Runner
+
+- **Kanon-Dokumente** (insb. `docs/PIPELINE.md` und `docs/Master/MasterRules.md`) werden **niemals manuell** editiert.
+- Änderungen erfolgen ausschließlich per **R####-Runner** mit:
+  - Backup nach `_Archiv/`
+  - Report nach `docs/Report_R####_*.md`
+- Wenn ein Doc-Fix nötig ist: erst **kleiner Doc-Runner**, kein Misch-Runner mit UI/Logic.
+
 ## Kapitelübersicht
 
 - [MasterRules_Core](MasterRules_Core.md): Grundprinzipien, Pfade, Sicherheit,
@@ -96,3 +104,41 @@ Keine. Triple-Quotes sind vollstaendig untersagt.
 - Reports/Docs/Logs werden bevorzugt intern angezeigt (Read-Only), extern nur als Fallback.
 - UI-Änderungen nur an geprüften Anchors; keine Injektion in offene try/except Scopes.
 - (Ergänzt durch R2304)
+
+## Runner-Lifecycle
+
+- **Alte Runner** werden **nicht repariert** und **nicht gelöscht**.
+- Alte Runner werden **ins Archiv verschoben**.
+- Das **Archiv ist ein gültiger Arbeitsraum** für:
+  - Scan
+  - Learning
+  - Diagnose
+- Der Ordner `tools/` enthält **nur Runner mit aktiver Funktion**, z. B.:
+  - Button-Runner
+  - SonderRunner
+  - produktiv genutzte Diagnose- oder Fix-Runner
+- **Langfristiges Ziel**:
+  - Separate Ablage für Button-/SonderRunner,
+    um versehentliche Löschungen zu verhindern.
+
+
+
+## Canonical Paths
+Zeitpunkt: 2025-12-23 23:26:41
+
+## Kanonische Pfade (verbindlich)
+- **Reports/** → alle Reports (einziger Zielort)
+- **docs/PIPELINE.md** → ShrimpDev-Pipeline
+- **docs/pipelines/** → Produktpipelines (ShrimpHub, ShrimpBridge, …)
+- **docs/Architecture/** → Architektur & Systemdesign
+- **tools/** → Runner
+- **modules/** → Runtime-Code
+
+## Nicht-kanonisch (Legacy / Archiv)
+- `_Reports/`
+- `docs/Report_*`
+- `_Pipeline/`
+- `_Archiv/`
+- `_Snapshots/`
+
+Nicht-kanonische Pfade dürfen existieren, werden aber **nicht mehr aktiv beschrieben oder ausgewertet**.

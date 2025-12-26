@@ -48,7 +48,6 @@ def build_pipeline_tab(parent, app) -> None:
     btn_clear = ttk.Button(bar, text="X", width=3, command=lambda: var_query.set(""))
     btn_clear.pack(side="left", padx=(6, 0))
 
-
     btn_reload = ttk.Button(bar, text="Neu laden")
     btn_reload.pack(side="left")
 
@@ -69,7 +68,9 @@ def build_pipeline_tab(parent, app) -> None:
     except Exception:
         pass
 
-    tree = ttk.Treeview(content, columns=cols, show="headings", selectmode="browse", style="Pipeline.Treeview")
+    tree = ttk.Treeview(
+        content, columns=cols, show="headings", selectmode="browse", style="Pipeline.Treeview"
+    )
     tree.heading("status", text="Status")
     tree.heading("prio", text="Prio")
     tree.heading("task", text="Task")
@@ -110,7 +111,6 @@ def build_pipeline_tab(parent, app) -> None:
         tree.heading("section", command=lambda: _set_sort("section"))
     except Exception:
         pass
-
 
     scr = ttk.Scrollbar(content, orient="vertical", command=tree.yview)
     tree.configure(yscrollcommand=scr.set)
@@ -163,12 +163,12 @@ def build_pipeline_tab(parent, app) -> None:
             rest = None
             m1 = task_md.match(ln)
             if m1:
-                done = (m1.group(1).lower() == "x")
+                done = m1.group(1).lower() == "x"
                 rest = m1.group(2).strip()
             else:
                 m2 = task_uni.match(ln)
                 if m2:
-                    done = (m2.group(1) == "✔")
+                    done = m2.group(1) == "✔"
                     rest = m2.group(2).strip()
             if done is None:
                 continue
@@ -176,7 +176,15 @@ def build_pipeline_tab(parent, app) -> None:
             mprio = re.search(r"\((HIGH|MEDIUM|LOW)\)", rest)
             if mprio:
                 prio = mprio.group(1)
-            items.append({"line_index": i, "done": bool(done), "prio": prio, "task": rest, "section": section})
+            items.append(
+                {
+                    "line_index": i,
+                    "done": bool(done),
+                    "prio": prio,
+                    "task": rest,
+                    "section": section,
+                }
+            )
         return items, lines
 
     def _rebuild_visible() -> None:
@@ -192,7 +200,13 @@ def build_pipeline_tab(parent, app) -> None:
             if not q:
                 return True
             try:
-                hay = (str(it.get("task", "")) + " " + str(it.get("section", "")) + " " + str(it.get("prio", ""))).lower()
+                hay = (
+                    str(it.get("task", ""))
+                    + " "
+                    + str(it.get("section", ""))
+                    + " "
+                    + str(it.get("prio", ""))
+                ).lower()
                 return q in hay
             except Exception:
                 return True
@@ -207,7 +221,6 @@ def build_pipeline_tab(parent, app) -> None:
                 continue
             vis.append(it)
         state["visible"] = vis
-
 
     def _render() -> None:
         for iid in tree.get_children(""):
@@ -241,9 +254,14 @@ def build_pipeline_tab(parent, app) -> None:
 
         items = list(state.get("visible") or [])
         if col == "status":
-            items.sort(key=lambda it: (0 if it.get("done") else 1, str(it.get("task", ""))), reverse=desc)
+            items.sort(
+                key=lambda it: (0 if it.get("done") else 1, str(it.get("task", ""))), reverse=desc
+            )
         elif col == "prio":
-            items.sort(key=lambda it: (_prio_rank(str(it.get("prio", ""))), str(it.get("task", ""))), reverse=desc)
+            items.sort(
+                key=lambda it: (_prio_rank(str(it.get("prio", ""))), str(it.get("task", ""))),
+                reverse=desc,
+            )
         elif col == "task":
             items.sort(key=lambda it: str(it.get("task", "")).lower(), reverse=desc)
         elif col == "section":
@@ -257,11 +275,17 @@ def build_pipeline_tab(parent, app) -> None:
                 tags.append("done")
             if str(it.get("prio", "")) == "HIGH":
                 tags.append("high")
-            tree.insert("", "end", values=(status_txt, it.get("prio", ""), it.get("task", ""), it.get("section", "")), tags=tuple(tags))
-
+            tree.insert(
+                "",
+                "end",
+                values=(status_txt, it.get("prio", ""), it.get("task", ""), it.get("section", "")),
+                tags=tuple(tags),
+            )
 
         if len(state["items"]) == 0:
-            empty.config(text="Keine Tasks erkannt. Prüfe Checkbox-Format oder Datei-Pfad (siehe oben).")
+            empty.config(
+                text="Keine Tasks erkannt. Prüfe Checkbox-Format oder Datei-Pfad (siehe oben)."
+            )
         else:
             empty.config(text="")
 
@@ -325,7 +349,11 @@ def build_pipeline_tab(parent, app) -> None:
             return None
         status_txt, prio, task = vals[0], vals[1], vals[2]
         for it in state.get("visible") or []:
-            if ("☑" if it["done"] else "☐") == status_txt and it["prio"] == prio and it["task"] == task:
+            if (
+                ("☑" if it["done"] else "☐") == status_txt
+                and it["prio"] == prio
+                and it["task"] == task
+            ):
                 return it["line_index"]
         return None
 
@@ -342,6 +370,7 @@ def build_pipeline_tab(parent, app) -> None:
         p = state.get("path") or _pipeline_path()
         try:
             import os
+
             if p.exists():
                 os.startfile(str(p))
             else:

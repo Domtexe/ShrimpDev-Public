@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 """
 ui_log_tab – Log-Tab für ShrimpDev.
 
@@ -83,7 +84,7 @@ def _copy_visible_and_back(app: Any, text: tk.Text) -> None:
     """Kopiert den sichtbaren Bereich und wechselt zurück zu Intake."""
     try:
         top_index = text.index("@0,0")
-        bottom_index = text.index("@0,%d" % text.winfo_height())
+        bottom_index = text.index(f"@0,{text.winfo_height()}")
         data = text.get(top_index, bottom_index)
     except Exception:
         data = ""
@@ -146,7 +147,7 @@ def build_log_tab(parent: tk.Widget, app: Any) -> None:
     btn_reload = ui_theme_classic.Button(
         btn_frame,
         text="Neu laden",
-        command=lambda: (state.__setitem__('pos', 0), _load_log(text_widget)),
+        command=lambda: (state.__setitem__("pos", 0), _load_log(text_widget)),
     )
     btn_reload.pack(side="left", padx=4, pady=2)
 

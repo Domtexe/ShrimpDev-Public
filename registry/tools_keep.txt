@@ -1,2 +1,14 @@
 # filenames in tools\ root that must stay (one per line)
 R2251
+R2411
+R2412
+R2414
+R2428
+R2429
+R2431
+R2433
+R2434
+R2436
+R2441
+
+R2448

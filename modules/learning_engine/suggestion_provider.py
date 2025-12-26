@@ -9,7 +9,9 @@ class SuggestionProvider:
 
         recent = self.patterns.recent_activity()
         if recent:
-            out.append(f"Zuletzt bearbeitet: {recent[-1].get('payload',{}).get('file','(unbekannt)')}")
+            out.append(
+                f"Zuletzt bearbeitet: {recent[-1].get('payload', {}).get('file', '(unbekannt)')}"
+            )
 
         mods = self.patterns.most_common_modules()
         if mods:

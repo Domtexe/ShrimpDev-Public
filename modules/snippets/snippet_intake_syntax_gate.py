@@ -3,9 +3,11 @@ Einfaches Syntax-Gate als Snippet:
 - Kann in main_gui.py oder Intake-Loader genutzt werden, um vor dem Import zu prüfen.
 - Keine harte Integration erzwungen (Runner 1244 tut bereits die Reparatur).
 """
+
 from __future__ import annotations
 from pathlib import Path
 import ast
+
 
 def intake_syntax_ok(project_root: Path | None = None) -> bool:
     try:

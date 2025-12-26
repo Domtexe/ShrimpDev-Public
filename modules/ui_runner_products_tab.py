@@ -1,4 +1,8 @@
 from __future__ import annotations
+
+
+from __future__ import annotations
+import sys
 import os
 import re
 import subprocess
@@ -6,6 +10,208 @@ import tkinter as tk
 from tkinter import ttk
 from datetime import datetime
 from pathlib import Path
+from tkinter import messagebox
+
+
+MAX_COPY_BYTES = 10 * 1024 * 1024  # 10 MB safety limit for file copy previews
+
+
+# --- R2497_HELPERS_START ---
+def _r2497_set_clipboard_file_drop_windows(file_paths, hwnd=None):
+    """
+    Windows Explorer Paste-ready file copy:
+    Put paths into clipboard as CF_HDROP + Preferred DropEffect=COPY.
+
+    Returns: (ok: bool, diag: str)
+    """
+    try:
+        import ctypes
+        from ctypes import wintypes
+        import time
+    except Exception as e:
+        return False, f"ctypes/time import fail: {e!r}"
+
+    # Use last-error aware DLLs + proper typing to avoid 64-bit handle truncation.
+    kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
+    user32 = ctypes.WinDLL("user32", use_last_error=True)
+
+    CF_HDROP = 15
+    GMEM_MOVEABLE = 0x0002
+    CFSTR_PREFERREDDROPEFFECT = "Preferred DropEffect"
+    DROPEFFECT_COPY = 1
+
+    class DROPFILES(ctypes.Structure):
+        _fields_ = [
+            ("pFiles", wintypes.DWORD),
+            ("pt_x", wintypes.LONG),
+            ("pt_y", wintypes.LONG),
+            ("fNC", wintypes.BOOL),
+            ("fWide", wintypes.BOOL),
+        ]
+
+    # Typing (critical)
+    kernel32.GlobalAlloc.argtypes = [wintypes.UINT, ctypes.c_size_t]
+    kernel32.GlobalAlloc.restype = wintypes.HGLOBAL
+
+    kernel32.GlobalLock.argtypes = [wintypes.HGLOBAL]
+    kernel32.GlobalLock.restype = wintypes.LPVOID
+
+    kernel32.GlobalUnlock.argtypes = [wintypes.HGLOBAL]
+    kernel32.GlobalUnlock.restype = wintypes.BOOL
+
+    kernel32.GlobalFree.argtypes = [wintypes.HGLOBAL]
+    kernel32.GlobalFree.restype = wintypes.HGLOBAL
+
+    user32.OpenClipboard.argtypes = [wintypes.HWND]
+    user32.OpenClipboard.restype = wintypes.BOOL
+
+    user32.EmptyClipboard.argtypes = []
+    user32.EmptyClipboard.restype = wintypes.BOOL
+
+    user32.SetClipboardData.argtypes = [wintypes.UINT, wintypes.HANDLE]
+    user32.SetClipboardData.restype = wintypes.HANDLE
+
+    user32.CloseClipboard.argtypes = []
+    user32.CloseClipboard.restype = wintypes.BOOL
+
+    user32.RegisterClipboardFormatW.argtypes = [wintypes.LPCWSTR]
+    user32.RegisterClipboardFormatW.restype = wintypes.UINT
+
+    kernel32.FormatMessageW.argtypes = [
+        wintypes.DWORD,
+        wintypes.LPCVOID,
+        wintypes.DWORD,
+        wintypes.DWORD,
+        wintypes.LPWSTR,
+        wintypes.DWORD,
+        wintypes.LPVOID,
+    ]
+    kernel32.FormatMessageW.restype = wintypes.DWORD
+
+    def _fmt_last_error(prefix):
+        err = ctypes.get_last_error()
+        buf = ctypes.create_unicode_buffer(2048)
+        kernel32.FormatMessageW(0x00001000, None, err, 0, buf, len(buf), None)
+        msg = buf.value.strip()
+        return f"{prefix} | GetLastError={err} | {msg}"
+
+    # Build payload
+    flist = "".join([str(p) + "\x00" for p in file_paths]) + "\x00"
+    data = flist.encode("utf-16le")
+
+    df = DROPFILES()
+    df.pFiles = ctypes.sizeof(DROPFILES)
+    df.pt_x = 0
+    df.pt_y = 0
+    df.fNC = False
+    df.fWide = True
+
+    total_size = ctypes.sizeof(DROPFILES) + len(data)
+    hglob = kernel32.GlobalAlloc(GMEM_MOVEABLE, total_size)
+    if not hglob:
+        return False, _fmt_last_error("GlobalAlloc failed")
+
+    ptr = kernel32.GlobalLock(hglob)
+    if not ptr:
+        kernel32.GlobalFree(hglob)
+        return False, _fmt_last_error("GlobalLock failed")
+
+    try:
+        ctypes.memmove(ptr, ctypes.addressof(df), ctypes.sizeof(DROPFILES))
+        ctypes.memmove(ctypes.c_void_p(ptr + ctypes.sizeof(DROPFILES)), data, len(data))
+    finally:
+        kernel32.GlobalUnlock(hglob)
+
+    # DropEffect = COPY
+    fmt = user32.RegisterClipboardFormatW(CFSTR_PREFERREDDROPEFFECT)
+    hfx = kernel32.GlobalAlloc(GMEM_MOVEABLE, 4)
+    if not hfx:
+        # not fatal; proceed without drop effect
+        hfx = None
+    else:
+        pfx = kernel32.GlobalLock(hfx)
+        if not pfx:
+            kernel32.GlobalFree(hfx)
+            hfx = None
+        else:
+            try:
+                ctypes.memmove(pfx, ctypes.byref(ctypes.c_uint(DROPEFFECT_COPY)), 4)
+            finally:
+                kernel32.GlobalUnlock(hfx)
+
+    # Open clipboard (retry)
+    hwnd_val = wintypes.HWND(hwnd or 0)
+    for attempt in range(1, 6):
+        if user32.OpenClipboard(hwnd_val):
+            break
+        time.sleep(0.05 * attempt)
+    else:
+        kernel32.GlobalFree(hglob)
+        if hfx:
+            kernel32.GlobalFree(hfx)
+        return False, _fmt_last_error("OpenClipboard failed (busy/owner)")
+
+    try:
+        user32.EmptyClipboard()
+
+        res = user32.SetClipboardData(CF_HDROP, hglob)
+        if not res:
+            diag = _fmt_last_error("SetClipboardData(CF_HDROP) failed")
+            kernel32.GlobalFree(hglob)
+            if hfx:
+                kernel32.GlobalFree(hfx)
+            return False, diag
+
+        # Ownership transfers to clipboard; do NOT free hglob after success
+
+        # Also provide plaintext paths for apps that paste text (e.g. chat/editor).
+        # Explorer will still prefer CF_HDROP for Ctrl+V file copy.
+        CF_UNICODETEXT = 13
+        try:
+            text_payload = "\r\n".join([str(p) for p in file_paths]) + "\r\n"
+            text_data = text_payload.encode("utf-16le") + b"\x00\x00"
+            htxt = kernel32.GlobalAlloc(GMEM_MOVEABLE, len(text_data))
+            if htxt:
+                ptxt = kernel32.GlobalLock(htxt)
+                if ptxt:
+                    try:
+                        ctypes.memmove(ptxt, text_data, len(text_data))
+                    finally:
+                        kernel32.GlobalUnlock(htxt)
+                    # transfer ownership to clipboard
+                    user32.SetClipboardData(CF_UNICODETEXT, htxt)
+                else:
+                    kernel32.GlobalFree(htxt)
+        except Exception:
+            pass
+            if hfx and fmt:
+                user32.SetClipboardData(fmt, hfx)
+
+        return True, "OK"
+    finally:
+        user32.CloseClipboard()
+
+
+def _r2497_copy_file_for_paste(p, hwnd=None):
+    """
+    Copies a single file path 'p' into clipboard as file copy (Explorer paste).
+    """
+    try:
+        if not p:
+            return False, "Kein Pfad."
+        ap = os.path.abspath(p)
+        if not os.path.isfile(ap):
+            return False, f"Keine Datei: {ap}"
+        ok, diag = _r2497_set_clipboard_file_drop_windows([ap], hwnd=hwnd)
+        if ok:
+            return True, "OK"
+        return False, diag
+        return (ok, "OK" if ok else "Clipboard nicht verfügbar")
+    except Exception as e:
+        return False, repr(e)
+
+
+# --- R2497_HELPERS_END ---
 
 try:
     from modules import ui_theme_classic
@@ -40,13 +246,29 @@ def _safe_open_folder(path: str) -> None:
 
 # --- R2304 INTERNAL VIEWER -----------------------------------------------------------
 _R2304_MAX_VIEW_BYTES = 1024 * 1024  # 1 MB
-_R2304_TEXT_EXT = {".txt", ".md", ".py", ".json", ".log", ".ini", ".cfg", ".yaml", ".yml", ".csv", ".bat", ".cmd", ".ps1"}
+_R2304_TEXT_EXT = {
+    ".txt",
+    ".md",
+    ".py",
+    ".json",
+    ".log",
+    ".ini",
+    ".cfg",
+    ".yaml",
+    ".yml",
+    ".csv",
+    ".bat",
+    ".cmd",
+    ".ps1",
+}
+
 
 def _r2304_is_text_file(p: Path) -> bool:
     try:
         return p.suffix.lower() in _R2304_TEXT_EXT
     except Exception:
         return False
+
 
 def _r2304_open_internal_viewer(app, title: str, path: Path) -> None:
     """Read-only Text-Viewer wie Runner-Popup, für Runner-Produkte."""
@@ -186,7 +408,9 @@ def _r2304_open_internal_viewer(app, title: str, path: Path) -> None:
     btn_folder.pack(side="left", padx=8)
     btn_close.pack(side="left", padx=8)
 
+
 # --- /R2304 INTERNAL VIEWER ----------------------------------------------------------
+
 
 def _parse_runner_id(name: str) -> str:
     try:
@@ -244,15 +468,17 @@ def _scan_files(root: Path) -> list[dict]:
                 name = p.name
                 rid = _parse_runner_id(name)
                 typ = _classify_type(root, p)
-                items.append({
-                    "name": name,
-                    "path": str(p),
-                    "type": typ,
-                    "runner": rid,
-                    "mtime": mtime,
-                    "mtime_s": _format_dt(mtime),
-                    "size": size,
-                })
+                items.append(
+                    {
+                        "name": name,
+                        "path": str(p),
+                        "type": typ,
+                        "runner": rid,
+                        "mtime": mtime,
+                        "mtime_s": _format_dt(mtime),
+                        "size": size,
+                    }
+                )
         except Exception:
             continue
     try:
@@ -301,7 +527,13 @@ def build_runner_products_tab(parent: tk.Widget, app) -> None:
 
     tk.Label(f, text="Typ:", bg=bg).pack(side="left")
     var_type = tk.StringVar(value="All")
-    cmb_type = ttk.Combobox(f, textvariable=var_type, values=["All", "Report", "Doc", "Backup", "File"], width=10, state="readonly")
+    cmb_type = ttk.Combobox(
+        f,
+        textvariable=var_type,
+        values=["All", "Report", "Doc", "Backup", "File"],
+        width=10,
+        state="readonly",
+    )
     cmb_type.pack(side="left", padx=(4, 10))
 
     tk.Label(f, text="Suche:", bg=bg).pack(side="left")
@@ -379,7 +611,13 @@ def build_runner_products_tab(parent: tk.Widget, app) -> None:
         state["id2path"] = {}
         for it in items:
             try:
-                vals = (it.get("mtime_s"), it.get("type"), it.get("runner"), it.get("name"), str(it.get("size")))
+                vals = (
+                    it.get("mtime_s"),
+                    it.get("type"),
+                    it.get("runner"),
+                    it.get("name"),
+                    str(it.get("size")),
+                )
                 iid = tree.insert("", "end", values=vals)
                 state["id2path"][iid] = it.get("path") or ""
             except Exception:
@@ -418,7 +656,7 @@ def build_runner_products_tab(parent: tk.Widget, app) -> None:
         except Exception:
             pass
         try:
-            with open(path, "r", encoding="utf-8", errors="replace") as f:
+            with open(path, encoding="utf-8", errors="replace") as f:
                 content = f.read()
         except Exception as exc:
             content = "Fehler beim Lesen: " + repr(exc)
@@ -487,7 +725,6 @@ def build_runner_products_tab(parent: tk.Widget, app) -> None:
     except Exception:
         pass
 
-
     # --- R2303 TREE UX: Click / Context / Copy --------------------------------------
     _R2303_MAX_COPY_BYTES = 512 * 1024  # 512 KB
 
@@ -495,33 +732,42 @@ def build_runner_products_tab(parent: tk.Widget, app) -> None:
         p = _selected_path()
         if not p:
             return
-        try:
-            pp = Path(p)
-            if not pp.exists():
-                return
-            try:
-                if pp.stat().st_size > _R2303_MAX_COPY_BYTES:
-                    try:
-                        from tkinter import messagebox
-                        messagebox.showwarning("Zu groß", f"Datei > {_R2303_MAX_COPY_BYTES//1024} KB – Inhalt wird nicht kopiert.")
-                    except Exception:
-                        pass
-                    return
-            except Exception:
-                pass
 
-            data = pp.read_text(encoding="utf-8", errors="replace")
-            try:
-                app.clipboard_clear()
-                app.clipboard_append(data)
-            except Exception:
+        pp = Path(p)
+        if not pp.exists():
+            return
+
+        # Größencheck
+        try:
+            if pp.stat().st_size > _R2303_MAX_COPY_BYTES:
                 try:
-                    parent.clipboard_clear()
-                    parent.clipboard_append(data)
+                    from tkinter import messagebox
+                    messagebox.showwarning(
+                        "Zu groß",
+                        f"Datei > {_R2303_MAX_COPY_BYTES // 1024} KB – Inhalt wird nicht kopiert.",
+                    )
                 except Exception:
                     pass
+                return
         except Exception:
             pass
+
+        # Inhalt lesen
+        try:
+            data = pp.read_text(encoding="utf-8", errors="replace")
+        except Exception:
+            return
+
+        # Clipboard (App → Fallback Parent)
+        try:
+            app.clipboard_clear()
+            app.clipboard_append(data)
+        except Exception:
+            try:
+                parent.clipboard_clear()
+                parent.clipboard_append(data)
+            except Exception:
+                pass
 
     def _tree_open_selected(_ev=None):
         _on_open()
@@ -531,6 +777,148 @@ def build_runner_products_tab(parent: tk.Widget, app) -> None:
 
     def _tree_copy_content(_ev=None):
         _on_copy_content()
+
+    # R2497_ACTION_START
+    def _on_copy_file_paste():
+        try:
+            p2 = _selected_path()
+        except Exception:
+            p2 = None
+        try:
+            _hwnd = tree.winfo_id()
+        except Exception:
+            _hwnd = None
+        ok, msg = _r2497_copy_file_for_paste(p2, hwnd=_hwnd)
+        try:
+            from tkinter import messagebox
+
+            if ok:
+                messagebox.showinfo("Datei kopieren", "Datei im Clipboard. (Explorer: Strg+V)")
+            else:
+                messagebox.showwarning("Datei kopieren", f"Nicht möglich: {msg}")
+        except Exception:
+            pass
+
+    # R2497_ACTION_END
+    # --- R2511_START: Backup restore (SAFE) ----------------------------------------------
+    def _is_backup_path(pth: str) -> bool:
+        try:
+            pnorm = os.path.normpath(pth or "")
+            return (os.sep + "_Archiv" + os.sep) in (pnorm + os.sep) and pnorm.lower().endswith(
+                ".bak"
+            )
+        except Exception:
+            return False
+
+    def _infer_restore_basename(backup_path: str) -> str:
+        """
+        Try to map: something.ext.R####_YYYYMMDD_HHMMSS.bak  -> something.ext
+        Fallback: strip trailing '.bak'
+        """
+        bn = os.path.basename(backup_path or "")
+        # common pattern: <base>.R1234_<stamp>.bak  (or longer runner id)
+        m = re.match(r"^(?P<base>.+?)\.R\d{3,6}_.+?\.bak$", bn, flags=re.IGNORECASE)
+        if m:
+            return m.group("base")
+        if bn.lower().endswith(".bak"):
+            return bn[:-4]
+        return bn
+
+    def _find_restore_candidates(base_name: str):
+        """
+        Search project root for exact filename matches outside _Archiv/_Snapshots.
+        Returns list of absolute paths.
+        """
+        hits = []
+        try:
+            for dirpath, dirnames, filenames in os.walk(_root_dir):
+                # prune
+                dn = [
+                    d for d in dirnames if d not in ("_Archiv", "_Snapshots", ".git", "__pycache__")
+                ]
+                dirnames[:] = dn
+                if base_name in filenames:
+                    hits.append(os.path.join(dirpath, base_name))
+        except Exception:
+            pass
+        return hits
+
+    def _on_restore_backup():
+        p = _selected_path()
+        if not p:
+            return
+        if not _is_backup_path(p):
+            try:
+                from tkinter import messagebox
+
+                messagebox.showwarning(
+                    "Backup wiederherstellen", "Auswahl ist kein Backup aus _Archiv (*.bak)."
+                )
+            except Exception:
+                pass
+            return
+
+        base = _infer_restore_basename(p)
+        cands = _find_restore_candidates(base)
+
+        if len(cands) != 1:
+            # ambiguous or missing -> do not restore blindly
+            msg = f"Restore nicht möglich (Treffer={len(cands)}).\nBackup:\n{p}\n\nZiel-Dateiname:\n{base}\n"
+            if cands:
+                msg += "\nKandidaten:\n- " + "\n- ".join(cands[:20])
+                if len(cands) > 20:
+                    msg += f"\n... (+{len(cands) - 20} weitere)"
+            try:
+                from tkinter import messagebox
+
+                messagebox.showwarning("Backup wiederherstellen", msg)
+            except Exception:
+                pass
+            try:
+                app.clipboard_clear()
+                app.clipboard_append("\n".join(cands) if cands else base)
+            except Exception:
+                pass
+            return
+
+        target_path = cands[0]
+
+        # Safety: back up current target before overwrite
+        try:
+            arch = os.path.join(_root_dir, "_Archiv")
+            os.makedirs(arch, exist_ok=True)
+            stamp2 = datetime.now().strftime("%Y%m%d_%H%M%S")
+            safety_bak = os.path.join(
+                arch, f"{os.path.basename(target_path)}.RESTORE_BEFORE_{RID}_{stamp2}.bak"
+            )
+            shutil.copy2(target_path, safety_bak)
+        except Exception:
+            safety_bak = None
+
+        try:
+            shutil.copy2(p, target_path)
+            ok = True
+        except Exception as e:
+            ok = False
+            err = str(e)
+
+        try:
+            from tkinter import messagebox
+
+            if ok:
+                msg = f"OK: Wiederhergestellt.\n\nBackup:\n{p}\n\nZiel:\n{target_path}"
+                if safety_bak:
+                    msg += f"\n\nSicherungs-Backup vorher:\n{safety_bak}"
+                messagebox.showinfo("Backup wiederherstellen", msg)
+            else:
+                messagebox.showerror(
+                    "Backup wiederherstellen",
+                    f"FEHLER:\n{err}\n\nBackup:\n{p}\n\nZiel:\n{target_path}",
+                )
+        except Exception:
+            pass
+
+    # --- R2511_END: Backup restore (SAFE) -----------------------------------------------
 
     def _tree_context_menu(ev):
         try:
@@ -549,8 +937,13 @@ def build_runner_products_tab(parent: tk.Widget, app) -> None:
             m.add_command(label="Intern anzeigen", command=_on_viewer)
             m.add_command(label="Öffnen", command=_on_open)
             m.add_command(label="Ordner öffnen", command=_on_folder)
-            m.add_separator()
+            # R2515: gated restore only for _Archiv backups
+            if _is_backup_path(p):
+                m.add_command(label="Backup wiederherstellen", command=_on_restore_backup)
+                m.add_separator()
             m.add_command(label="Pfad kopieren", command=_on_copy)
+
+            m.add_command(label="Datei kopieren (Explorer-Paste)", command=_on_copy_file_paste)
             m.add_command(label="Inhalt kopieren (Text)", command=_on_copy_content)
             m.tk_popup(ev.x_root, ev.y_root)
         except Exception:
@@ -559,6 +952,77 @@ def build_runner_products_tab(parent: tk.Widget, app) -> None:
     try:
         tree.bind("<Double-Button-1>", _tree_open_selected)
         tree.bind("<Button-3>", _tree_context_menu)
+
+    except Exception:
+        pass
+
+    # --- R2508_START: Preview right-click menu ------------------------------------------
+    def _preview_copy_selection_or_all():
+        # Copy selected text; if none selected, copy all preview text
+        try:
+            sel = txt.selection_get()
+            data = sel if sel else ""
+        except Exception:
+            data = ""
+        if not data:
+            try:
+                data = txt.get("1.0", "end-1c")
+            except Exception:
+                data = ""
+        try:
+            app.clipboard_clear()
+            app.clipboard_append(data or "")
+        except Exception:
+            pass
+
+    def _preview_copy_path():
+        p = _selected_path()
+        try:
+            app.clipboard_clear()
+            app.clipboard_append(p or "")
+        except Exception:
+            pass
+
+    def _preview_copy_file_for_paste():
+        p2 = _selected_path()
+        if not p2:
+            return
+        try:
+            _hwnd = txt.winfo_id()
+        except Exception:
+            _hwnd = None
+        ok, msg = _r2497_copy_file_for_paste(p2, hwnd=_hwnd)
+        try:
+            from tkinter import messagebox
+
+            if not ok:
+                messagebox.showwarning("Datei kopieren", msg or "Nicht verfügbar.")
+        except Exception:
+            pass
+
+    def _preview_context_menu(ev):
+        # Ensure focus (some apps require focus for selection_get)
+        try:
+            txt.focus_set()
+        except Exception:
+            pass
+        try:
+            m = tk.Menu(txt, tearoff=0)
+            m.add_command(label="Inhalt kopieren (Text)", command=_preview_copy_selection_or_all)
+            m.add_separator()
+            m.add_command(label="Pfad kopieren", command=_preview_copy_path)
+            m.add_command(
+                label="Datei kopieren (Explorer-Paste)", command=_preview_copy_file_for_paste
+            )
+            m.tk_popup(ev.x_root, ev.y_root)
+        except Exception:
+            pass
+
+    try:
+        txt.bind("<Button-3>", _preview_context_menu)
+    except Exception:
+        pass
+        # --- R2508_END: Preview right-click menu --------------------------------------------
         tree.bind("<Control-c>", _tree_copy_path)
         tree.bind("<Control-Shift-C>", _tree_copy_content)
     except Exception:
@@ -582,12 +1046,8 @@ def build_runner_products_tab(parent: tk.Widget, app) -> None:
     _refresh()
 
 
-
 # --- R2300 UX: Click / Copy / Context -------------------------------------------
-import os
-import subprocess
-import tkinter as tk
-from tkinter import messagebox
+
 
 def _rp_open(path: Path):
     try:
@@ -600,22 +1060,27 @@ def _rp_open(path: Path):
     except Exception as e:
         messagebox.showerror("Öffnen fehlgeschlagen", str(e))
 
+
 def _rp_open_folder(path: Path):
     try:
         _rp_open(path.parent)
     except Exception as e:
         messagebox.showerror("Ordner öffnen fehlgeschlagen", str(e))
 
+
 def _rp_copy_path(root, path: Path):
     root.clipboard_clear()
     root.clipboard_append(str(path))
     root.update_idletasks()
 
+
 def _rp_copy_content(root, path: Path):
     try:
         if path.stat().st_size > MAX_COPY_BYTES:
-            messagebox.showwarning("Zu groß",
-                f"Datei ist größer als {MAX_COPY_BYTES//1024} KB – Kopieren abgebrochen.")
+            messagebox.showwarning(
+                "Zu groß",
+                f"Datei ist größer als {MAX_COPY_BYTES // 1024} KB – Kopieren abgebrochen.",
+            )
             return
         text = path.read_text(encoding="utf-8", errors="replace")
         root.clipboard_clear()
@@ -624,14 +1089,17 @@ def _rp_copy_content(root, path: Path):
     except Exception as e:
         messagebox.showerror("Kopieren fehlgeschlagen", str(e))
 
+
 def _rp_bind_listbox(root, listbox, get_path_callable):
     def on_dbl(_):
         p = get_path_callable()
-        if p: _rp_open(p)
+        if p:
+            _rp_open(p)
 
     def on_menu(ev):
         p = get_path_callable()
-        if not p: return
+        if not p:
+            return
         m = tk.Menu(listbox, tearoff=0)
         m.add_command(label="Öffnen", command=lambda: _rp_open(p))
         m.add_command(label="Ordner öffnen", command=lambda: _rp_open_folder(p))
@@ -642,14 +1110,18 @@ def _rp_bind_listbox(root, listbox, get_path_callable):
 
     def on_copy(_):
         p = get_path_callable()
-        if p: _rp_copy_path(root, p)
+        if p:
+            _rp_copy_path(root, p)
 
     def on_copy_content(_):
         p = get_path_callable()
-        if p: _rp_copy_content(root, p)
+        if p:
+            _rp_copy_content(root, p)
 
     listbox.bind("<Double-Button-1>", on_dbl)
     listbox.bind("<Button-3>", on_menu)
     listbox.bind("<Control-c>", on_copy)
     listbox.bind("<Control-Shift-C>", on_copy_content)
+
+
 # --- /R2300 UX -------------------------------------------------------------------

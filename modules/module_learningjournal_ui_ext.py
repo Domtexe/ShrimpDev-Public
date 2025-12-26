@@ -1,4 +1,3 @@
-
 """
 LearningJournal UI Modul - korrigierte Version (R1670b)
 """
@@ -6,16 +5,16 @@ LearningJournal UI Modul - korrigierte Version (R1670b)
 from __future__ import annotations
 import json
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any
 
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk
 
 PROJECT_NAME = "ShrimpDev"
 LEARNING_JOURNAL_FILENAME = "learning_journal.json"
 
 
-def get_project_root_from_any(path: Optional[Path] = None) -> Path:
+def get_project_root_from_any(path: Path | None = None) -> Path:
     if path is None:
         path = Path(__file__).resolve()
     cur = path
@@ -28,13 +27,13 @@ def get_project_root_from_any(path: Optional[Path] = None) -> Path:
     return Path(__file__).resolve().parent.parent
 
 
-def get_learning_journal_path(root: Optional[Path] = None) -> Path:
+def get_learning_journal_path(root: Path | None = None) -> Path:
     if root is None:
         root = get_project_root_from_any()
     return root / LEARNING_JOURNAL_FILENAME
 
 
-def load_learning_journal(root: Optional[Path] = None) -> Dict[str, Any]:
+def load_learning_journal(root: Path | None = None) -> dict[str, Any]:
     path = get_learning_journal_path(root)
     if not path.exists():
         return {}
@@ -46,14 +45,14 @@ def load_learning_journal(root: Optional[Path] = None) -> Dict[str, Any]:
         return {}
 
 
-def extract_phase_b_entries(data: Dict[str, Any]) -> List[Dict[str, Any]]:
+def extract_phase_b_entries(data: dict[str, Any]) -> list[dict[str, Any]]:
     lst = data.get("phaseB_analysis")
     if isinstance(lst, list):
         return [x for x in lst if isinstance(x, dict)]
     return []
 
 
-def summarize_phase_b(entries: List[Dict[str, Any]]) -> Tuple[int, float]:
+def summarize_phase_b(entries: list[dict[str, Any]]) -> tuple[int, float]:
     if not entries:
         return 0, 0.0
     scores = []
@@ -67,7 +66,7 @@ def summarize_phase_b(entries: List[Dict[str, Any]]) -> Tuple[int, float]:
     return len(entries), avg
 
 
-def build_learningjournal_panel(parent: tk.Widget, root_dir: Optional[Path] = None) -> tk.Frame:
+def build_learningjournal_panel(parent: tk.Widget, root_dir: Path | None = None) -> tk.Frame:
     if root_dir is None:
         root_dir = get_project_root_from_any()
 
@@ -77,7 +76,9 @@ def build_learningjournal_panel(parent: tk.Widget, root_dir: Optional[Path] = No
     header = ttk.Frame(frame)
     header.pack(side="top", fill="x", padx=8, pady=6)
 
-    ttk.Label(header, text="LearningJournal - Phase B Analyse", font=("", 11, "bold")).pack(side="left")
+    ttk.Label(header, text="LearningJournal - Phase B Analyse", font=("", 11, "bold")).pack(
+        side="left"
+    )
 
     btn_reload = ttk.Button(header, text="Neu laden")
     btn_reload.pack(side="right", padx=4)
@@ -85,7 +86,7 @@ def build_learningjournal_panel(parent: tk.Widget, root_dir: Optional[Path] = No
     btn_open = ttk.Button(header, text="JSON öffnen")
     btn_open.pack(side="right", padx=4)
 
-    lbl_path = ttk.Label(frame, text="Datei: {}".format(get_learning_journal_path(root_dir)))
+    lbl_path = ttk.Label(frame, text=f"Datei: {get_learning_journal_path(root_dir)}")
     lbl_path.pack(side="top", anchor="w", padx=8)
 
     # Tree
@@ -98,16 +99,10 @@ def build_learningjournal_panel(parent: tk.Widget, root_dir: Optional[Path] = No
         "timestamp": "Zeitstempel",
         "category": "Kategorie",
         "score": "Score",
-        "summary": "Zusammenfassung"
+        "summary": "Zusammenfassung",
     }
 
-    widths = {
-        "id": 80,
-        "timestamp": 150,
-        "category": 120,
-        "score": 80,
-        "summary": 400
-    }
+    widths = {"id": 80, "timestamp": 150, "category": 120, "score": 80, "summary": 400}
 
     for col in columns:
         tree.heading(col, text=headers[col])
@@ -128,16 +123,20 @@ def build_learningjournal_panel(parent: tk.Widget, root_dir: Optional[Path] = No
             tree.delete(i)
 
         for e in entries:
-            tree.insert("", "end", values=(
-                e.get("id", ""),
-                e.get("timestamp", ""),
-                e.get("category", ""),
-                e.get("score", ""),
-                e.get("summary", "")
-            ))
+            tree.insert(
+                "",
+                "end",
+                values=(
+                    e.get("id", ""),
+                    e.get("timestamp", ""),
+                    e.get("category", ""),
+                    e.get("score", ""),
+                    e.get("summary", ""),
+                ),
+            )
 
         if entries:
-            lbl_summary.config(text="Phase-B-Einträge: {} | Ø Score: {:.3f}".format(count, avg))
+            lbl_summary.config(text=f"Phase-B-Einträge: {count} | Ø Score: {avg:.3f}")
         else:
             lbl_summary.config(text="Keine Phase-B-Einträge gefunden.")
 
@@ -146,6 +145,7 @@ def build_learningjournal_panel(parent: tk.Widget, root_dir: Optional[Path] = No
         if path.exists():
             try:
                 import os
+
                 os.startfile(str(path))
             except:
                 pass

@@ -8,11 +8,9 @@ Inhalte:
 
 from __future__ import annotations
 
-from pathlib import Path
-from typing import Optional
-
 import tkinter as tk
-from tkinter import ttk, filedialog, messagebox
+from pathlib import Path
+from tkinter import filedialog, messagebox, ttk
 
 from modules import config_manager
 

@@ -16,7 +16,7 @@ Es arbeitet rein dateibasiert:
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 
 # ---------------------------------------------------------------------------
@@ -33,10 +33,10 @@ class JournalEntry:
     id: str
     timestamp: str
     event: str
-    payload: Dict[str, Any]
+    payload: dict[str, Any]
     type: str
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         return {
             "id": self.id,
             "timestamp": self.timestamp,
@@ -105,7 +105,7 @@ def _log_debug(message: str) -> None:
 # ---------------------------------------------------------------------------
 
 
-def _load_journal() -> Dict[str, Any]:
+def _load_journal() -> dict[str, Any]:
     """
     Lädt das LearningJournal aus der JSON-Datei.
 
@@ -139,7 +139,7 @@ def _load_journal() -> Dict[str, Any]:
         return {"entries": []}
 
 
-def _save_journal(data: Dict[str, Any]) -> None:
+def _save_journal(data: dict[str, Any]) -> None:
     """
     Speichert die Journal-Daten sicher in die learning_journal.json.
     """
@@ -167,7 +167,7 @@ def _save_journal(data: Dict[str, Any]) -> None:
         _log_debug(f"Journal-Speichern fehlgeschlagen: {exc!r}")
 
 
-def _next_entry_id(entries: List[Dict[str, Any]]) -> str:
+def _next_entry_id(entries: list[dict[str, Any]]) -> str:
     """
     Ermittelt die nächste numerische ID im Format 'NNN' (z. B. '029').
 
@@ -203,7 +203,7 @@ def _classify_type(event_type: str) -> str:
     return "event"
 
 
-def _normalize_entry_dict(raw: Dict[str, Any]) -> JournalEntry:
+def _normalize_entry_dict(raw: dict[str, Any]) -> JournalEntry:
     """
     Normalisiert ein rohes Entry-Dict in einen JournalEntry.
     Fehlende Felder werden ergänzt.
@@ -233,7 +233,7 @@ def _normalize_entry_dict(raw: Dict[str, Any]) -> JournalEntry:
 # ---------------------------------------------------------------------------
 
 
-def learn_from_event(event_type: str, payload: Optional[Dict[str, Any]] = None) -> JournalEntry:
+def learn_from_event(event_type: str, payload: dict[str, Any] | None = None) -> JournalEntry:
     """
     Protokolliert ein Ereignis im LearningJournal.
 
@@ -265,12 +265,14 @@ def learn_from_event(event_type: str, payload: Optional[Dict[str, Any]] = None) 
     data["entries"] = entries
 
     _save_journal(data)
-    _log_debug(f"learn_from_event: {entry.event} id={entry.id} payload_keys={list(entry.payload.keys())}")
+    _log_debug(
+        f"learn_from_event: {entry.event} id={entry.id} payload_keys={list(entry.payload.keys())}"
+    )
 
     return entry
 
 
-def update_journal(entry_data: Dict[str, Any]) -> JournalEntry:
+def update_journal(entry_data: dict[str, Any]) -> JournalEntry:
     """
     Fügt einen spezifischen Eintrag in das Journal ein.
 
@@ -304,7 +306,7 @@ def update_journal(entry_data: Dict[str, Any]) -> JournalEntry:
     return entry
 
 
-def get_journal_snapshot() -> Dict[str, Any]:
+def get_journal_snapshot() -> dict[str, Any]:
     """
     Liefert einen Schnappschuss der Journal-Daten.
 
@@ -320,7 +322,7 @@ def get_journal_snapshot() -> Dict[str, Any]:
     if not isinstance(entries, list):
         entries = []
 
-    counts_by_event: Dict[str, int] = {}
+    counts_by_event: dict[str, int] = {}
     for entry in entries:
         ev = str(entry.get("event") or "unknown")
         counts_by_event[ev] = counts_by_event.get(ev, 0) + 1
@@ -332,7 +334,7 @@ def get_journal_snapshot() -> Dict[str, Any]:
     }
 
 
-def suggest_improvements(context: Optional[Dict[str, Any]] = None) -> List[Dict[str, Any]]:
+def suggest_improvements(context: dict[str, Any] | None = None) -> list[dict[str, Any]]:
     """
     Liefert einfache Verbesserungsvorschläge auf Basis des Journals.
 
@@ -350,7 +352,7 @@ def suggest_improvements(context: Optional[Dict[str, Any]] = None) -> List[Dict[
     total = snapshot.get("total", 0)
     counts_by_event = snapshot.get("counts_by_event", {})
 
-    suggestions: List[Dict[str, Any]] = []
+    suggestions: list[dict[str, Any]] = []
 
     if not total:
         return suggestions
@@ -362,14 +364,16 @@ def suggest_improvements(context: Optional[Dict[str, Any]] = None) -> List[Dict[
             detect_count += value
 
     if detect_count >= 10:
-        suggestions.append({
-            "kind": "intake_detect",
-            "message": (
-                "Es wurden sehr viele Detect-Vorgänge protokolliert. "
-                "Evtl. lohnt sich ein Auto-Detect beim Laden oder Speichern."
-            ),
-            "weight": 0.6,
-        })
+        suggestions.append(
+            {
+                "kind": "intake_detect",
+                "message": (
+                    "Es wurden sehr viele Detect-Vorgänge protokolliert. "
+                    "Evtl. lohnt sich ein Auto-Detect beim Laden oder Speichern."
+                ),
+                "weight": 0.6,
+            }
+        )
 
     # Beispiel-Heuristik: Viele Runs -> Hinweis auf bevorzugte Runner-Historie
     run_like = 0
@@ -378,27 +382,31 @@ def suggest_improvements(context: Optional[Dict[str, Any]] = None) -> List[Dict[
             run_like += value
 
     if run_like >= 5:
-        suggestions.append({
-            "kind": "runner_usage",
-            "message": (
-                "Viele Run-Vorgänge wurden protokolliert. "
-                "Evtl. könnte eine 'Zuletzt ausgeführt'-Liste oder ein "
-                "Runner-Favoritensystem hilfreich sein."
-            ),
-            "weight": 0.5,
-        })
+        suggestions.append(
+            {
+                "kind": "runner_usage",
+                "message": (
+                    "Viele Run-Vorgänge wurden protokolliert. "
+                    "Evtl. könnte eine 'Zuletzt ausgeführt'-Liste oder ein "
+                    "Runner-Favoritensystem hilfreich sein."
+                ),
+                "weight": 0.5,
+            }
+        )
 
     # Kontextabhängige Hinweise (falls vorhanden)
     ctx_source = (context or {}).get("source")
     if ctx_source == "intake":
-        suggestions.append({
-            "kind": "context",
-            "message": (
-                "Kontext: Aufruf aus dem Intake. "
-                "Eine Integration von LearningEngine-Hinweisen direkt im "
-                "Intake-Tab (z. B. neben den LEDs) könnte sinnvoll sein."
-            ),
-            "weight": 0.3,
-        })
+        suggestions.append(
+            {
+                "kind": "context",
+                "message": (
+                    "Kontext: Aufruf aus dem Intake. "
+                    "Eine Integration von LearningEngine-Hinweisen direkt im "
+                    "Intake-Tab (z. B. neben den LEDs) könnte sinnvoll sein."
+                ),
+                "weight": 0.3,
+            }
+        )
 
     return suggestions

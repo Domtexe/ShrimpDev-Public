@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 """
 Toolbar-Modul für ShrimpDev.
 
@@ -27,8 +28,8 @@ def _sr_help_popup_r2133():
 from typing import Any
 
 import tkinter as tk
-from tkinter import messagebox
 import os
+from pathlib import Path
 
 from . import ui_theme_classic, ui_tooltips, ui_leds, logic_tools
 from .logic_actions import (
@@ -37,8 +38,6 @@ from .logic_actions import (
     action_save,
     action_undo,
     action_run,
-    action_delete,
-    action_learning_journal,
     action_guard_futurefix,
     action_guard_futurefix_safe,
     action_r9998,
@@ -48,7 +47,6 @@ from .logic_actions import (
     action_tree_rename,
     action_tree_undo,
 )
-
 
 
 def _call_logic_action(app, name: str) -> None:
@@ -89,7 +87,6 @@ def _call_logic_action(app, name: str) -> None:
                 pass
 
 
-
 def _make_button(
     parent: tk.Widget,
     text: str,
@@ -106,6 +103,7 @@ def _make_button(
 def _wrap_with_led(app, func):
     """Wrappt eine Toolbar-Aktion und aktualisiert danach sicher die Intake-LEDs
     sowie die rechte Liste/Tree."""
+
     def _inner():
         try:
             func(app)
@@ -125,12 +123,14 @@ def _wrap_with_led(app, func):
             except Exception:
                 # Refresh-Fehler duerfen die UI ebenfalls nicht crashen
                 pass
+
     return _inner
 
 
 # R1853_WRAP_WITH_LED_AND_LOG
 def _wrap_with_led_and_log(app, func):
     """Wie _wrap_with_led, öffnet danach zusätzlich das Logfenster."""
+
     def _inner():
         try:
             func(app)
@@ -156,11 +156,11 @@ def _wrap_with_led_and_log(app, func):
                     log_debug(f"Log popup failed in _wrap_with_led_and_log: {exc}")
                 except Exception:
                     pass
+
     return _inner
 
 
 def _r1838_refresh_right_list(app):
-
     """
     R1838: Zentraler Refresh-Helfer fuer rechte Liste / Tree.
 
@@ -171,6 +171,7 @@ def _r1838_refresh_right_list(app):
     # 1) Bevorzugt neue Refresh-Logik ueber ui_filters
     try:
         from modules import ui_filters
+
         ui_filters.refresh(app)
         return
     except Exception:
@@ -204,7 +205,6 @@ def _action_toggle_aot(app):
 
 
 def _action_restart(app):
-
     # R2364_RESTART_PERSIST: persist docking/tab state BEFORE quitting
     try:
         dm = getattr(app, "_dock_manager", None)
@@ -229,6 +229,8 @@ def _action_restart(app):
     except Exception:
         # Restart darf die UI nicht crashen
         pass
+
+
 def _action_show_log(app):
     """Zeigt die Logdatei debug_output.txt in einem Popup mit INI-Persistenz.
 
@@ -250,7 +252,7 @@ def _action_show_log(app):
 
         # Loginhalt laden
         try:
-            with open(log_path, "r", encoding="utf-8") as f:
+            with open(log_path, encoding="utf-8") as f:
                 content = f.read()
         except FileNotFoundError:
             content = "Logdatei debug_output.txt wurde nicht gefunden."
@@ -417,7 +419,8 @@ def _action_show_log(app):
                 # R2403: SingleWriter – do not write ShrimpDev.ini directly here
                 try:
                     from modules import config_manager as _cfgm  # type: ignore
-                    _cfgm.set_value('geometry', str(geom), section='LogWindow', auto_save=False)
+
+                    _cfgm.set_value("geometry", str(geom), section="LogWindow", auto_save=False)
                     _cfgm.get_manager().save()
                 except Exception:
                     # best-effort, never crash UI
@@ -437,7 +440,9 @@ def _action_show_log(app):
         btn_copy = tk.Button(bottom_frame, text="Inhalt kopieren", command=_copy_content)
         btn_copy.grid(row=0, column=2, padx=4, pady=0)
 
-        btn_copy_close = tk.Button(bottom_frame, text="Kopieren & schließen", command=_copy_and_close)
+        btn_copy_close = tk.Button(
+            bottom_frame, text="Kopieren & schließen", command=_copy_and_close
+        )
         btn_copy_close.grid(row=0, column=3, padx=4, pady=0)
 
         btn_close = tk.Button(bottom_frame, text="Schließen", command=_close)
@@ -488,14 +493,14 @@ def _save_log_geometry(app, win):
         # R2403: SingleWriter – do not write ShrimpDev.ini directly here
         try:
             from modules import config_manager as _cfgm  # type: ignore
-            _cfgm.set_value('geometry', str(geom), section='LogWindow', auto_save=False)
+
+            _cfgm.set_value("geometry", str(geom), section="LogWindow", auto_save=False)
             _cfgm.get_manager().save()
         except Exception:
             # best-effort, never crash UI
             pass
     except Exception:
         pass
-
 
 
 def _get_intake_widget(app):
@@ -553,6 +558,7 @@ def _action_insert_and_detect(app):
 
     try:
         from .logic_actions import action_detect
+
         action_detect(app)
     except Exception:
         status = getattr(app, "status", None)
@@ -561,6 +567,7 @@ def _action_insert_and_detect(app):
                 status.configure(text="Erkennung nach Einfügen fehlgeschlagen.")
             except Exception:
                 pass
+
 
 def _action_run_with_popup(app):
     """
@@ -576,6 +583,7 @@ def _action_run_with_popup(app):
     path = None
     try:
         from . import ui_project_tree
+
         try:
             path = ui_project_tree.get_selected_path(app)
         except Exception:
@@ -592,6 +600,7 @@ def _action_run_with_popup(app):
         return
 
     import os as _os
+
     _, ext = _os.path.splitext(path)
 
     # Nur für klassische Runner-Skripte .cmd/.bat das Popup verwenden
@@ -618,7 +627,6 @@ def _action_run_with_popup(app):
             action_run(app)
         except Exception:
             pass
-
 
 
 def build_toolbar_left(parent: tk.Widget, app: Any) -> tk.Frame:
@@ -694,10 +702,173 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
     Zeile 2: [FutureFix] [FutureFix Safe] [Build Tools] [Diagnose]
     """
     outer = ui_theme_classic.Frame(parent)
+    # R2429: Right-top stack for Push/Purge (flush top-right, stacked)
+    header_right = ui_theme_classic.Frame(outer)
+    header_right.pack(side="top", anchor="ne", pady=(0, 0))
+    row_push = ui_theme_classic.Frame(header_right)
+    row_push.pack(side="top", anchor="ne", pady=(0, 2))
 
+    # Toggle (gekoppelt)
+    try:
+        if not hasattr(app, "_autopush_link_var"):
+            app._autopush_link_var = tk.BooleanVar(value=False)
+        _link_var = app._autopush_link_var
+    except Exception:
+        _link_var = None
+
+    def _autopush_linked() -> bool:
+        try:
+            return bool(_link_var.get()) if _link_var is not None else False
+        except Exception:
+            return False
+
+    # --- Busy flag comes from runner executor (R2427) ---
+    def _runner_busy() -> bool:
+        try:
+            from . import module_runner_exec
+
+            return bool(module_runner_exec.is_runner_busy())
+        except Exception:
+            return False
+
+    # Resolve private root (where this repo lives)
+    _PRIVATE_ROOT = Path(__file__).resolve().parent.parent
+
+    def _file_exists(rel: str) -> bool:
+        return (_PRIVATE_ROOT / rel).exists()
+
+    # Public export root: no hardcode.
+    # Priority:
+    # 1) registry/public_export_root.txt (one line path)
+    # 2) app.public_export_root (if later wired from workspace/config)
+    def _public_root() -> Path | None:
+        try:
+            reg_file = _PRIVATE_ROOT / "registry" / "public_export_root.txt"
+            if reg_file.exists():
+                p = reg_file.read_text(encoding="utf-8", errors="replace").strip().strip('"')
+                if p:
+                    return Path(p)
+        except Exception:
+            pass
+        try:
+            p = getattr(app, "public_export_root", None)
+            if p:
+                return Path(str(p))
+        except Exception:
+            pass
+        return None
+
+    def _public_repo_ok() -> bool:
+        pr = _public_root()
+        return bool(pr and pr.exists() and (pr / ".git").exists())
+
+    # SAFE scope: must be clean before Public is allowed
+    _SAFE_PREFIXES = ["docs/PIPELINE.md"]
+
+    def _purge_plan_ok() -> bool:
+        """Tools-Purge Apply nur wenn ein aktueller Plan existiert."""
+        try:
+            # Plan wird durch action_tools_purge_scan erzeugt
+            rp = Path(getattr(app, "project_root", "")) / "docs" / "Tools_Purge_Flat_Plan.md"
+            if not rp.exists():
+                # fallback (wenn app.project_root nicht gesetzt)
+                rp = Path(__file__).resolve().parent.parent / "docs" / "Tools_Purge_Flat_Plan.md"
+            return rp.exists() and rp.stat().st_size > 20
+        except Exception:
+            return False
+
+    def _private_safe_dirty() -> bool:
+        import subprocess
+
+        try:
+            cp = subprocess.run(
+                ["git", "status", "--porcelain"],
+                cwd=str(_PRIVATE_ROOT),
+                text=True,
+                capture_output=True,
+            )
+            out = (cp.stdout or "").strip()
+            if not out:
+                return False
+            for line in out.splitlines():
+                if len(line) < 4:
+                    continue
+                path = line[3:].strip().replace("\\", "/")
+                for pre in _SAFE_PREFIXES:
+                    if path == pre or path.startswith(pre.rstrip("/") + "/"):
+                        return True
+            return False
+        except Exception:
+            # safe default: assume dirty -> blocks public
+            return True
+
+    # Buttons (right aligned): Private | Link | Public (Public far right)
+    btn_push_public = ui_theme_classic.Button(
+        row_push,
+        text="Push Public",
+        command=lambda: _call_logic_action(app, "action_autopush_both")
+        if _autopush_linked()
+        else _call_logic_action(app, "action_autopush_public"),
+    )
+    btn_push_public.pack(side="right", padx=(6, 0))
+
+    try:
+        chk = tk.Checkbutton(
+            row_push,
+            text="<--> Link",
+            variable=_link_var,
+        )
+        chk.pack(side="right", padx=(6, 0))
+    except Exception:
+        pass
+
+    btn_push_private = ui_theme_classic.Button(
+        row_push,
+        text="Push Private",
+        command=lambda: _call_logic_action(app, "action_autopush_both")
+        if _autopush_linked()
+        else _call_logic_action(app, "action_autopush_private"),
+    )
+    btn_push_private.pack(side="right", padx=(6, 0))
+
+    def _set_btn_state(btn, enabled: bool):
+        try:
+            btn.configure(state=("normal" if enabled else "disabled"))
+        except Exception:
+            try:
+                btn["state"] = "normal" if enabled else "disabled"
+            except Exception:
+                pass
+    def _update_push_states():
+        busy = _runner_busy()
+
+        # Repo-only autopush runners (OneDrive)
+        has_private = _file_exists("tools/R2691.cmd") or _file_exists("tools/R2691.py")
+        has_public  = _file_exists("tools/R2692.cmd") or _file_exists("tools/R2692.py")
+        has_both    = _file_exists("tools/R2693.cmd") or _file_exists("tools/R2693.py")
+
+        # UI enablement must be product-agnostic:
+        # only depend on runner availability + not busy.
+        private_ok = has_private and (not busy)
+        public_ok  = has_public  and (not busy)
+        both_ok    = has_both and has_private and has_public and (not busy)
+
+        if _autopush_linked():
+            _set_btn_state(btn_push_private, both_ok)
+            _set_btn_state(btn_push_public, both_ok)
+        else:
+            _set_btn_state(btn_push_private, private_ok)
+            _set_btn_state(btn_push_public, public_ok)
+
+        try:
+            row_push.after(1200, _update_push_states)
+        except Exception:
+            pass
+
+    _update_push_states()
     # Zeile 0 - Tools Purge (ROOT-only, keine Subfolder)
-    row0 = ui_theme_classic.Frame(outer)
-    row0.pack(fill="x", pady=(0, 2))
+    row0 = ui_theme_classic.Frame(header_right)
+    row0.pack(side="top", anchor="ne", pady=(0, 2))
     # rechts oben ausrichten
     btn_apply = ui_theme_classic.Button(
         row0,
@@ -708,9 +879,16 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
         btn_apply.configure(bg="#f2b6b6", activebackground="#eaa0a0")
     except Exception:
         pass
-    btn_apply.pack(side="right", padx=6, pady=0)
+    btn_apply.pack(side="right", padx=(6, 0), pady=0)
     try:
-        ui_tooltips.add(btn_apply, "Archiviert Dateien im tools\\-ROOT nach tools\\Archiv (nur laut Plan). Mit Sicherheitsabfrage.")
+        pass  # R2466: prevent empty try block
+    except Exception:
+        pass
+    try:
+        ui_tooltips.add(
+            btn_apply,
+            "Archiviert Dateien im tools\\-ROOT nach tools\\Archiv (nur laut Plan). Mit Sicherheitsabfrage.",
+        )
     except Exception:
         pass
 
@@ -719,15 +897,44 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
         text="Tools Purge Scan",
         command=lambda: _call_logic_action(app, "action_tools_purge_scan"),
     )
-    btn_scan.pack(side="right", padx=6, pady=0)
+    btn_scan.pack(side="right", padx=(6, 0), pady=0)
     try:
-        ui_tooltips.add(btn_scan, "Erstellt Purge-Plan fuer Dateien im tools\\-ROOT (keine Subfolder).")
+        pass  # R2466: prevent empty try block
+    except Exception:
+        pass
+    try:
+        ui_tooltips.add(
+            btn_scan, "Erstellt Purge-Plan fuer Dateien im tools\\-ROOT (keine Subfolder)."
+        )
     except Exception:
         pass
 
+    def _update_purge_states():
+        try:
+            busy = _runner_busy()
+        except Exception:
+            busy = False
+
+        has_scan = _file_exists("tools/R2218.cmd")
+        has_apply = _file_exists("tools/R2224.cmd")
+
+        scan_ok = bool(has_scan) and (not busy)
+        plan_ok = _file_exists("docs/Tools_Purge_Flat_Plan.md")  # R2475: ensure defined
+        apply_ok = bool(has_apply) and bool(plan_ok) and (not busy)
+
+        _set_btn_state(btn_scan, scan_ok)
+        _set_btn_state(btn_apply, apply_ok)
+
+        try:
+            row0.after(1200, _update_purge_states)
+        except Exception:
+            pass
+
+    _update_purge_states()
+
     # Zeile 1 - Basisaktionen
     row1 = ui_theme_classic.Frame(outer)
-    row1.pack(fill="x", pady=(0, 2))
+    row1.pack(fill="x", pady=(0, 2), anchor="w")
 
     _make_button(
         row1,
@@ -833,6 +1040,7 @@ def _action_rename_stub(app):
             except Exception:
                 pass
 
+
 # ============================================================
 # R2072_AOT_RESTART_START
 # AOT- und Restart-Wrapper:
@@ -842,9 +1050,10 @@ def _action_rename_stub(app):
 #   über app._save_ui_state_to_ini(), falls vorhanden.
 # ============================================================
 
+
 def _r2072_safe_call_save_state(app) -> None:
     try:
-        if hasattr(app, '_save_ui_state_to_ini'):
+        if hasattr(app, "_save_ui_state_to_ini"):
             app._save_ui_state_to_ini()
     except Exception:
         pass
@@ -854,7 +1063,7 @@ def _action_toggle_aot(app):  # type: ignore[override]
     """R2072: bevorzugt app.toggle_topmost(), sonst Fallback auf altes Verhalten."""
     fn = None
     try:
-        fn = getattr(app, 'toggle_topmost', None)
+        fn = getattr(app, "toggle_topmost", None)
     except Exception:
         fn = None
     if callable(fn):
@@ -866,15 +1075,15 @@ def _action_toggle_aot(app):  # type: ignore[override]
 
     # Fallback: ursprüngliche Logik (ohne INI-Speichern)
     try:
-        cur = bool(app.attributes('-topmost'))
+        cur = bool(app.attributes("-topmost"))
     except Exception:
         cur = False
     try:
-        app.attributes('-topmost', not cur)
+        app.attributes("-topmost", not cur)
     except Exception:
         return
     try:
-        updater = getattr(app, '_update_aot_button', None)
+        updater = getattr(app, "_update_aot_button", None)
         if callable(updater):
             updater()
     except Exception:
@@ -894,8 +1103,11 @@ def _action_restart(app):  # type: ignore[override]
 
     try:
         import os as _r2072_os
-        root_dir = _r2072_os.path.abspath(_r2072_os.path.join(_r2072_os.path.dirname(__file__), '..'))
-        main_py = _r2072_os.path.join(root_dir, 'main_gui.py')
+
+        root_dir = _r2072_os.path.abspath(
+            _r2072_os.path.join(_r2072_os.path.dirname(__file__), "..")
+        )
+        main_py = _r2072_os.path.join(root_dir, "main_gui.py")
         if _r2072_os.path.isfile(main_py):
             _r2072_os.startfile(main_py)
         try:
@@ -905,6 +1117,7 @@ def _action_restart(app):  # type: ignore[override]
     except Exception:
         # Restart darf die UI nicht crashen
         pass
+
 
 # R2072_AOT_RESTART_END
 # ============================================================

@@ -2,6 +2,7 @@ from __future__ import annotations
 import tkinter as tk
 from tkinter import ttk
 
+
 def ensure_tab(app: tk.Tk, key: str, title: str, builder):
     """
     Stellt sicher, dass es EINEN Tab (Notebook) mit Schlüssel `key` gibt.
@@ -9,12 +10,14 @@ def ensure_tab(app: tk.Tk, key: str, title: str, builder):
     """
     if not hasattr(app, "nb") or app.nb is None:
         # Fallback - sollte bei dir nicht passieren, Notebook ist vorhanden
-        win = tk.Toplevel(app); win.title(title)
+        win = tk.Toplevel(app)
+        win.title(title)
         frame = builder(win)
         frame.pack(fill="both", expand=True)
         return True
 
-    if not hasattr(app, "_tab_registry"): app._tab_registry = {}
+    if not hasattr(app, "_tab_registry"):
+        app._tab_registry = {}
     if key in app._tab_registry:
         app.nb.select(app._tab_registry[key]["index"])
         return True

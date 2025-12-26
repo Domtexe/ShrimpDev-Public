@@ -1,3 +1,10 @@
+<!-- LEGACY_NON_CANONICAL -->
+**⚠️ Legacy / Nicht-kanonisch** (gesetzt: 2025-12-24 00:04:38)  
+Kanonisch: `docs/PIPELINE.md`  
+Bitte diese Datei nicht mehr als Quelle verwenden.
+
+---
+
 # Pipeline Notes\n- [2025-12-13 20:12:31] R2118: Context-State Backbone (pure) angelegt.\n- [2025-12-13 20:21:14] R2119: Context wird bei Tabwechsel / Intake-Save / Runner-Start gefüttert.
 - [2025-12-13 20:26:35] R2120: Agent nutzt Context für sichtbare Hinweise.
 - [2025-12-13 20:32:32] R2121: Fix Agent-Refresh – Context-Block korrekt hinter lines-Init platziert.
@@ -34,5 +41,5 @@
 2025-12-14 19:39:32 [R2166] (A/MEDIUM) Pipeline-Tab besser lesbar/bedienbar (Search+Sort+Zebra).
 2025-12-14 20:03:32 [R2167a] Doku: Agent-Vertrag fixiert + module_agent_ui.py als Legacy markiert.
 2025-12-14 20:11:21 [R2167] Doku: Tab-Verträge/TABS.md eingeführt/aktualisiert.
-2025-12-14 20:21:25 [R2171] Pipeline: HIGH Intake Autosave nach Paste (Pfad=D:\ShrimpDev\docs\PIPELINE.md).
+2025-12-14 20:21:25 [R2171] Pipeline: HIGH Intake Autosave nach Paste (Pfad=C:\Users\rasta\OneDrive\ShrimpDev\docs\PIPELINE.md).
 2025-12-14 20:49:18 [R2173] Agent: Empfehlungen klickbar (Run/Copy/Pipeline).

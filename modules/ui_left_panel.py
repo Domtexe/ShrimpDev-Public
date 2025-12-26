@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
-from tkinter import filedialog
 
 from modules import ui_theme_classic, ui_filters, ui_leds
 
@@ -29,6 +28,7 @@ def _sync_target_vars(app, value: str) -> None:
     if not isinstance(var_target, tk.StringVar):
         try:
             from tkinter import StringVar  # type: ignore
+
             var_target = StringVar()
         except Exception:
             var_target = tk.StringVar()
@@ -58,6 +58,7 @@ def _sync_target_vars(app, value: str) -> None:
             setattr(app, cand, value)
         except Exception:
             continue
+
 
 def _browse_target(app, var_target) -> None:
     """Oeffnet einen Ordnerdialog und aktualisiert Zielordner, rechte Liste und LEDs."""
@@ -115,6 +116,7 @@ def _browse_target(app, var_target) -> None:
     # R1647: Gewaehltens Zielverzeichnis in der INI persistieren
     try:
         from modules import config_loader as _cfg_r1647b
+
         cfg = _cfg_r1647b.load()
         if not cfg.has_section("Intake"):
             cfg.add_section("Intake")
@@ -123,6 +125,7 @@ def _browse_target(app, var_target) -> None:
     except Exception:
         # Persistenz ist nice-to-have, darf aber nie die UI crashen
         pass
+
 
 def build_left_panel(parent, app) -> tk.Frame:
     """
@@ -159,6 +162,7 @@ def build_left_panel(parent, app) -> tk.Frame:
     # R1647: Standard-Zielordner aus INI laden (falls vorhanden)
     try:
         from modules import config_loader as _cfg_r1647
+
         cfg = _cfg_r1647.load()
         if cfg.has_section("Intake"):
             last_dir = cfg.get("Intake", "last_target_dir", fallback="").strip()
@@ -271,6 +275,7 @@ def build_left_panel(parent, app) -> tk.Frame:
             ext_val = (var_ext.get() or "").strip().lower()
             if ext_val in ("py", "cmd"):
                 import os
+
                 root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
                 tools_dir = os.path.join(root, "tools")
                 current = (var_target_dir.get() or "").strip()
@@ -303,6 +308,7 @@ def build_left_panel(parent, app) -> tk.Frame:
     _safe_led_eval()
     # --- ScrolledText fuer Code -------------------------------------------
     app.txt_intake = ScrolledText(wrap, undo=True, font=("Consolas", 10))
+
     def _on_code_change(_event=None):
         _safe_led_eval()
 

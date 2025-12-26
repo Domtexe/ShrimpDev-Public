@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 from __future__ import annotations
 from dataclasses import dataclass
-from typing import Optional, List, Literal
+from typing import Literal
 
 
 IssueKind = Literal["syntax", "style"]
@@ -14,14 +13,15 @@ class IntakeIssue:
     kind="syntax"  -> harter Syntaxfehler (blockiert Save)
     kind="style"   -> PEP8-ähnlicher Hinweis (blockiert nicht)
     """
+
     kind: IssueKind
     message: str
     line: int
-    column: Optional[int]
-    line_text: Optional[str]
+    column: int | None
+    line_text: str | None
 
 
-def analyze_source(source: str, filename: str = "<intake>") -> List[IntakeIssue]:
+def analyze_source(source: str, filename: str = "<intake>") -> list[IntakeIssue]:
     """
     Analysiert den übergebenen Python-Quelltext:
     - Syntaxcheck via compile()  -> maximal 1 echter Syntaxfehler
@@ -30,7 +30,7 @@ def analyze_source(source: str, filename: str = "<intake>") -> List[IntakeIssue]
       - Tabs
       - trailing spaces
     """
-    issues: List[IntakeIssue] = []
+    issues: list[IntakeIssue] = []
 
     try:
         compile(source, filename, "exec")

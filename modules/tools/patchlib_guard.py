@@ -6,6 +6,7 @@ from typing import Optional, Tuple
 
 ARCHIV_DIRNAME = "_Archiv"
 
+
 @dataclass
 class FileCtx:
     path: str
@@ -13,16 +14,19 @@ class FileCtx:
     modified: str
     backup_path: Optional[str] = None
 
+
 # ---------- IO / Backup ----------
 def load_file(path: str) -> FileCtx:
     with open(path, "r", encoding="utf-8") as f:
         src = f.read()
     return FileCtx(path=path, original=src, modified=src)
 
+
 def ensure_archiv(root: str) -> str:
     ap = os.path.join(root, ARCHIV_DIRNAME)
     os.makedirs(ap, exist_ok=True)
     return ap
+
 
 def backup(ctx: FileCtx) -> str:
     root = os.path.dirname(ctx.path)
@@ -34,21 +38,25 @@ def backup(ctx: FileCtx) -> str:
     ctx.backup_path = bak
     return bak
 
+
 def commit(ctx: FileCtx) -> None:
     with open(ctx.path, "w", encoding="utf-8", newline="") as f:
         f.write(ctx.modified)
+
 
 def rollback(ctx: FileCtx) -> None:
     if ctx.backup_path and os.path.exists(ctx.backup_path):
         shutil.copy2(ctx.backup_path, ctx.path)
 
+
 # ---------- Gates ----------
-def syntax_ok(src: str, file_hint: str="tmp") -> Tuple[bool, Optional[str]]:
+def syntax_ok(src: str, file_hint: str = "tmp") -> Tuple[bool, Optional[str]]:
     try:
         compile(src, file_hint, "exec")
         return True, None
     except SyntaxError as e:
         return False, f"SyntaxError: {e.msg} (line {e.lineno})"
+
 
 def future_at_top(src: str) -> bool:
     """__future__-Imports müssen ganz oben vor normalen Imports/Code stehen."""
@@ -59,7 +67,11 @@ def future_at_top(src: str) -> bool:
     body = tree.body
     seen_non_doc = False
     for i, node in enumerate(body):
-        if isinstance(node, ast.Expr) and isinstance(node.value, ast.Constant) and isinstance(node.value.value, str):
+        if (
+            isinstance(node, ast.Expr)
+            and isinstance(node.value, ast.Constant)
+            and isinstance(node.value.value, str)
+        ):
             # Modul-Docstring -> ok
             continue
         seen_non_doc = True
@@ -68,7 +80,11 @@ def future_at_top(src: str) -> bool:
             # überprüfe, ob vor i etwas anderes als Docstring/__future__ liegt
             for j in range(i):
                 n = body[j]
-                if isinstance(n, ast.Expr) and isinstance(n.value, ast.Constant) and isinstance(n.value.value, str):
+                if (
+                    isinstance(n, ast.Expr)
+                    and isinstance(n.value, ast.Constant)
+                    and isinstance(n.value.value, str)
+                ):
                     continue
                 if isinstance(n, ast.ImportFrom) and n.module == "__future__":
                     continue
@@ -80,6 +96,7 @@ def future_at_top(src: str) -> bool:
             break
     # kein __future__ im Code -> formal ok
     return True
+
 
 def ensure_import(src: str, import_line: str) -> str:
     """fügt eine Import-Zeile hinzu, wenn sie fehlt; nach bestehenden Imports."""
@@ -104,6 +121,7 @@ def ensure_import(src: str, import_line: str) -> str:
     lines.insert(insert_idx, import_line)
     return "\n".join(lines) + ("\n" if src.endswith("\n") else "")
 
+
 # ---------- AST: Funktionen prüfen/ersetzen ----------
 def has_function(src: str, name: str) -> bool:
     try:
@@ -114,6 +132,7 @@ def has_function(src: str, name: str) -> bool:
         if isinstance(n, ast.FunctionDef) and n.name == name:
             return True
     return False
+
 
 def upsert_function(src: str, func_src: str, name: str) -> str:
     """Ersetzt od. ergänzt eine Top-Level-Funktion idempotent (per AST)."""
@@ -139,16 +158,20 @@ def upsert_function(src: str, func_src: str, name: str) -> str:
         return src
     return new_src + ("\n" if not new_src.endswith("\n") else "")
 
+
 def _after_last_import(nodes):
     last = 0
     for i, n in enumerate(nodes):
         if isinstance(n, (ast.Import, ast.ImportFrom)) or (
-            isinstance(n, ast.Expr) and isinstance(n.value, ast.Constant) and isinstance(n.value.value, str)
+            isinstance(n, ast.Expr)
+            and isinstance(n.value, ast.Constant)
+            and isinstance(n.value.value, str)
         ):
             last = i + 1
         else:
             break
     return last
+
 
 # ---------- Safe write pipeline ----------
 def guarded_apply(path: str, transform) -> Tuple[bool, str]:

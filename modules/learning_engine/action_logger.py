@@ -1,6 +1,7 @@
 # action_logger.py
 import datetime
 
+
 class ActionLogger:
     def __init__(self, persistence):
         self.persistence = persistence
@@ -9,6 +10,6 @@ class ActionLogger:
         entry = {
             "timestamp": datetime.datetime.now().isoformat(),
             "event": event_type,
-            "payload": payload
+            "payload": payload,
         }
         self.persistence.append(entry)

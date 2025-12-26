@@ -1,5 +1,5 @@
-import tkinter as tk
 from tkinter import ttk
+
 
 class ProjectFrame(ttk.Frame):
     def __init__(self, parent):
