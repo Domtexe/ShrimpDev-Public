@@ -743,12 +743,34 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
     except Exception:
         _link_var = None
 
+    
+    def _diag_link(msg: str) -> None:
+        try:
+            from pathlib import Path
+            logp.parent.mkdir(parents=True, exist_ok=True)
+            line = msg.rstrip('\n') + '\n'
+            with open(logp, 'a', encoding='utf-8', errors='replace') as f:
+                f.write(line)
+        except Exception:
+            pass
+        try:
+            print(msg)
+        except Exception:
+            pass
+
     def _autopush_linked() -> bool:
         try:
             return bool(_link_var.get()) if _link_var is not None else False
         except Exception:
             return False
 
+
+    def _autopush_set_linked(val: bool) -> None:
+        try:
+            if _link_var is not None:
+                _link_var.set(bool(val))
+        except Exception:
+            pass
     # --- Busy flag comes from runner executor (R2427) ---
     def _runner_busy() -> bool:
         try:
@@ -846,7 +868,7 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
     )
     # : Link is a real themed Button with LED-box icon inside
     # R2747: Link as LinkLedButton (icon+text+LED in one control)
-    btn_link = LinkLedButton(
+    app._btn_link = LinkLedButton(
         row_push,
         text="Link",
         command=lambda: _toggle_link_clicked(),
@@ -855,10 +877,11 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
     led_size=8,
     padding_x=6,
     )
+    app._btn_link.set_enabled(True)
     # Top row order required: Push Private | Link | Push Public
     # pack(side='right') -> insert in reverse to render left-to-right
     btn_push_public.pack(side='right', padx=(6, 0))
-    btn_link.pack(side='right', padx=(6, 0))
+    app._btn_link.pack(side='right', padx=(6, 0))
     btn_push_private.pack(side='right', padx=(6, 0))
 
     # Pack order (side=right): Public (right) | Link (middle) | Private (left)
@@ -974,33 +997,58 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
     
     # Link button with LED (no checkbox)
     def _link_led_update():
-        """Update Link control visuals.
-        Single source of truth: LinkLedButton.set_state().
-        """
+        """Update Link LED from single source of truth."""
         try:
-            on = bool(_autopush_linked())
-        except Exception:
-            on = False
-        try:
-            # LinkLedButton API
-            btn_link.set_state("on" if on else "off")
+            app._btn_link.set_state('on' if _autopush_linked() else 'off')
         except Exception:
             pass
 
+
     def _toggle_link_clicked():
+
+
+        """Toggle link state; LED reflects _link_var via _autopush_linked()."""
+
+
         try:
+
+
             on = bool(_autopush_linked())
-            _autopush_set_linked(not on)
-            _link_led_update()
-            return
+
+
         except Exception:
-            pass
-        # Fallback: toggle legacy var if present
+
+
+            on = False
+
+
         try:
-            linked_var.set(not bool(linked_var.get()))
+
+
+            _autopush_set_linked(not on)
+
+
         except Exception:
+
+
             pass
+
+
         _link_led_update()
+
+
+        try:
+
+
+            _update_push_states()
+
+
+        except Exception:
+
+
+            pass
+
+
 
     def _update_push_states():
         busy = _runner_busy()
@@ -1023,7 +1071,7 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
         _set_btn_state(btn_push_public,  (not busy) and public_pushable)
 
         # Auto-Link: only auto-enable when it makes sense; never auto-disable
-        if private_pushable and has_public:
+        if private_pushable and _public_repo_ok():
             try:
                 if not _autopush_linked():
                     _autopush_link_var.set(True)
@@ -1063,6 +1111,17 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
             pass
 
     _update_purge_states()
+
+    # --- Push/Link state must be live (start + periodic tick) ---
+    try:
+        _update_push_states()
+    except Exception:
+        pass
+    try:
+        # keep buttons & link LED deterministic
+        row_push.after(1200, _update_push_states)
+    except Exception:
+        pass
 
     # Zeile 1 - Basisaktionen
     row1 = ui_theme_classic.Frame(outer)
@@ -1251,14 +1310,3 @@ def _action_restart(app):  # type: ignore[override]
 
 # R2072_AOT_RESTART_END
 # ============================================================
-        # R2743: also update boxed LED indicator (best-effort)
-        try:
-            _link_led_box_render(bool(_autopush_linked()))
-        except Exception:
-            pass
-        # R2746_LINK_ICON_UPDATE: update Link icon (no dot text)
-        # R2747_SET_LINK_STATE: drive LinkLedButton visuals
-        try:
-            btn_link.set_state("on" if _autopush_linked() else "off")
-        except Exception:
-            pass

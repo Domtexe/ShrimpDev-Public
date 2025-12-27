@@ -33,6 +33,7 @@ class LinkLedButton(ttk.Frame):
         kw.pop('compound', None)
         super().__init__(master, **kw)
         self.command = command
+        self._base_text = text
         self._state = "off"
         self._enabled = True
 
@@ -105,10 +106,16 @@ class LinkLedButton(ttk.Frame):
             self.canvas.itemconfig(self._bg_rect, fill=self.COL_BG)
 
     def _on_click(self, _ev=None):
+
         if not self._enabled:
+
             return
+
         if callable(self.command):
+
             self.command()
+
+
 
     def set_enabled(self, enabled: bool):
         self._enabled = bool(enabled)
@@ -120,15 +127,105 @@ class LinkLedButton(ttk.Frame):
             self.set_state(self._state)
 
     def set_state(self, state: str):
+
+        """Set LED state and keep LED geometry visible under toolbar resizing."""
+
         st = (state or "").lower().strip()
+
         if st not in ("off", "on", "busy", "error"):
+
             st = "off"
+
         self._state = st
 
-        if not self._enabled:
-            self.canvas.itemconfig(self._led_fill, fill=self.COL_OFF_LED)
-            return
 
+        # --- Relayout to current canvas size (prevents off-screen LED) ---
+
+        try:
+
+            w = int(self.canvas.winfo_width() or 0)
+
+            h = int(self.canvas.winfo_height() or 0)
+
+            if w <= 4: w = int(getattr(self, "width", 0) or 0)
+
+            if h <= 4: h = int(getattr(self, "height", 0) or 0)
+
+            if w > 8 and h > 8:
+
+                # background
+
+                try:
+
+                    self.canvas.coords(self._bg_rect, 1, 1, w-1, h-1)
+
+                except Exception:
+
+                    pass
+
+                # LED
+
+                px = int(getattr(self, "padding_x", 10) or 10)
+
+                ls = int(getattr(self, "led_size", 10) or 10)
+
+                led_x2 = w - px
+
+                led_x1 = led_x2 - ls
+
+                led_y1 = (h - ls) // 2
+
+                led_y2 = led_y1 + ls
+
+                try:
+
+                    self.canvas.coords(self._led_border, led_x1, led_y1, led_x2, led_y2)
+
+                except Exception:
+
+                    pass
+
+                try:
+
+                    self.canvas.coords(self._led_fill, led_x1+1, led_y1+1, led_x2-1, led_y2-1)
+
+                except Exception:
+
+                    pass
+
+                try:
+
+                    self.canvas.tag_raise(self._led_fill)
+
+                    self.canvas.tag_raise(self._led_border)
+
+                except Exception:
+
+                    pass
+
+        except Exception:
+
+            pass
+
+
+        # --- Disabled behavior ---
+
+        if not self._enabled:
+
+            try:
+
+                self.canvas.itemconfig(self._led_fill, fill=self.COL_OFF_LED)
+
+                self.canvas.tag_raise(self._led_fill)
+
+                self.canvas.tag_raise(self._led_border)
+
+            except Exception:
+
+                pass
+
+            return
+        # --- Color selection (LED only) ---
         if st == "off":
             led = self.COL_OFF_LED
         elif st == "on":
@@ -138,4 +235,17 @@ class LinkLedButton(ttk.Frame):
         else:
             led = self.COL_ERR_LED
 
-        self.canvas.itemconfig(self._led_fill, fill=led)
+        # --- Update LED ---
+
+        try:
+
+            self.canvas.itemconfig(self._led_fill, fill=led)
+
+            self.canvas.tag_raise(self._led_fill)
+
+            self.canvas.tag_raise(self._led_border)
+
+        except Exception:
+
+            pass
+
