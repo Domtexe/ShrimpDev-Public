@@ -26,7 +26,7 @@ jobs:
       - name: Ruff (syntax only) -> Reports/ci_ruff.txt
         shell: pwsh
         run: |
-          ruff check modules main_gui.py --select E9 2>&1 | Tee-Object -FilePath Reports/ci_ruff.txt
+          ruff check . --select E9 2>&1 | Tee-Object -FilePath Reports/ci_ruff.txt
 
       - name: Compileall (syntax gate) -> Reports/ci_compileall.txt
         shell: pwsh
