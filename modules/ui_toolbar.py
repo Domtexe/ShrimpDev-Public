@@ -747,8 +747,12 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
     def _diag_link(msg: str) -> None:
         try:
             from pathlib import Path
+            _root = Path(__file__).resolve().parent.parent
+            logp = _root / 'Reports' / 'link_diag.log'
             logp.parent.mkdir(parents=True, exist_ok=True)
-            line = msg.rstrip('\n') + '\n'
+            line = msg.rstrip('
+') + '
+'
             with open(logp, 'a', encoding='utf-8', errors='replace') as f:
                 f.write(line)
         except Exception:
@@ -757,7 +761,6 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
             print(msg)
         except Exception:
             pass
-
     def _autopush_linked() -> bool:
         try:
             return bool(_link_var.get()) if _link_var is not None else False
@@ -887,7 +890,7 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
     # Pack order (side=right): Public (right) | Link (middle) | Private (left)
     # Link visuals handled by LinkLedButton.set_state() (no images)
     try:
-        btn_link.set_state('on' if _autopush_linked() else 'off')
+        app._btn_link.set_state('on' if _autopush_linked() else 'off')
     except Exception:
         pass
 
@@ -999,7 +1002,7 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
     def _link_led_update():
         """Update Link LED from single source of truth."""
         try:
-            app._btn_link.set_state('on' if _autopush_linked() else 'off')
+            app._app._btn_link.set_state('on' if _autopush_linked() else 'off')
         except Exception:
             pass
 

@@ -61,3 +61,11 @@ def tool_r9999(app):
 def tool_masterrules_guard(app):
     """Startet den MasterRulesGuard (R1922)."""
     _run_cmd(app, "R1922.cmd", "MasterRulesGuard")
+# --- Toolbar actions (Purge) ---
+def action_tools_purge_scan(app):
+    """Run Purge Scan runner."""
+    _run_cmd(app, "R2218.cmd", "Purge Scan")
+
+def action_tools_purge_apply(app):
+    """Run Purge Apply runner."""
+    _run_cmd(app, "R2224.cmd", "Purge Apply")

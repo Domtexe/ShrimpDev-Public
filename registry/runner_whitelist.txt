@@ -1,10 +1,8 @@
 runner_guard
-
 # Autopush (neu)
 R2691
 R2692
 R2693
-
 # Aktuelle Diagnose / Fixes
 R2723
 R2724
@@ -14,3 +12,5 @@ R2727
 R2728
 R2729
 R2731
+R2694
+R2695
