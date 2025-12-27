@@ -28,6 +28,7 @@ def _sr_help_popup_r2133():
 from typing import Any
 
 import tkinter as tk
+from modules.ui_link_led_button import LinkLedButton
 import os
 from pathlib import Path
 
@@ -704,11 +705,37 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
     outer = ui_theme_classic.Frame(parent)
     # R2429: Right-top stack for Push/Purge (flush top-right, stacked)
     header_right = ui_theme_classic.Frame(outer)
-    header_right.pack(side="top", anchor="ne", pady=(0, 0))
-    row_push = ui_theme_classic.Frame(header_right)
+    header_right.pack(side="top", anchor="ne", padx=(0, 2), pady=(0, 0))
+    # R2738_CONSOLIDATED_PUSH_PURGE
+    # Top-right block: 2 rows (Push above, Purge below) - consolidated
+    row_block = ui_theme_classic.Frame(header_right)
+    row_block.pack(side="top", anchor="ne", padx=(0, 2), pady=(0, 2))
+
+    row_push = ui_theme_classic.Frame(row_block)
     row_push.pack(side="top", anchor="ne", pady=(0, 2))
 
-    # Toggle (gekoppelt)
+    row_purge = ui_theme_classic.Frame(row_block)
+    row_purge.pack(side="top", anchor="ne", pady=(0, 0))
+
+    # Zeile 0 – Purge-Tools (Scan / Apply)
+    btn_apply = ui_theme_classic.Button(
+        row_purge,
+        text="Purge Apply",
+        command=_wrap_with_led_and_log(app, getattr(logic_tools, 'action_tools_purge_apply', lambda *a, **k: None)),
+    )
+    btn_apply.pack(side="right", padx=(6, 0))
+    try:
+        btn_apply.configure(bg="#f4b6b6", activebackground="#f1a9a9")
+    except Exception:
+        pass
+
+    btn_scan = ui_theme_classic.Button(
+        row_purge,
+        text="Purge Scan",
+        command=_wrap_with_led_and_log(app, getattr(logic_tools, 'action_tools_purge_scan', lambda *a, **k: None)),
+    )
+    btn_scan.pack(side="right", padx=(6, 0))
+# Toggle (gekoppelt)
     try:
         if not hasattr(app, "_autopush_link_var"):
             app._autopush_link_var = tk.BooleanVar(value=False)
@@ -810,18 +837,6 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
         if _autopush_linked()
         else _call_logic_action(app, "action_autopush_public"),
     )
-    btn_push_public.pack(side="right", padx=(6, 0))
-
-    try:
-        chk = tk.Checkbutton(
-            row_push,
-            text="<--> Link",
-            variable=_link_var,
-        )
-        chk.pack(side="right", padx=(6, 0))
-    except Exception:
-        pass
-
     btn_push_private = ui_theme_classic.Button(
         row_push,
         text="Push Private",
@@ -829,7 +844,29 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
         if _autopush_linked()
         else _call_logic_action(app, "action_autopush_private"),
     )
-    btn_push_private.pack(side="right", padx=(6, 0))
+    # : Link is a real themed Button with LED-box icon inside
+    # R2747: Link as LinkLedButton (icon+text+LED in one control)
+    btn_link = LinkLedButton(
+        row_push,
+        text="Link",
+        command=lambda: _toggle_link_clicked(),
+        width=58,
+        height=22,
+    led_size=8,
+    padding_x=6,
+    )
+    # Top row order required: Push Private | Link | Push Public
+    # pack(side='right') -> insert in reverse to render left-to-right
+    btn_push_public.pack(side='right', padx=(6, 0))
+    btn_link.pack(side='right', padx=(6, 0))
+    btn_push_private.pack(side='right', padx=(6, 0))
+
+    # Pack order (side=right): Public (right) | Link (middle) | Private (left)
+    # Link visuals handled by LinkLedButton.set_state() (no images)
+    try:
+        btn_link.set_state('on' if _autopush_linked() else 'off')
+    except Exception:
+        pass
 
     def _set_btn_state(btn, enabled: bool):
         try:
@@ -839,6 +876,132 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
                 btn["state"] = "normal" if enabled else "disabled"
             except Exception:
                 pass
+    def _is_repo_pushable(repo_path: str) -> bool:
+        """Return True iff repo_path is a git repo that is dirty OR ahead."""
+        try:
+            import os
+            import subprocess
+            if not repo_path or not os.path.isdir(repo_path):
+                return False
+            if not os.path.isdir(os.path.join(repo_path, ".git")):
+                return False
+    
+            # Dirty check
+            r = subprocess.run(
+                ["git", "-C", repo_path, "status", "--porcelain"],
+                capture_output=True,
+                text=True,
+            )
+            if (r.stdout or "").strip():
+                return True
+    
+            # Ahead check (best-effort)
+            r = subprocess.run(
+                ["git", "-C", repo_path, "status", "-sb"],
+                capture_output=True,
+                text=True,
+            )
+            return "ahead" in ((r.stdout or "").lower())
+        except Exception:
+            return False
+    
+    def _resolve_repo_path(kind: str) -> str:
+        """Best-effort resolve repo roots for private/public without crashing UI."""
+        try:
+            import os
+            base = os.getcwd()
+            # Prefer app-provided attributes/state when available
+            candidates: list[str] = []
+            try:
+                if kind == "private":
+                    for k in ("repo_root_private", "private_repo_root", "repo_root", "root", "project_root"):
+                        v = getattr(app, k, None)
+                        if isinstance(v, str) and v:
+                            candidates.append(v)
+                else:
+                    for k in ("repo_root_public", "public_repo_root", "public_root", "public_repo_path"):
+                        v = getattr(app, k, None)
+                        if isinstance(v, str) and v:
+                            candidates.append(v)
+    
+                # dict-like state/config
+                for dk in ("state", "cfg", "config"):
+                    d = getattr(app, dk, None)
+                    if isinstance(d, dict):
+                        for kk in (
+                            "repo_root_private",
+                            "private_repo_root",
+                            "repo_root_public",
+                            "public_repo_root",
+                            "public_root",
+                        ):
+                            vv = d.get(kk)
+                            if isinstance(vv, str) and vv:
+                                candidates.append(vv)
+            except Exception:
+                pass
+    
+            # Environment (optional)
+            if kind != "private":
+                for envk in ("SHRIMPDEV_PUBLIC_ROOT", "SHRIMPDEV_PUBLIC_REPO"):
+                    vv = os.environ.get(envk, "").strip()
+                    if vv:
+                        candidates.append(vv)
+    
+            # Fallbacks
+            if kind == "private":
+                candidates.append(base)
+            else:
+                # common sibling folder guesses (best-effort)
+                parent = os.path.abspath(os.path.join(base, os.pardir))
+                candidates.extend(
+                    [
+                        os.path.join(parent, "ShrimpDev-Public"),
+                        os.path.join(parent, "ShrimpDev_PUBLIC_EXPORT"),
+                        os.path.join(parent, "ShrimpDev_PUBLIC_REPO"),
+                        os.path.join(parent, "ShrimpDevPublic"),
+                    ]
+                )
+    
+            # Return first candidate that looks like a git repo
+            for p in candidates:
+                if isinstance(p, str) and p and os.path.isdir(os.path.join(p, ".git")):
+                    return p
+            return ""
+        except Exception:
+            return ""
+
+    
+    # Link button with LED (no checkbox)
+    def _link_led_update():
+        """Update Link control visuals.
+        Single source of truth: LinkLedButton.set_state().
+        """
+        try:
+            on = bool(_autopush_linked())
+        except Exception:
+            on = False
+        try:
+            # LinkLedButton API
+            btn_link.set_state("on" if on else "off")
+        except Exception:
+            pass
+
+    def _toggle_link_clicked():
+        try:
+            on = bool(_autopush_linked())
+            _autopush_set_linked(not on)
+            _link_led_update()
+            return
+        except Exception:
+            pass
+        # Fallback: toggle legacy var if present
+        try:
+            linked_var.set(not bool(linked_var.get()))
+        except Exception:
+            pass
+        _link_led_update()
+
     def _update_push_states():
         busy = _runner_busy()
 
@@ -847,67 +1010,25 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
         has_public  = _file_exists("tools/R2692.cmd") or _file_exists("tools/R2692.py")
         has_both    = _file_exists("tools/R2693.cmd") or _file_exists("tools/R2693.py")
 
-        # UI enablement must be product-agnostic:
-        # only depend on runner availability + not busy.
-        private_ok = has_private and (not busy)
-        public_ok  = has_public  and (not busy)
-        both_ok    = has_both and has_private and has_public and (not busy)
+        # Resolve repo roots (best-effort)
+        private_root = _resolve_repo_path("private")
+        public_root  = _resolve_repo_path("public")
 
-        if _autopush_linked():
-            _set_btn_state(btn_push_private, both_ok)
-            _set_btn_state(btn_push_public, both_ok)
-        else:
-            _set_btn_state(btn_push_private, private_ok)
-            _set_btn_state(btn_push_public, public_ok)
+        # Pushable means: repo exists AND (dirty OR branch ahead)
+        private_pushable = bool(has_private and _is_repo_pushable(private_root))
+        public_pushable  = bool(has_public and _is_repo_pushable(public_root))
 
-        try:
-            row_push.after(1200, _update_push_states)
-        except Exception:
-            pass
+        # Deterministic UI gating
+        _set_btn_state(btn_push_private, (not busy) and private_pushable)
+        _set_btn_state(btn_push_public,  (not busy) and public_pushable)
 
-    _update_push_states()
-    # Zeile 0 - Tools Purge (ROOT-only, keine Subfolder)
-    row0 = ui_theme_classic.Frame(header_right)
-    row0.pack(side="top", anchor="ne", pady=(0, 2))
-    # rechts oben ausrichten
-    btn_apply = ui_theme_classic.Button(
-        row0,
-        text="Tools Purge Apply",
-        command=lambda: _call_logic_action(app, "action_tools_purge_apply"),
-    )
-    try:
-        btn_apply.configure(bg="#f2b6b6", activebackground="#eaa0a0")
-    except Exception:
-        pass
-    btn_apply.pack(side="right", padx=(6, 0), pady=0)
-    try:
-        pass  # R2466: prevent empty try block
-    except Exception:
-        pass
-    try:
-        ui_tooltips.add(
-            btn_apply,
-            "Archiviert Dateien im tools\\-ROOT nach tools\\Archiv (nur laut Plan). Mit Sicherheitsabfrage.",
-        )
-    except Exception:
-        pass
-
-    btn_scan = ui_theme_classic.Button(
-        row0,
-        text="Tools Purge Scan",
-        command=lambda: _call_logic_action(app, "action_tools_purge_scan"),
-    )
-    btn_scan.pack(side="right", padx=(6, 0), pady=0)
-    try:
-        pass  # R2466: prevent empty try block
-    except Exception:
-        pass
-    try:
-        ui_tooltips.add(
-            btn_scan, "Erstellt Purge-Plan fuer Dateien im tools\\-ROOT (keine Subfolder)."
-        )
-    except Exception:
-        pass
+        # Auto-Link: only auto-enable when it makes sense; never auto-disable
+        if private_pushable and has_public:
+            try:
+                if not _autopush_linked():
+                    _autopush_link_var.set(True)
+            except Exception:
+                pass
 
     def _update_purge_states():
         try:
@@ -922,11 +1043,22 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
         plan_ok = _file_exists("docs/Tools_Purge_Flat_Plan.md")  # R2475: ensure defined
         apply_ok = bool(has_apply) and bool(plan_ok) and (not busy)
 
-        _set_btn_state(btn_scan, scan_ok)
-        _set_btn_state(btn_apply, apply_ok)
-
         try:
-            row0.after(1200, _update_purge_states)
+            try:
+                _set_btn_state(btn_scan, scan_ok)
+            except NameError:
+                # optional button handle not present in this toolbar variant
+                pass
+        except NameError:
+            # btn_scan not present in this toolbar variant; do not crash startup
+            pass
+        try:
+            _set_btn_state(btn_apply, apply_ok)
+        except NameError:
+            # optional button handle not present in this toolbar variant
+            pass
+        try:
+            row_purge.after(1200, _update_purge_states)
         except Exception:
             pass
 
@@ -1008,8 +1140,6 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
     )
 
     return outer
-
-
 def build_toolbar(parent: tk.Widget, app: Any, side: str = "left") -> tk.Frame:
     """Kompatibilitäts-Hook."""
     if side == "right":
@@ -1121,3 +1251,14 @@ def _action_restart(app):  # type: ignore[override]
 
 # R2072_AOT_RESTART_END
 # ============================================================
+        # R2743: also update boxed LED indicator (best-effort)
+        try:
+            _link_led_box_render(bool(_autopush_linked()))
+        except Exception:
+            pass
+        # R2746_LINK_ICON_UPDATE: update Link icon (no dot text)
+        # R2747_SET_LINK_STATE: drive LinkLedButton visuals
+        try:
+            btn_link.set_state("on" if _autopush_linked() else "off")
+        except Exception:
+            pass

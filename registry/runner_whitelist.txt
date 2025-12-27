@@ -1,5 +1,16 @@
 runner_guard
-R1802
-R1922
-R2086
-R9999
+
+# Autopush (neu)
+R2691
+R2692
+R2693
+
+# Aktuelle Diagnose / Fixes
+R2723
+R2724
+R2725
+R2726
+R2727
+R2728
+R2729
+R2731

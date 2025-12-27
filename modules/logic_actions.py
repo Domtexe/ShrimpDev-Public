@@ -1983,7 +1983,7 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 #         root_dir = _r1840_os.path.abspath(
 #             _r1840_os.path.join(_r1840_os.path.dirname(__file__), "..")
 #         )
-#         log_path = _r1840_os.path.join(root_dir, "debug_output.txt")
+#         log_path = _r1840__pick_latest_runner_report(root_dir)
 #         line = "[R1840-TREE] " + _r1840_time.strftime("%Y-%m-%d %H:%M:%S") + " " + str(msg) + "\n"
 #         with open(log_path, "a", encoding="utf-8") as f:
 #             f.write(line)
@@ -2810,6 +2810,30 @@ def action_detect(app, *args, **kwargs):  # type: ignore[override]
 
 import os as _r2066_os
 import time as _r2066_time
+
+
+def _pick_latest_runner_report(repo_root: str) -> str:
+    """Return newest Reports/Report_R*.md; fallback to debug_output.txt if none."""
+    try:
+        import glob
+        import os
+        reports_dir = os.path.join(repo_root, "Reports")
+        pats = [
+            os.path.join(reports_dir, "Report_R*_*.md"),
+            os.path.join(reports_dir, "Report_*.md"),
+        ]
+        files = []
+        for pat in pats:
+            files.extend(glob.glob(pat))
+        files = [f for f in files if os.path.isfile(f)]
+        if files:
+            files.sort(key=lambda f: os.path.getmtime(f), reverse=True)
+            return files[0]
+        # fallback
+        return _pick_latest_runner_report(repo_root)
+    except Exception:
+        return os.path.join(repo_root, "debug_output.txt")
+
 
 try:
     import tkinter as _r2066_tk
