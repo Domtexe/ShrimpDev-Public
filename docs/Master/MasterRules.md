@@ -165,3 +165,10 @@ Fehlt ein Wrapper, **muss** der Button deaktiviert sein.
 - Der Schutz ist **stem-basiert** (`R####`) und unabhängig von `.cmd` / `.py`.
 - Purge darf **keinen** Whitelist-Runner archivieren.
 
+## ✅ CI-Regeln (Workflow, Public-Mirror, Syntax-Gate)
+
+- **Workflow-YAML:** Jeder `steps:`-Eintrag ist **ein** Mapping. `name`, `uses`, `with`, `run` gehören in **denselben** Block.
+- **Public-Mirror-sicher:** CI darf keine Dateien hart voraussetzen, die im Public-Export fehlen können (z. B. `main_gui.py`).
+- **Syntax-Gate verpflichtend:** CI muss `py_compile` / `compileall` ausführen, um echte Syntaxfehler früh zu erkennen.
+- **Nutzen:** Ehrliche CI – findet echte Fehler ohne False Positives.
+- **Rollback:** Bei CI-/Workflow-Fails sofort auf Backup zurückrollen.
