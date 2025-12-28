@@ -1,0 +1,99 @@
+{
+  "version": "2025-11-07",
+  "project": "Programming",
+  "owner": "Dom",
+  "last_update": "2025-11-07T00:00:00Z",
+
+  "core_principles": {
+    "modular_first": "Jede Funktion als eigenes Modul, klar benannt und testbar.",
+    "best_effort": "Bei Unklarheiten funktionierende Fassung liefern und Annahmen dokumentieren.",
+    "no_placeholders": "Keine leeren oder symbolischen Dateien, keine TODO-Stubs.",
+    "immediate_executability": "Jede Lieferung startfähig mit .bat oder main.py.",
+    "no_reflection": "Kein exec(), keine Reflection-Tricks.",
+    "relative_paths": "Alle Pfade relativ zum Projekt-Root."
+  },
+
+  "code_quality": {
+    "readability": "Lesbarkeit hat Vorrang vor Komplexität.",
+    "type_hints": "Jede öffentliche Funktion mit Type Hints + Docstring.",
+    "safe_io": "Existenzprüfung, Schreibrechte, Fallback bei Konflikten.",
+    "error_handling": "try/except mit Hinweis und Logeintrag.",
+    "ast_syntax_check": "Vor jedem Schreiben wird Syntax geprüft."
+  },
+
+  "gui_standards": {
+    "threading": "Keine blockierenden Operationen im UI-Thread.",
+    "status_area": "Klare Statusmeldungen, Fortschritt, Dark-Mode-fähig.",
+    "consistent_buttons": "Einheitliche Belegung, dokumentierte Shortcuts."
+  },
+
+  "versioning_and_builds": {
+    "semver": "MAJOR.MINOR.PATCH",
+    "patch_zip": "Nur geänderte Dateien mit apply_patch.bat und CURRENT_VERSION.txt.",
+    "build_exe": "PyInstaller-Build über build_exe.bat",
+    "shortcut": "create_shrimphub_shortcut.bat aktualisiert Root-Verknüpfung."
+  },
+
+  "logging_and_debug": {
+    "central_log": "debug_output.txt als zentrales Log.",
+    "rotation": "Loggröße begrenzen oder rotieren.",
+    "trace_on_error": "Voller Stacktrace bei Fehlern."
+  },
+
+  "safety_and_robustness": {
+    "path_sanitizing": "Keine gefährlichen Pfadoperationen.",
+    "transactional_moves": "Erst kopieren, validieren, dann Quelle löschen.",
+    "undo_system": "Move-Journal für Rückgängigmachen."
+  },
+
+  "runner_standards": {
+    "paired_files": "Jeder Runner = .bat + .py.",
+    "auto_backup": "Vor Änderungen Backup in _Archiv/.",
+    "ast_check": "Syntax-Prüfung obligatorisch.",
+    "no_feature_loss": "Kein Funktionsverlust bei Reparaturen."
+  },
+
+  "intake_repair_guidelines": {
+    "scope": "Nur Syntax und String/Klammer-Fehler korrigieren.",
+    "feature_integrity": "Keine GUI- oder Logikänderungen.",
+    "auto_restore": "Bei Fehlschlag Backup wiederherstellen.",
+    "learning_integration": "Erfahrungen aus R124x-Serie werden als Regeln gespeichert.",
+    "adaptive_purge": "Nur minimale Blöcke ersetzen, wenn wiederholt defekt."
+  },
+
+  "communication_and_persistence": {
+    "no_async_promises": "Keine Aussagen über Hintergrundarbeit oder zukünftige Ergebnisse.",
+    "clear_state_separation": "Trennung zwischen IST und PLAN in allen Antworten.",
+    "transparent_feedback": "Fehler und Annahmen immer offenlegen.",
+    "rules_storage": "_System/MasterRules/MasterRules.json",
+    "versioning_scheme": "MasterRules_vYYYY-MM-DD.json",
+    "backup_folder": "_System/Backups/",
+    "cloud_mirror_optional": "Optionaler Mirror auf OneDrive oder GitHub möglich."
+  },
+
+  "meta_rules": {
+    "mastermode": "ShrimpDev + ShrimpHub operieren im Mastermodus.",
+    "autonomy_goal": "Langfristiges Ziel ist selbstheilende, lernfähige Entwicklungsumgebung.",
+    "source_of_truth": "Nur die reale MasterRules.json ist bindend.",
+    "ai_behavior": "ChatGPT folgt strikt diesen Regeln, keine Hintergrundprozesse oder falschen Versprechen.",
+    "daily_reminder": "Zu Beginn jeder Sitzung an das Hochladen der MasterRules-Datei erinnern."
+  }
+}
+{
+  "GuardsAndDaemons": {
+    "IDRange": "R9900–R9999",
+    "Definition": "Guards/Daemons sind nur prüfend/loggend; keinerlei schreibende/zerstörende Aktionen.",
+    "Purpose": [
+      "Überwachung zentraler Systemintegrität (Syntax, Struktur, Importreihenfolge, Pfade, Mounts)",
+      "Früherkennung von Problemen in ShrimpDev/ShrimpHub",
+      "Schutz vor inkonsistenten Builds"
+    ],
+    "Rules": {
+      "1": "Guards loggen nur. Keine Modifikationen.",
+      "2": "Bei Fund eines Problems: Hinweis auf passenden Fix-Runner (R13xx), aber kein Autostart.",
+      "3": "Start: manuell oder über 'Guards verwalten'.",
+      "4": "R9999 ist globaler Sanity-Daemon für ShrimpDev.",
+      "5": "R9900–R9950 = ShrimpDev; R9951–R9998 = ShrimpHub."
+    }
+  }
+}

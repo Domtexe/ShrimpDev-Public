@@ -47,6 +47,7 @@ class LEDBar:
 
         # Klick-Handler, falls ein Callback fuer diese LED registriert ist
         if hasattr(self, "_callbacks") and key in self._callbacks:
+
             def _on_click(_event, k=key):
                 cb = self._callbacks.get(k)
                 if callable(cb):
@@ -55,9 +56,9 @@ class LEDBar:
                     except Exception:
                         # LED-Callbacks duerfen die UI nie crashen
                         pass
+
             canvas.bind("<Button-1>", _on_click)
             holder.bind("<Button-1>", _on_click)
-
 
     def _set_color(self, key: str, color: str) -> None:
         canvas = self._items.get(key)
@@ -163,6 +164,7 @@ def evaluate(app) -> None:
         return
 
     import warnings
+
     try:
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", SyntaxWarning)
@@ -172,6 +174,7 @@ def evaluate(app) -> None:
         # Echte Syntaxfehler -> ROT + Log
         try:
             from modules.logic_actions import log_debug
+
             log_debug(f"SyntaxLED: Parsefehler: {exc}")
         except Exception:
             pass
@@ -180,6 +183,7 @@ def evaluate(app) -> None:
         # Andere Fehler im Parser -> neutral + Log
         try:
             from modules.logic_actions import log_debug
+
             log_debug(f"SyntaxLED: unerwarteter Fehler: {exc}")
         except Exception:
             pass

@@ -747,6 +747,17 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
     Zeile 1: [Run] [Löschen] [Rename] [Undo]
     Zeile 2: [FutureFix] [FutureFix Safe] [Build Tools] [Diagnose]
     """
+    # R2866: alias frame_toolbar_right
+    _ftr = None
+    for _nm in ('frame_toolbar_right','frame','parent','container','master','root'):
+        if _nm in locals():
+            _ftr = locals().get(_nm)
+            if _ftr is not None:
+                break
+    if _ftr is not None:
+        frame_toolbar_right = _ftr
+    del _ftr, _nm
+    
     # R2836_TRACE_PUSH
     def _r2836_trace(msg: str) -> None:
         try:
@@ -1017,6 +1028,20 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
     btn_push_public.pack(side='right', padx=(6, 0))
     app._btn_link.pack(side='right', padx=(6, 0))
     btn_push_private.pack(side='right', padx=(6, 0))
+
+    # R2863: Public export sync button (runs R2862)
+    row_export = ui_theme_classic.Frame(frame_toolbar_right)
+    row_export.pack(fill="x", pady=(4, 0))
+    btn_export_public = ui_theme_classic.Button(
+        row_export,
+        text="Export Public",
+        command=lambda: _call_logic_action(app, "action_public_export_sync"),
+    )
+    try:
+        ui_tooltip.register(btn_export_public, "Sync Private -> Public export (R2862) and push public if configured.")
+    except Exception:
+        pass
+    btn_export_public.pack(side='right', padx=(6, 0))
 
     # R2825: Private repo picker ('…')
     try:

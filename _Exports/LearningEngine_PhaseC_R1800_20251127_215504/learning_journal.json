@@ -1,0 +1,781 @@
+{
+  "entries": [
+    {
+      "timestamp": "2025-11-24T17:53:35.930755",
+      "event": "app_start",
+      "payload": {},
+      "id": "001",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T18:22:02.652025",
+      "event": "app_start",
+      "payload": {},
+      "id": "002",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T18:22:46.134736",
+      "event": "app_start",
+      "payload": {},
+      "id": "003",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T18:26:16.805712",
+      "event": "app_start",
+      "payload": {},
+      "id": "004",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T18:34:16.264702",
+      "event": "app_start",
+      "payload": {},
+      "id": "005",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T19:49:55.983259",
+      "event": "app_start",
+      "payload": {},
+      "id": "006",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T19:50:47.518566",
+      "event": "historical_import",
+      "payload": {
+        "error_hotspots": [
+          [
+            "error",
+            36
+          ],
+          [
+            "traceback",
+            24
+          ],
+          [
+            "fehler",
+            6
+          ]
+        ],
+        "module_heatmap": [
+          [
+            "module_shim_intake.py",
+            12
+          ],
+          [
+            "module_code_intake.py",
+            6
+          ],
+          [
+            "main_gui.py",
+            6
+          ],
+          [
+            "module_code_intake_v1.py",
+            6
+          ]
+        ],
+        "runner_frequency": [
+          [
+            "R1303",
+            18
+          ],
+          [
+            "R1293",
+            12
+          ],
+          [
+            "R1286",
+            12
+          ],
+          [
+            "R1252",
+            6
+          ],
+          [
+            "R1275",
+            6
+          ],
+          [
+            "R1276",
+            6
+          ],
+          [
+            "R1283",
+            6
+          ],
+          [
+            "R1284",
+            6
+          ],
+          [
+            "R1291",
+            6
+          ],
+          [
+            "R1282",
+            6
+          ]
+        ]
+      },
+      "id": "007",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T19:54:29.965806",
+      "event": "app_start",
+      "payload": {},
+      "id": "008",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T19:56:01.795589",
+      "event": "historical_import",
+      "payload": {
+        "error_hotspots": [
+          [
+            "error",
+            36
+          ],
+          [
+            "traceback",
+            24
+          ],
+          [
+            "fehler",
+            6
+          ]
+        ],
+        "module_heatmap": [
+          [
+            "module_shim_intake.py",
+            12
+          ],
+          [
+            "module_code_intake.py",
+            6
+          ],
+          [
+            "main_gui.py",
+            6
+          ],
+          [
+            "module_code_intake_v1.py",
+            6
+          ]
+        ],
+        "runner_frequency": [
+          [
+            "R1303",
+            18
+          ],
+          [
+            "R1293",
+            12
+          ],
+          [
+            "R1286",
+            12
+          ],
+          [
+            "R1252",
+            6
+          ],
+          [
+            "R1275",
+            6
+          ],
+          [
+            "R1276",
+            6
+          ],
+          [
+            "R1283",
+            6
+          ],
+          [
+            "R1284",
+            6
+          ],
+          [
+            "R1291",
+            6
+          ],
+          [
+            "R1282",
+            6
+          ]
+        ]
+      },
+      "id": "009",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T20:26:52.828807",
+      "event": "historical_import",
+      "payload": {
+        "error_hotspots": [
+          [
+            "error",
+            36
+          ],
+          [
+            "traceback",
+            24
+          ],
+          [
+            "fehler",
+            6
+          ]
+        ],
+        "module_heatmap": [
+          [
+            "module_shim_intake.py",
+            12
+          ],
+          [
+            "module_code_intake.py",
+            6
+          ],
+          [
+            "main_gui.py",
+            6
+          ],
+          [
+            "module_code_intake_v1.py",
+            6
+          ]
+        ],
+        "runner_frequency": [
+          [
+            "R1303",
+            18
+          ],
+          [
+            "R1293",
+            12
+          ],
+          [
+            "R1286",
+            12
+          ],
+          [
+            "R1252",
+            6
+          ],
+          [
+            "R1275",
+            6
+          ],
+          [
+            "R1276",
+            6
+          ],
+          [
+            "R1283",
+            6
+          ],
+          [
+            "R1284",
+            6
+          ],
+          [
+            "R1291",
+            6
+          ],
+          [
+            "R1282",
+            6
+          ]
+        ]
+      },
+      "id": "010",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T20:57:06.637319",
+      "event": "app_start",
+      "payload": {},
+      "id": "011",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T20:58:29.402457",
+      "event": "app_start",
+      "payload": {},
+      "id": "012",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T20:59:53.721054",
+      "event": "historical_import",
+      "payload": {
+        "error_hotspots": [
+          [
+            "error",
+            36
+          ],
+          [
+            "traceback",
+            24
+          ],
+          [
+            "fehler",
+            6
+          ]
+        ],
+        "module_heatmap": [
+          [
+            "module_shim_intake.py",
+            12
+          ],
+          [
+            "module_code_intake.py",
+            6
+          ],
+          [
+            "main_gui.py",
+            6
+          ],
+          [
+            "module_code_intake_v1.py",
+            6
+          ]
+        ],
+        "runner_frequency": [
+          [
+            "R1303",
+            18
+          ],
+          [
+            "R1293",
+            12
+          ],
+          [
+            "R1286",
+            12
+          ],
+          [
+            "R1252",
+            6
+          ],
+          [
+            "R1275",
+            6
+          ],
+          [
+            "R1276",
+            6
+          ],
+          [
+            "R1283",
+            6
+          ],
+          [
+            "R1284",
+            6
+          ],
+          [
+            "R1291",
+            6
+          ],
+          [
+            "R1282",
+            6
+          ]
+        ]
+      },
+      "id": "013",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T21:00:14.052216",
+      "event": "app_start",
+      "payload": {},
+      "id": "014",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T22:47:12.657629",
+      "event": "app_start",
+      "payload": {},
+      "id": "015",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T22:51:37.376879",
+      "event": "app_start",
+      "payload": {},
+      "id": "016",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T22:54:14.117087",
+      "event": "app_start",
+      "payload": {},
+      "id": "017",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T22:54:53.829142",
+      "event": "phaseB_analysis",
+      "payload": {
+        "module_scores": [
+          {
+            "module": "module_shim_intake.py",
+            "score": 54.0,
+            "count": 48
+          },
+          {
+            "module": "module_code_intake.py",
+            "score": 27.0,
+            "count": 24
+          },
+          {
+            "module": "main_gui.py",
+            "score": 27.0,
+            "count": 24
+          },
+          {
+            "module": "module_code_intake_v1.py",
+            "score": 27.0,
+            "count": 24
+          }
+        ],
+        "error_clusters": [
+          {
+            "error": "error",
+            "count": 144
+          },
+          {
+            "error": "traceback",
+            "count": 96
+          },
+          {
+            "error": "fehler",
+            "count": 24
+          }
+        ],
+        "success_clusters": [
+          {
+            "runner": "R1303",
+            "count": 72
+          },
+          {
+            "runner": "R1293",
+            "count": 48
+          },
+          {
+            "runner": "R1286",
+            "count": 48
+          },
+          {
+            "runner": "R1252",
+            "count": 24
+          },
+          {
+            "runner": "R1275",
+            "count": 24
+          },
+          {
+            "runner": "R1276",
+            "count": 24
+          },
+          {
+            "runner": "R1283",
+            "count": 24
+          },
+          {
+            "runner": "R1284",
+            "count": 24
+          },
+          {
+            "runner": "R1291",
+            "count": 24
+          },
+          {
+            "runner": "R1282",
+            "count": 24
+          }
+        ],
+        "links": [
+          {
+            "runner": "R1303",
+            "module": "module_shim_intake.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1303",
+            "module": "module_code_intake.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1303",
+            "module": "main_gui.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1303",
+            "module": "module_code_intake_v1.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1293",
+            "module": "module_shim_intake.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1293",
+            "module": "module_code_intake.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1293",
+            "module": "main_gui.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1293",
+            "module": "module_code_intake_v1.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1286",
+            "module": "module_shim_intake.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1286",
+            "module": "module_code_intake.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1286",
+            "module": "main_gui.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1286",
+            "module": "module_code_intake_v1.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1252",
+            "module": "module_shim_intake.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1252",
+            "module": "module_code_intake.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1252",
+            "module": "main_gui.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1252",
+            "module": "module_code_intake_v1.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1275",
+            "module": "module_shim_intake.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1275",
+            "module": "module_code_intake.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1275",
+            "module": "main_gui.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1275",
+            "module": "module_code_intake_v1.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1276",
+            "module": "module_shim_intake.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1276",
+            "module": "module_code_intake.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1276",
+            "module": "main_gui.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1276",
+            "module": "module_code_intake_v1.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1283",
+            "module": "module_shim_intake.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1283",
+            "module": "module_code_intake.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1283",
+            "module": "main_gui.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1283",
+            "module": "module_code_intake_v1.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1284",
+            "module": "module_shim_intake.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1284",
+            "module": "module_code_intake.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1284",
+            "module": "main_gui.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1284",
+            "module": "module_code_intake_v1.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1291",
+            "module": "module_shim_intake.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1291",
+            "module": "module_code_intake.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1291",
+            "module": "main_gui.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1291",
+            "module": "module_code_intake_v1.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1282",
+            "module": "module_shim_intake.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1282",
+            "module": "module_code_intake.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1282",
+            "module": "main_gui.py",
+            "weight": 4
+          },
+          {
+            "runner": "R1282",
+            "module": "module_code_intake_v1.py",
+            "weight": 4
+          }
+        ]
+      },
+      "id": "018",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T22:55:13.803873",
+      "event": "app_start",
+      "payload": {},
+      "id": "019",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T23:03:17.879383",
+      "event": "app_start",
+      "payload": {},
+      "id": "020",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T23:13:17.949428",
+      "event": "app_start",
+      "payload": {},
+      "id": "021",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T23:18:31.685666",
+      "event": "app_start",
+      "payload": {},
+      "id": "022",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T23:19:22.589946",
+      "event": "app_start",
+      "payload": {},
+      "id": "023",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T23:20:34.083230",
+      "event": "app_start",
+      "payload": {},
+      "id": "024",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T23:22:02.046289",
+      "event": "app_start",
+      "payload": {},
+      "id": "025",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T23:29:44.371637",
+      "event": "app_start",
+      "payload": {},
+      "id": "026",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-24T23:48:14.059880",
+      "event": "app_start",
+      "payload": {},
+      "id": "027",
+      "type": "analysis"
+    },
+    {
+      "timestamp": "2025-11-25T07:27:11.142019",
+      "event": "app_start",
+      "payload": {},
+      "id": "028",
+      "type": "analysis"
+    }
+  ]
+}

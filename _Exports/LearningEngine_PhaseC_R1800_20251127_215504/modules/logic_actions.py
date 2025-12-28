@@ -1,4 +1,3 @@
-
 # ============================================================
 # logic_actions.py - FULL RESTORE VERSION (R1514)
 # Kompatibel mit:
@@ -21,6 +20,7 @@ def log_debug(msg: str) -> None:
     try:
         import os
         from datetime import datetime
+
         root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
         log_path = os.path.join(root, "debug_output.txt")
         ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -39,17 +39,22 @@ from . import config_loader
 # Hilfsmodule für Zugriff
 # ------------------------------------------------------------
 
+
 def _get_name_var(app):
     return getattr(app, "var_name", None)
+
 
 def _get_ext_var(app):
     return getattr(app, "var_ext", None)
 
+
 def _get_target_dir(app) -> str:
     return getattr(app, "var_target_dir", None).get().strip()
 
+
 def _get_intake(app):
     return getattr(app, "txt_intake", None)
+
 
 def _get_intake_text(app) -> str:
     w = _get_intake(app)
@@ -87,7 +92,6 @@ def _status(app, msg: str) -> None:
 
     # Immer ins Log schreiben
     log_debug(msg)
-
 
 
 def _set_name_ext(app, name: str, ext: str) -> None:
@@ -142,13 +146,7 @@ def _guess_ext(text: str) -> str:
         return "cmd"
 
     # 2) Python - typische Muster
-    if (
-        "def " in t
-        or "class " in t
-        or "import " in t
-        or "from " in t
-        or "if __name__" in t
-    ):
+    if "def " in t or "class " in t or "import " in t or "from " in t or "if __name__" in t:
         return "py"
 
     # 3) JSON
@@ -236,7 +234,9 @@ def action_detect(app) -> None:
         ext = "cmd"
     else:
         stripped = t.lstrip()
-        if (stripped.startswith("{") or stripped.startswith("[")) and (":" in stripped or "}" in stripped or "]" in stripped):
+        if (stripped.startswith("{") or stripped.startswith("[")) and (
+            ":" in stripped or "}" in stripped or "]" in stripped
+        ):
             ext = "json"
         else:
             ext = "txt"
@@ -352,6 +352,7 @@ def action_save(app) -> None:
 # Neu
 # ------------------------------------------------------------
 
+
 def action_new(app) -> None:
     try:
         w = _get_intake(app)
@@ -376,6 +377,7 @@ def action_new(app) -> None:
 # Undo
 # ------------------------------------------------------------
 
+
 def action_undo(app, side: str | None = None) -> None:
     try:
         w = _get_intake(app)
@@ -389,6 +391,7 @@ def action_undo(app, side: str | None = None) -> None:
 # ------------------------------------------------------------
 # Ausführen (Run) - für .py & .cmd
 # ------------------------------------------------------------
+
 
 def action_run(app) -> None:
     name = _get_name_var(app).get().strip()
@@ -414,6 +417,7 @@ def action_run(app) -> None:
 # ------------------------------------------------------------
 # Delete
 # ------------------------------------------------------------
+
 
 def action_delete(app):
     name = _get_name_var(app).get().strip()
@@ -455,6 +459,7 @@ def action_learning_journal(app) -> None:
 
 # ---- R1529: Guard-Funktionen abgesichert (R9997 / R1351) ----
 
+
 def action_guard_futurefix(app) -> None:
     """Startet den Guard-FutureFix-Runner (R9997), falls vorhanden."""
     try:
@@ -472,6 +477,7 @@ def action_guard_futurefix_safe(app) -> None:
 
 
 # ---- R1530: SonderRunner-Wrapper für R9998 / R9999 abgesichert ----
+
 
 def action_r9998(app) -> None:
     """Startet SonderRunner R9998 (z.B. Build/Repair-Pipeline)."""
@@ -492,6 +498,7 @@ def action_r9999(app) -> None:
 # =====================================================================
 # R1604 - Intake Detect/Ext Fix (nicht-destruktiv, appended)
 # =====================================================================
+
 
 def _guess_ext_r1604(text: str) -> str:
     """Bestimmt die Dateiendung (OHNE Punkt) anhand des Inhalts.
@@ -536,7 +543,11 @@ def _guess_ext_r1604(text: str) -> str:
         return "ps1"
 
     # Batch / CMD
-    if t.startswith("@echo off") or re.search(r"^\s*REM\b", t, flags=re.MULTILINE) or re.search(r"\bcall\s+R\d{3,5}\b", t):
+    if (
+        t.startswith("@echo off")
+        or re.search(r"^\s*REM\b", t, flags=re.MULTILINE)
+        or re.search(r"\bcall\s+R\d{3,5}\b", t)
+    ):
         return "cmd"
 
     # Python
@@ -601,20 +612,20 @@ try:
     _R1604_APPLIED
 except NameError:
     _R1604_APPLIED = True
-#    try:
-#        _guess_ext = guess_ext_latest
-#    except Exception:
-#        pass
-#    try:
-#        action_detect = action_detect_latest
-#    except Exception:
+    #    try:
+    #        _guess_ext = guess_ext_latest
+    #    except Exception:
+    #        pass
+    #    try:
+    #        action_detect = action_detect_latest
+    #    except Exception:
     pass
-
 
 
 # =====================================================================
 # R1606 - Intake-Ext-Fix (CMD/PY bevorzugt)
 # =====================================================================
+
 
 def _guess_ext_r1606(text: str) -> str:
     """CMD- und PY-Erkennung vor das bestehende _guess_ext schalten.
@@ -640,13 +651,7 @@ def _guess_ext_r1606(text: str) -> str:
         return "cmd"
 
     # Python-Heuristik
-    if (
-        "def " in t
-        or "class " in t
-        or "import " in t
-        or "from " in t
-        or "if __name__" in t
-    ):
+    if "def " in t or "class " in t or "import " in t or "from " in t or "if __name__" in t:
         return "py"
 
     # Rueckfall: bisherige Heuristik
@@ -659,6 +664,7 @@ def _guess_ext_r1606(text: str) -> str:
 # =====================================================================
 # R1607 - Intake-Detect & Ext-Fix (nicht-destruktiv, appended)
 # =====================================================================
+
 
 def _guess_ext_r1607(text: str) -> str:
     """Bestimmt Endung (ohne Punkt) mit Fokus auf CMD/PY.
@@ -686,13 +692,7 @@ def _guess_ext_r1607(text: str) -> str:
         return "cmd"
 
     # Python - typische Muster
-    if (
-        "def " in t
-        or "class " in t
-        or "import " in t
-        or "from " in t
-        or "if __name__" in t
-    ):
+    if "def " in t or "class " in t or "import " in t or "from " in t or "if __name__" in t:
         return "py"
 
     # JSON
@@ -778,21 +778,20 @@ try:
     _R1607_APPLIED
 except NameError:
     _R1607_APPLIED = True
-#    try:
-#        _guess_ext = guess_ext_latest
-#    except Exception:
-#        pass
-#    try:
-#        action_detect = action_detect_latest
-#    except Exception:
+    #    try:
+    #        _guess_ext = guess_ext_latest
+    #    except Exception:
+    #        pass
+    #    try:
+    #        action_detect = action_detect_latest
+    #    except Exception:
     pass
-
-
 
 
 # =====================================================================
 # R1608 - Intake Detect/Ext Final-Fix (append-only)
 # =====================================================================
+
 
 def _guess_ext_r1608(text: str) -> str:
     """Bestimmt Endung (ohne Punkt) mit klarer Prioritaet:
@@ -809,13 +808,7 @@ def _guess_ext_r1608(text: str) -> str:
     lo = t.lower()
 
     # Python - zuerst
-    if (
-        "def " in t
-        or "class " in t
-        or "import " in t
-        or "from " in t
-        or "if __name__" in t
-    ):
+    if "def " in t or "class " in t or "import " in t or "from " in t or "if __name__" in t:
         return "py"
 
     # CMD
@@ -912,17 +905,18 @@ try:
     _R1608_APPLIED
 except NameError:
     _R1608_APPLIED = True
-#    try:
-#        _guess_ext = guess_ext_latest
-#   except Exception:
-#        pass
-#    try:
-#        action_detect = action_detect_latest
-#    except Exception:
+    #    try:
+    #        _guess_ext = guess_ext_latest
+    #   except Exception:
+    #        pass
+    #    try:
+    #        action_detect = action_detect_latest
+    #    except Exception:
     pass
 # ======================================================================
 # R1616 - Neue Intake-Erkennung (Name, Endung, Ziel)
 # ======================================================================
+
 
 def _guess_ext_r1616(text: str) -> str:
     """Bestimmt die Dateiendung aus dem Intake-Text."""
@@ -933,13 +927,7 @@ def _guess_ext_r1616(text: str) -> str:
     lo = t.lower()
 
     # Python - typische Schlüsselwörter
-    if (
-        "def " in t
-        or "class " in t
-        or "import " in t
-        or "from " in t
-        or "if __name__" in t
-    ):
+    if "def " in t or "class " in t or "import " in t or "from " in t or "if __name__" in t:
         return "py"
 
     # CMD / Batch
@@ -1052,12 +1040,12 @@ def action_detect_r1616(app) -> None:
 
 
 # === R1616: aktiviert neue Detection ===
-#_guess_ext = guess_ext_latest
-#action_detect = action_detect_latest
-
+# _guess_ext = guess_ext_latest
+# action_detect = action_detect_latest
 
 
 # === DETECT MODERN START ===
+
 
 def guess_ext_latest(text: str) -> str:
     """Erkennt die Endung anhand des Inhalts."""
@@ -1066,15 +1054,14 @@ def guess_ext_latest(text: str) -> str:
         return "py"
     if text_l.strip().startswith("@echo") or ".cmd" in text_l:
         return "cmd"
-    if "set \"RUNNER=" in text_l:
+    if 'set "RUNNER=' in text_l:
         if ".cmd" in text_l or "cmd" in text_l:
             return "cmd"
     if "run" in text_l and ".py" in text_l:
         return "py"
     return "py"
 
-
-# def action_detect_latest(app):
+    # def action_detect_latest(app):
     """Neue moderne Detect-Funktion."""
     try:
         text = app.txt_intake.get("1.0", "end")
@@ -1089,7 +1076,7 @@ def guess_ext_latest(text: str) -> str:
 
     m = re.search(r'RUNNER\s*=\s*"?(R\d{3,5}[A-Za-z]?)"?', text)
     if not m:
-        m = re.search(r'\bR(\d{3,5}[A-Za-z]?)\b', text)
+        m = re.search(r"\bR(\d{3,5}[A-Za-z]?)\b", text)
         if m:
             name = "R" + m.group(1)
     else:
@@ -1125,6 +1112,7 @@ def guess_ext_latest(text: str) -> str:
         _status(app, f"Erkannt: {name}.{ext}")
     except:
         pass
+
 
 # === DETECT MODERN END ===
 
@@ -1174,13 +1162,7 @@ def guess_ext_latest(text: str) -> str:
     lo = t.lower()
 
     # Python-Heuristik
-    if (
-        "def " in t
-        or "class " in t
-        or "import " in t
-        or "from " in t
-        or "if __name__" in t
-    ):
+    if "def " in t or "class " in t or "import " in t or "from " in t or "if __name__" in t:
         return "py"
 
     # Batch/CMD-Heuristik
@@ -1235,6 +1217,7 @@ def _intake_set_name_ext_r1620(app, name: str, ext: str) -> None:
     # 1) bevorzugt die bestehende Hilfsfunktion nutzen, falls vorhanden
     try:
         from modules import logic_actions as _la_mod  # type: ignore
+
         if hasattr(_la_mod, "_set_name_ext"):
             try:
                 _la_mod._set_name_ext(app, name, ext)  # type: ignore
@@ -1297,6 +1280,7 @@ def _intake_set_target_r1620(app, ext: str) -> None:
     # Sync-Funktion, falls vorhanden
     try:
         from modules import logic_actions as _la_mod  # type: ignore
+
         if hasattr(_la_mod, "_sync_target_vars"):
             try:
                 _la_mod._sync_target_vars(app, tools_dir)  # type: ignore
@@ -1387,11 +1371,10 @@ def action_detect_latest(app) -> None:
         pass
 
 
-
-
 # ------------------------------------------------------------
 # R1634 - Datei aus Projektliste in den Intake laden
 # ------------------------------------------------------------
+
 
 def load_file_into_intake(app, path: str) -> None:
     """Lädt eine Datei in den Intake, setzt Name/Endung,
@@ -1441,6 +1424,7 @@ def load_file_into_intake(app, path: str) -> None:
         # LEDs aktualisieren
         try:
             from modules import ui_leds
+
             ui_leds.evaluate(app)
         except Exception:
             pass
@@ -1483,7 +1467,10 @@ def _intake_get_text_r1621(app) -> str:
             continue
 
         # Tk Text-Widget oder aehnliches
-        for method, args in (("get", ("1.0", "end")), ("get", ()),):
+        for method, args in (
+            ("get", ("1.0", "end")),
+            ("get", ()),
+        ):
             try:
                 fn = getattr(widget, method, None)
                 if fn is None:
@@ -1512,13 +1499,7 @@ def guess_ext_latest(text: str) -> str:
     lo = t.lower()
 
     # Python-Heuristik
-    if (
-        "def " in t
-        or "class " in t
-        or "import " in t
-        or "from " in t
-        or "if __name__" in t
-    ):
+    if "def " in t or "class " in t or "import " in t or "from " in t or "if __name__" in t:
         return "py"
 
     # Batch/CMD-Heuristik
@@ -1546,9 +1527,7 @@ def _generate_runner_id_r1621() -> str:
     - sucht im tools-Ordner nach Rxxxx
     - nimmt hoechste Nummer + 1
     """
-    root = _r1621_os.path.abspath(
-        _r1621_os.path.join(_r1621_os.path.dirname(__file__), "..")
-    )
+    root = _r1621_os.path.abspath(_r1621_os.path.join(_r1621_os.path.dirname(__file__), ".."))
     tools = _r1621_os.path.join(root, "tools")
     max_n = 999
 
@@ -1575,6 +1554,7 @@ def _intake_set_name_ext_r1621(app, name: str, ext: str) -> None:
     # 1) bestehende Hilfsfunktion ausprobieren
     try:
         from modules import logic_actions as _la_mod  # type: ignore
+
         if hasattr(_la_mod, "_set_name_ext"):
             try:
                 _la_mod._set_name_ext(app, name, ext)  # type: ignore
@@ -1613,9 +1593,7 @@ def _intake_set_target_r1621(app, ext: str) -> None:
     if ext not in ("py", "cmd"):
         return
 
-    root = _r1621_os.path.abspath(
-        _r1621_os.path.join(_r1621_os.path.dirname(__file__), "..")
-    )
+    root = _r1621_os.path.abspath(_r1621_os.path.join(_r1621_os.path.dirname(__file__), ".."))
     tools_dir = _r1621_os.path.join(root, "tools")
 
     # Tk-Variablen setzen
@@ -1639,6 +1617,7 @@ def _intake_set_target_r1621(app, ext: str) -> None:
     # Sync-Funktion, falls vorhanden
     try:
         from modules import logic_actions as _la_mod  # type: ignore
+
         if hasattr(_la_mod, "_sync_target_vars"):
             try:
                 _la_mod._sync_target_vars(app, tools_dir)  # type: ignore
@@ -1753,6 +1732,7 @@ except Exception:
 
 class _FSUndoState:
     """Einfacher Container für Dateisystem-Undo-Informationen."""
+
     def __init__(self) -> None:
         self.kind: str | None = None  # "delete" oder "rename"
         self.old_path: str | None = None
@@ -1862,7 +1842,11 @@ def action_tree_rename(app) -> None:
         _status(app, "Umbenennen: Leerer Name.")
         return
 
-    new_path = os.path.join(folder, f"{new_name}.{ext_clean}") if ext_clean else os.path.join(folder, new_name)
+    new_path = (
+        os.path.join(folder, f"{new_name}.{ext_clean}")
+        if ext_clean
+        else os.path.join(folder, new_name)
+    )
     if os.path.abspath(new_path) == os.path.abspath(path_old):
         _status(app, "Umbenennen: Name unverändert.")
         return

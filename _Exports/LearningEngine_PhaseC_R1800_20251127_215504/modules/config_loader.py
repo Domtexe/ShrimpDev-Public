@@ -1,23 +1,27 @@
 import configparser
 import os
 
-INI_PATH = os.path.join(os.path.dirname(__file__), '..', 'ShrimpDev.ini')
+INI_PATH = os.path.join(os.path.dirname(__file__), "..", "ShrimpDev.ini")
+
 
 def load():
     cfg = configparser.ConfigParser()
     if os.path.exists(INI_PATH):
-        cfg.read(INI_PATH, encoding='utf-8')
+        cfg.read(INI_PATH, encoding="utf-8")
     return cfg
 
+
 def save(cfg):
-    with open(INI_PATH, 'w', encoding='utf-8') as f:
+    with open(INI_PATH, "w", encoding="utf-8") as f:
         cfg.write(f)
+
 
 # === R1651_TREE_LEARNINGJOURNAL_HELPERS_START ===
 # Dieser Block wurde automatisch von R1651 erzeugt.
 # Generische Helper-Funktionen für INI-Persistenz von Tree & LearningJournal.
 
 from typing import Mapping  # type: ignore[override]
+
 
 def load_tree_state(config, section: str = "Tree") -> dict:
     """Lädt Tree-Status aus der INI.
@@ -98,7 +102,9 @@ def load_learningjournal_state(config, section: str = "LearningJournal") -> dict
     return data
 
 
-def save_learningjournal_state(config, state: Mapping[str, object], section: str = "LearningJournal") -> None:
+def save_learningjournal_state(
+    config, state: Mapping[str, object], section: str = "LearningJournal"
+) -> None:
     """Speichert LearningJournal-Status in der INI."""
     if config is None or state is None:
         return
@@ -126,5 +132,6 @@ def save_learningjournal_state(config, state: Mapping[str, object], section: str
     config.set(section, "last_cursor_line", last_cursor_line)
     config.set(section, "last_cursor_column", last_cursor_column)
     config.set(section, "last_scroll_y", last_scroll_y)
+
 
 # === R1651_TREE_LEARNINGJOURNAL_HELPERS_END ===

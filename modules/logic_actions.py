@@ -3207,3 +3207,9 @@ def _r1851_get_latest_report_text(app, runner_id: str) -> str:
         return ""
     newest = max(cands, key=lambda p: p.stat().st_mtime)
     return newest.read_text(encoding="utf-8", errors="replace")
+
+# R2863: Public export sync action
+def action_public_export_sync(app, *args, **kwargs):  # type: ignore[override]
+    """Run R2862 to sync Private -> Public export and (optionally) push."""
+    _r1851_run_tools_runner(app, "R2862", "Export Public")
+

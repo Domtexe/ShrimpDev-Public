@@ -1,4 +1,5 @@
 """Konfigurationsmanager für ShrimpDev (config/intake.ini)."""
+
 from __future__ import annotations
 import os, threading, configparser
 from typing import List
@@ -7,8 +8,10 @@ from typing import List
 try:
     from modules.snippets.logger_snippet import write_log as _log
 except Exception:
+
     def _log(_p: str, _m: str) -> None:
         pass
+
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 CFG_DIR = os.path.join(ROOT, "config")
@@ -22,12 +25,11 @@ DEFAULTS = {
         "target_folder": ".",
         "suppress_save_ok": "false",
         "history_limit": "50",
-        "always_on_top": "false"
+        "always_on_top": "false",
     },
-    "history": {
-        "items": ""
-    }
+    "history": {"items": ""},
 }
+
 
 def _ensure_ini() -> None:
     os.makedirs(CFG_DIR, exist_ok=True)
@@ -39,8 +41,10 @@ def _ensure_ini() -> None:
             cfg.write(f)
         _log("CFG", "INI neu erstellt")
 
+
 class ConfigMgr:
     """Threadsichere INI-Verwaltung für ShrimpDev."""
+
     def __init__(self) -> None:
         _ensure_ini()
         self.cfg = configparser.ConfigParser()
@@ -58,13 +62,13 @@ class ConfigMgr:
         _log("CFG", "INI gespeichert")
 
     # --- Getter/Setter ---
-    def get_bool(self, section: str, key: str, default: bool=False) -> bool:
+    def get_bool(self, section: str, key: str, default: bool = False) -> bool:
         try:
             return self.cfg.getboolean(section, key, fallback=default)
         except Exception:
             return default
 
-    def get_str(self, section: str, key: str, default: str="") -> str:
+    def get_str(self, section: str, key: str, default: str = "") -> str:
         try:
             return self.cfg.get(section, key, fallback=default)
         except Exception:
@@ -94,7 +98,7 @@ class ConfigMgr:
                 limit = int(self.get_str("general", "history_limit", "50") or "50")
             except Exception:
                 limit = 50
-            hist = hist[:max(1, limit)]
+            hist = hist[: max(1, limit)]
             if not self.cfg.has_section("history"):
                 self.cfg.add_section("history")
             self.cfg.set("history", "items", "|".join(hist))
