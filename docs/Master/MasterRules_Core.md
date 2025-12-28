@@ -23,3 +23,23 @@ _Automatisch generiert oder aktualisiert durch R2037 am 2025-12-09 09:39:55_
 
 - Wichtige Operationen erzeugen Reports unter `_Reports/`.
 - Fehler werden nicht verschwiegen, sondern nachvollziehbar protokolliert.
+
+## Patch-Rollback-Pflicht
+
+- **Ziel:** Kein fehlerhafter Patch bleibt im Arbeitsstand liegen.
+- **Trigger:** Wenn ein Runner-Patch
+  - mit Exit-Code != 0 endet, oder
+  - einen Syntax- oder Compile-Check nicht besteht, oder
+  - einen definierten Smoke-Test nicht besteht,
+  muss ein **Rollback** auf den letzten sicheren Stand erfolgen.
+- **Pflichtablauf (Runner):**
+  - Vor Patch: Backup der betroffenen Dateien nach `_Archiv/`.
+  - Patch anwenden.
+  - Validierung (mindestens Syntax/Compile, optional Smoke-Test).
+  - Bei Fehler: automatisch Dateien aus Backup wiederherstellen.
+  - Report in `Reports/` muss enthalten:
+    - Grund des Rollbacks (SOLL/IST),
+    - betroffene Dateien,
+    - verwendete Backup-Dateien,
+    - naechster Schritt (Diagnose-first, falls wiederholt).
+- **No-Go:** Manuelles Liegenlassen eines kaputten Zustands oder Folge-Patches ohne Diagnose.

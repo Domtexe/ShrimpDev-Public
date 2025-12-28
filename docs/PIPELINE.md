@@ -180,3 +180,31 @@ ruff check modules main_gui.py --select E9
 - Deprecated: `R2692/R2691` legacy autopush runners (workspace-bound). Do not wire GUI buttons to them.
 - Autopush reports are generated locally under `Reports/` and are not versioned in git.
 - [P1] Autopush repo-only finalized: GUI uses R2691/R2692/R2693; legacy R2692/R2691 deprecated; gitignore ignores only Report_R269{1..3}_*.md.
+
+---
+
+## P3-Workspace-Deaktivieren-RepoRoots-Explizit
+
+**Priority:** P3  
+**Status:** Planned  
+**Scope:** ShrimpDev (Private/Public Root Handling), UI Push Buttons, CI Hygiene
+
+### Goal
+Workspace ist ein Alt-Relikt und soll **deaktiviert** bleiben. Stattdessen werden Repo-Roots **explizit** geführt:
+- Private Repo Root: per UI „…“-Button auswählbar, in INI gespeichert
+- Public Root: automatisch ableitbar (z. B. `ShrimpDev_REPO` → `ShrimpDev_PUBLIC_EXPORT`), optional autocreate des Ordners
+- Keine Heuristik über `cwd`, keine „guess roots“
+
+### Tasks
+- [ ] Workspace als Root-Quelle deaktivieren (UI/Logic dürfen `workspace_root` nicht mehr als Default verwenden)
+- [ ] INI: `[Repo] private_root`, `[Repo] public_root`, `[Repo] public_autocreate`
+- [ ] UI: „…“ Button zum Setzen von `private_root`
+- [ ] Public Root ableiten; Ordner bei Bedarf anlegen; **kein erzwungenes `git init`**
+- [ ] Audit: alle Code-Stellen, die `workspace_*` referenzieren → entfernen/migrieren
+- [ ] Dokumentation: Architektur + MasterRules + Pipeline referenzieren
+
+### Rationale
+Verhindert Root-Fehlermatches (OneDrive/Startpfad), macht Push-Buttons deterministisch und reduziert CI/Repo-Chaos.
+
+---
+

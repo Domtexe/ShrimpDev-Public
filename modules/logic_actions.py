@@ -1189,12 +1189,72 @@ import os as _r1851_os
 import subprocess as _r1851_sub
 import threading as _r1851_thread
 
+# R2798_TRACE_HELPER
+def _r2798_trace_event(tag: str, payload: str = ""):
+    # Writes to Reports/popup_trace.log (append)
+    try:
+        from pathlib import Path
+        import datetime as _dt
+        root = Path(__file__).resolve().parent.parent
+        reports = root / "Reports"
+        reports.mkdir(parents=True, exist_ok=True)
+        fp = reports / "popup_trace.log"
+        stamp = _dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        line = f"{stamp} | {tag} | {payload}\n"
+        fp.open("a", encoding="utf-8").write(line)
+    except Exception:
+        pass
+# R2798_TRACE_HELPER_END
+
+# R2789_REPORT_POPUP_HELPERS
+# Prefer Reports/Report_R####_*.md for popup display when available.
+import glob as _r2789_glob
+
+def _r2789_find_latest_report_md(repo_root: str, runner_id: str) -> str | None:
+    try:
+        reports_dir = _r1851_os.path.join(repo_root, "Reports")
+        if not _r1851_os.path.isdir(reports_dir):
+            return None
+        pats = [
+            _r1851_os.path.join(reports_dir, f"Report_{runner_id}_*.md"),
+            _r1851_os.path.join(reports_dir, f"Report_{runner_id}_*.MD"),
+        ]
+        files: list[str] = []
+        for pat in pats:
+            files.extend(_r2789_glob.glob(pat))
+        files = [f for f in files if _r1851_os.path.isfile(f)]
+        if not files:
+            return None
+        files.sort(key=lambda f: _r1851_os.path.getmtime(f), reverse=True)
+        return files[0]
+    except Exception:
+        return None
+
+def _r2789_try_load_report_text(repo_root: str, runner_id: str) -> str | None:
+    rp = _r2789_find_latest_report_md(repo_root, runner_id)
+    if not rp:
+        return None
+    try:
+        with open(rp, "r", encoding="utf-8", errors="replace") as f:
+            return f.read()
+    except Exception:
+        return None
+# R2789_REPORT_POPUP_HELPERS_END
+
+
 try:
     import tkinter as _r1851_tk
     from tkinter import messagebox as _r1851_mb
     import tkinter.font as _r1851_font
 except Exception:
     _r1851_tk = None
+# --- R2791: explicit tkinter binding for popup subsystem ------------------
+def _r1851_bind_tk(tk_module):
+    """Bind tkinter explicitly when GUI is active (required for popups)."""
+    global _r1851_tk
+    _r1851_tk = tk_module
+# -------------------------------------------------------------------------
+
     _r1851_mb = None
     _r1851_font = None
 
@@ -1251,8 +1311,16 @@ def _r1851_set_runnerpopup_flag(runner_id: str, show: bool) -> None:
 def _r1851_show_popup(app, title: str, text: str, runner_id: str):
     """Popup fuer Runner-Ausgaben mit Checkbox "nicht mehr anzeigen"."""
     if _r1851_tk is None:
-        return
-
+        # R2797: self-healing - try lazy import when GUI is active
+        try:
+            import tkinter as _tk
+            globals()['_r1851_tk'] = _tk
+        except Exception as _exc:
+            try:
+                print(f'[R2797] Popup disabled (tk unavailable): {_exc}')
+            except Exception:
+                pass
+            return
     content = text or "(keine Ausgabe)"
 
     def _build():
@@ -1397,8 +1465,17 @@ def _r1851_run_cmd_in_background(app, cmd_path: str, label: str, runner_id: str)
             except Exception:
                 pass
             if _r1851_get_runnerpopup_flag(runner_id):
-                _r1851_show_popup(app, label + " – Ausgabe", text, runner_id)
-
+                # R2789: Prefer Report_R####_*.md when it exists (useful for Purge etc.)
+                try:
+                    _here = _r1851_os.path.abspath(_r1851_os.path.dirname(__file__))
+                    _root = _r1851_os.path.abspath(_r1851_os.path.join(_here, "."))
+                    _rpt = _r2789_try_load_report_text(_root, runner_id)
+                except Exception:
+                    _rpt = None
+                if _rpt:
+                    _r1851_show_popup(app, label + " – Report", _rpt, runner_id)
+                else:
+                    _r1851_show_popup(app, label + " – Ausgabe", text, runner_id)
         except Exception:
             return
 
@@ -3112,3 +3189,21 @@ def _runner_kind_from_path(path):
     if suf.endswith('.py'):
         return 'py'
     return None
+
+
+def _r1851_get_latest_report_text(app, runner_id: str) -> str:
+    from pathlib import Path
+    rid = runner_id if runner_id.startswith("R") else "R" + runner_id
+    digits = "".join(c for c in rid if c.isdigit())
+    reports = Path(__file__).resolve().parent.parent / "Reports"
+    cands = []
+    if reports.exists():
+        if digits:
+            cands += list(reports.glob(f"R{digits}_*.txt"))
+            cands += list(reports.glob(f"R{digits}*.txt"))
+        cands += list(reports.glob(f"{rid}_*.txt"))
+        cands += list(reports.glob(f"{rid}*.txt"))
+    if not cands:
+        return ""
+    newest = max(cands, key=lambda p: p.stat().st_mtime)
+    return newest.read_text(encoding="utf-8", errors="replace")

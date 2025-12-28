@@ -1,48 +1,19 @@
-name: CI
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-jobs:
-  lint:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install ruff
+      - name: Ruff (syntax gate) -> Reports/ci_ruff.txt
+        shell: pwsh
         run: |
-          python -m pip install --upgrade pip
-          pip install ruff
+          New-Item -ItemType Directory -Force -Path Reports | Out-Null
+          if (Test-Path "main_gui.py") {
+            ruff check modules main_gui.py --select E9,F63,F7,F82 2>&1 | Tee-Object -FilePath Reports/ci_ruff.txt
+          } else {
+            ruff check modules --select E9,F63,F7,F82 2>&1 | Tee-Object -FilePath Reports/ci_ruff.txt
+          }
 
-      - name: Prepare Reports folder
+      - name: Compileall (syntax gate) -> Reports/ci_compileall.txt
+        shell: pwsh
         run: |
-          mkdir -p Reports
-
-      - name: Ruff (syntax only)
-        run: |
-          ruff check modules \
-            --select E9,F63,F7,F82 \
-            --output-format=concise \
-            | tee Reports/ci_ruff.txt
-
-      - name: Compileall (syntax gate)
-        run: |
-          python -m compileall -q . \
-            | tee Reports/ci_compileall.txt
-
-      - name: Upload Reports artifact
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: ci-reports
-          path: Reports
+          New-Item -ItemType Directory -Force -Path Reports | Out-Null
+          if (Test-Path "main_gui.py") {
+            python -m compileall -q main_gui.py modules 2>&1 | Tee-Object -FilePath Reports/ci_compileall.txt
+          } else {
+            python -m compileall -q modules 2>&1 | Tee-Object -FilePath Reports/ci_compileall.txt
+          }

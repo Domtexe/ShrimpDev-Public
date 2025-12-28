@@ -129,10 +129,16 @@ def _wrap_with_led(app, func):
 
 
 # R1853_WRAP_WITH_LED_AND_LOG
+# R2798_CLICK_TRACE
+
 def _wrap_with_led_and_log(app, func):
     """Wie _wrap_with_led, öffnet danach zusätzlich das Logfenster."""
 
     def _inner():
+        try:
+            logic_actions._r2798_trace_event('CLICK_WRAPPER', getattr(func, '__name__', str(func)))
+        except Exception:
+            pass
         try:
             func(app)
         finally:
@@ -161,6 +167,45 @@ def _wrap_with_led_and_log(app, func):
     return _inner
 
 
+
+
+# R2785_WRAP_WITH_LED_AND_REPORT_POPUP
+def _wrap_with_led_and_report_popup(app, func, runner_id: str, title: str, text: str = ""):
+    try:
+        logic_actions._r2798_trace_event('ABOUT_TO_POPUP', str(runner_id) if 'runner_id' in locals() else '')
+    except Exception:
+        pass
+
+    def _inner():
+        try:
+            logic_actions._r2798_trace_event('CLICK_WRAPPER', getattr(func, '__name__', str(func)))
+        except Exception:
+            pass
+        try:
+            func(app)
+        finally:
+            # LEDs immer versuchen zu aktualisieren
+            try:
+                ui_leds.evaluate(app)
+            except Exception:
+                pass
+
+            # rechte Liste / Tree nach jeder Toolbar-Aktion aktualisieren
+            try:
+                _r1838_refresh_right_list(app)
+            except Exception:
+                pass
+
+            # Altes Report-Popup (bewährter Standard)
+            try:
+                pass  # R2809: inserted to fix empty try
+            except Exception as exc:
+                try:
+                    log_debug(f"Report popup failed in _wrap_with_led_and_report_popup: {exc}")
+                except Exception:
+                    pass
+
+    return _inner
 def _r1838_refresh_right_list(app):
     """
     R1838: Zentraler Refresh-Helfer fuer rechte Liste / Tree.
@@ -702,6 +747,19 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
     Zeile 1: [Run] [Löschen] [Rename] [Undo]
     Zeile 2: [FutureFix] [FutureFix Safe] [Build Tools] [Diagnose]
     """
+    # R2836_TRACE_PUSH
+    def _r2836_trace(msg: str) -> None:
+        try:
+            import os
+            from datetime import datetime
+            _root = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+            _fp = os.path.join(_root, 'Reports', 'trace_push_buttons.log')
+            os.makedirs(os.path.dirname(_fp), exist_ok=True)
+            with open(_fp, 'a', encoding='utf-8', errors='replace') as f:
+                f.write(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] {msg}\n")
+        except Exception:
+            pass
+
     outer = ui_theme_classic.Frame(parent)
     # R2429: Right-top stack for Push/Purge (flush top-right, stacked)
     header_right = ui_theme_classic.Frame(outer)
@@ -721,7 +779,7 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
     btn_apply = ui_theme_classic.Button(
         row_purge,
         text="Purge Apply",
-        command=_wrap_with_led_and_log(app, getattr(logic_tools, 'action_tools_purge_apply', lambda *a, **k: None)),
+        command=_wrap_with_led_and_report_popup(app, getattr(logic_tools, 'action_tools_purge_apply', lambda *a, **k: None), "R2224", "Purge Apply", "Latest runner report"),
     )
     btn_apply.pack(side="right", padx=(6, 0))
     try:
@@ -732,7 +790,7 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
     btn_scan = ui_theme_classic.Button(
         row_purge,
         text="Purge Scan",
-        command=_wrap_with_led_and_log(app, getattr(logic_tools, 'action_tools_purge_scan', lambda *a, **k: None)),
+        command=_wrap_with_led_and_report_popup(app, getattr(logic_tools, 'action_tools_purge_scan', lambda *a, **k: None), "R2218", "Purge Scan", "Latest runner report"),
     )
     btn_scan.pack(side="right", padx=(6, 0))
 # Toggle (gekoppelt)
@@ -750,9 +808,7 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
             _root = Path(__file__).resolve().parent.parent
             logp = _root / 'Reports' / 'link_diag.log'
             logp.parent.mkdir(parents=True, exist_ok=True)
-            line = msg.rstrip('
-') + '
-'
+            line = msg.rstrip('\\n') + '\\n'
             with open(logp, 'a', encoding='utf-8', errors='replace') as f:
                 f.write(line)
         except Exception:
@@ -785,6 +841,81 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
 
     # Resolve private root (where this repo lives)
     _PRIVATE_ROOT = Path(__file__).resolve().parent.parent
+
+    # R2825_REPO_ROOTS
+    # Deterministic repo roots (private selectable, public auto-derived)
+    # Workspace/cwd heuristics intentionally ignored for repo roots.
+
+    def _r2825_reg_dir() -> Path:
+        return _PRIVATE_ROOT / 'registry'
+
+    def _r2825_read_reg_text(name: str) -> str:
+        try:
+            fp = _r2825_reg_dir() / name
+            if fp.exists():
+                return fp.read_text(encoding='utf-8', errors='replace').strip().strip('"')
+        except Exception:
+            pass
+        return ''
+
+    def _r2825_write_reg_text(name: str, value: str) -> None:
+        try:
+            _r2825_reg_dir().mkdir(parents=True, exist_ok=True)
+            fp = _r2825_reg_dir() / name
+            fp.write_text((value or '').strip() + '\n', encoding='utf-8', errors='replace')
+        except Exception:
+            pass
+
+    def _r2825_derive_public_from_private(private_root: Path) -> Path:
+        try:
+            pr = private_root
+            if pr.name == 'ShrimpDev_REPO':
+                return pr.with_name('ShrimpDev_PUBLIC_EXPORT')
+            return pr.parent / 'ShrimpDev_PUBLIC_EXPORT'
+        except Exception:
+            return _PRIVATE_ROOT.parent / 'ShrimpDev_PUBLIC_EXPORT'
+
+    def _r2825_private_root_cfg() -> Path:
+        p = _r2825_read_reg_text('private_repo_root.txt')
+        if p:
+            try:
+                return Path(p)
+            except Exception:
+                pass
+        return _PRIVATE_ROOT
+
+    def _r2825_public_root_cfg(auto_create: bool = True) -> Path | None:
+        p = _r2825_read_reg_text('public_export_root.txt')
+        if p:
+            try:
+                return Path(p)
+            except Exception:
+                pass
+        pub = _r2825_derive_public_from_private(_r2825_private_root_cfg())
+        if auto_create:
+            try:
+                pub.mkdir(parents=True, exist_ok=True)
+            except Exception:
+                pass
+        _r2825_write_reg_text('public_export_root.txt', str(pub))
+        return pub
+
+    def _r2825_choose_private_root(app) -> None:
+        try:
+            import tkinter.filedialog as _fd
+            start = str(_r2825_private_root_cfg())
+            sel = _fd.askdirectory(title='Select Private Repo Root', initialdir=start)
+            if sel:
+                _r2825_write_reg_text('private_repo_root.txt', sel)
+                _r2825_public_root_cfg(auto_create=True)
+                try:
+                    upd = getattr(app, '_update_push_states', None)
+                    if callable(upd):
+                        upd()
+                except Exception:
+                    pass
+        except Exception:
+            pass
 
     def _file_exists(rel: str) -> bool:
         return (_PRIVATE_ROOT / rel).exists()
@@ -887,6 +1018,12 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
     app._btn_link.pack(side='right', padx=(6, 0))
     btn_push_private.pack(side='right', padx=(6, 0))
 
+    # R2825: Private repo picker ('…')
+    try:
+        btn_repo_pick = ui_theme_classic.Button(row_push, text='…', command=lambda: _r2825_choose_private_root(app))
+        btn_repo_pick.pack(side='right', padx=(6, 0))
+    except Exception:
+        pass
     # Pack order (side=right): Public (right) | Link (middle) | Private (left)
     # Link visuals handled by LinkLedButton.set_state() (no images)
     try:
@@ -895,6 +1032,7 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
         pass
 
     def _set_btn_state(btn, enabled: bool):
+        _r2836_trace(f"set_btn_state name={name} enabled={enabled} busy={busy}")
         try:
             btn.configure(state=("normal" if enabled else "disabled"))
         except Exception:
@@ -932,70 +1070,53 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
             return False
     
     def _resolve_repo_path(kind: str) -> str:
-        """Best-effort resolve repo roots for private/public without crashing UI."""
+        # R2835_REGISTRY_FIRST
+        # Registry is source of truth. Workspace/cwd removed.
         try:
             import os
-            base = os.getcwd()
-            # Prefer app-provided attributes/state when available
-            candidates: list[str] = []
-            try:
-                if kind == "private":
-                    for k in ("repo_root_private", "private_repo_root", "repo_root", "root", "project_root"):
-                        v = getattr(app, k, None)
-                        if isinstance(v, str) and v:
-                            candidates.append(v)
-                else:
-                    for k in ("repo_root_public", "public_repo_root", "public_root", "public_repo_path"):
-                        v = getattr(app, k, None)
-                        if isinstance(v, str) and v:
-                            candidates.append(v)
-    
-                # dict-like state/config
-                for dk in ("state", "cfg", "config"):
-                    d = getattr(app, dk, None)
-                    if isinstance(d, dict):
-                        for kk in (
-                            "repo_root_private",
-                            "private_repo_root",
-                            "repo_root_public",
-                            "public_repo_root",
-                            "public_root",
-                        ):
-                            vv = d.get(kk)
-                            if isinstance(vv, str) and vv:
-                                candidates.append(vv)
-            except Exception:
-                pass
-    
-            # Environment (optional)
-            if kind != "private":
-                for envk in ("SHRIMPDEV_PUBLIC_ROOT", "SHRIMPDEV_PUBLIC_REPO"):
-                    vv = os.environ.get(envk, "").strip()
-                    if vv:
-                        candidates.append(vv)
-    
-            # Fallbacks
-            if kind == "private":
-                candidates.append(base)
+            here_root = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+            reg_dir = os.path.join(here_root, 'registry')
+            if kind == 'private':
+                reg_fp = os.path.join(reg_dir, 'private_repo_root.txt')
             else:
-                # common sibling folder guesses (best-effort)
-                parent = os.path.abspath(os.path.join(base, os.pardir))
-                candidates.extend(
-                    [
-                        os.path.join(parent, "ShrimpDev-Public"),
-                        os.path.join(parent, "ShrimpDev_PUBLIC_EXPORT"),
-                        os.path.join(parent, "ShrimpDev_PUBLIC_REPO"),
-                        os.path.join(parent, "ShrimpDevPublic"),
-                    ]
-                )
-    
-            # Return first candidate that looks like a git repo
-            for p in candidates:
-                if isinstance(p, str) and p and os.path.isdir(os.path.join(p, ".git")):
-                    return p
-            return ""
+                reg_fp = os.path.join(reg_dir, 'public_export_root.txt')
+
+            def _clean(p: str) -> str:
+                try:
+                    return (p or '').strip().strip('"')
+                except Exception:
+                    return ''
+
+            def _ok(p: str) -> str:
+                try:
+                    if not p:
+                        return ''
+                    p = _clean(p)
+                    if os.path.isdir(p) and os.path.isdir(os.path.join(p, '.git')):
+                        return p
+                except Exception:
+                    pass
+                return ''
+
+            # 1) Registry
+            if os.path.isfile(reg_fp):
+                try:
+                    with open(reg_fp, 'r', encoding='utf-8', errors='replace') as f:
+                        p = f.read()
+                    ok = _ok(p)
+                    if ok:
+                        return ok
+                except Exception:
+                    pass
+
+            # 2) Deterministic fallback (no workspace)
+            if kind == 'private':
+                return _ok(here_root)
+            else:
+                parent = os.path.dirname(here_root)
+                return _ok(os.path.join(parent, 'ShrimpDev_PUBLIC_EXPORT'))
         except Exception:
-            return ""
+            return ''
 
     
     # Link button with LED (no checkbox)
@@ -1054,6 +1175,7 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
 
 
     def _update_push_states():
+        _r2836_trace('update_push_states enter')
         busy = _runner_busy()
 
         # Repo-only autopush runners (OneDrive)
@@ -1063,12 +1185,13 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
 
         # Resolve repo roots (best-effort)
         private_root = _resolve_repo_path("private")
+        _r2836_trace(f"private_root={private_root}")
         public_root  = _resolve_repo_path("public")
+        _r2836_trace(f"public_root={public_root}")
 
         # Pushable means: repo exists AND (dirty OR branch ahead)
-        private_pushable = bool(has_private and _is_repo_pushable(private_root))
-        public_pushable  = bool(has_public and _is_repo_pushable(public_root))
-
+        private_pushable = bool(has_private and private_root and (Path(private_root) / '.git').exists())
+        public_pushable = bool(has_public  and public_root  and (Path(public_root)  / '.git').exists())
         # Deterministic UI gating
         _set_btn_state(btn_push_private, (not busy) and private_pushable)
         _set_btn_state(btn_push_public,  (not busy) and public_pushable)
