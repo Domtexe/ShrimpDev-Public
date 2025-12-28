@@ -37,3 +37,7 @@ _Angelegt durch R2039 am 2025-12-09 10:21:14_
 - Wrapper werden nicht mehr purged (Whitelist robust)
 - Purge Scan zeigt KEEP/ARCHIVE korrekt
 
+### ✅ Stabilitäts-Update (2025-12-28)
+- CI repariert & gehärtet (R2850/R2851)
+- Push-Buttons konsistent (Wrapper-Gating R2837)
+- Purge schützt Wrapper zuverlässig (Whitelist-Hardening R2839)
