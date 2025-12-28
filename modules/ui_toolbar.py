@@ -1192,6 +1192,16 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
         # Pushable means: repo exists AND (dirty OR branch ahead)
         private_pushable = bool(has_private and private_root and (Path(private_root) / '.git').exists())
         public_pushable = bool(has_public  and public_root  and (Path(public_root)  / '.git').exists())
+
+        # R2837_WRAPPER_GATING
+        try:
+            _tools = Path(__file__).resolve().parent.parent / 'tools'
+            _has_priv_wrap = (_tools / 'R2691.cmd').exists()
+            _has_pub_wrap  = (_tools / 'R2692.cmd').exists()
+            private_pushable = bool(private_pushable and _has_priv_wrap)
+            public_pushable  = bool(public_pushable  and _has_pub_wrap)
+        except Exception:
+            pass
         # Deterministic UI gating
         _set_btn_state(btn_push_private, (not busy) and private_pushable)
         _set_btn_state(btn_push_public,  (not busy) and public_pushable)
