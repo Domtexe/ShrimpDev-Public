@@ -142,3 +142,26 @@ Zeitpunkt: 2025-12-23 23:26:41
 - `_Snapshots/`
 
 Nicht-kanonische Pfade dürfen existieren, werden aber **nicht mehr aktiv beschrieben oder ausgewertet**.
+
+## 🔁 Patch- & Rollback-Pflicht (verbindlich)
+
+- Jeder PATCH-Runner **muss** vor Änderungen ein Backup erstellen.
+- Schlägt ein Patch fehl (Syntax, Compile, Runtime), **ist automatisch ein Rollback auszuführen**.
+- Ein fehlerhafter Zustand darf **niemals** im Arbeitsstand verbleiben.
+
+## 🔘 UI-Regel: Push-Buttons
+
+Push-Buttons dürfen **nur aktiv** sein, wenn **alle** Bedingungen erfüllt sind:
+- gültiger Repo-Root (private/public)
+- zugehöriger Wrapper existiert physisch:
+  - Private Push → `tools/R2691.cmd`
+  - Public Push → `tools/R2692.cmd`
+
+Fehlt ein Wrapper, **muss** der Button deaktiviert sein.
+
+## 🧹 Purge-Regel: Kritische Runner
+
+- Kritische Runner sind über `registry/runner_whitelist.txt` zu schützen.
+- Der Schutz ist **stem-basiert** (`R####`) und unabhängig von `.cmd` / `.py`.
+- Purge darf **keinen** Whitelist-Runner archivieren.
+
