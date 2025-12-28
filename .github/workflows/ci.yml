@@ -16,6 +16,10 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Smoke test (R2857)
+        run: |
+          python tools/R2857.py .
+
       - name: Python syntax gate
         run: |
           if [ -f main_gui.py ]; then
