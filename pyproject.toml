@@ -1,0 +1,45 @@
+[project]
+name = "shrimpdev"
+version = "0.0.0"
+requires-python = ">=3.12"
+description = "ShrimpDev Public export"
+readme = "README.md"
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+# Pragmatisch: Lint + Import-Sort + ein paar sichere Checks
+
+# Runner-/Tool-Skripte sind oft "pragmatischer": wenn nötig, hier gezielt entschärfen
+
+extend-exclude = [
+  "_OldStuff/**",
+  "_Trash/**",
+  "tools/Archiv/**",
+  "Reports/**",
+  "_Archiv/**",
+  "_Exports/**",
+  "modules/snippets/**",
+  "ShrimpDev_PUBLIC_EXPORT/**",
+]
+
+[tool.ruff.lint.per-file-ignores]
+# R2638_RUFF_LEGACY_ZONES: Legacy zones are CI-non-blocking (style/modernization only)
+"modules/ui_*.py" = ["F401", "F841", "B009", "E401", "I001", "UP035", "UP045"]
+"tools/*.py" = ["E402"]  # imports not at top (falls Runner so gebaut sind)
+"modules/ui/**/*.py" = ["E402", "I001", "F821", "F841", "B905", "B010", "B009", "E401"]
+"modules/ui_buttons.py" = ["E402", "E401", "I001", "F821", "F841"]
+"modules/tools/**/*.py" = ["E402", "E401", "I001", "F821", "F841", "UP006", "UP015", "UP035", "UP045"]
+
+"modules/tools/*.py" = ["F401", "F841", "UP035", "UP045", "E401", "I001", "UP015"]
+"modules/module_learningjournal.py" = ["F401", "F841"]
+"modules/ui_project_tree.py" = ["F821"]
+[tool.ruff.lint]
+
+# R2649: CI mode A (legacy) – only fail on fatal issues
+# keep ignores minimal; legacy/style issues allowed in CI
+ignore = []
+
+select = ["E9"]
+

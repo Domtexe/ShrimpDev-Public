@@ -1,0 +1,11 @@
+warning: in the working copy of 'docs/ARCHITECTURE.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/ASSISTANT_BRIEFING.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/DEVELOPMENT_RULES.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/PIPELINE.md', LF will be replaced by CRLF the next time Git touches it
+ ShrimpDev.ini              |   8 [32m+[m[31m-[m
+ docs/ARCHITECTURE.md       |  17 [32m++++[m
+ docs/ASSISTANT_BRIEFING.md |  17 [32m++++[m
+ docs/DEVELOPMENT_RULES.md  |  17 [32m++++[m
+ docs/PIPELINE.md           |  46 [32m+++++++++[m
+ learning_journal.json      | 236 [32m+++++++++++++++++++++++++++++++++++++++++++++[m
+ 6 files changed, 337 insertions(+), 4 deletions(-)
