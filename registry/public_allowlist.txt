@@ -1,4 +1,0 @@
-# Public export allowlist (relative paths from repo root)
-# One entry per line. Comments start with '#'.
-
-docs/PIPELINE.md

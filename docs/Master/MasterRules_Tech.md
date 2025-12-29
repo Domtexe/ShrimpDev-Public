@@ -2659,3 +2659,14 @@ Ende der Architektur-Übersicht.
 - **Erlaubt:** Nur **Parameter**, **lokal definierte Variablen** (im selben Scope) oder **sichere Literale**.
 - **No-Go:** Logging, das neue Namen erfindet → kann in Tk-Callbacks Runtime-crashen (z. B. `NameError`).
 - **Enforcement:** CI Syntax Gate / Smoke Test + Lint-Guard (heuristisch) für f-Strings in Funktionen.
+
+## Public Export Policy
+
+### Public Repo Contract (export policy)
+
+- The public repo is **not a mirror**. It is a curated export.
+- Export must be **allowlist-based** (explicit include patterns).
+- Forbidden in public: backups, reports, debug captures, registry/state, internal pipeline, internal master rules, internal journals.
+- Export must write/update `docs/Public_Contract.md` in the public repo.
+- Any policy breach triggers a repair runner that sanitizes the public repo.
+
