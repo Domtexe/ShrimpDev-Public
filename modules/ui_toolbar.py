@@ -1056,8 +1056,8 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
     except Exception:
         pass
 
-    def _set_btn_state(btn, enabled: bool):
-        _r2836_trace(f"set_btn_state name={name} enabled={enabled} busy={busy}")
+    def _set_btn_state(btn, enabled: bool, busy: bool | None = None):
+        _r2836_trace(f"set_btn_state enabled={enabled}" + (f" busy={busy}" if busy is not None else ""))
         try:
             btn.configure(state=("normal" if enabled else "disabled"))
         except Exception:
@@ -1228,8 +1228,8 @@ def build_toolbar_right(parent: tk.Widget, app: Any) -> tk.Frame:
         except Exception:
             pass
         # Deterministic UI gating
-        _set_btn_state(btn_push_private, (not busy) and private_pushable)
-        _set_btn_state(btn_push_public,  (not busy) and public_pushable)
+        _set_btn_state(btn_push_private, (not busy) and private_pushable, busy=busy)
+        _set_btn_state(btn_push_public, (not busy) and public_pushable, busy=busy)
 
         # Auto-Link: only auto-enable when it makes sense; never auto-disable
         if private_pushable and _public_repo_ok():

@@ -212,3 +212,9 @@ Verhindert Root-Fehlermatches (OneDrive/Startpfad), macht Push-Buttons determini
 - P3 items scanned: 69
 - P3 NOTE converted to non-tasks: 31
 - P3 OBSOLETE auto-closed: 6
+
+<!-- SHRIMPDEV_PIPELINE_FSTRING_GUARD -->
+(P1) TODO: (CI/Guard) Introduce/keep Lint-Guard for f-string unknown identifiers (Runner R2867) and run it before Push.
+(P1) TODO: (UI) Add a toolbar button “Lint Guard (R2867)” near Push/Purge diagnostics; on click run R2867 and show latest report via popup helper.
+(P1) TODO: (Docs) Canonical paths reminder: MasterRules live in docs/Master/*.md; pipeline is docs/PIPELINE.md. All doc-updates must target canonical files (no root MasterRules.md).
+

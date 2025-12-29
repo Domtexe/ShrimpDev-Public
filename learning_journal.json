@@ -30947,6 +30947,270 @@
         "created_by": "LearningEngine"
       },
       "data": {}
+    },
+    {
+      "id": "1859",
+      "timestamp": "2025-12-29 00:38:35.781247",
+      "type": "app_start",
+      "message": "event app_start",
+      "event": {
+        "name": "app_start",
+        "category": "app_start"
+      },
+      "meta": {
+        "source": "ShrimpDev",
+        "created_by": "LearningEngine"
+      },
+      "data": {}
+    },
+    {
+      "id": "1860",
+      "timestamp": "2025-12-29 22:16:21.948074",
+      "type": "intake_save",
+      "message": "event intake_save",
+      "event": {
+        "name": "intake_save",
+        "category": "intake_save"
+      },
+      "meta": {
+        "source": "ShrimpDev",
+        "created_by": "LearningEngine"
+      },
+      "data": {
+        "payload": "ok"
+      }
+    },
+    {
+      "id": "1861",
+      "timestamp": "2025-12-29 22:16:27.298466",
+      "type": "intake_save",
+      "message": "event intake_save",
+      "event": {
+        "name": "intake_save",
+        "category": "intake_save"
+      },
+      "meta": {
+        "source": "ShrimpDev",
+        "created_by": "LearningEngine"
+      },
+      "data": {
+        "payload": "ok"
+      }
+    },
+    {
+      "id": "1862",
+      "timestamp": "2025-12-29 22:17:43.877938",
+      "type": "app_start",
+      "message": "event app_start",
+      "event": {
+        "name": "app_start",
+        "category": "app_start"
+      },
+      "meta": {
+        "source": "ShrimpDev",
+        "created_by": "LearningEngine"
+      },
+      "data": {}
+    },
+    {
+      "id": "1863",
+      "timestamp": "2025-12-29 22:28:03.362808",
+      "type": "intake_save",
+      "message": "event intake_save",
+      "event": {
+        "name": "intake_save",
+        "category": "intake_save"
+      },
+      "meta": {
+        "source": "ShrimpDev",
+        "created_by": "LearningEngine"
+      },
+      "data": {
+        "payload": "ok"
+      }
+    },
+    {
+      "id": "1864",
+      "timestamp": "2025-12-29 22:28:09.972250",
+      "type": "intake_save",
+      "message": "event intake_save",
+      "event": {
+        "name": "intake_save",
+        "category": "intake_save"
+      },
+      "meta": {
+        "source": "ShrimpDev",
+        "created_by": "LearningEngine"
+      },
+      "data": {
+        "payload": "ok"
+      }
+    },
+    {
+      "id": "1865",
+      "timestamp": "2025-12-29 22:28:21.863933",
+      "type": "intake_save",
+      "message": "event intake_save",
+      "event": {
+        "name": "intake_save",
+        "category": "intake_save"
+      },
+      "meta": {
+        "source": "ShrimpDev",
+        "created_by": "LearningEngine"
+      },
+      "data": {
+        "payload": "ok"
+      }
+    },
+    {
+      "id": "1866",
+      "timestamp": "2025-12-29 22:28:27.483493",
+      "type": "intake_save",
+      "message": "event intake_save",
+      "event": {
+        "name": "intake_save",
+        "category": "intake_save"
+      },
+      "meta": {
+        "source": "ShrimpDev",
+        "created_by": "LearningEngine"
+      },
+      "data": {
+        "payload": "ok"
+      }
+    },
+    {
+      "id": "1867",
+      "timestamp": "2025-12-29 22:40:31.785552",
+      "type": "intake_save",
+      "message": "event intake_save",
+      "event": {
+        "name": "intake_save",
+        "category": "intake_save"
+      },
+      "meta": {
+        "source": "ShrimpDev",
+        "created_by": "LearningEngine"
+      },
+      "data": {
+        "payload": "ok"
+      }
+    },
+    {
+      "id": "1868",
+      "timestamp": "2025-12-29 23:04:17.883615",
+      "type": "intake_save",
+      "message": "event intake_save",
+      "event": {
+        "name": "intake_save",
+        "category": "intake_save"
+      },
+      "meta": {
+        "source": "ShrimpDev",
+        "created_by": "LearningEngine"
+      },
+      "data": {
+        "payload": "ok"
+      }
+    },
+    {
+      "id": "1869",
+      "timestamp": "2025-12-29 23:04:23.992915",
+      "type": "intake_save",
+      "message": "event intake_save",
+      "event": {
+        "name": "intake_save",
+        "category": "intake_save"
+      },
+      "meta": {
+        "source": "ShrimpDev",
+        "created_by": "LearningEngine"
+      },
+      "data": {
+        "payload": "ok"
+      }
+    },
+    {
+      "id": "1870",
+      "timestamp": "2025-12-29 23:04:57.720068",
+      "type": "app_start",
+      "message": "event app_start",
+      "event": {
+        "name": "app_start",
+        "category": "app_start"
+      },
+      "meta": {
+        "source": "ShrimpDev",
+        "created_by": "LearningEngine"
+      },
+      "data": {}
+    },
+    {
+      "id": "1871",
+      "timestamp": "2025-12-29 23:25:21.636408",
+      "type": "intake_save",
+      "message": "event intake_save",
+      "event": {
+        "name": "intake_save",
+        "category": "intake_save"
+      },
+      "meta": {
+        "source": "ShrimpDev",
+        "created_by": "LearningEngine"
+      },
+      "data": {
+        "payload": "ok"
+      }
+    },
+    {
+      "id": "1872",
+      "timestamp": "2025-12-29 23:25:29.277123",
+      "type": "intake_save",
+      "message": "event intake_save",
+      "event": {
+        "name": "intake_save",
+        "category": "intake_save"
+      },
+      "meta": {
+        "source": "ShrimpDev",
+        "created_by": "LearningEngine"
+      },
+      "data": {
+        "payload": "ok"
+      }
+    },
+    {
+      "id": "1873",
+      "timestamp": "2025-12-29 23:26:00.593683",
+      "type": "app_start",
+      "message": "event app_start",
+      "event": {
+        "name": "app_start",
+        "category": "app_start"
+      },
+      "meta": {
+        "source": "ShrimpDev",
+        "created_by": "LearningEngine"
+      },
+      "data": {}
+    },
+    {
+      "id": "1874",
+      "timestamp": "2025-12-29 23:26:26.777799",
+      "type": "intake_new",
+      "message": "event intake_new",
+      "event": {
+        "name": "intake_new",
+        "category": "intake_new"
+      },
+      "meta": {
+        "source": "ShrimpDev",
+        "created_by": "LearningEngine"
+      },
+      "data": {
+        "payload": "ok"
+      }
     }
   ]
 }
