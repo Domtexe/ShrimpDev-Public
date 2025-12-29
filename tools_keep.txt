@@ -1,3 +1,0 @@
-# filenames in tools\ root that must stay (one per line)
-# runner ids without extension, e.g. R2411
-R2411
