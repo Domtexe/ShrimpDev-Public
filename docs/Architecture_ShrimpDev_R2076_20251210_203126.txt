@@ -1,0 +1,19 @@
+ShrimpDev Architektur-Notiz – R2076 (Tree-Multi-Rename final)
+============================================================
+
+1. Bereich
+   - Modul: modules.logic_actions
+   - Funktion: action_tree_rename(app, *args, **kwargs)
+
+2. Verhalten
+   - Einzelne Selektion: klassischer Rename mit Dialog.
+   - Mehrfachselektion: Basisname wird abgefragt; Dateien werden zu
+     <Basis>_1.ext, <Basis>_2.ext, ... umbenannt.
+   - Fuer jede Umbenennung wird ein Undo-Eintrag (action='rename')
+     in den Tree-Undo-Stack geschrieben.
+   - Am Ende wird right_list.refresh() aufgerufen (falls vorhanden).
+
+3. Technik
+   - R2076 ersetzt die vorhandene Definition von action_tree_rename
+     komplett zwischen der def-Zeile und der naechsten top-level-
+     Definition (def oder class), ohne andere Funktionen zu beruehren.

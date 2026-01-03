@@ -1,0 +1,3 @@
+R2095: build_agent_tab() in modules/module_agent.py ergaenzt (Minimal-UI).
+Ziel: D:\ShrimpDev\modules\module_agent.py
+Backup: D:\ShrimpDev\_Archiv\module_agent.py.R2095_20251212_215451.bak

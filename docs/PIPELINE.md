@@ -1,4 +1,33 @@
+## P0 – ui_toolbar.py entschärfen (Modularisierung + Stabilitäts-Guards)
 
+**Priorität:** P0 / superurgent  
+**Problem:** `modules/ui_toolbar.py` ist import-kritisch und fragil (Indent/Scope/NameError). Kleine Änderungen können den App-Start crashen.  
+**Ziel:** Startstabilität absichern + Risiko modular reduzieren, ohne Vollrewrite.
+
+**Definition of Done**
+- `ui_toolbar.py` wird deutlich dünner (Orchestrator)
+- Repo/Registry/Action-Routing in eigene Module ausgelagert (testbar)
+- Push/Purge bleiben funktional (keine Verluste)
+- Smoke-Test/Import-Check Runner vorhanden
+
+**Umsetzungsplan (MR: mehrere kleine Runner)**
+1. **READ-ONLY Toolbar Map Report**
+   - listet Funktionen, nested helper, after()-ticks, referenced actions, risk lines
+2. **Extract repo/registry helpers** → `modules/toolbar_helpers_repo.py`
+   - `read_registry_path()`, `is_git_repo()`, `repo_pushable()`
+3. **Extract action router** → `modules/toolbar_action_router.py`
+   - `call_action(app, name)` robust + logging
+4. **Extract Push/Purge section** → `modules/toolbar_sections/section_push_purge.py`
+   - Builder-Funktion, reduziert nested closures im Hauptfile
+5. **ui_toolbar.py cleanup**
+   - nur Orchestrator-Aufrufe, keine Logikvermischung
+6. **Smoke-Test Runner**
+   - `python -c "import modules.ui_toolbar"` (und optional GUI-smoke, wenn vorhanden)
+
+**Risiko/Schutz**
+- Jede Stufe: Backup + Report
+- Keine Voll-Rewrites, keine radikalen Strukturänderungen
+- Wenn Fix nicht direkt verifiziert: Diagnose zuerst (MR)
 
 <!-- SHRIMPDEV_POLICY_REPO_LAYERS -->
 
