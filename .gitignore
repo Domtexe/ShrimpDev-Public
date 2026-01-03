@@ -139,3 +139,6 @@ venv/
 Reports/Report_R2691_*.md
 Reports/Report_R2692_*.md
 Reports/Report_R2693_*.md
+Reports/
+_Backups/
+*.bak
