@@ -169,40 +169,25 @@ def read_ini(path: Path) -> configparser.ConfigParser:
 
 
 def merge_write_ini(
-    project_root: Path,
-    updates: dict,
-    preserve_sections: set | None = None,
-    add_timestamp: bool = True,
-) -> Path:
-    preserve = set(PRESERVE_SECTIONS_DEFAULT)
-    if preserve_sections:
-        preserve |= set(preserve_sections)
+    project_root,
+    updates,
+    preserve_sections=None,
+    add_timestamp=True,
+):
+    """
+    DEPRECATED – Single Writer Policy enforced.
 
-    path = ini_path(project_root)
-    base = read_ini(path) if path.exists() else configparser.ConfigParser()
+    This function is kept ONLY for backward compatibility.
+    All calls are delegated to IniWriter.save_merge_atomic().
+    """
+    from modules.ini_writer import get_writer
 
-    if "Docking" not in updates and base.has_section("Docking"):
-        docking_items = dict(base.items("Docking"))
+    writer = get_writer()
+    if updates:
+        for sec, kv in updates.items():
+            if kv:
+                for k, v in kv.items():
+                    writer.set(sec, k, v, source="legacy_merge_write_ini")
 
-    for sec, kv in (updates or {}).items():
-        if not base.has_section(sec):
-            base.add_section(sec)
-        for k, v in (kv or {}).items():
-            base.set(sec, str(k), str(v))
-
-    if "Docking" not in updates and "docking_items" in locals():
-        if not base.has_section("Docking"):
-            base.add_section("Docking")
-        for k, v in docking_items.items():
-            base.set("Docking", k, v)
-
-    if add_timestamp:
-        if not base.has_section("Meta"):
-            base.add_section("Meta")
-        base.set("Meta", "last_write_ts", _ts())
-
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8") as f:
-        base.write(f)
-
-    return path
+    writer.save_merge_atomic(source="legacy_merge_write_ini")
+    return writer._ini_path

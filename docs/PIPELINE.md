@@ -258,3 +258,16 @@ Verhindert Root-Fehlermatches (OneDrive/Startpfad), macht Push-Buttons determini
 - Export must write/update `docs/Public_Contract.md` in the public repo.
 - Any policy breach triggers a repair runner that sanitizes the public repo.
 
+### P2 – Log-Tab: Suche im Log
+- **Feature:** Suchfeld im Log-Tab, das das Log (Textwidget) live/auf Enter durchsucht.
+- **UX:** Treffer markieren + Next/Prev (F3 / Shift+F3), optional Case-Sensitive Toggle.
+- **Tech:** keine Blockade im UI-Thread bei sehr großem Log (chunked search / after()).
+- **Status:** neu (eingesortiert durch R2988 am 2026-01-03T23:30:09).
+
+### P2 – Agent-Tab: empfohlene Runner automatisch ausführen (prüfen)
+- **Idee:** Agent-Tab, der auf Basis von Zustand/Logs/Reports Runner **vorschlägt**.
+- **Option:** *Auto-Execute* nur **opt-in**.
+- **Sicherheit:** Allowlist erlaubter Runner + **Dry-Run/Preview** + Abbruch/Undo.
+- **Regeln:** niemals destructive Runner ohne explizite Bestätigung; keine Background-Exec.
+- **Status:** neu (eingesortiert durch R2999 am 2026-01-04T00:24:52).
+

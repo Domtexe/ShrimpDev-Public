@@ -443,8 +443,28 @@ class DockManager:
         if str(key) not in keys:
             keys.append(str(key))
         _r2339_cfg_set(cfg, sec, "keys", ",".join(keys))
-        _r2339_cfg_write(cfg, ini)
-
+        # R2997: do NOT overwrite *.open/*.docked here; only persist geometry/keys via IniWriter (merge+atomic)
+        try:
+            from modules.ini_writer import get_writer
+            wri = get_writer()
+            sec = 'Docking'
+            # write only geometry-related fields if present in cfg
+            for suf in ('geometry','w','h','x','y'):
+                try:
+                    opt = str(key) + '.' + str(suf)
+                    if cfg.has_option(sec, opt):
+                        wri.set(sec, opt, cfg.get(sec, opt, fallback=''), source='docking_persist_one')
+                except Exception:
+                    pass
+            # keep/update keys list (never implies open-state)
+            try:
+                if cfg.has_option(sec, 'keys'):
+                    wri.set(sec, 'keys', cfg.get(sec, 'keys', fallback=''), source='docking_persist_one')
+            except Exception:
+                pass
+            wri.save_merge_atomic(source='docking_persist_one')
+        except Exception:
+            pass
     def persist_all(self):
         ini = _r2339_ini_path(self.app)
         try:
@@ -1231,3 +1251,10 @@ try:
     DockManager._restore_one = _r2369_restore_one
 except Exception:
     pass
+
+
+def _normalize_open(val):
+    try:
+        return 1 if int(val) == 1 else 0
+    except Exception:
+        return 0
