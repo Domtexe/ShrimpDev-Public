@@ -141,3 +141,7 @@ Reports/Report_R2692_*.md
 Reports/Report_R2693_*.md
 ShrimpDev.ini
 learning_journal.json
+_Backups/
+tools/R30*.py
+tools/R30*.cmd
+docs/*.bak

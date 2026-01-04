@@ -264,6 +264,14 @@ Verhindert Root-Fehlermatches (OneDrive/Startpfad), macht Push-Buttons determini
 - **Tech:** keine Blockade im UI-Thread bei sehr großem Log (chunked search / after()).
 - **Status:** neu (eingesortiert durch R2988 am 2026-01-03T23:30:09).
 
+### P2 – UI: Searchfield Clear-Button (✕)
+- **Feature:** In Suchfeldern rechtsbündig ein ✕ zum **Clear/Stop**.
+- **UX:** ✕ nur sichtbar wenn Text ≠ leer; Klick leert Feld + setzt Ergebnis/Filter zurück; Fokus bleibt im Feld.
+- **Shortcuts:** `Esc` triggert denselben Clear/Stop; optional Tooltip “Clear”.
+- **Scope:** Log-Tab (Suche), Pipeline-Tab, weitere Filterfelder nach Bedarf.
+- **Status:** neu (eingesortiert durch R3019 am 2026-01-04T16:52:58).
+
+
 ### P2 – Agent-Tab: empfohlene Runner automatisch ausführen (prüfen)
 - **Idee:** Agent-Tab, der auf Basis von Zustand/Logs/Reports Runner **vorschlägt**.
 - **Option:** *Auto-Execute* nur **opt-in**.
@@ -271,3 +279,10 @@ Verhindert Root-Fehlermatches (OneDrive/Startpfad), macht Push-Buttons determini
 - **Regeln:** niemals destructive Runner ohne explizite Bestätigung; keine Background-Exec.
 - **Status:** neu (eingesortiert durch R2999 am 2026-01-04T00:24:52).
 
+
+
+---
+### Inbox (auto-added 2026-01-04 17:53)
+- **Log-Tab Suche:** Suchfeld im Log-Tab, das das Log (Text) durchsucht.
+- **Search-Clear-X:** In Suchfeldern rechtsbündig ein **X** zum Beenden/Leeren der Suche.
+- **Agent-Tab:** Empfohlene Runner automatisch vorschlagen und optional (bewusst) ausführen lassen; Sinn/Nutzen prüfen.
