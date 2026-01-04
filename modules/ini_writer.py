@@ -151,6 +151,11 @@ from pathlib import Path
 import configparser
 from datetime import datetime
 
+# R3001_PUBLIC_EXPORT_GUARDS
+# Defaults for public-export safety guards (used by tools and wrappers)
+PUBLIC_EXPORT_MAX_FALLBACK_FILES = 200  # if allowlist missing/empty and fallback list is huge -> abort
+PUBLIC_EXPORT_MAX_EXTRA_FILES = 5       # tolerated extra files vs keep-list (e.g., public_allowlist.txt)
+
 PRESERVE_SECTIONS_DEFAULT = {"Docking"}
 
 
