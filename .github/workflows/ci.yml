@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  sanity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Smoke test (R2857)
+        run: |
+          if [ -f "tools/R2857.py" ]; then
+            echo "Running smoke test tools/R2857.py"
+            python tools/R2857.py .
+          else
+            echo "SKIP: tools/R2857.py not present (public allowlist export)."
+          fi

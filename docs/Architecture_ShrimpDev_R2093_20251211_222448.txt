@@ -1,0 +1,11 @@
+R2093 – Agent Quality + LastAction
+
+Aenderungen:
+- module_agent.py: Fehlerliste ent-noised (nutzt _is_errorish statt 'error' substring).
+- module_agent.py: Letzte Agent-Aktion wird in _Reports/Agent_LastAction.json gespeichert und im Agent angezeigt.
+- main_gui.py: Nach 'Empfehlung ausfuehren' wird Agent automatisch aktualisiert.
+
+Sicherheit:
+- Backups in _Archiv.
+- Keine Auto-Reparaturen.
+

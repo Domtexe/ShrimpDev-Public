@@ -1,0 +1,4 @@
+R2094 – Fix: Agent_Empfehlung_Ausfuehren try/except Struktur
+
+Ursache: verschachtelter try-Block ohne passendes except (SyntaxError).
+WARN: Zielblock nicht 1:1 gefunden – keine Aenderung durchgefuehrt.

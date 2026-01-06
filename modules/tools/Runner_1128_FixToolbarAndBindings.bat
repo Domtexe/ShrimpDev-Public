@@ -1,0 +1,17 @@
+@echo off
+setlocal
+pushd "%~dp0\.." || ( echo [R1128] CD-Fehler & exit /b 2 )
+echo [R1128] FixToolbarAndBindings
+
+where py >NUL 2>&1
+if %ERRORLEVEL% EQU 0 (
+  py -3 "tools\Runner_1128_FixToolbarAndBindings.py"
+) else (
+  where python >NUL 2>&1 || ( echo [R1128] Python nicht gefunden & popd & exit /b 9009 )
+  python "tools\Runner_1128_FixToolbarAndBindings.py"
+)
+
+set RC=%ERRORLEVEL%
+popd
+echo [R1128] Ende (RC=%RC%)
+exit /b %RC%

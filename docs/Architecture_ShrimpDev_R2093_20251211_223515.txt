@@ -1,0 +1,4 @@
+R2093 - Fix: main_gui Agent Tab safe-load (Crash-Schutz)
+
+- Entfernt: 'from modules import module_agent' (unsicherer Import)
+- Agent-Tab: Safe-Loader Block eingefuegt (verhindert Start-Crash).

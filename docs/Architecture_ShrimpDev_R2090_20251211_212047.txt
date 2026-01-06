@@ -1,0 +1,5 @@
+R2090 – Fix fuer Agent-Tab in main_gui.py
+Aenderungen:
+- Repariert den kaputten Konstruktor von self.tab_agent.
+- Haengt module_agent.agent_summary() als Label in den Agent-Tab.
+- Keine weiteren Teile der GUI wurden veraendert.

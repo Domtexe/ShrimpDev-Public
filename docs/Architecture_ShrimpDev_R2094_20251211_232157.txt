@@ -1,0 +1,5 @@
+R2094 – Fix: Agent_Empfehlung_Ausfuehren try/except Struktur
+
+Ursache: verschachtelter try-Block ohne passendes except (SyntaxError).
+Patch: kaputten Block ersetzt durch zwei saubere try/except Blöcke (showinfo + refresh).
+Syntaxcheck nachher: OK
