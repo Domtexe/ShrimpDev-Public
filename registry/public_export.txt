@@ -1,0 +1,22 @@
+# Public export manifest for ShrimpDev-Public
+# One path per line, relative to repo root. Lines starting with # are comments.
+# Only these entries will be copied to the Public repo.
+#
+# Notes:
+# - Directories are allowed: "modules", "registry", ".github/workflows"
+# - Files are allowed: "README.md"
+# - Avoid "docs" as a whole. Prefer explicit docs files.
+
+# --- core ---
+modules
+registry
+.github/workflows
+
+README.md
+CHANGELOG.md
+CURRENT_VERSION.txt
+.gitignore
+
+# --- docs (explicit files only; add/remove as needed) ---
+docs/README.md
+docs/ARCHITECTURE.md
