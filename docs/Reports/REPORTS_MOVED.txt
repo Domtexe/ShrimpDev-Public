@@ -1,3 +1,0 @@
-Reports wurden zentralisiert.
-Neuer Ort: C:\Users\rasta\OneDrive\ShrimpDev\Reports
-Hinweis: Keine Duplikate. Dieser Ordner ist nur Kompatibilitaet.

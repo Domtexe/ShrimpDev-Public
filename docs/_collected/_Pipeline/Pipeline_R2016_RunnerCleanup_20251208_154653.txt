@@ -1,0 +1,13 @@
+[TODO][HIGH] Runner-Cleanup – Archivierung unbenutzter Runner
+
+Beschreibung:
+  - Basierend auf R2016-Analyse sollen unbenutzte Runner
+    (ohne Referenzen im Code) nach _Archiv/_OldRunners verschoben werden.
+
+Kandidaten (unbenutzte Runner):
+- (keine; alle Runner haben Referenzen)
+
+Hinweis:
+  - R2016 fuehrt KEINE Verschiebung durch.
+  - Ein separater Cleanup-Runner (z.B. R20xx) kann die hier
+    gelisteten Runner spaeter sicher nach _Archiv/_OldRunners verschieben.

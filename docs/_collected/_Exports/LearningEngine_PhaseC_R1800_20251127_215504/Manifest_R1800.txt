@@ -1,0 +1,22 @@
+R1800 – LearningEngine Phase C Export-Manifest
+============================================================
+
+Projekt-Root:
+  D:\ShrimpDev
+
+Kopierte Dateien:
+  - _Reports\R1715_LearningJournal_Report.json
+  - dev_intake.ini
+  - learning_journal.json
+  - modules\config_loader.py
+  - modules\config_mgr.py
+  - modules\logic_actions.py
+  - modules\ui_leds.py
+  - ShrimpDev.ini
+
+Erwartete, aber nicht gefundene Dateien:
+  - modules\learning_engine.py
+  - modules\ui_intake.py
+
+Hinweis:
+  Diesen Ordner komplett als ZIP packen und im Chat hochladen, damit die nächste Phase mit echten Dateien arbeiten kann.

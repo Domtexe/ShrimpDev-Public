@@ -1,0 +1,2701 @@
+Starte Runner: D:\ShrimpDev\tools\R1680.cmd
+
+[R1680] Starte R1680.py aus "D:\ShrimpDev"
+D:\ShrimpDev\modules\logic_tools.py:1: SyntaxWarning: invalid escape sequence '\R'
+  """
+D:\ShrimpDev\modules\module_runner_exec.py:2: SyntaxWarning: invalid escape sequence '\R'
+  """
+D:\ShrimpDev\modules\tools\Runner_1036_NameDetect_FromCode.py:1: SyntaxWarning: invalid escape sequence '\R'
+  """
+D:\ShrimpDev\modules\tools\Runner_1051_ExtDetectStrong_FixSub.py:1: SyntaxWarning: invalid escape sequence '\s'
+  """
+[R1680] 2025-11-25 12:24:53 SyntaxCheck gestartet.
+[R1680] 2025-11-25 12:24:53 Projekt-Root: D:\ShrimpDev
+[R1680] Gefundene Python-Dateien: 1213
+[R1680] Check 1/1213: main_gui.py
+[R1680] OK: D:\ShrimpDev\main_gui.py
+[R1680] Check 2/1213: main_gui II.py
+[R1680] OK: D:\ShrimpDev\main_gui II.py
+[R1680] Check 3/1213: modules\common_tabs.py
+[R1680] OK: D:\ShrimpDev\modules\common_tabs.py
+[R1680] Check 4/1213: modules\config_loader.py
+[R1680] OK: D:\ShrimpDev\modules\config_loader.py
+[R1680] Check 5/1213: modules\config_mgr.py
+[R1680] OK: D:\ShrimpDev\modules\config_mgr.py
+[R1680] Check 6/1213: modules\logic_actions.py
+[R1680] OK: D:\ShrimpDev\modules\logic_actions.py
+[R1680] Check 7/1213: modules\logic_intake.py
+[R1680] OK: D:\ShrimpDev\modules\logic_intake.py
+[R1680] Check 8/1213: modules\logic_tools.py
+[R1680] OK: D:\ShrimpDev\modules\logic_tools.py
+[R1680] Check 9/1213: modules\main_shortcuts_patch.py
+[R1680] OK: D:\ShrimpDev\modules\main_shortcuts_patch.py
+[R1680] Check 10/1213: modules\module_agent.py
+[R1680] OK: D:\ShrimpDev\modules\module_agent.py
+[R1680] Check 11/1213: modules\module_agent_ui.py
+[R1680] OK: D:\ShrimpDev\modules\module_agent_ui.py
+[R1680] Check 12/1213: modules\module_code_intake.py
+[R1680] OK: D:\ShrimpDev\modules\module_code_intake.py
+[R1680] Check 13/1213: modules\module_code_intake_v1.py
+[R1680] OK: D:\ShrimpDev\modules\module_code_intake_v1.py
+[R1680] Check 14/1213: modules\module_gate_panel.py
+[R1680] OK: D:\ShrimpDev\modules\module_gate_panel.py
+[R1680] Check 15/1213: modules\module_gate_smoke.py
+[R1680] OK: D:\ShrimpDev\modules\module_gate_smoke.py
+[R1680] Check 16/1213: modules\module_intake_workers.py
+[R1680] OK: D:\ShrimpDev\modules\module_intake_workers.py
+[R1680] Check 17/1213: modules\module_learningjournal.py
+[R1680] OK: D:\ShrimpDev\modules\module_learningjournal.py
+[R1680] Check 18/1213: modules\module_learningjournal_ui_ext.py
+[R1680] OK: D:\ShrimpDev\modules\module_learningjournal_ui_ext.py
+[R1680] Check 19/1213: modules\module_patch_release.py
+[R1680] OK: D:\ShrimpDev\modules\module_patch_release.py
+[R1680] Check 20/1213: modules\module_preflight.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\modules\module_preflight.py
+    Zeile 35, Spalte 37
+    Text: rep.write_text("\n".join([f\"{a}\t{b}\t{c}\" for a,b,c in rows]), encoding="utf-8")
+    Nachricht: unexpected character after line continuation character
+[R1680] Check 21/1213: modules\module_project_scan.py
+[R1680] OK: D:\ShrimpDev\modules\module_project_scan.py
+[R1680] Check 22/1213: modules\module_project_ui.py
+[R1680] OK: D:\ShrimpDev\modules\module_project_ui.py
+[R1680] Check 23/1213: modules\module_registry.py
+[R1680] OK: D:\ShrimpDev\modules\module_registry.py
+[R1680] Check 24/1213: modules\module_runnerbar.py
+[R1680] OK: D:\ShrimpDev\modules\module_runnerbar.py
+[R1680] Check 25/1213: modules\module_runner_board.py
+[R1680] OK: D:\ShrimpDev\modules\module_runner_board.py
+[R1680] Check 26/1213: modules\module_runner_exec.py
+[R1680] OK: D:\ShrimpDev\modules\module_runner_exec.py
+[R1680] Check 27/1213: modules\module_runner_popup.py
+[R1680] OK: D:\ShrimpDev\modules\module_runner_popup.py
+[R1680] Check 28/1213: modules\module_settings_ui.py
+[R1680] OK: D:\ShrimpDev\modules\module_settings_ui.py
+[R1680] Check 29/1213: modules\module_shim_intake.py
+[R1680] OK: D:\ShrimpDev\modules\module_shim_intake.py
+[R1680] Check 30/1213: modules\Runner_944_AllGUIIntegrate.py
+[R1680] OK: D:\ShrimpDev\modules\Runner_944_AllGUIIntegrate.py
+[R1680] Check 31/1213: modules\Runner_999_IntakeINI.py
+[R1680] OK: D:\ShrimpDev\modules\Runner_999_IntakeINI.py
+[R1680] Check 32/1213: modules\ui_buttons.py
+[R1680] OK: D:\ShrimpDev\modules\ui_buttons.py
+[R1680] Check 33/1213: modules\ui_filters.py
+[R1680] OK: D:\ShrimpDev\modules\ui_filters.py
+[R1680] Check 34/1213: modules\ui_leds.py
+[R1680] OK: D:\ShrimpDev\modules\ui_leds.py
+[R1680] Check 35/1213: modules\ui_left_panel.py
+[R1680] OK: D:\ShrimpDev\modules\ui_left_panel.py
+[R1680] Check 36/1213: modules\ui_lists.py
+[R1680] OK: D:\ShrimpDev\modules\ui_lists.py
+[R1680] Check 37/1213: modules\ui_menus.py
+[R1680] OK: D:\ShrimpDev\modules\ui_menus.py
+[R1680] Check 38/1213: modules\ui_project_tree.py
+[R1680] OK: D:\ShrimpDev\modules\ui_project_tree.py
+[R1680] Check 39/1213: modules\ui_statusbar.py
+[R1680] OK: D:\ShrimpDev\modules\ui_statusbar.py
+[R1680] Check 40/1213: modules\ui_themes.py
+[R1680] OK: D:\ShrimpDev\modules\ui_themes.py
+[R1680] Check 41/1213: modules\ui_theme_classic.py
+[R1680] OK: D:\ShrimpDev\modules\ui_theme_classic.py
+[R1680] Check 42/1213: modules\ui_toolbar.py
+[R1680] OK: D:\ShrimpDev\modules\ui_toolbar.py
+[R1680] Check 43/1213: modules\ui_toolbar_dev.py
+[R1680] OK: D:\ShrimpDev\modules\ui_toolbar_dev.py
+[R1680] Check 44/1213: modules\ui_tooltips.py
+[R1680] OK: D:\ShrimpDev\modules\ui_tooltips.py
+[R1680] Check 45/1213: modules\__init__.py
+[R1680] OK: D:\ShrimpDev\modules\__init__.py
+[R1680] Check 46/1213: modules\learning_engine\action_logger.py
+[R1680] OK: D:\ShrimpDev\modules\learning_engine\action_logger.py
+[R1680] Check 47/1213: modules\learning_engine\cluster.py
+[R1680] OK: D:\ShrimpDev\modules\learning_engine\cluster.py
+[R1680] Check 48/1213: modules\learning_engine\engine_core.py
+[R1680] OK: D:\ShrimpDev\modules\learning_engine\engine_core.py
+[R1680] Check 49/1213: modules\learning_engine\graph.py
+[R1680] OK: D:\ShrimpDev\modules\learning_engine\graph.py
+[R1680] Check 50/1213: modules\learning_engine\heatmap.py
+[R1680] OK: D:\ShrimpDev\modules\learning_engine\heatmap.py
+[R1680] Check 51/1213: modules\learning_engine\knowledge_graph.py
+[R1680] OK: D:\ShrimpDev\modules\learning_engine\knowledge_graph.py
+[R1680] Check 52/1213: modules\learning_engine\pattern_analyzer.py
+[R1680] OK: D:\ShrimpDev\modules\learning_engine\pattern_analyzer.py
+[R1680] Check 53/1213: modules\learning_engine\persistence.py
+[R1680] OK: D:\ShrimpDev\modules\learning_engine\persistence.py
+[R1680] Check 54/1213: modules\learning_engine\suggestion_provider.py
+[R1680] OK: D:\ShrimpDev\modules\learning_engine\suggestion_provider.py
+[R1680] Check 55/1213: modules\learning_engine\__init__.py
+[R1680] OK: D:\ShrimpDev\modules\learning_engine\__init__.py
+[R1680] Check 56/1213: modules\snippets\agent_client.py
+[R1680] OK: D:\ShrimpDev\modules\snippets\agent_client.py
+[R1680] Check 57/1213: modules\snippets\file_detect_snippet.py
+[R1680] OK: D:\ShrimpDev\modules\snippets\file_detect_snippet.py
+[R1680] Check 58/1213: modules\snippets\intake_toolbar_reflow_helper.py
+[R1680] OK: D:\ShrimpDev\modules\snippets\intake_toolbar_reflow_helper.py
+[R1680] Check 59/1213: modules\snippets\logger_snippet.py
+[R1680] OK: D:\ShrimpDev\modules\snippets\logger_snippet.py
+[R1680] Check 60/1213: modules\snippets\safeio.py
+[R1680] OK: D:\ShrimpDev\modules\snippets\safeio.py
+[R1680] Check 61/1213: modules\snippets\snippet_auto_category.py
+[R1680] OK: D:\ShrimpDev\modules\snippets\snippet_auto_category.py
+[R1680] Check 62/1213: modules\snippets\snippet_dev_intake_toolbar.py
+[R1680] OK: D:\ShrimpDev\modules\snippets\snippet_dev_intake_toolbar.py
+[R1680] Check 63/1213: modules\snippets\snippet_file_ops.py
+[R1680] OK: D:\ShrimpDev\modules\snippets\snippet_file_ops.py
+[R1680] Check 64/1213: modules\snippets\snippet_intake_detect_v2.py
+[R1680] OK: D:\ShrimpDev\modules\snippets\snippet_intake_detect_v2.py
+[R1680] Check 65/1213: modules\snippets\snippet_intake_syntax_gate.py
+[R1680] OK: D:\ShrimpDev\modules\snippets\snippet_intake_syntax_gate.py
+[R1680] Check 66/1213: modules\snippets\tooltip.py
+[R1680] OK: D:\ShrimpDev\modules\snippets\tooltip.py
+[R1680] Check 67/1213: modules\snippets\ui_helpers.py
+[R1680] OK: D:\ShrimpDev\modules\snippets\ui_helpers.py
+[R1680] Check 68/1213: modules\snippets\__init__.py
+[R1680] OK: D:\ShrimpDev\modules\snippets\__init__.py
+[R1680] Check 69/1213: modules\tools\module_intake_core_addons.py
+[R1680] OK: D:\ShrimpDev\modules\tools\module_intake_core_addons.py
+[R1680] Check 70/1213: modules\tools\patchlib_guard.py
+[R1680] OK: D:\ShrimpDev\modules\tools\patchlib_guard.py
+D:\ShrimpDev\modules\tools\Runner_1069_FixIntake_GuardToolbar.py:2: SyntaxWarning: invalid escape sequence '\R'
+  """
+D:\ShrimpDev\modules\tools\Runner_1078_WriteGuard_Clean.py:2: SyntaxWarning: invalid escape sequence '\R'
+  """
+D:\ShrimpDev\modules\tools\Runner_1089_ApplyNameDetect_GuardRun_Delete.py:3: SyntaxWarning: invalid escape sequence '\S'
+  """
+D:\ShrimpDev\modules\tools\Runner_1099_FixIntake_RepairIndentPass2.py:2: SyntaxWarning: invalid escape sequence '\m'
+  """
+D:\ShrimpDev\modules\tools\Runner_1100_FixIntake_ReindentAll.py:3: SyntaxWarning: invalid escape sequence '\S'
+  """
+D:\ShrimpDev\modules\tools\Runner_1100_Reindent_IntakeFrame_Harden.py:2: SyntaxWarning: invalid escape sequence '\m'
+  """
+[R1680] Check 71/1213: modules\tools\Runner_1000_IntakeActions.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1000_IntakeActions.py
+[R1680] Check 72/1213: modules\tools\Runner_1001_AlwaysOnTopFixImports.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1001_AlwaysOnTopFixImports.py
+[R1680] Check 73/1213: modules\tools\Runner_1002_SnippetsRestore.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1002_SnippetsRestore.py
+[R1680] Check 74/1213: modules\tools\Runner_1003_FixIndentFallbackLogger.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1003_FixIndentFallbackLogger.py
+[R1680] Check 75/1213: modules\tools\Runner_1004_ShrimpDev_PathFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1004_ShrimpDev_PathFix.py
+[R1680] Check 76/1213: modules\tools\Runner_1005_MainGUI_Rewrite.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1005_MainGUI_Rewrite.py
+[R1680] Check 77/1213: modules\tools\Runner_1006_ConfigMgr_Restore.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1006_ConfigMgr_Restore.py
+[R1680] Check 78/1213: modules\tools\Runner_1007_UIFrames_Restore.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1007_UIFrames_Restore.py
+[R1680] Check 79/1213: modules\tools\Runner_1008_IntakeUX_Revamp.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1008_IntakeUX_Revamp.py
+[R1680] Check 80/1213: modules\tools\Runner_1010_IntakeUX_Refine.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1010_IntakeUX_Refine.py
+[R1680] Check 81/1213: modules\tools\Runner_1011_IntakeUX_ActionsBar.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1011_IntakeUX_ActionsBar.py
+[R1680] Check 82/1213: modules\tools\Runner_1012_FixMenuIndent.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1012_FixMenuIndent.py
+[R1680] Check 83/1213: modules\tools\Runner_1013_SafeBoot_Debug.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1013_SafeBoot_Debug.py
+[R1680] Check 84/1213: modules\tools\Runner_1014_SafeBoot_StringFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1014_SafeBoot_StringFix.py
+[R1680] Check 85/1213: modules\tools\Runner_1015_SafeBoot_StringHardFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1015_SafeBoot_StringHardFix.py
+[R1680] Check 86/1213: modules\tools\Runner_1016_IntakeFix_ContextActions.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1016_IntakeFix_ContextActions.py
+[R1680] Check 87/1213: modules\tools\Runner_1017_IntakeUX_CopyPasteName.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1017_IntakeUX_CopyPasteName.py
+[R1680] Check 88/1213: modules\tools\Runner_1018_ExtOverride_AndQA.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1018_ExtOverride_AndQA.py
+[R1680] Check 89/1213: modules\tools\Runner_1019_ExtOverride_DetectFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1019_ExtOverride_DetectFix.py
+[R1680] Check 90/1213: modules\tools\Runner_1020_SafeBoot_Logfix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1020_SafeBoot_Logfix.py
+[R1680] Check 91/1213: modules\tools\Runner_1021_SafeBoot_FinalFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1021_SafeBoot_FinalFix.py
+[R1680] Check 92/1213: modules\tools\Runner_1022_MainGUI_SafeImportsRepair.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1022_MainGUI_SafeImportsRepair.py
+[R1680] Check 93/1213: modules\tools\Runner_1023_SafeFallbackRepair.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1023_SafeFallbackRepair.py
+[R1680] Check 94/1213: modules\tools\Runner_1024_LoggerAtomicFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1024_LoggerAtomicFix.py
+[R1680] Check 95/1213: modules\tools\Runner_1025_SafeFallbackCapture.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1025_SafeFallbackCapture.py
+[R1680] Check 96/1213: modules\tools\Runner_1026_IntakeIndentFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1026_IntakeIndentFix.py
+[R1680] Check 97/1213: modules\tools\Runner_1027_IntakeSaveRewrite.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1027_IntakeSaveRewrite.py
+[R1680] Check 98/1213: modules\tools\Runner_1028_IntakeModule_Reset.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1028_IntakeModule_Reset.py
+[R1680] Check 99/1213: modules\tools\Runner_1030_IntakeButtons_Fix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1030_IntakeButtons_Fix.py
+[R1680] Check 100/1213: modules\tools\Runner_1031_ButtonsForceWire_Debug.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1031_ButtonsForceWire_Debug.py
+[R1680] Check 101/1213: modules\tools\Runner_1032_ButtonsHardBind_Ping.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1032_ButtonsHardBind_Ping.py
+[R1680] Check 102/1213: modules\tools\Runner_1033_FixBrokenPanedwindow.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1033_FixBrokenPanedwindow.py
+[R1680] Check 103/1213: modules\tools\Runner_1034_IntakeDetect_SmartFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1034_IntakeDetect_SmartFix.py
+[R1680] Check 104/1213: modules\tools\Runner_1035_DetectWire_All.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1035_DetectWire_All.py
+[R1680] Check 105/1213: modules\tools\Runner_1036_NameDetect_FromCode.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1036_NameDetect_FromCode.py
+[R1680] Check 106/1213: modules\tools\Runner_1037_FixDetectSyntax.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1037_FixDetectSyntax.py
+[R1680] Check 107/1213: modules\tools\Runner_1038_DetectBlock_Rewrite.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1038_DetectBlock_Rewrite.py
+[R1680] Check 108/1213: modules\tools\Runner_1039_IndentFix_TryExcept.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1039_IndentFix_TryExcept.py
+[R1680] Check 109/1213: modules\tools\Runner_1040_Intake_FullReset.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1040_Intake_FullReset.py
+[R1680] Check 110/1213: modules\tools\Runner_1041_AutoDetect_OnPaste.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1041_AutoDetect_OnPaste.py
+[R1680] Check 111/1213: modules\tools\Runner_1042_AutoDetect_Hardwire_Scan.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1042_AutoDetect_Hardwire_Scan.py
+[R1680] Check 112/1213: modules\tools\Runner_1043_NoBell_StripTypeHints.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1043_NoBell_StripTypeHints.py
+[R1680] Check 113/1213: modules\tools\Runner_1044_Intake_Reinstall_Clean.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1044_Intake_Reinstall_Clean.py
+[R1680] Check 114/1213: modules\tools\Runner_1045_NameForceAndDateCols.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1045_NameForceAndDateCols.py
+[R1680] Check 115/1213: modules\tools\Runner_1046_NameDocstring_Fallback_DateCols.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1046_NameDocstring_Fallback_DateCols.py
+[R1680] Check 116/1213: modules\tools\Runner_1047_Intake_CleanHardReset.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1047_Intake_CleanHardReset.py
+[R1680] Check 117/1213: modules\tools\Runner_1048_Intake_DeleteAndRecent50.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1048_Intake_DeleteAndRecent50.py
+[R1680] Check 118/1213: modules\tools\Runner_1049_Intake_ResizeNameExt.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1049_Intake_ResizeNameExt.py
+[R1680] Check 119/1213: modules\tools\Runner_1050_ExtDetectStrong.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1050_ExtDetectStrong.py
+[R1680] Check 120/1213: modules\tools\Runner_1051_ExtDetectStrong_FixSub.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1051_ExtDetectStrong_FixSub.py
+[R1680] Check 121/1213: modules\tools\Runner_1052_FixEntExtGrid.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1052_FixEntExtGrid.py
+[R1680] Check 122/1213: modules\tools\Runner_1053_Intake_ClearOnDelete_RefreshOnPaste.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1053_Intake_ClearOnDelete_RefreshOnPaste.py
+[R1680] Check 123/1213: modules\tools\Runner_1054_Intake_QuoteFix_ClearDelete_PasteReset.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1054_Intake_QuoteFix_ClearDelete_PasteReset.py
+[R1680] Check 124/1213: modules\tools\Runner_1055_FixIndent_OnEditorModified.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1055_FixIndent_OnEditorModified.py
+[R1680] Check 125/1213: modules\tools\Runner_1056_FixIndent_OnEditorModified_Strict.py
+D:\ShrimpDev\modules\tools\Runner_1112_DeepRepair_IntakeAndGUI.py:2: SyntaxWarning: invalid escape sequence '\m'
+  """
+D:\ShrimpDev\modules\tools\Runner_1116f_DumpSyntaxContext.py:2: SyntaxWarning: invalid escape sequence '\S'
+  """
+D:\ShrimpDev\modules\tools\Runner_1132_FixGuardParent.py:2: SyntaxWarning: invalid escape sequence '\m'
+  """
+D:\ShrimpDev\modules\tools\Runner_1134_IntakePathFix.py:2: SyntaxWarning: invalid escape sequence '\S'
+  """
+D:\ShrimpDev\modules\tools\Runner_1138_IntakeLoadFix2.py:2: SyntaxWarning: invalid escape sequence '\m'
+  """
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1056_FixIndent_OnEditorModified_Strict.py
+[R1680] Check 126/1213: modules\tools\Runner_1057_IndentAudit_IntakeFrame.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1057_IndentAudit_IntakeFrame.py
+[R1680] Check 127/1213: modules\tools\Runner_1058_FixKeyAndModified_Block.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1058_FixKeyAndModified_Block.py
+[R1680] Check 128/1213: modules\tools\Runner_1059_FixDeleteIndent.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1059_FixDeleteIndent.py
+[R1680] Check 129/1213: modules\tools\Runner_1060_FixAskYesNo_StringConcat.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1060_FixAskYesNo_StringConcat.py
+[R1680] Check 130/1213: modules\tools\Runner_1061_FixAskYesNo_StringEscape.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1061_FixAskYesNo_StringEscape.py
+[R1680] Check 131/1213: modules\tools\Runner_1062_FutureAtTop.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1062_FutureAtTop.py
+[R1680] Check 132/1213: modules\tools\Runner_1063_Intake_SanityGuard.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1063_Intake_SanityGuard.py
+[R1680] Check 133/1213: modules\tools\Runner_1064_IntegrateGuard_UI.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1064_IntegrateGuard_UI.py
+[R1680] Check 134/1213: modules\tools\Runner_1065_IntakeRescueAndRollback.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1065_IntakeRescueAndRollback.py
+[R1680] Check 135/1213: modules\tools\Runner_1066_FixGuard_MissingHelpers.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\modules\tools\Runner_1066_FixGuard_MissingHelpers.py
+    Zeile 75, Spalte 37
+    Text: if src[i:i+3] in ('\"\"\"', "'''"):
+    Nachricht: unterminated string literal (detected at line 75)
+[R1680] Check 136/1213: modules\tools\Runner_1067_WriteGuard_Safe.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1067_WriteGuard_Safe.py
+[R1680] Check 137/1213: modules\tools\Runner_1068_FixLonelyTry.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1068_FixLonelyTry.py
+[R1680] Check 138/1213: modules\tools\Runner_1069_FixIntake_GuardToolbar.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1069_FixIntake_GuardToolbar.py
+[R1680] Check 139/1213: modules\tools\Runner_1070_FixSemicolonLines.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1070_FixSemicolonLines.py
+[R1680] Check 140/1213: modules\tools\Runner_1071_AddRunButton_PyExec.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1071_AddRunButton_PyExec.py
+[R1680] Check 141/1213: modules\tools\Runner_1072_InsertRunButton_AnyAnchor.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1072_InsertRunButton_AnyAnchor.py
+[R1680] Check 142/1213: modules\tools\Runner_1073_FixToolbarAndRunButton.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1073_FixToolbarAndRunButton.py
+[R1680] Check 143/1213: modules\tools\Runner_1074b_DeleteButtons_WithRecycleBin_Fix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1074b_DeleteButtons_WithRecycleBin_Fix.py
+[R1680] Check 144/1213: modules\tools\Runner_1074_DeleteButtons_WithRecycleBin.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1074_DeleteButtons_WithRecycleBin.py
+[R1680] Check 145/1213: modules\tools\Runner_1077_FixIndent_UIBlock.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1077_FixIndent_UIBlock.py
+[R1680] Check 146/1213: modules\tools\Runner_1078_WriteGuard_Clean.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1078_WriteGuard_Clean.py
+[R1680] Check 147/1213: modules\tools\Runner_1082_Guard_VerboseOK.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\modules\tools\Runner_1082_Guard_VerboseOK.py
+    Zeile 29, Spalte 22
+    Text: c2 = s.count("'''")
+    Nachricht: unterminated string literal (detected at line 29)
+[R1680] Check 148/1213: modules\tools\Runner_1084_FixGuard_ArgParse.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\modules\tools\Runner_1084_FixGuard_ArgParse.py
+    Zeile 30, Spalte 54
+    Text: return (s.count('"""') % 2 != 0) or (s.count("'''") % 2 != 0)
+    Nachricht: unterminated string literal (detected at line 30)
+[R1680] Check 149/1213: modules\tools\Runner_1089_ApplyNameDetect_GuardRun_Delete.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1089_ApplyNameDetect_GuardRun_Delete.py
+[R1680] Check 150/1213: modules\tools\Runner_1090_FixIntake_Indent.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1090_FixIntake_Indent.py
+[R1680] Check 151/1213: modules\tools\Runner_1092_FixRecycleBinIndent.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1092_FixRecycleBinIndent.py
+[R1680] Check 152/1213: modules\tools\Runner_1093_FixIntake_IndentGlobal.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1093_FixIntake_IndentGlobal.py
+[R1680] Check 153/1213: modules\tools\Runner_1094_FixRecycleBinIndentFinal.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1094_FixRecycleBinIndentFinal.py
+[R1680] Check 154/1213: modules\tools\Runner_1095_ClassSafeguard_Intake.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1095_ClassSafeguard_Intake.py
+[R1680] Check 155/1213: modules\tools\Runner_1096_Reindent_IntakeMethods.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1096_Reindent_IntakeMethods.py
+[R1680] Check 156/1213: modules\tools\Runner_1097b_FixIntake_Reindent2.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1097b_FixIntake_Reindent2.py
+[R1680] Check 157/1213: modules\tools\Runner_1097c_FixIntake_ReindentHard.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1097c_FixIntake_ReindentHard.py
+[R1680] Check 158/1213: modules\tools\Runner_1097d_Reindent_Intake_Strict.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1097d_Reindent_Intake_Strict.py
+[R1680] Check 159/1213: modules\tools\Runner_1097_FixIntake_Reindent.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1097_FixIntake_Reindent.py
+[R1680] Check 160/1213: modules\tools\Runner_1098_FixIntake_ReindentClassBlocks.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1098_FixIntake_ReindentClassBlocks.py
+[R1680] Check 161/1213: modules\tools\Runner_1099_FixIntake_RepairIndentPass2.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1099_FixIntake_RepairIndentPass2.py
+[R1680] Check 162/1213: modules\tools\Runner_1100_FixIntake_ReindentAll.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1100_FixIntake_ReindentAll.py
+[R1680] Check 163/1213: modules\tools\Runner_1100_Reindent_IntakeFrame_Harden.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1100_Reindent_IntakeFrame_Harden.py
+[R1680] Check 164/1213: modules\tools\Runner_1101a_FixReplace_RecycleBin.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1101a_FixReplace_RecycleBin.py
+[R1680] Check 165/1213: modules\tools\Runner_1101_FixIntake_ReindentAll.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1101_FixIntake_ReindentAll.py
+[R1680] Check 166/1213: modules\tools\Runner_1102_FixIntake_ReindentAndScope.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1102_FixIntake_ReindentAndScope.py
+[R1680] Check 167/1213: modules\tools\Runner_1103_FixIntake_ReindentAndScope.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1103_FixIntake_ReindentAndScope.py
+[R1680] Check 168/1213: modules\tools\Runner_1104_ReplaceIntake_Clean.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1104_ReplaceIntake_Clean.py
+[R1680] Check 169/1213: modules\tools\Runner_1105_FixDeleteSignature_Compile.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1105_FixDeleteSignature_Compile.py
+[R1680] Check 170/1213: modules\tools\Runner_1106b_IntegrateGuard_UI.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1106b_IntegrateGuard_UI.py
+[R1680] Check 171/1213: modules\tools\Runner_1106c_IntegrateGuard_UI_FixedFuture.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1106c_IntegrateGuard_UI_FixedFuture.py
+[R1680] Check 172/1213: modules\tools\Runner_1106_ShrimpGuard_Integriert.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1106_ShrimpGuard_Integriert.py
+[R1680] Check 173/1213: modules\tools\Runner_1107b_AutoRepair_IndentBlocks_ReturnFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1107b_AutoRepair_IndentBlocks_ReturnFix.py
+[R1680] Check 174/1213: modules\tools\Runner_1107_AutoRepair_IndentBlocks.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1107_AutoRepair_IndentBlocks.py
+D:\ShrimpDev\modules\tools\Runner_1153h_FixDetectAndRegex.py:62: SyntaxWarning: invalid escape sequence '\-'
+  """
+D:\ShrimpDev\modules\tools\Runner_1157_FixDetectPatterns.py:2: SyntaxWarning: invalid escape sequence '\s'
+  """
+D:\ShrimpDev\modules\tools\Runner_1157_FixDetectPatterns.py:67: SyntaxWarning: invalid escape sequence '\-'
+  """
+D:\ShrimpDev\modules\tools\Runner_1161_DetectRegex_Hotfix.py:2: SyntaxWarning: invalid escape sequence '\ '
+  """
+D:\ShrimpDev\modules\tools\Runner_1163f_FixPyHeadRegex.py:2: SyntaxWarning: invalid escape sequence '\s'
+  """
+D:\ShrimpDev\modules\tools\Runner_1163_DetectGuardFix.py:2: SyntaxWarning: invalid escape sequence '\s'
+  """
+[R1680] Check 175/1213: modules\tools\Runner_1107_AutoRepair_Intake_BindsAndTry.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1107_AutoRepair_Intake_BindsAndTry.py
+[R1680] Check 176/1213: modules\tools\Runner_1108_DisableButtonReleaseBinds.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1108_DisableButtonReleaseBinds.py
+[R1680] Check 177/1213: modules\tools\Runner_1109_EnableTkCallbackTrace.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1109_EnableTkCallbackTrace.py
+[R1680] Check 178/1213: modules\tools\Runner_1110_FixIntake_ToolbarTryAndHelpers.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1110_FixIntake_ToolbarTryAndHelpers.py
+[R1680] Check 179/1213: modules\tools\Runner_1112_DeepRepair_IntakeAndGUI.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1112_DeepRepair_IntakeAndGUI.py
+[R1680] Check 180/1213: modules\tools\Runner_1113_DeepRepair_FixReturnScope.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1113_DeepRepair_FixReturnScope.py
+[R1680] Check 181/1213: modules\tools\Runner_1114b_FixUnexpectedIndent_MainGUI.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1114b_FixUnexpectedIndent_MainGUI.py
+[R1680] Check 182/1213: modules\tools\Runner_1114_DeepSanityAndRepair.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1114_DeepSanityAndRepair.py
+[R1680] Check 183/1213: modules\tools\Runner_1115_IntegrateRepairUI.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1115_IntegrateRepairUI.py
+[R1680] Check 184/1213: modules\tools\Runner_1116a_FixMainGUITabs.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1116a_FixMainGUITabs.py
+[R1680] Check 185/1213: modules\tools\Runner_1116b_ReentrantBindGuard_AST.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1116b_ReentrantBindGuard_AST.py
+[R1680] Check 186/1213: modules\tools\Runner_1116c_DeepFix_IntakeUI.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1116c_DeepFix_IntakeUI.py
+[R1680] Check 187/1213: modules\tools\Runner_1116d_FixRecycleBinHelper_Only.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1116d_FixRecycleBinHelper_Only.py
+[R1680] Check 188/1213: modules\tools\Runner_1116e_DeepFix_IntakeUI_Safe.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1116e_DeepFix_IntakeUI_Safe.py
+[R1680] Check 189/1213: modules\tools\Runner_1116f_DumpSyntaxContext.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1116f_DumpSyntaxContext.py
+[R1680] Check 190/1213: modules\tools\Runner_1116g_FixToolbarBlock.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1116g_FixToolbarBlock.py
+[R1680] Check 191/1213: modules\tools\Runner_1116_ReentrantBindGuard.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1116_ReentrantBindGuard.py
+[R1680] Check 192/1213: modules\tools\Runner_1117.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1117.py
+[R1680] Check 193/1213: modules\tools\Runner_1118b_GlobalTkPatch.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1118b_GlobalTkPatch.py
+[R1680] Check 194/1213: modules\tools\Runner_1118_SafeTkHandler.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1118_SafeTkHandler.py
+[R1680] Check 195/1213: modules\tools\Runner_1119_TkGuardTopLevel.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1119_TkGuardTopLevel.py
+[R1680] Check 196/1213: modules\tools\Runner_1120_FixFutureAndGuard.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1120_FixFutureAndGuard.py
+[R1680] Check 197/1213: modules\tools\Runner_1121_CentralGuard.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1121_CentralGuard.py
+[R1680] Check 198/1213: modules\tools\Runner_1122_RepairMainGUI_SafeLogging.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1122_RepairMainGUI_SafeLogging.py
+[R1680] Check 199/1213: modules\tools\Runner_1123_EditorGuardPatch.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1123_EditorGuardPatch.py
+[R1680] Check 200/1213: modules\tools\Runner_1124_AllFixes_IntakeStable.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1124_AllFixes_IntakeStable.py
+[R1680] Check 201/1213: modules\tools\Runner_1125_IntakeRescue.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1125_IntakeRescue.py
+[R1680] Check 202/1213: modules\tools\Runner_1126_IntakeRescue2.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1126_IntakeRescue2.py
+[R1680] Check 203/1213: modules\tools\Runner_1127_IntakeDetox.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1127_IntakeDetox.py
+[R1680] Check 204/1213: modules\tools\Runner_1127_IntakeFix_All.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1127_IntakeFix_All.py
+[R1680] Check 205/1213: modules\tools\Runner_1128_FixToolbarAndBindings.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1128_FixToolbarAndBindings.py
+[R1680] Check 206/1213: modules\tools\Runner_1129_IntakeLoadGuard.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1129_IntakeLoadGuard.py
+[R1680] Check 207/1213: modules\tools\Runner_1130_IntakeDiagnose.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1130_IntakeDiagnose.py
+[R1680] Check 208/1213: modules\tools\Runner_1131_FixIntakeToolbar.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1131_FixIntakeToolbar.py
+[R1680] Check 209/1213: modules\tools\Runner_1132_FixGuardParent.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1132_FixGuardParent.py
+[R1680] Check 210/1213: modules\tools\Runner_1132_FixIntakeActions.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1132_FixIntakeActions.py
+[R1680] Check 211/1213: modules\tools\Runner_1133_IntakeAutoHeal.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1133_IntakeAutoHeal.py
+[R1680] Check 212/1213: modules\tools\Runner_1134_IntakePathFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1134_IntakePathFix.py
+[R1680] Check 213/1213: modules\tools\Runner_1135_ModulesInitAndDiagnose.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1135_ModulesInitAndDiagnose.py
+[R1680] Check 214/1213: modules\tools\Runner_1136_FixMissingRepairButton.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1136_FixMissingRepairButton.py
+[R1680] Check 215/1213: modules\tools\Runner_1137a_IntakeLoadFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1137a_IntakeLoadFix.py
+[R1680] Check 216/1213: modules\tools\Runner_1137_IntakeLoadFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1137_IntakeLoadFix.py
+[R1680] Check 217/1213: modules\tools\Runner_1138_IntakeLoadFix2.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1138_IntakeLoadFix2.py
+[R1680] Check 218/1213: modules\tools\Runner_1139_IntakeFrameRepair.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1139_IntakeFrameRepair.py
+[R1680] Check 219/1213: modules\tools\Runner_1140_IntakeFinalFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1140_IntakeFinalFix.py
+[R1680] Check 220/1213: modules\tools\Runner_1141_IntakeDefuse.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1141_IntakeDefuse.py
+[R1680] Check 221/1213: modules\tools\Runner_1142_DefuseSafe.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1142_DefuseSafe.py
+[R1680] Check 222/1213: modules\tools\Runner_1143b_IntakeToolbarGuardFix_Safe.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1143b_IntakeToolbarGuardFix_Safe.py
+[R1680] Check 223/1213: modules\tools\Runner_1143_IntakeToolbarGuardFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1143_IntakeToolbarGuardFix.py
+[R1680] Check 224/1213: modules\tools\Runner_1144_ReplaceIntakeSafe.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1144_ReplaceIntakeSafe.py
+[R1680] Check 225/1213: modules\tools\Runner_1145_IntakeAudit.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1145_IntakeAudit.py
+[R1680] Check 226/1213: modules\tools\Runner_1146_FeatureGapAudit.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1146_FeatureGapAudit.py
+[R1680] Check 227/1213: modules\tools\Runner_1148b_ForceDetectionFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1148b_ForceDetectionFix.py
+[R1680] Check 228/1213: modules\tools\Runner_1148_ImproveDetection.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1148_ImproveDetection.py
+[R1680] Check 229/1213: modules\tools\Runner_1149_TablePopulate.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1149_TablePopulate.py
+[R1680] Check 230/1213: modules\tools\Runner_1150_DetectionFinalFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1150_DetectionFinalFix.py
+D:\ShrimpDev\modules\tools\Runner_1173b_IntakeUILayoutFix.py:2: SyntaxWarning: invalid escape sequence '\ '
+  """
+D:\ShrimpDev\modules\tools\Runner_1173b_IntakeUILayoutFix.py:118: SyntaxWarning: invalid escape sequence '\ '
+  """
+D:\ShrimpDev\modules\tools\Runner_1173c_IntakeTTKImportFix.py:90: SyntaxWarning: invalid escape sequence '\ '
+  """Fix f�r fr�here Artefakte: '=\ ' -> ' = '"""
+D:\ShrimpDev\modules\tools\Runner_1173d_IntakeFallbackReturnFix.py:2: SyntaxWarning: invalid escape sequence '\S'
+  """
+[R1680] Check 231/1213: modules\tools\Runner_1151_AddPackSaveButton.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1151_AddPackSaveButton.py
+[R1680] Check 232/1213: modules\tools\Runner_1152_TableUX_Interactions.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1152_TableUX_Interactions.py
+[R1680] Check 233/1213: modules\tools\Runner_1153d_RegexHyphenFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1153d_RegexHyphenFix.py
+[R1680] Check 234/1213: modules\tools\Runner_1153e_PathInitFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1153e_PathInitFix.py
+[R1680] Check 235/1213: modules\tools\Runner_1153f_SafeDetectRegex.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1153f_SafeDetectRegex.py
+[R1680] Check 236/1213: modules\tools\Runner_1153g_SafeRegexAllIntake.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1153g_SafeRegexAllIntake.py
+[R1680] Check 237/1213: modules\tools\Runner_1153h_FixDetectAndRegex.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1153h_FixDetectAndRegex.py
+[R1680] Check 238/1213: modules\tools\Runner_1153k_DetectGuard.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1153k_DetectGuard.py
+[R1680] Check 239/1213: modules\tools\Runner_1153_SmartDetect_AutoSave.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1153_SmartDetect_AutoSave.py
+[R1680] Check 240/1213: modules\tools\Runner_1154b_AddDeleteButtons.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1154b_AddDeleteButtons.py
+[R1680] Check 241/1213: modules\tools\Runner_1154c_AddDeleteButtons.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1154c_AddDeleteButtons.py
+[R1680] Check 242/1213: modules\tools\Runner_1154d_FixIntakeToolbarAndGuard.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1154d_FixIntakeToolbarAndGuard.py
+[R1680] Check 243/1213: modules\tools\Runner_1154e_IntakeSyntaxHeal.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\modules\tools\Runner_1154e_IntakeSyntaxHeal.py
+    Zeile 73, Spalte 82
+    Text: - Zeilen mit genau 8 Spaces Einr�ckung, die NICHT mit def/cls-Header/@/#/""" beginnen
+    Nachricht: invalid syntax
+[R1680] Check 244/1213: modules\tools\Runner_1154f_IntakeSyntaxHeal.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\modules\tools\Runner_1154f_IntakeSyntaxHeal.py
+    Zeile 1, Spalte 7
+    Text: @echo off
+    Nachricht: invalid syntax
+[R1680] Check 245/1213: modules\tools\Runner_1154g_FixIntakeButtonsAndGuard.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1154g_FixIntakeButtonsAndGuard.py
+[R1680] Check 246/1213: modules\tools\Runner_1154h_FixMissingBuildUiDef.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1154h_FixMissingBuildUiDef.py
+[R1680] Check 247/1213: modules\tools\Runner_1154_AddDeleteButtons.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\modules\tools\Runner_1154_AddDeleteButtons.py
+    Zeile 142, Spalte 13
+    Text: nonlocal cls_src
+    Nachricht: name 'cls_src' is used prior to nonlocal declaration
+[R1680] Check 248/1213: modules\tools\Runner_1155_IntakeBootDiag.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1155_IntakeBootDiag.py
+[R1680] Check 249/1213: modules\tools\Runner_1156c_FixTtkAndInitUI.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1156c_FixTtkAndInitUI.py
+[R1680] Check 250/1213: modules\tools\Runner_1156d_TtkGlobalizeLocals.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1156d_TtkGlobalizeLocals.py
+[R1680] Check 251/1213: modules\tools\Runner_1156e_CombineInitAndTtk.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1156e_CombineInitAndTtk.py
+[R1680] Check 252/1213: modules\tools\Runner_1156_AddInitAndBuildUI.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1156_AddInitAndBuildUI.py
+[R1680] Check 253/1213: modules\tools\Runner_1157_FixDetectPatterns.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1157_FixDetectPatterns.py
+[R1680] Check 254/1213: modules\tools\Runner_1158c_UX_ToolbarLayoutFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1158c_UX_ToolbarLayoutFix.py
+[R1680] Check 255/1213: modules\tools\Runner_1158_UX_ToolbarLayout.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1158_UX_ToolbarLayout.py
+[R1680] Check 256/1213: modules\tools\Runner_1161_DetectRegex_Hotfix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1161_DetectRegex_Hotfix.py
+[R1680] Check 257/1213: modules\tools\Runner_1162_DetectRegexScanner.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1162_DetectRegexScanner.py
+[R1680] Check 258/1213: modules\tools\Runner_1163b_DetectGuardFixSafe.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1163b_DetectGuardFixSafe.py
+[R1680] Check 259/1213: modules\tools\Runner_1163d_DetectGuardFixSafePlain.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1163d_DetectGuardFixSafePlain.py
+[R1680] Check 260/1213: modules\tools\Runner_1163e_DetectGuardFix_AST.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1163e_DetectGuardFix_AST.py
+[R1680] Check 261/1213: modules\tools\Runner_1163f_FixPyHeadRegex.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1163f_FixPyHeadRegex.py
+[R1680] Check 262/1213: modules\tools\Runner_1163h2_FixPythonHeadRegex_SafePlain.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1163h2_FixPythonHeadRegex_SafePlain.py
+[R1680] Check 263/1213: modules\tools\Runner_1163h3_FixPythonHeadRegex_DirectReplace.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1163h3_FixPythonHeadRegex_DirectReplace.py
+[R1680] Check 264/1213: modules\tools\Runner_1163h4_FixPythonHeadRegex_LineSwap.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1163h4_FixPythonHeadRegex_LineSwap.py
+[R1680] Check 265/1213: modules\tools\Runner_1163h_FixPythonHeadRegex_Safe.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1163h_FixPythonHeadRegex_Safe.py
+[R1680] Check 266/1213: modules\tools\Runner_1163_DetectGuardFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1163_DetectGuardFix.py
+[R1680] Check 267/1213: modules\tools\Runner_1164b_OptionalConfirmOnClear.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1164b_OptionalConfirmOnClear.py
+[R1680] Check 268/1213: modules\tools\Runner_1164c_ClearExt_And_OptionalConfirm.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1164c_ClearExt_And_OptionalConfirm.py
+[R1680] Check 269/1213: modules\tools\Runner_1164d_ClearExt_OptionalConfirm_Traversal.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1164d_ClearExt_OptionalConfirm_Traversal.py
+[R1680] Check 270/1213: modules\tools\Runner_1164_ClearAlsoClearsExt.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1164_ClearAlsoClearsExt.py
+[R1680] Check 271/1213: modules\tools\Runner_1165_IntakeInitFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1165_IntakeInitFix.py
+[R1680] Check 272/1213: modules\tools\Runner_1166b_IntakeScopeFix_SafeIndent.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1166b_IntakeScopeFix_SafeIndent.py
+[R1680] Check 273/1213: modules\tools\Runner_1166c_Intake_MinimalScopeFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1166c_Intake_MinimalScopeFix.py
+[R1680] Check 274/1213: modules\tools\Runner_1166d_Intake_IndentAndTTKFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1166d_Intake_IndentAndTTKFix.py
+[R1680] Check 275/1213: modules\tools\Runner_1166e_Intake_FinalFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1166e_Intake_FinalFix.py
+[R1680] Check 276/1213: modules\tools\Runner_1166f_Intake_DeepRepair.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1166f_Intake_DeepRepair.py
+[R1680] Check 277/1213: modules\tools\Runner_1166g_Intake_SafeDedent.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1166g_Intake_SafeDedent.py
+[R1680] Check 278/1213: modules\tools\Runner_1166h_Intake_SafeDedent2.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1166h_Intake_SafeDedent2.py
+[R1680] Check 279/1213: modules\tools\Runner_1166_IntakeTTK_ScopeFix_and_Rules.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1166_IntakeTTK_ScopeFix_and_Rules.py
+[R1680] Check 280/1213: modules\tools\Runner_1167a_Intake_SanityCheck.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1167a_Intake_SanityCheck.py
+[R1680] Check 281/1213: modules\tools\Runner_1167b_GUIIntakePresenceCheck.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1167b_GUIIntakePresenceCheck.py
+[R1680] Check 282/1213: modules\tools\Runner_1167c_GUIRenderTrace.py
+D:\ShrimpDev\modules\tools\Runner_1174z_DebugPathFix.py:2: SyntaxWarning: invalid escape sequence '\S'
+  """
+D:\ShrimpDev\modules\tools\Runner_1175a_MainGuiIntakeHelperFix.py:66: SyntaxWarning: invalid escape sequence '\S'
+  '''
+D:\ShrimpDev\modules\tools\Runner_1175m_IntakeResurrect.py:2: SyntaxWarning: invalid escape sequence '\m'
+  """
+D:\ShrimpDev\modules\tools\Runner_1176b_FixIntakeMount.py:2: SyntaxWarning: invalid escape sequence '\m'
+  """
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1167c_GUIRenderTrace.py
+[R1680] Check 283/1213: modules\tools\Runner_1167d_GUIMountRefresher.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1167d_GUIMountRefresher.py
+[R1680] Check 284/1213: modules\tools\Runner_1167e_RunnerExecSafeImport.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1167e_RunnerExecSafeImport.py
+[R1680] Check 285/1213: modules\tools\Runner_1167f_RunnerExecSafeImport2.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1167f_RunnerExecSafeImport2.py
+[R1680] Check 286/1213: modules\tools\Runner_1167g_RunnerExecLogAppendSafe.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1167g_RunnerExecLogAppendSafe.py
+[R1680] Check 287/1213: modules\tools\Runner_1167h_IntakeErrDump.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1167h_IntakeErrDump.py
+[R1680] Check 288/1213: modules\tools\Runner_1167i_IntakeFix_CallModuleFunc.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1167i_IntakeFix_CallModuleFunc.py
+[R1680] Check 289/1213: modules\tools\Runner_1167j_IniDetectHelperPatch.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1167j_IniDetectHelperPatch.py
+[R1680] Check 290/1213: modules\tools\Runner_1170a_IntakeRegression.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1170a_IntakeRegression.py
+[R1680] Check 291/1213: modules\tools\Runner_1170b_IntakeBindRepair.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1170b_IntakeBindRepair.py
+[R1680] Check 292/1213: modules\tools\Runner_1170c_IntakeShortcutWire.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1170c_IntakeShortcutWire.py
+[R1680] Check 293/1213: modules\tools\Runner_1170d_UXLayoutPolish.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1170d_UXLayoutPolish.py
+[R1680] Check 294/1213: modules\tools\Runner_1170e_IntakeLifecycleWire.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1170e_IntakeLifecycleWire.py
+[R1680] Check 295/1213: modules\tools\Runner_1171a_IntakeUXAndDetect.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\modules\tools\Runner_1171a_IntakeUXAndDetect.py
+    Zeile 224, Spalte 78
+    Text: elif head.strip().startswith(("{","[")): ext = ".json"
+    Nachricht: unterminated string literal (detected at line 224)
+[R1680] Check 296/1213: modules\tools\Runner_1171b_IntakeUXAndDetect.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1171b_IntakeUXAndDetect.py
+[R1680] Check 297/1213: modules\tools\Runner_1171c_IntakeDetectClean.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1171c_IntakeDetectClean.py
+[R1680] Check 298/1213: modules\tools\Runner_1171d_IntakeHelperIndentFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1171d_IntakeHelperIndentFix.py
+[R1680] Check 299/1213: modules\tools\Runner_1171e_IntakeToolbarFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1171e_IntakeToolbarFix.py
+[R1680] Check 300/1213: modules\tools\Runner_1171f_IntakeToolbarFix2.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1171f_IntakeToolbarFix2.py
+[R1680] Check 301/1213: modules\tools\Runner_1171g_IntakeToolbarReflow.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1171g_IntakeToolbarReflow.py
+[R1680] Check 302/1213: modules\tools\Runner_1171h_IntakeHelperIndentSweep.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1171h_IntakeHelperIndentSweep.py
+[R1680] Check 303/1213: modules\tools\Runner_1171j_IntakeToolbarReflowTopLevel.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1171j_IntakeToolbarReflowTopLevel.py
+[R1680] Check 304/1213: modules\tools\Runner_1171k_IntakeToolbarReflowExternalize.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1171k_IntakeToolbarReflowExternalize.py
+[R1680] Check 305/1213: modules\tools\Runner_1171m_IntakeToolbarReflowFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1171m_IntakeToolbarReflowFix.py
+[R1680] Check 306/1213: modules\tools\Runner_1171n_IntakeSyntaxRebuilder.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1171n_IntakeSyntaxRebuilder.py
+[R1680] Check 307/1213: modules\tools\Runner_1171p_IntakeIndentHeal.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1171p_IntakeIndentHeal.py
+[R1680] Check 308/1213: modules\tools\Runner_1171q_IntakeCleanAndExternalize.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1171q_IntakeCleanAndExternalize.py
+[R1680] Check 309/1213: modules\tools\Runner_1171q_IntakeToolbarReflowSafe.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1171q_IntakeToolbarReflowSafe.py
+[R1680] Check 310/1213: modules\tools\Runner_1171r_IntakeUILayoutTidy.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1171r_IntakeUILayoutTidy.py
+[R1680] Check 311/1213: modules\tools\Runner_1172_IntakeTabGuard.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1172_IntakeTabGuard.py
+[R1680] Check 312/1213: modules\tools\Runner_1173b_IntakeUILayoutFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1173b_IntakeUILayoutFix.py
+[R1680] Check 313/1213: modules\tools\Runner_1173c_IntakeTTKImportFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1173c_IntakeTTKImportFix.py
+[R1680] Check 314/1213: modules\tools\Runner_1173d_IntakeFallbackReturnFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1173d_IntakeFallbackReturnFix.py
+[R1680] Check 315/1213: modules\tools\Runner_1173e_MainGuiTabHelper.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1173e_MainGuiTabHelper.py
+[R1680] Check 316/1213: modules\tools\Runner_1173f_IntakeTabSafeAdd.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1173f_IntakeTabSafeAdd.py
+[R1680] Check 317/1213: modules\tools\Runner_1173g_IntakeTabSmoke.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1173g_IntakeTabSmoke.py
+[R1680] Check 318/1213: modules\tools\Runner_1173h_MainGuiHelpersOrderFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1173h_MainGuiHelpersOrderFix.py
+[R1680] Check 319/1213: modules\tools\Runner_1173i_MainGuiHeadDedent.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1173i_MainGuiHeadDedent.py
+[R1680] Check 320/1213: modules\tools\Runner_1173k_MainGuiCallRelocate.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1173k_MainGuiCallRelocate.py
+[R1680] Check 321/1213: modules\tools\Runner_1173m_MainGuiIntakeWireFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1173m_MainGuiIntakeWireFix.py
+[R1680] Check 322/1213: modules\tools\Runner_1173p_MainGuiIntakeWireForce.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1173p_MainGuiIntakeWireForce.py
+[R1680] Check 323/1213: modules\tools\Runner_1173z_IntakeSmoke.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1173z_IntakeSmoke.py
+[R1680] Check 324/1213: modules\tools\Runner_1173_IntakeUILayoutFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1173_IntakeUILayoutFix.py
+[R1680] Check 325/1213: modules\tools\Runner_1174aa_IntakeTabCleanser.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174aa_IntakeTabCleanser.py
+[R1680] Check 326/1213: modules\tools\Runner_1174a_MainGuiIntakeHelpersFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174a_MainGuiIntakeHelpersFix.py
+[R1680] Check 327/1213: modules\tools\Runner_1174b_MainGuiIntakeHelpersFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174b_MainGuiIntakeHelpersFix.py
+[R1680] Check 328/1213: modules\tools\Runner_1174c_MainGuiIntakeHelpersFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174c_MainGuiIntakeHelpersFix.py
+[R1680] Check 329/1213: modules\tools\Runner_1174d_MainGuiIntakeCleanup.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174d_MainGuiIntakeCleanup.py
+[R1680] Check 330/1213: modules\tools\Runner_1174e_MainGuiIntakeCleanup.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174e_MainGuiIntakeCleanup.py
+[R1680] Check 331/1213: modules\tools\Runner_1174f_MainGuiIntakeCleanup.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174f_MainGuiIntakeCleanup.py
+[R1680] Check 332/1213: modules\tools\Runner_1174g_IntakeClassRebind.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174g_IntakeClassRebind.py
+[R1680] Check 333/1213: modules\tools\Runner_1174g_IntakePostBuildFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174g_IntakePostBuildFix.py
+[R1680] Check 334/1213: modules\tools\Runner_1174g_MainGuiReorderFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174g_MainGuiReorderFix.py
+[R1680] Check 335/1213: modules\tools\Runner_1174h_IntakeHardReset.py
+D:\ShrimpDev\modules\tools\Runner_1199_FixSaveAndLEDs.py:2: SyntaxWarning: invalid escape sequence '\)'
+  """
+D:\ShrimpDev\modules\tools\Runner_1200_DevIntake_AutoDetectAndPolish.py:2: SyntaxWarning: invalid escape sequence '\*'
+  """
+D:\ShrimpDev\modules\tools\Runner_1204_FixIndent_AutoDetect_SaveAs.py:2: SyntaxWarning: invalid escape sequence '\d'
+  """
+D:\ShrimpDev\modules\tools\Runner_1206_FixIntakeCore.py:2: SyntaxWarning: invalid escape sequence '\*'
+  """
+D:\ShrimpDev\modules\tools\Runner_1214_FixIntake_Final.py:2: SyntaxWarning: invalid escape sequence '\m'
+  """
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174h_IntakeHardReset.py
+[R1680] Check 336/1213: modules\tools\Runner_1174i_IntakeRestoreSmart.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174i_IntakeRestoreSmart.py
+[R1680] Check 337/1213: modules\tools\Runner_1174j_IntakeRestoreSmartFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174j_IntakeRestoreSmartFix.py
+[R1680] Check 338/1213: modules\tools\Runner_1174k_IntakeFeatureRestore.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174k_IntakeFeatureRestore.py
+[R1680] Check 339/1213: modules\tools\Runner_1174m_IntakeFrameRebuild.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174m_IntakeFrameRebuild.py
+[R1680] Check 340/1213: modules\tools\Runner_1174n_IntakeHotFix_UIInit.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174n_IntakeHotFix_UIInit.py
+[R1680] Check 341/1213: modules\tools\Runner_1174p_IntakeCtorFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174p_IntakeCtorFix.py
+[R1680] Check 342/1213: modules\tools\Runner_1174r_IntakeTabRebind.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174r_IntakeTabRebind.py
+[R1680] Check 343/1213: modules\tools\Runner_1174s_MainGuiSmoke.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174s_MainGuiSmoke.py
+[R1680] Check 344/1213: modules\tools\Runner_1174t_IntakeTabRebindFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174t_IntakeTabRebindFix.py
+[R1680] Check 345/1213: modules\tools\Runner_1174u_MainGuiRestoreLast.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174u_MainGuiRestoreLast.py
+[R1680] Check 346/1213: modules\tools\Runner_1174v_IntakeTabHarden.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174v_IntakeTabHarden.py
+[R1680] Check 347/1213: modules\tools\Runner_1174w_MainSyntaxSmoke.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174w_MainSyntaxSmoke.py
+[R1680] Check 348/1213: modules\tools\Runner_1174x_IntakeRevive.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174x_IntakeRevive.py
+[R1680] Check 349/1213: modules\tools\Runner_1174y_DebugPathFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174y_DebugPathFix.py
+[R1680] Check 350/1213: modules\tools\Runner_1174z_DebugPathFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174z_DebugPathFix.py
+[R1680] Check 351/1213: modules\tools\Runner_1174z_IntakeTabRestoreSafe.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1174z_IntakeTabRestoreSafe.py
+[R1680] Check 352/1213: modules\tools\Runner_1175a_MainGuiIntakeHelperFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1175a_MainGuiIntakeHelperFix.py
+[R1680] Check 353/1213: modules\tools\Runner_1175b_IntakeApiSoftGuard.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1175b_IntakeApiSoftGuard.py
+[R1680] Check 354/1213: modules\tools\Runner_1175d_MainEntryGuard.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1175d_MainEntryGuard.py
+[R1680] Check 355/1213: modules\tools\Runner_1175e_MainIntakeShim.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1175e_MainIntakeShim.py
+[R1680] Check 356/1213: modules\tools\Runner_1175f_IntakeShimFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1175f_IntakeShimFix.py
+[R1680] Check 357/1213: modules\tools\Runner_1175g_ModulesPackageFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1175g_ModulesPackageFix.py
+[R1680] Check 358/1213: modules\tools\Runner_1175h_IntakeCleanRestore.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1175h_IntakeCleanRestore.py
+[R1680] Check 359/1213: modules\tools\Runner_1175i_RemoveFakeNbAdd.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1175i_RemoveFakeNbAdd.py
+[R1680] Check 360/1213: modules\tools\Runner_1175m_IntakeResurrect.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1175m_IntakeResurrect.py
+[R1680] Check 361/1213: modules\tools\Runner_1175n_FixPyCallAndCleanMain.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1175n_FixPyCallAndCleanMain.py
+[R1680] Check 362/1213: modules\tools\Runner_1175q_IntakeHardRestore.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1175q_IntakeHardRestore.py
+[R1680] Check 363/1213: modules\tools\Runner_1176a_IntakeShimUpgrade.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1176a_IntakeShimUpgrade.py
+[R1680] Check 364/1213: modules\tools\Runner_1176b_FixIntakeMount.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1176b_FixIntakeMount.py
+[R1680] Check 365/1213: modules\tools\Runner_1176c_GatePanelIntegration.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1176c_GatePanelIntegration.py
+[R1680] Check 366/1213: modules\tools\Runner_1176d_FixShimName.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1176d_FixShimName.py
+[R1680] Check 367/1213: modules\tools\Runner_1176d_IntakeShimHotfix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1176d_IntakeShimHotfix.py
+[R1680] Check 368/1213: modules\tools\Runner_1177a_IntakeMountAdapter.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1177a_IntakeMountAdapter.py
+[R1680] Check 369/1213: modules\tools\Runner_1177a_IntakeMountAdapter_Hotfix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1177a_IntakeMountAdapter_Hotfix.py
+[R1680] Check 370/1213: modules\tools\Runner_1177b_DevIntakeRestore.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1177b_DevIntakeRestore.py
+[R1680] Check 371/1213: modules\tools\Runner_1177b_IntakeRestore.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1177b_IntakeRestore.py
+[R1680] Check 372/1213: modules\tools\Runner_1177c_IntakeRecover.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1177c_IntakeRecover.py
+[R1680] Check 373/1213: modules\tools\Runner_1177d_DevIntakeButtons.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1177d_DevIntakeButtons.py
+[R1680] Check 374/1213: modules\tools\Runner_1177e_DevToolbarFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1177e_DevToolbarFix.py
+[R1680] Check 375/1213: modules\tools\Runner_1177f_DevIntakeVisualFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1177f_DevIntakeVisualFix.py
+[R1680] Check 376/1213: modules\tools\Runner_1177g_DevIntakeCoreRebuild.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1177g_DevIntakeCoreRebuild.py
+[R1680] Check 377/1213: modules\tools\Runner_1177h_IntakeImportCheck.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1177h_IntakeImportCheck.py
+[R1680] Check 378/1213: modules\tools\Runner_1177i_ImportPathFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1177i_ImportPathFix.py
+[R1680] Check 379/1213: modules\tools\Runner_1177j_IntakeShimHardFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1177j_IntakeShimHardFix.py
+[R1680] Check 380/1213: modules\tools\Runner_1177k_RuntimeImportBridge.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1177k_RuntimeImportBridge.py
+[R1680] Check 381/1213: modules\tools\Runner_1177l_CleanTabMount.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1177l_CleanTabMount.py
+[R1680] Check 382/1213: modules\tools\Runner_1177m_FixMainAndGate.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1177m_FixMainAndGate.py
+[R1680] Check 383/1213: modules\tools\Runner_1177m_MainGuiFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1177m_MainGuiFix.py
+[R1680] Check 384/1213: modules\tools\Runner_1177n_GatePanelUpdate.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1177n_GatePanelUpdate.py
+[R1680] Check 385/1213: modules\tools\Runner_1178i_ImportPathFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1178i_ImportPathFix.py
+[R1680] Check 386/1213: modules\tools\Runner_1178j_FixDevIntake.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1178j_FixDevIntake.py
+[R1680] Check 387/1213: modules\tools\Runner_1178m_FixGatePanelAndLaunch.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1178m_FixGatePanelAndLaunch.py
+[R1680] Check 388/1213: modules\tools\Runner_1178o_FixGatePanelAndLaunch.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1178o_FixGatePanelAndLaunch.py
+[R1680] Check 389/1213: modules\tools\Runner_1180_StartFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1180_StartFix.py
+[R1680] Check 390/1213: modules\tools\Runner_1181b_MainGuiIndentFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1181b_MainGuiIndentFix.py
+[R1680] Check 391/1213: modules\tools\Runner_1181c_MainGuiIndentFix2.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1181c_MainGuiIndentFix2.pyD:\ShrimpDev\modules\tools\Runner_947_IntakeSelfTest.py:9: SyntaxWarning: invalid escape sequence '\S'
+  """
+
+[R1680] Check 392/1213: modules\tools\Runner_1181d_MainGuiTryFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1181d_MainGuiTryFix.py
+[R1680] Check 393/1213: modules\tools\Runner_1181_IntakeDeDuplicate.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1181_IntakeDeDuplicate.py
+[R1680] Check 394/1213: modules\tools\Runner_1182a_DevIntakePro_Clean.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1182a_DevIntakePro_Clean.py
+[R1680] Check 395/1213: modules\tools\Runner_1182_DevIntakePro.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\modules\tools\Runner_1182_DevIntakePro.py
+    Zeile 21, Spalte 11
+    Text: ShrimpDev � Dev-Intake Pro (rein ShrimpDev, keine Hub-Vermischung)
+    Nachricht: invalid character '�' (U+2013)
+[R1680] Check 396/1213: modules\tools\Runner_1183c_DevIntakeUX_DetectFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1183c_DevIntakeUX_DetectFix.py
+[R1680] Check 397/1213: modules\tools\Runner_1183_DevIntakeUX.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1183_DevIntakeUX.py
+[R1680] Check 398/1213: modules\tools\Runner_1184_DevIntakeUX_Polish.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1184_DevIntakeUX_Polish.py
+[R1680] Check 399/1213: modules\tools\Runner_1185b_DevIntakeLEDs_Detect2Fix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1185b_DevIntakeLEDs_Detect2Fix.py
+[R1680] Check 400/1213: modules\tools\Runner_1185_DevIntakeLEDs_Detect2.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\modules\tools\Runner_1185_DevIntakeLEDs_Detect2.py
+    Zeile 65, Spalte 74
+    Text: py += 1 * len(re.findall(r"'''|\"\"\"", t))          # triple quotes
+    Nachricht: unexpected character after line continuation character
+[R1680] Check 401/1213: modules\tools\Runner_1186_IntakeUX_FixDetectAndUX.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1186_IntakeUX_FixDetectAndUX.py
+[R1680] Check 402/1213: modules\tools\Runner_1187_IntakeLEDs_Add.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1187_IntakeLEDs_Add.py
+[R1680] Check 403/1213: modules\tools\Runner_1188_IntakeLEDs_DetectHardening.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1188_IntakeLEDs_DetectHardening.py
+[R1680] Check 404/1213: modules\tools\Runner_1189_IntakeRepairAndLEDsFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1189_IntakeRepairAndLEDsFix.py
+[R1680] Check 405/1213: modules\tools\Runner_1190_DevIntake_Install.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1190_DevIntake_Install.py
+[R1680] Check 406/1213: modules\tools\Runner_1191_DevIntake_CleanInstall.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1191_DevIntake_CleanInstall.py
+[R1680] Check 407/1213: modules\tools\Runner_1192_DevIntake_UIRefine.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1192_DevIntake_UIRefine.py
+[R1680] Check 408/1213: modules\tools\Runner_1193_DevIntake_FixDetectAndInstall.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1193_DevIntake_FixDetectAndInstall.py
+[R1680] Check 409/1213: modules\tools\Runner_1193_IntakeDetectUpgrade.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1193_IntakeDetectUpgrade.py
+[R1680] Check 410/1213: modules\tools\Runner_1194_DevIntake_UIArrange.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1194_DevIntake_UIArrange.py
+[R1680] Check 411/1213: modules\tools\Runner_1194_LEDBackgroundFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1194_LEDBackgroundFix.py
+[R1680] Check 412/1213: modules\tools\Runner_1195_DevIntake_UISortPolish.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1195_DevIntake_UISortPolish.py
+[R1680] Check 413/1213: modules\tools\Runner_1196_DevIntake_Apply.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1196_DevIntake_Apply.py
+[R1680] Check 414/1213: modules\tools\Runner_1198_IntakeLedFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1198_IntakeLedFix.py
+[R1680] Check 415/1213: modules\tools\Runner_1199_FixSaveAndLEDs.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1199_FixSaveAndLEDs.py
+[R1680] Check 416/1213: modules\tools\Runner_1199_IntakeHotfix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1199_IntakeHotfix.py
+[R1680] Check 417/1213: modules\tools\Runner_1200_DevIntake_AutoDetectAndPolish.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1200_DevIntake_AutoDetectAndPolish.py
+[R1680] Check 418/1213: modules\tools\Runner_1201_DevIntake_Stabilize.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1201_DevIntake_Stabilize.py
+[R1680] Check 419/1213: modules\tools\Runner_1202_FixIndentationPath.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1202_FixIndentationPath.py
+[R1680] Check 420/1213: modules\tools\Runner_1203_DevIntake_Recovery.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1203_DevIntake_Recovery.py
+[R1680] Check 421/1213: modules\tools\Runner_1204_FixIndent_AutoDetect_SaveAs.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1204_FixIndent_AutoDetect_SaveAs.py
+[R1680] Check 422/1213: modules\tools\Runner_1205_FixIntakeIndentAndLEDs.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1205_FixIntakeIndentAndLEDs.py
+[R1680] Check 423/1213: modules\tools\Runner_1206_FixIntakeCore.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1206_FixIntakeCore.py
+[R1680] Check 424/1213: modules\tools\Runner_1207_FixIntakeCoreSafe.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1207_FixIntakeCoreSafe.py
+[R1680] Check 425/1213: modules\tools\Runner_1208_FixRegexEscape.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1208_FixRegexEscape.py
+[R1680] Check 426/1213: modules\tools\Runner_1209_IntakePathFinalFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1209_IntakePathFinalFix.py
+[R1680] Check 427/1213: modules\tools\Runner_1210_DevIntake_FixCoreAndUX.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1210_DevIntake_FixCoreAndUX.py
+[R1680] Check 428/1213: modules\tools\Runner_1211_FixIntakeCoreStable.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\modules\tools\Runner_1211_FixIntakeCoreStable.py
+    Zeile 96, Spalte 4
+    Text: Liefert den Zielpfad auf Basis der UI-Felder.
+    Nachricht: unexpected indent
+[R1680] Check 429/1213: modules\tools\Runner_1212_FixIntakeCoreStable.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1212_FixIntakeCoreStable.py
+[R1680] Check 430/1213: modules\tools\Runner_1213_FixIntakeCoreStable.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1213_FixIntakeCoreStable.py
+[R1680] Check 431/1213: modules\tools\Runner_1214_FixIntake_Final.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1214_FixIntake_Final.py
+[R1680] Check 432/1213: modules\tools\Runner_1215_FixIntakeCoreFinal.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1215_FixIntakeCoreFinal.py
+[R1680] Check 433/1213: modules\tools\Runner_1216_FixIntakeCore_Final.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1216_FixIntakeCore_Final.py
+[R1680] Check 434/1213: modules\tools\Runner_1217_FixIntakeCoreSuperSafe.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\modules\tools\Runner_1217_FixIntakeCoreSuperSafe.py
+    Zeile 16, Spalte 13
+    Text: Dev-Intake (stabiler Kern)
+    Nachricht: invalid syntax. Perhaps you forgot a comma?
+[R1680] Check 435/1213: modules\tools\Runner_1218_FixIntakeCoreSuperSafe.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1218_FixIntakeCoreSuperSafe.py
+[R1680] Check 436/1213: modules\tools\Runner_1218_FixIntake_NewlineSafe.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1218_FixIntake_NewlineSafe.py
+[R1680] Check 437/1213: modules\tools\Runner_1220_SyntaxGate_AllModules.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1220_SyntaxGate_AllModules.py
+[R1680] Check 438/1213: modules\tools\Runner_1221_IntakeCore_Addons.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1221_IntakeCore_Addons.py
+[R1680] Check 439/1213: modules\tools\Runner_1225_IntakeCore_RepairAndIntegrate.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1225_IntakeCore_RepairAndIntegrate.py
+[R1680] Check 440/1213: modules\tools\Runner_1230_RestoreIntakeFromBackup.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1230_RestoreIntakeFromBackup.py
+[R1680] Check 441/1213: modules\tools\Runner_1231_Intake_MinimalFixes.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1231_Intake_MinimalFixes.py
+[R1680] Check 442/1213: modules\tools\Runner_1234_IntakeCore_RepairIntegrate.py
+D:\ShrimpDev\tools\R1275.py:2: SyntaxWarning: invalid escape sequence '\i'
+  """
+D:\ShrimpDev\tools\R1288_RestoreOriginalIntake.py:2: SyntaxWarning: invalid escape sequence '\m'
+  """
+D:\ShrimpDev\tools\R1292.py:2: SyntaxWarning: invalid escape sequence '\*'
+  """
+D:\ShrimpDev\tools\R1292.py:112: SyntaxWarning: invalid escape sequence '\*'
+  """Entfernt '-3' bei py/python in tools\*.cmd (py -3 -> py)."""
+D:\ShrimpDev\tools\R1301_IntakeV1_Install.py:2: SyntaxWarning: invalid escape sequence '\S'
+  """
+D:\ShrimpDev\tools\R1303.py:2: SyntaxWarning: invalid escape sequence '\*'
+  """
+D:\ShrimpDev\tools\R1303.py:177: SyntaxWarning: invalid escape sequence '\*'
+  """Ersetze 'python -3' durch 'py -3' in tools\*.cmd (nur wenn vorhanden)."""
+D:\ShrimpDev\tools\R1306_FixIntakeV1.py:2: SyntaxWarning: invalid escape sequence '\S'
+  """
+D:\ShrimpDev\tools\R1350_LearningJournalTab.py:2: SyntaxWarning: invalid escape sequence '\l'
+  """
+D:\ShrimpDev\tools\R1351_MainGUI_FixFutureImport.py:2: SyntaxWarning: invalid escape sequence '\S'
+  """
+D:\ShrimpDev\tools\R1402_PatchTopmostAndLabels.py:2: SyntaxWarning: invalid escape sequence '\S'
+  """
+D:\ShrimpDev\tools\R1422.py:2: SyntaxWarning: invalid escape sequence '\S'
+  """
+D:\ShrimpDev\tools\R1425.py:2: SyntaxWarning: invalid escape sequence '\S'
+  """
+D:\ShrimpDev\tools\R1426.py:2: SyntaxWarning: invalid escape sequence '\m'
+  """
+D:\ShrimpDev\tools\R1429_SyntaxRepair.py:2: SyntaxWarning: invalid escape sequence '\S'
+  """
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1234_IntakeCore_RepairIntegrate.py
+[R1680] Check 443/1213: modules\tools\Runner_1241_Intake_AllInOne.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1241_Intake_AllInOne.py
+[R1680] Check 444/1213: modules\tools\Runner_1242_Intake_RepairAndIntegrate.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_1242_Intake_RepairAndIntegrate.py
+[R1680] Check 445/1213: modules\tools\Runner_900_Setup.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_900_Setup.py
+[R1680] Check 446/1213: modules\tools\Runner_901_Verify.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_901_Verify.py
+[R1680] Check 447/1213: modules\tools\Runner_902_LogTail.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_902_LogTail.py
+[R1680] Check 448/1213: modules\tools\Runner_902_Starter.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_902_Starter.py
+[R1680] Check 449/1213: modules\tools\Runner_903_Fix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_903_Fix.py
+[R1680] Check 450/1213: modules\tools\Runner_904_WarnSilence.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_904_WarnSilence.py
+[R1680] Check 451/1213: modules\tools\Runner_905_FixToggle.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_905_FixToggle.py
+[R1680] Check 452/1213: modules\tools\Runner_910_Install.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_910_Install.py
+[R1680] Check 453/1213: modules\tools\Runner_911_Scan.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_911_Scan.py
+[R1680] Check 454/1213: modules\tools\Runner_912_Watch.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_912_Watch.py
+[R1680] Check 455/1213: modules\tools\Runner_913_Silence.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_913_Silence.py
+[R1680] Check 456/1213: modules\tools\Runner_914_NoPopup.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_914_NoPopup.py
+[R1680] Check 457/1213: modules\tools\Runner_915_QuietToggle.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_915_QuietToggle.py
+[R1680] Check 458/1213: modules\tools\Runner_916_ScanUX.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_916_ScanUX.py
+[R1680] Check 459/1213: modules\tools\Runner_917_FixIndent.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_917_FixIndent.py
+[R1680] Check 460/1213: modules\tools\Runner_918_FixIndentMain.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_918_FixIndentMain.py
+[R1680] Check 461/1213: modules\tools\Runner_930_AllInOne.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_930_AllInOne.py
+[R1680] Check 462/1213: modules\tools\Runner_935_FixMainGUI.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_935_FixMainGUI.py
+[R1680] Check 463/1213: modules\tools\Runner_940_CoreKit.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_940_CoreKit.py
+[R1680] Check 464/1213: modules\tools\Runner_941_Preflight.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_941_Preflight.py
+[R1680] Check 465/1213: modules\tools\Runner_942_NewModule.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_942_NewModule.py
+[R1680] Check 466/1213: modules\tools\Runner_943_NewRunner.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_943_NewRunner.py
+[R1680] Check 467/1213: modules\tools\Runner_944_AllGUIIntegrate.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_944_AllGUIIntegrate.py
+[R1680] Check 468/1213: modules\tools\Runner_946_IntakeSmart.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_946_IntakeSmart.py
+[R1680] Check 469/1213: modules\tools\Runner_947_IntakeSelfTest.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_947_IntakeSelfTest.py
+[R1680] Check 470/1213: modules\tools\Runner_948_IntakeUX.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_948_IntakeUX.py
+[R1680] Check 471/1213: modules\tools\Runner_949_TryFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_949_TryFix.py
+[R1680] Check 472/1213: modules\tools\Runner_950.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_950.py
+[R1680] Check 473/1213: modules\tools\Runner_951_FixAgentStart.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_951_FixAgentStart.py
+[R1680] Check 474/1213: modules\tools\Runner_952_FixTryEverywhere.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_952_FixTryEverywhere.py
+[R1680] Check 475/1213: modules\tools\Runner_953_FixLoneTry.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_953_FixLoneTry.py
+[R1680] Check 476/1213: modules\tools\Runner_954_MainCleanup.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_954_MainCleanup.py
+[R1680] Check 477/1213: modules\tools\Runner_956_Unswallow.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_956_Unswallow.py
+[R1680] Check 478/1213: modules\tools\Runner_957_FixMainBlock.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_957_FixMainBlock.py
+[R1680] Check 479/1213: modules\tools\Runner_960_BootFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_960_BootFix.py
+[R1680] Check 480/1213: modules\tools\Runner_960_Menus.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_960_Menus.py
+[R1680] Check 481/1213: modules\tools\Runner_961_MenuFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_961_MenuFix.py
+[R1680] Check 482/1213: modules\tools\Runner_962_FixMainGUI.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_962_FixMainGUI.py
+[R1680] Check 483/1213: modules\tools\Runner_970_AllInOneInstall.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_970_AllInOneInstall.py
+[R1680] Check 484/1213: modules\tools\Runner_971_UnifyTabs.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_971_UnifyTabs.py
+[R1680] Check 485/1213: modules\tools\Runner_972_SafePatch.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_972_SafePatch.py
+[R1680] Check 486/1213: modules\tools\Runner_980_DevConsolidate.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_980_DevConsolidate.py
+[R1680] Check 487/1213: modules\tools\Runner_981_IntakeUX.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_981_IntakeUX.py
+[R1680] Check 488/1213: modules\tools\Runner_982_IntakeUIEnhance.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_982_IntakeUIEnhance.py
+[R1680] Check 489/1213: modules\tools\Runner_983_IntakeFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_983_IntakeFix.py
+[R1680] Check 490/1213: modules\tools\Runner_984_IntakeGeometryFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_984_IntakeGeometryFix.py
+[R1680] Check 491/1213: modules\tools\Runner_990_FixGUI.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_990_FixGUI.py
+[R1680] Check 492/1213: modules\tools\Runner_991_AllTabsIntegrate.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_991_AllTabsIntegrate.py
+[R1680] Check 493/1213: modules\tools\Runner_995_IntakeDetectorFix.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_995_IntakeDetectorFix.py
+[R1680] Check 494/1213: modules\tools\Runner_996_IntakeFix_And_Default.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_996_IntakeFix_And_Default.py
+[R1680] Check 495/1213: modules\tools\Runner_997_Intake_BatAndDefault.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_997_Intake_BatAndDefault.py
+[R1680] Check 496/1213: modules\tools\Runner_998_DefaultIntake.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_998_DefaultIntake.py
+[R1680] Check 497/1213: modules\tools\Runner_998_IntakeBatDetector.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_998_IntakeBatDetector.py
+[R1680] Check 498/1213: modules\tools\Runner_999_Test.py
+[R1680] OK: D:\ShrimpDev\modules\tools\Runner_999_Test.py
+[R1680] Check 499/1213: modules\tools\shrimpdev_event.py
+[R1680] OK: D:\ShrimpDev\modules\tools\shrimpdev_event.py
+[R1680] Check 500/1213: tools\module_intake_core_addons.py
+[R1680] OK: D:\ShrimpDev\tools\module_intake_core_addons.py
+[R1680] Check 501/1213: tools\patchlib_guard.py
+[R1680] OK: D:\ShrimpDev\tools\patchlib_guard.py
+[R1680] Check 502/1213: tools\R1252_LearningJournal.py
+[R1680] OK: D:\ShrimpDev\tools\R1252_LearningJournal.py
+[R1680] Check 503/1213: tools\R1266.py
+[R1680] OK: D:\ShrimpDev\tools\R1266.py
+[R1680] Check 504/1213: tools\R1267.py
+[R1680] OK: D:\ShrimpDev\tools\R1267.py
+[R1680] Check 505/1213: tools\R1268.py
+[R1680] OK: D:\ShrimpDev\tools\R1268.py
+[R1680] Check 506/1213: tools\R1269.py
+[R1680] OK: D:\ShrimpDev\tools\R1269.py
+[R1680] Check 507/1213: tools\R1270.py
+[R1680] OK: D:\ShrimpDev\tools\R1270.py
+[R1680] Check 508/1213: tools\R1271.py
+[R1680] OK: D:\ShrimpDev\tools\R1271.py
+[R1680] Check 509/1213: tools\R1272.py
+[R1680] OK: D:\ShrimpDev\tools\R1272.py
+[R1680] Check 510/1213: tools\R1273.py
+[R1680] OK: D:\ShrimpDev\tools\R1273.py
+[R1680] Check 511/1213: tools\R1274.py
+[R1680] OK: D:\ShrimpDev\tools\R1274.py
+[R1680] Check 512/1213: tools\R1275.py
+[R1680] OK: D:\ShrimpDev\tools\R1275.py
+[R1680] Check 513/1213: tools\R1276.py
+[R1680] OK: D:\ShrimpDev\tools\R1276.py
+[R1680] Check 514/1213: tools\R1277.py
+[R1680] OK: D:\ShrimpDev\tools\R1277.py
+[R1680] Check 515/1213: tools\R1278.py
+[R1680] OK: D:\ShrimpDev\tools\R1278.py
+[R1680] Check 516/1213: tools\R1279.py
+[R1680] OK: D:\ShrimpDev\tools\R1279.py
+[R1680] Check 517/1213: tools\R1280.py
+[R1680] OK: D:\ShrimpDev\tools\R1280.py
+[R1680] Check 518/1213: tools\R1281.py
+[R1680] OK: D:\ShrimpDev\tools\R1281.py
+[R1680] Check 519/1213: tools\R1282.py
+[R1680] OK: D:\ShrimpDev\tools\R1282.py
+[R1680] Check 520/1213: tools\R1283.py
+[R1680] OK: D:\ShrimpDev\tools\R1283.py
+[R1680] Check 521/1213: tools\R1284.py
+[R1680] OK: D:\ShrimpDev\tools\R1284.py
+[R1680] Check 522/1213: tools\R1285.py
+[R1680] OK: D:\ShrimpDev\tools\R1285.py
+[R1680] Check 523/1213: tools\R1286.py
+[R1680] OK: D:\ShrimpDev\tools\R1286.py
+[R1680] Check 524/1213: tools\R1287.py
+[R1680] OK: D:\ShrimpDev\tools\R1287.py
+[R1680] Check 525/1213: tools\R1288_RestoreOriginalIntake.py
+[R1680] OK: D:\ShrimpDev\tools\R1288_RestoreOriginalIntake.py
+[R1680] Check 526/1213: tools\R1289.py
+[R1680] OK: D:\ShrimpDev\tools\R1289.py
+[R1680] Check 527/1213: tools\R1290.py
+[R1680] OK: D:\ShrimpDev\tools\R1290.py
+[R1680] Check 528/1213: tools\R1291.py
+[R1680] OK: D:\ShrimpDev\tools\R1291.py
+[R1680] Check 529/1213: tools\R1292.py
+[R1680] OK: D:\ShrimpDev\tools\R1292.py
+[R1680] Check 530/1213: tools\R1293.py
+[R1680] OK: D:\ShrimpDev\tools\R1293.py
+[R1680] Check 531/1213: tools\R1294.py
+[R1680] OK: D:\ShrimpDev\tools\R1294.py
+[R1680] Check 532/1213: tools\R1295.py
+[R1680] OK: D:\ShrimpDev\tools\R1295.py
+[R1680] Check 533/1213: tools\R1296.py
+[R1680] OK: D:\ShrimpDev\tools\R1296.py
+[R1680] Check 534/1213: tools\R1298.py
+[R1680] OK: D:\ShrimpDev\tools\R1298.py
+[R1680] Check 535/1213: tools\R1299.py
+[R1680] OK: D:\ShrimpDev\tools\R1299.py
+[R1680] Check 536/1213: tools\R1300_IntakeV1_Install.py
+[R1680] OK: D:\ShrimpDev\tools\R1300_IntakeV1_Install.py
+[R1680] Check 537/1213: tools\R1301_IntakeV1_Install.py
+[R1680] OK: D:\ShrimpDev\tools\R1301_IntakeV1_Install.py
+[R1680] Check 538/1213: tools\R1302.py
+[R1680] OK: D:\ShrimpDev\tools\R1302.py
+[R1680] Check 539/1213: tools\R1303.py
+[R1680] OK: D:\ShrimpDev\tools\R1303.py
+[R1680] Check 540/1213: tools\R1304.py
+[R1680] OK: D:\ShrimpDev\tools\R1304.py
+[R1680] Check 541/1213: tools\R1305_IntakeHardFix.py
+[R1680] OK: D:\ShrimpDev\tools\R1305_IntakeHardFix.py
+[R1680] Check 542/1213: tools\R1306_FixIntakeV1.py
+[R1680] OK: D:\ShrimpDev\tools\R1306_FixIntakeV1.py
+[R1680] Check 543/1213: tools\R1307.py
+[R1680] OK: D:\ShrimpDev\tools\R1307.py
+[R1680] Check 544/1213: tools\R1308.py
+[R1680] OK: D:\ShrimpDev\tools\R1308.py
+[R1680] Check 545/1213: tools\R1310_IntakeV1_Fix.py
+[R1680] OK: D:\ShrimpDev\tools\R1310_IntakeV1_Fix.py
+[R1680] Check 546/1213: tools\R1311_RestoreTrueIntake.py
+[R1680] OK: D:\ShrimpDev\tools\R1311_RestoreTrueIntake.py
+[R1680] Check 547/1213: tools\R1312_FixMainGUI_IntakeMount.py
+[R1680] OK: D:\ShrimpDev\tools\R1312_FixMainGUI_IntakeMount.py
+[R1680] Check 548/1213: tools\R1313_MainGUI_TrueFix.py
+[R1680] OK: D:\ShrimpDev\tools\R1313_MainGUI_TrueFix.py
+[R1680] Check 549/1213: tools\R1350_LearningJournalTab.py
+[R1680] OK: D:\ShrimpDev\tools\R1350_LearningJournalTab.py
+[R1680] Check 550/1213: tools\R1351.py
+[R1680] OK: D:\ShrimpDev\tools\R1351.py
+[R1680] Check 551/1213: tools\R1351_MainGUI_FixFutureImport.py
+[R1680] OK: D:\ShrimpDev\tools\R1351_MainGUI_FixFutureImport.py
+[R1680] Check 552/1213: tools\R1401.py
+[R1680] OK: D:\ShrimpDev\tools\R1401.py
+[R1680] Check 553/1213: tools\R1402_PatchTopmostAndLabels.py
+[R1680] OK: D:\ShrimpDev\tools\R1402_PatchTopmostAndLabels.py
+[R1680] Check 554/1213: tools\R1403.py
+[R1680] OK: D:\ShrimpDev\tools\R1403.py
+[R1680] Check 555/1213: tools\R1404_RemoveRootMenuPatch.py
+[R1680] OK: D:\ShrimpDev\tools\R1404_RemoveRootMenuPatch.py
+[R1680] Check 556/1213: tools\R1405_FixRootMenuBlock.py
+[R1680] OK: D:\ShrimpDev\tools\R1405_FixRootMenuBlock.py
+[R1680] Check 557/1213: tools\R1405_PatchIntakeNaming.py
+[R1680] OK: D:\ShrimpDev\tools\R1405_PatchIntakeNaming.py
+[R1680] Check 558/1213: tools\R1406_UI_NamesAndVersion.py
+[R1680] OK: D:\ShrimpDev\tools\R1406_UI_NamesAndVersion.py
+[R1680] Check 559/1213: tools\R1407.py
+[R1680] OK: D:\ShrimpDev\tools\R1407.py
+[R1680] Check 560/1213: tools\R1407_Fastfix.py
+[R1680] OK: D:\ShrimpDev\tools\R1407_Fastfix.py
+[R1680] Check 561/1213: tools\R1408.py
+[R1680] OK: D:\ShrimpDev\tools\R1408.py
+[R1680] Check 562/1213: tools\R1409.py
+[R1680] OK: D:\ShrimpDev\tools\R1409.py
+[R1680] Check 563/1213: tools\R1410.py
+[R1680] OK: D:\ShrimpDev\tools\R1410.py
+[R1680] Check 564/1213: tools\R1411.py
+[R1680] OK: D:\ShrimpDev\tools\R1411.py
+[R1680] Check 565/1213: tools\R1412.py
+[R1680] OK: D:\ShrimpDev\tools\R1412.py
+[R1680] Check 566/1213: tools\R1413.py
+[R1680] OK: D:\ShrimpDev\tools\R1413.py
+[R1680] Check 567/1213: tools\R1413_FixIntakeIndent.py
+[R1680] OK: D:\ShrimpDev\tools\R1413_FixIntakeIndent.py
+[R1680] Check 568/1213: tools\R1414.py
+[R1680] OK: D:\ShrimpDev\tools\R1414.py
+[R1680] Check 569/1213: tools\R1415.py
+[R1680] OK: D:\ShrimpDev\tools\R1415.py
+[R1680] Check 570/1213: tools\R1416.py
+[R1680] OK: D:\ShrimpDev\tools\R1416.py
+[R1680] Check 571/1213: tools\R1417.py
+[R1680] OK: D:\ShrimpDev\tools\R1417.py
+[R1680] Check 572/1213: tools\R1418_FixMainGuiClass.py
+[R1680] OK: D:\ShrimpDev\tools\R1418_FixMainGuiClass.py
+[R1680] Check 573/1213: tools\R1419.py
+[R1680] OK: D:\ShrimpDev\tools\R1419.py
+[R1680] Check 574/1213: tools\R1420_FixMainEntry.py
+[R1680] OK: D:\ShrimpDev\tools\R1420_FixMainEntry.py
+[R1680] Check 575/1213: tools\R1421_UIThemeAndTabs.py
+[R1680] OK: D:\ShrimpDev\tools\R1421_UIThemeAndTabs.py
+[R1680] Check 576/1213: tools\R1422.py
+[R1680] OK: D:\ShrimpDev\tools\R1422.py
+[R1680] Check 577/1213: tools\R1422_DefaultPath.py
+[R1680] OK: D:\ShrimpDev\tools\R1422_DefaultPath.py
+[R1680] Check 578/1213: tools\R1423_MenuAndPolish.py
+[R1680] OK: D:\ShrimpDev\tools\R1423_MenuAndPolish.py
+[R1680] Check 579/1213: tools\R1424.py
+[R1680] OK: D:\ShrimpDev\tools\R1424.py
+[R1680] Check 580/1213: tools\R1425.py
+[R1680] OK: D:\ShrimpDev\tools\R1425.py
+[R1680] Check 581/1213: tools\R1426.py
+[R1680] OK: D:\ShrimpDev\tools\R1426.py
+[R1680] Check 582/1213: tools\R1427.py
+[R1680] OK: D:\ShrimpDev\tools\R1427.py
+[R1680] Check 583/1213: tools\R1428_IntakeHeal.py
+[R1680] OK: D:\ShrimpDev\tools\R1428_IntakeHeal.py
+[R1680] Check 584/1213: tools\R1429_SyntaxRepair.py
+[R1680] OK: D:\ShrimpDev\tools\R1429_SyntaxRepair.py
+[R1680] Check 585/1213: tools\R1430_IntakeAndMenuGuards.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\tools\R1430_IntakeAndMenuGuards.py
+    Zeile 58, Spalte 13
+    Text: sys.exit(2
+    Nachricht: '(' was never closed
+[R1680] Check 586/1213: tools\R1431_FixMenuAndStarter.py
+[R1680] OK: D:\ShrimpDev\tools\R1431_FixMenuAndStarter.py
+[R1680] Check 587/1213: tools\R1432_AddIntakeHelpers.py
+[R1680] OK: D:\ShrimpDev\tools\R1432_AddIntakeHelpers.py
+[R1680] Check 588/1213: tools\R1433_ShrimpAppRestore.py
+[R1680] OK: D:\ShrimpDev\tools\R1433_ShrimpAppRestore.py
+[R1680] Check 589/1213: tools\R1434.py
+[R1680] OK: D:\ShrimpDev\tools\R1434.py
+[R1680] Check 590/1213: tools\R1434_FixTryBlocks.py
+[R1680] OK: D:\ShrimpDev\tools\R1434_FixTryBlocks.py
+[R1680] Check 591/1213: tools\R1435.py
+[R1680] OK: D:\ShrimpDev\tools\R1435.py
+[R1680] Check 592/1213: tools\R1436_FutureOrderFix.py
+[R1680] OK: D:\ShrimpDev\tools\R1436_FutureOrderFix.py
+[R1680] Check 593/1213: tools\R1437.py
+[R1680] OK: D:\ShrimpDev\tools\R1437.py
+[R1680] Check 594/1213: tools\R1438.py
+[R1680] OK: D:\ShrimpDev\tools\R1438.py
+D:\ShrimpDev\tools\R1627.py:44: SyntaxWarning: invalid escape sequence '\<'
+  """
+D:\ShrimpDev\tools\R1628.py:33: SyntaxWarning: invalid escape sequence '\R'
+  """Backup von tools\R1626.py nach _Archiv\...R1628_YYYYMMDD_HHMMSS.bak"""
+D:\ShrimpDev\tools\R1630.py:37: SyntaxWarning: invalid escape sequence '\<'
+  """Backup einer Datei nach _Archiv\<rel>.R1630_YYYYMMDD_HHMMSS.bak"""
+D:\ShrimpDev\tools\R1647.py:33: SyntaxWarning: invalid escape sequence '\<'
+  """Backup von ui_left_panel.py nach _Archiv\<rel>.R1647_YYYYMMDD_HHMMSS.bak"""
+[R1680] Check 595/1213: tools\R1440.py
+[R1680] OK: D:\ShrimpDev\tools\R1440.py
+[R1680] Check 596/1213: tools\R1441.py
+[R1680] OK: D:\ShrimpDev\tools\R1441.py
+[R1680] Check 597/1213: tools\R1442.py
+[R1680] OK: D:\ShrimpDev\tools\R1442.py
+[R1680] Check 598/1213: tools\R1443.py
+[R1680] OK: D:\ShrimpDev\tools\R1443.py
+[R1680] Check 599/1213: tools\R1444.py
+[R1680] OK: D:\ShrimpDev\tools\R1444.py
+[R1680] Check 600/1213: tools\R1445.py
+[R1680] OK: D:\ShrimpDev\tools\R1445.py
+[R1680] Check 601/1213: tools\R1446.py
+[R1680] OK: D:\ShrimpDev\tools\R1446.py
+[R1680] Check 602/1213: tools\R1447.py
+[R1680] OK: D:\ShrimpDev\tools\R1447.py
+[R1680] Check 603/1213: tools\R1448.py
+[R1680] OK: D:\ShrimpDev\tools\R1448.py
+[R1680] Check 604/1213: tools\R1449.py
+[R1680] OK: D:\ShrimpDev\tools\R1449.py
+[R1680] Check 605/1213: tools\R1450.py
+[R1680] OK: D:\ShrimpDev\tools\R1450.py
+[R1680] Check 606/1213: tools\R1451.py
+[R1680] OK: D:\ShrimpDev\tools\R1451.py
+[R1680] Check 607/1213: tools\R1452.py
+[R1680] OK: D:\ShrimpDev\tools\R1452.py
+[R1680] Check 608/1213: tools\R1453.py
+[R1680] OK: D:\ShrimpDev\tools\R1453.py
+[R1680] Check 609/1213: tools\R1454.py
+[R1680] OK: D:\ShrimpDev\tools\R1454.py
+[R1680] Check 610/1213: tools\R1455.py
+[R1680] OK: D:\ShrimpDev\tools\R1455.py
+[R1680] Check 611/1213: tools\R1457.py
+[R1680] OK: D:\ShrimpDev\tools\R1457.py
+[R1680] Check 612/1213: tools\R1458.py
+[R1680] OK: D:\ShrimpDev\tools\R1458.py
+[R1680] Check 613/1213: tools\R1461.py
+[R1680] OK: D:\ShrimpDev\tools\R1461.py
+[R1680] Check 614/1213: tools\R1462.py
+[R1680] OK: D:\ShrimpDev\tools\R1462.py
+[R1680] Check 615/1213: tools\R1463.py
+[R1680] OK: D:\ShrimpDev\tools\R1463.py
+[R1680] Check 616/1213: tools\R1464.py
+[R1680] OK: D:\ShrimpDev\tools\R1464.py
+[R1680] Check 617/1213: tools\R1465.py
+[R1680] OK: D:\ShrimpDev\tools\R1465.py
+[R1680] Check 618/1213: tools\R1466.py
+[R1680] OK: D:\ShrimpDev\tools\R1466.py
+[R1680] Check 619/1213: tools\R1467.py
+[R1680] OK: D:\ShrimpDev\tools\R1467.py
+[R1680] Check 620/1213: tools\R1468.py
+[R1680] OK: D:\ShrimpDev\tools\R1468.py
+[R1680] Check 621/1213: tools\R1469.py
+[R1680] OK: D:\ShrimpDev\tools\R1469.py
+[R1680] Check 622/1213: tools\R1470.py
+[R1680] OK: D:\ShrimpDev\tools\R1470.py
+[R1680] Check 623/1213: tools\R1471.py
+[R1680] OK: D:\ShrimpDev\tools\R1471.py
+[R1680] Check 624/1213: tools\R1472.py
+[R1680] OK: D:\ShrimpDev\tools\R1472.py
+[R1680] Check 625/1213: tools\R1473.py
+[R1680] OK: D:\ShrimpDev\tools\R1473.py
+[R1680] Check 626/1213: tools\R1474.py
+[R1680] OK: D:\ShrimpDev\tools\R1474.py
+[R1680] Check 627/1213: tools\R1475.py
+[R1680] OK: D:\ShrimpDev\tools\R1475.py
+[R1680] Check 628/1213: tools\R1476.py
+[R1680] OK: D:\ShrimpDev\tools\R1476.py
+[R1680] Check 629/1213: tools\R1477.py
+[R1680] OK: D:\ShrimpDev\tools\R1477.py
+[R1680] Check 630/1213: tools\R1478.py
+[R1680] OK: D:\ShrimpDev\tools\R1478.py
+[R1680] Check 631/1213: tools\R1479.py
+[R1680] OK: D:\ShrimpDev\tools\R1479.py
+[R1680] Check 632/1213: tools\R1480.py
+[R1680] OK: D:\ShrimpDev\tools\R1480.py
+[R1680] Check 633/1213: tools\R1481.py
+[R1680] OK: D:\ShrimpDev\tools\R1481.py
+[R1680] Check 634/1213: tools\R1482.py
+[R1680] OK: D:\ShrimpDev\tools\R1482.py
+[R1680] Check 635/1213: tools\R1483.py
+[R1680] OK: D:\ShrimpDev\tools\R1483.py
+[R1680] Check 636/1213: tools\R1484.py
+[R1680] OK: D:\ShrimpDev\tools\R1484.py
+[R1680] Check 637/1213: tools\R1485.py
+[R1680] OK: D:\ShrimpDev\tools\R1485.py
+[R1680] Check 638/1213: tools\R1486.py
+[R1680] OK: D:\ShrimpDev\tools\R1486.py
+[R1680] Check 639/1213: tools\R1487.py
+[R1680] OK: D:\ShrimpDev\tools\R1487.py
+[R1680] Check 640/1213: tools\R1488.py
+[R1680] OK: D:\ShrimpDev\tools\R1488.py
+[R1680] Check 641/1213: tools\R1491.py
+[R1680] OK: D:\ShrimpDev\tools\R1491.py
+[R1680] Check 642/1213: tools\R1492.py
+[R1680] OK: D:\ShrimpDev\tools\R1492.py
+[R1680] Check 643/1213: tools\R1493.py
+[R1680] OK: D:\ShrimpDev\tools\R1493.py
+[R1680] Check 644/1213: tools\R1494.py
+[R1680] OK: D:\ShrimpDev\tools\R1494.py
+[R1680] Check 645/1213: tools\R1495.py
+[R1680] OK: D:\ShrimpDev\tools\R1495.py
+[R1680] Check 646/1213: tools\R1496.py
+[R1680] OK: D:\ShrimpDev\tools\R1496.py
+[R1680] Check 647/1213: tools\R1497.py
+[R1680] OK: D:\ShrimpDev\tools\R1497.py
+[R1680] Check 648/1213: tools\R1498.py
+[R1680] OK: D:\ShrimpDev\tools\R1498.py
+[R1680] Check 649/1213: tools\R1499.py
+[R1680] OK: D:\ShrimpDev\tools\R1499.py
+[R1680] Check 650/1213: tools\R1500.py
+[R1680] OK: D:\ShrimpDev\tools\R1500.py
+[R1680] Check 651/1213: tools\R1501.py
+[R1680] OK: D:\ShrimpDev\tools\R1501.py
+[R1680] Check 652/1213: tools\R1502.py
+[R1680] OK: D:\ShrimpDev\tools\R1502.py
+[R1680] Check 653/1213: tools\R1503.py
+[R1680] OK: D:\ShrimpDev\tools\R1503.py
+[R1680] Check 654/1213: tools\R1504.py
+[R1680] OK: D:\ShrimpDev\tools\R1504.py
+[R1680] Check 655/1213: tools\R1504b.py
+[R1680] OK: D:\ShrimpDev\tools\R1504b.py
+[R1680] Check 656/1213: tools\R1505.py
+[R1680] OK: D:\ShrimpDev\tools\R1505.py
+[R1680] Check 657/1213: tools\R1506.py
+[R1680] OK: D:\ShrimpDev\tools\R1506.py
+[R1680] Check 658/1213: tools\R1507.py
+[R1680] OK: D:\ShrimpDev\tools\R1507.py
+[R1680] Check 659/1213: tools\R1508.py
+[R1680] OK: D:\ShrimpDev\tools\R1508.py
+[R1680] Check 660/1213: tools\R1509.py
+[R1680] OK: D:\ShrimpDev\tools\R1509.py
+[R1680] Check 661/1213: tools\R1510.py
+[R1680] OK: D:\ShrimpDev\tools\R1510.py
+[R1680] Check 662/1213: tools\R1511.py
+[R1680] OK: D:\ShrimpDev\tools\R1511.py
+[R1680] Check 663/1213: tools\R1512.py
+[R1680] OK: D:\ShrimpDev\tools\R1512.py
+[R1680] Check 664/1213: tools\R1513.py
+[R1680] OK: D:\ShrimpDev\tools\R1513.py
+[R1680] Check 665/1213: tools\R1514.py
+[R1680] OK: D:\ShrimpDev\tools\R1514.py
+[R1680] Check 666/1213: tools\R1516.py
+[R1680] OK: D:\ShrimpDev\tools\R1516.py
+[R1680] Check 667/1213: tools\R1517.py
+[R1680] OK: D:\ShrimpDev\tools\R1517.py
+[R1680] Check 668/1213: tools\R1518.py
+[R1680] OK: D:\ShrimpDev\tools\R1518.py
+[R1680] Check 669/1213: tools\R1519.py
+[R1680] OK: D:\ShrimpDev\tools\R1519.py
+[R1680] Check 670/1213: tools\R1520.py
+[R1680] OK: D:\ShrimpDev\tools\R1520.py
+[R1680] Check 671/1213: tools\R1521.py
+[R1680] OK: D:\ShrimpDev\tools\R1521.py
+[R1680] Check 672/1213: tools\R1523.py
+[R1680] OK: D:\ShrimpDev\tools\R1523.py
+[R1680] Check 673/1213: tools\R1524.py
+[R1680] OK: D:\ShrimpDev\tools\R1524.py
+[R1680] Check 674/1213: tools\R1525.py
+[R1680] OK: D:\ShrimpDev\tools\R1525.py
+[R1680] Check 675/1213: tools\R1526.py
+[R1680] OK: D:\ShrimpDev\tools\R1526.py
+[R1680] Check 676/1213: tools\R1527.py
+[R1680] OK: D:\ShrimpDev\tools\R1527.py
+[R1680] Check 677/1213: tools\R1528.py
+[R1680] OK: D:\ShrimpDev\tools\R1528.py
+[R1680] Check 678/1213: tools\R1529.py
+[R1680] OK: D:\ShrimpDev\tools\R1529.py
+[R1680] Check 679/1213: tools\R1530.py
+[R1680] OK: D:\ShrimpDev\tools\R1530.py
+[R1680] Check 680/1213: tools\R1531.py
+[R1680] OK: D:\ShrimpDev\tools\R1531.py
+[R1680] Check 681/1213: tools\R1533.py
+[R1680] OK: D:\ShrimpDev\tools\R1533.py
+[R1680] Check 682/1213: tools\R1601.py
+[R1680] OK: D:\ShrimpDev\tools\R1601.py
+[R1680] Check 683/1213: tools\R1602.py
+[R1680] OK: D:\ShrimpDev\tools\R1602.py
+[R1680] Check 684/1213: tools\R1603.py
+[R1680] OK: D:\ShrimpDev\tools\R1603.py
+[R1680] Check 685/1213: tools\R1604.py
+[R1680] OK: D:\ShrimpDev\tools\R1604.py
+[R1680] Check 686/1213: tools\R1605.py
+[R1680] OK: D:\ShrimpDev\tools\R1605.py
+[R1680] Check 687/1213: tools\R1606.py
+[R1680] OK: D:\ShrimpDev\tools\R1606.py
+[R1680] Check 688/1213: tools\R1607.py
+[R1680] OK: D:\ShrimpDev\tools\R1607.py
+[R1680] Check 689/1213: tools\R1608.py
+[R1680] OK: D:\ShrimpDev\tools\R1608.py
+[R1680] Check 690/1213: tools\R1610.py
+[R1680] OK: D:\ShrimpDev\tools\R1610.py
+[R1680] Check 691/1213: tools\R1611.py
+[R1680] OK: D:\ShrimpDev\tools\R1611.py
+[R1680] Check 692/1213: tools\R1612.py
+[R1680] OK: D:\ShrimpDev\tools\R1612.py
+[R1680] Check 693/1213: tools\R1613.py
+[R1680] OK: D:\ShrimpDev\tools\R1613.py
+[R1680] Check 694/1213: tools\R1614.py
+[R1680] OK: D:\ShrimpDev\tools\R1614.py
+[R1680] Check 695/1213: tools\R1615.py
+[R1680] OK: D:\ShrimpDev\tools\R1615.py
+D:\ShrimpDev\tools\Runner_1036_NameDetect_FromCode.py:1: SyntaxWarning: invalid escape sequence '\R'
+  """
+D:\ShrimpDev\tools\Runner_1051_ExtDetectStrong_FixSub.py:1: SyntaxWarning: invalid escape sequence '\s'
+  """
+D:\ShrimpDev\tools\Runner_1069_FixIntake_GuardToolbar.py:2: SyntaxWarning: invalid escape sequence '\R'
+  """
+D:\ShrimpDev\tools\Runner_1078_WriteGuard_Clean.py:2: SyntaxWarning: invalid escape sequence '\R'
+  """
+[R1680] Check 696/1213: tools\R1617.py
+[R1680] OK: D:\ShrimpDev\tools\R1617.py
+[R1680] Check 697/1213: tools\R1618.py
+[R1680] OK: D:\ShrimpDev\tools\R1618.py
+[R1680] Check 698/1213: tools\R1619.py
+[R1680] OK: D:\ShrimpDev\tools\R1619.py
+[R1680] Check 699/1213: tools\R1620.py
+[R1680] OK: D:\ShrimpDev\tools\R1620.py
+[R1680] Check 700/1213: tools\R1621.py
+[R1680] OK: D:\ShrimpDev\tools\R1621.py
+[R1680] Check 701/1213: tools\R1622.py
+[R1680] OK: D:\ShrimpDev\tools\R1622.py
+[R1680] Check 702/1213: tools\R1623.py
+[R1680] OK: D:\ShrimpDev\tools\R1623.py
+[R1680] Check 703/1213: tools\R1623b.py
+[R1680] OK: D:\ShrimpDev\tools\R1623b.py
+[R1680] Check 704/1213: tools\R1624.py
+[R1680] OK: D:\ShrimpDev\tools\R1624.py
+[R1680] Check 705/1213: tools\R1625.py
+[R1680] OK: D:\ShrimpDev\tools\R1625.py
+[R1680] Check 706/1213: tools\R1626.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\tools\R1626.py
+    Zeile 134, Spalte 4
+    Text: L�dt eine bestehende Datei in den Intake-Editor, setzt Name/Endung,
+    Nachricht: unexpected indent
+[R1680] Check 707/1213: tools\R1627.py
+[R1680] OK: D:\ShrimpDev\tools\R1627.py
+[R1680] Check 708/1213: tools\R1628.py
+[R1680] OK: D:\ShrimpDev\tools\R1628.py
+[R1680] Check 709/1213: tools\R1630.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\tools\R1630.py
+    Zeile 144, Spalte 4
+    Text: L�dt eine vorhandene Datei in den Intake-Editor, setzt Name/Endung,
+    Nachricht: unexpected indent
+[R1680] Check 710/1213: tools\R1631.py
+[R1680] OK: D:\ShrimpDev\tools\R1631.py
+[R1680] Check 711/1213: tools\R1632.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\tools\R1632.py
+    Zeile 279, Spalte 4
+    Text: �ffnet die aktuell markierte Datei aus der rechten Liste im Intake,
+    Nachricht: unexpected indent
+[R1680] Check 712/1213: tools\R1633.py
+[R1680] OK: D:\ShrimpDev\tools\R1633.py
+[R1680] Check 713/1213: tools\R1634.py
+[R1680] OK: D:\ShrimpDev\tools\R1634.py
+[R1680] Check 714/1213: tools\R1635.py
+[R1680] OK: D:\ShrimpDev\tools\R1635.py
+[R1680] Check 715/1213: tools\R1636.py
+[R1680] OK: D:\ShrimpDev\tools\R1636.py
+[R1680] Check 716/1213: tools\R1637.py
+[R1680] OK: D:\ShrimpDev\tools\R1637.py
+[R1680] Check 717/1213: tools\R1638.py
+[R1680] OK: D:\ShrimpDev\tools\R1638.py
+[R1680] Check 718/1213: tools\R1640.py
+[R1680] OK: D:\ShrimpDev\tools\R1640.py
+[R1680] Check 719/1213: tools\R1641.py
+[R1680] OK: D:\ShrimpDev\tools\R1641.py
+[R1680] Check 720/1213: tools\R1642.py
+[R1680] OK: D:\ShrimpDev\tools\R1642.py
+[R1680] Check 721/1213: tools\R1643.py
+[R1680] OK: D:\ShrimpDev\tools\R1643.py
+[R1680] Check 722/1213: tools\R1644.py
+[R1680] OK: D:\ShrimpDev\tools\R1644.py
+[R1680] Check 723/1213: tools\R1645.py
+[R1680] OK: D:\ShrimpDev\tools\R1645.py
+[R1680] Check 724/1213: tools\R1646.py
+[R1680] OK: D:\ShrimpDev\tools\R1646.py
+[R1680] Check 725/1213: tools\R1647.py
+[R1680] OK: D:\ShrimpDev\tools\R1647.py
+[R1680] Check 726/1213: tools\R1648.py
+[R1680] OK: D:\ShrimpDev\tools\R1648.py
+[R1680] Check 727/1213: tools\R1648b.py
+[R1680] OK: D:\ShrimpDev\tools\R1648b.py
+[R1680] Check 728/1213: tools\R1650.py
+[R1680] OK: D:\ShrimpDev\tools\R1650.py
+[R1680] Check 729/1213: tools\R1651.py
+[R1680] OK: D:\ShrimpDev\tools\R1651.py
+[R1680] Check 730/1213: tools\R1652.py
+[R1680] OK: D:\ShrimpDev\tools\R1652.py
+[R1680] Check 731/1213: tools\R1653.py
+[R1680] OK: D:\ShrimpDev\tools\R1653.py
+[R1680] Check 732/1213: tools\R1654.py
+[R1680] OK: D:\ShrimpDev\tools\R1654.py
+[R1680] Check 733/1213: tools\R1655.py
+[R1680] OK: D:\ShrimpDev\tools\R1655.py
+[R1680] Check 734/1213: tools\R1656.py
+[R1680] OK: D:\ShrimpDev\tools\R1656.py
+[R1680] Check 735/1213: tools\R1657.py
+[R1680] OK: D:\ShrimpDev\tools\R1657.py
+[R1680] Check 736/1213: tools\R1658.py
+[R1680] OK: D:\ShrimpDev\tools\R1658.py
+[R1680] Check 737/1213: tools\R1659.py
+[R1680] OK: D:\ShrimpDev\tools\R1659.py
+[R1680] Check 738/1213: tools\R1660.py
+[R1680] OK: D:\ShrimpDev\tools\R1660.py
+[R1680] Check 739/1213: tools\R1661.py
+[R1680] OK: D:\ShrimpDev\tools\R1661.py
+[R1680] Check 740/1213: tools\R1662.py
+[R1680] OK: D:\ShrimpDev\tools\R1662.py
+[R1680] Check 741/1213: tools\R1663.py
+[R1680] OK: D:\ShrimpDev\tools\R1663.py
+[R1680] Check 742/1213: tools\R1664.py
+[R1680] OK: D:\ShrimpDev\tools\R1664.py
+[R1680] Check 743/1213: tools\R1666.py
+[R1680] OK: D:\ShrimpDev\tools\R1666.py
+[R1680] Check 744/1213: tools\R1667.py
+[R1680] OK: D:\ShrimpDev\tools\R1667.py
+[R1680] Check 745/1213: tools\R1668.py
+[R1680] OK: D:\ShrimpDev\tools\R1668.py
+[R1680] Check 746/1213: tools\R1669.py
+[R1680] OK: D:\ShrimpDev\tools\R1669.py
+[R1680] Check 747/1213: tools\R1670.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\tools\R1670.py
+    Zeile 216, Spalte 17
+    Text: return {}
+    Nachricht: f-string: valid expression required before '}'
+[R1680] Check 748/1213: tools\R1670b.py
+[R1680] OK: D:\ShrimpDev\tools\R1670b.py
+[R1680] Check 749/1213: tools\R1671.py
+[R1680] OK: D:\ShrimpDev\tools\R1671.py
+[R1680] Check 750/1213: tools\R1672.py
+[R1680] OK: D:\ShrimpDev\tools\R1672.py
+[R1680] Check 751/1213: tools\R1673.py
+[R1680] OK: D:\ShrimpDev\tools\R1673.py
+[R1680] Check 752/1213: tools\R1674.py
+[R1680] OK: D:\ShrimpDev\tools\R1674.py
+[R1680] Check 753/1213: tools\R1675.py
+[R1680] OK: D:\ShrimpDev\tools\R1675.py
+[R1680] Check 754/1213: tools\R1676.py
+[R1680] OK: D:\ShrimpDev\tools\R1676.py
+[R1680] Check 755/1213: tools\R1677.py
+[R1680] OK: D:\ShrimpDev\tools\R1677.py
+[R1680] Check 756/1213: tools\R1678.py
+[R1680] OK: D:\ShrimpDev\tools\R1678.py
+[R1680] Check 757/1213: tools\R1679.py
+[R1680] OK: D:\ShrimpDev\tools\R1679.py
+[R1680] Check 758/1213: tools\R1680.py
+[R1680] OK: D:\ShrimpDev\tools\R1680.py
+[R1680] Check 759/1213: tools\R9900.py
+[R1680] OK: D:\ShrimpDev\tools\R9900.py
+[R1680] Check 760/1213: tools\R9997.py
+[R1680] OK: D:\ShrimpDev\tools\R9997.py
+[R1680] Check 761/1213: tools\R9998.py
+[R1680] OK: D:\ShrimpDev\tools\R9998.py
+[R1680] Check 762/1213: tools\R9999.py
+[R1680] OK: D:\ShrimpDev\tools\R9999.py
+[R1680] Check 763/1213: tools\Runner_1000_IntakeActions.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1000_IntakeActions.py
+[R1680] Check 764/1213: tools\Runner_1001_AlwaysOnTopFixImports.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1001_AlwaysOnTopFixImports.py
+[R1680] Check 765/1213: tools\Runner_1002_SnippetsRestore.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1002_SnippetsRestore.py
+[R1680] Check 766/1213: tools\Runner_1003_FixIndentFallbackLogger.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1003_FixIndentFallbackLogger.py
+[R1680] Check 767/1213: tools\Runner_1004_ShrimpDev_PathFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1004_ShrimpDev_PathFix.py
+[R1680] Check 768/1213: tools\Runner_1005_MainGUI_Rewrite.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1005_MainGUI_Rewrite.py
+[R1680] Check 769/1213: tools\Runner_1006_ConfigMgr_Restore.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1006_ConfigMgr_Restore.py
+[R1680] Check 770/1213: tools\Runner_1007_UIFrames_Restore.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1007_UIFrames_Restore.py
+[R1680] Check 771/1213: tools\Runner_1008_IntakeUX_Revamp.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1008_IntakeUX_Revamp.py
+[R1680] Check 772/1213: tools\Runner_1010_IntakeUX_Refine.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1010_IntakeUX_Refine.py
+[R1680] Check 773/1213: tools\Runner_1011_IntakeUX_ActionsBar.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1011_IntakeUX_ActionsBar.py
+[R1680] Check 774/1213: tools\Runner_1012_FixMenuIndent.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1012_FixMenuIndent.py
+[R1680] Check 775/1213: tools\Runner_1013_SafeBoot_Debug.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1013_SafeBoot_Debug.py
+[R1680] Check 776/1213: tools\Runner_1014_SafeBoot_StringFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1014_SafeBoot_StringFix.py
+[R1680] Check 777/1213: tools\Runner_1015_SafeBoot_StringHardFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1015_SafeBoot_StringHardFix.py
+[R1680] Check 778/1213: tools\Runner_1016_IntakeFix_ContextActions.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1016_IntakeFix_ContextActions.py
+[R1680] Check 779/1213: tools\Runner_1017_IntakeUX_CopyPasteName.py
+D:\ShrimpDev\tools\Runner_1089_ApplyNameDetect_GuardRun_Delete.py:3: SyntaxWarning: invalid escape sequence '\S'
+  """
+D:\ShrimpDev\tools\Runner_1099_FixIntake_RepairIndentPass2.py:2: SyntaxWarning: invalid escape sequence '\m'
+  """
+D:\ShrimpDev\tools\Runner_1100_FixIntake_ReindentAll.py:3: SyntaxWarning: invalid escape sequence '\S'
+  """
+D:\ShrimpDev\tools\Runner_1100_Reindent_IntakeFrame_Harden.py:2: SyntaxWarning: invalid escape sequence '\m'
+  """
+D:\ShrimpDev\tools\Runner_1112_DeepRepair_IntakeAndGUI.py:2: SyntaxWarning: invalid escape sequence '\m'
+  """
+D:\ShrimpDev\tools\Runner_1116f_DumpSyntaxContext.py:2: SyntaxWarning: invalid escape sequence '\S'
+  """
+[R1680] OK: D:\ShrimpDev\tools\Runner_1017_IntakeUX_CopyPasteName.py
+[R1680] Check 780/1213: tools\Runner_1018_ExtOverride_AndQA.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1018_ExtOverride_AndQA.py
+[R1680] Check 781/1213: tools\Runner_1019_ExtOverride_DetectFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1019_ExtOverride_DetectFix.py
+[R1680] Check 782/1213: tools\Runner_1020_SafeBoot_Logfix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1020_SafeBoot_Logfix.py
+[R1680] Check 783/1213: tools\Runner_1021_SafeBoot_FinalFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1021_SafeBoot_FinalFix.py
+[R1680] Check 784/1213: tools\Runner_1022_MainGUI_SafeImportsRepair.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1022_MainGUI_SafeImportsRepair.py
+[R1680] Check 785/1213: tools\Runner_1023_SafeFallbackRepair.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1023_SafeFallbackRepair.py
+[R1680] Check 786/1213: tools\Runner_1024_LoggerAtomicFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1024_LoggerAtomicFix.py
+[R1680] Check 787/1213: tools\Runner_1025_SafeFallbackCapture.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1025_SafeFallbackCapture.py
+[R1680] Check 788/1213: tools\Runner_1026_IntakeIndentFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1026_IntakeIndentFix.py
+[R1680] Check 789/1213: tools\Runner_1027_IntakeSaveRewrite.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1027_IntakeSaveRewrite.py
+[R1680] Check 790/1213: tools\Runner_1028_IntakeModule_Reset.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1028_IntakeModule_Reset.py
+[R1680] Check 791/1213: tools\Runner_1030_IntakeButtons_Fix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1030_IntakeButtons_Fix.py
+[R1680] Check 792/1213: tools\Runner_1031_ButtonsForceWire_Debug.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1031_ButtonsForceWire_Debug.py
+[R1680] Check 793/1213: tools\Runner_1032_ButtonsHardBind_Ping.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1032_ButtonsHardBind_Ping.py
+[R1680] Check 794/1213: tools\Runner_1033_FixBrokenPanedwindow.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1033_FixBrokenPanedwindow.py
+[R1680] Check 795/1213: tools\Runner_1034_IntakeDetect_SmartFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1034_IntakeDetect_SmartFix.py
+[R1680] Check 796/1213: tools\Runner_1035_DetectWire_All.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1035_DetectWire_All.py
+[R1680] Check 797/1213: tools\Runner_1036_NameDetect_FromCode.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1036_NameDetect_FromCode.py
+[R1680] Check 798/1213: tools\Runner_1037_FixDetectSyntax.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1037_FixDetectSyntax.py
+[R1680] Check 799/1213: tools\Runner_1038_DetectBlock_Rewrite.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1038_DetectBlock_Rewrite.py
+[R1680] Check 800/1213: tools\Runner_1039_IndentFix_TryExcept.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1039_IndentFix_TryExcept.py
+[R1680] Check 801/1213: tools\Runner_1040_Intake_FullReset.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1040_Intake_FullReset.py
+[R1680] Check 802/1213: tools\Runner_1041_AutoDetect_OnPaste.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1041_AutoDetect_OnPaste.py
+[R1680] Check 803/1213: tools\Runner_1042_AutoDetect_Hardwire_Scan.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1042_AutoDetect_Hardwire_Scan.py
+[R1680] Check 804/1213: tools\Runner_1043_NoBell_StripTypeHints.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1043_NoBell_StripTypeHints.py
+[R1680] Check 805/1213: tools\Runner_1044_Intake_Reinstall_Clean.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1044_Intake_Reinstall_Clean.py
+[R1680] Check 806/1213: tools\Runner_1045_NameForceAndDateCols.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1045_NameForceAndDateCols.py
+[R1680] Check 807/1213: tools\Runner_1046_NameDocstring_Fallback_DateCols.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1046_NameDocstring_Fallback_DateCols.py
+[R1680] Check 808/1213: tools\Runner_1047_Intake_CleanHardReset.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1047_Intake_CleanHardReset.py
+[R1680] Check 809/1213: tools\Runner_1048_Intake_DeleteAndRecent50.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1048_Intake_DeleteAndRecent50.py
+[R1680] Check 810/1213: tools\Runner_1049_Intake_ResizeNameExt.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1049_Intake_ResizeNameExt.py
+[R1680] Check 811/1213: tools\Runner_1050_ExtDetectStrong.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1050_ExtDetectStrong.py
+[R1680] Check 812/1213: tools\Runner_1051_ExtDetectStrong_FixSub.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1051_ExtDetectStrong_FixSub.py
+[R1680] Check 813/1213: tools\Runner_1052_FixEntExtGrid.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1052_FixEntExtGrid.py
+[R1680] Check 814/1213: tools\Runner_1053_Intake_ClearOnDelete_RefreshOnPaste.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1053_Intake_ClearOnDelete_RefreshOnPaste.py
+[R1680] Check 815/1213: tools\Runner_1054_Intake_QuoteFix_ClearDelete_PasteReset.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1054_Intake_QuoteFix_ClearDelete_PasteReset.py
+[R1680] Check 816/1213: tools\Runner_1055_FixIndent_OnEditorModified.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1055_FixIndent_OnEditorModified.py
+[R1680] Check 817/1213: tools\Runner_1056_FixIndent_OnEditorModified_Strict.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1056_FixIndent_OnEditorModified_Strict.py
+[R1680] Check 818/1213: tools\Runner_1057_IndentAudit_IntakeFrame.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1057_IndentAudit_IntakeFrame.py
+[R1680] Check 819/1213: tools\Runner_1058_FixKeyAndModified_Block.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1058_FixKeyAndModified_Block.py
+[R1680] Check 820/1213: tools\Runner_1059_FixDeleteIndent.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1059_FixDeleteIndent.py
+[R1680] Check 821/1213: tools\Runner_1060_FixAskYesNo_StringConcat.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1060_FixAskYesNo_StringConcat.py
+[R1680] Check 822/1213: tools\Runner_1061_FixAskYesNo_StringEscape.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1061_FixAskYesNo_StringEscape.py
+[R1680] Check 823/1213: tools\Runner_1062_FutureAtTop.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1062_FutureAtTop.py
+[R1680] Check 824/1213: tools\Runner_1063_Intake_SanityGuard.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1063_Intake_SanityGuard.py
+[R1680] Check 825/1213: tools\Runner_1064_IntegrateGuard_UI.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1064_IntegrateGuard_UI.py
+[R1680] Check 826/1213: tools\Runner_1065_IntakeRescueAndRollback.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1065_IntakeRescueAndRollback.py
+[R1680] Check 827/1213: tools\Runner_1066_FixGuard_MissingHelpers.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\tools\Runner_1066_FixGuard_MissingHelpers.py
+    Zeile 75, Spalte 37
+    Text: if src[i:i+3] in ('\"\"\"', "'''"):
+    Nachricht: unterminated string literal (detected at line 75)
+[R1680] Check 828/1213: tools\Runner_1067_WriteGuard_Safe.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1067_WriteGuard_Safe.py
+[R1680] Check 829/1213: tools\Runner_1068_FixLonelyTry.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1068_FixLonelyTry.py
+[R1680] Check 830/1213: tools\Runner_1069_FixIntake_GuardToolbar.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1069_FixIntake_GuardToolbar.py
+[R1680] Check 831/1213: tools\Runner_1070_FixSemicolonLines.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1070_FixSemicolonLines.py
+[R1680] Check 832/1213: tools\Runner_1071_AddRunButton_PyExec.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1071_AddRunButton_PyExec.py
+[R1680] Check 833/1213: tools\Runner_1072_InsertRunButton_AnyAnchor.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1072_InsertRunButton_AnyAnchor.py
+[R1680] Check 834/1213: tools\Runner_1073_FixToolbarAndRunButton.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1073_FixToolbarAndRunButton.py
+[R1680] Check 835/1213: tools\Runner_1074b_DeleteButtons_WithRecycleBin_Fix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1074b_DeleteButtons_WithRecycleBin_Fix.py
+[R1680] Check 836/1213: tools\Runner_1074_DeleteButtons_WithRecycleBin.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1074_DeleteButtons_WithRecycleBin.py
+[R1680] Check 837/1213: tools\Runner_1077_FixIndent_UIBlock.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1077_FixIndent_UIBlock.py
+[R1680] Check 838/1213: tools\Runner_1078_WriteGuard_Clean.py
+D:\ShrimpDev\tools\Runner_1132_FixGuardParent.py:2: SyntaxWarning: invalid escape sequence '\m'
+  """
+D:\ShrimpDev\tools\Runner_1134_IntakePathFix.py:2: SyntaxWarning: invalid escape sequence '\S'
+  """
+D:\ShrimpDev\tools\Runner_1138_IntakeLoadFix2.py:2: SyntaxWarning: invalid escape sequence '\m'
+  """
+D:\ShrimpDev\tools\Runner_1153h_FixDetectAndRegex.py:62: SyntaxWarning: invalid escape sequence '\-'
+  """
+D:\ShrimpDev\tools\Runner_1157_FixDetectPatterns.py:2: SyntaxWarning: invalid escape sequence '\s'
+  """
+D:\ShrimpDev\tools\Runner_1157_FixDetectPatterns.py:67: SyntaxWarning: invalid escape sequence '\-'
+  """
+D:\ShrimpDev\tools\Runner_1161_DetectRegex_Hotfix.py:2: SyntaxWarning: invalid escape sequence '\ '
+  """
+D:\ShrimpDev\tools\Runner_1163f_FixPyHeadRegex.py:2: SyntaxWarning: invalid escape sequence '\s'
+  """
+[R1680] OK: D:\ShrimpDev\tools\Runner_1078_WriteGuard_Clean.py
+[R1680] Check 839/1213: tools\Runner_1082_Guard_VerboseOK.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\tools\Runner_1082_Guard_VerboseOK.py
+    Zeile 29, Spalte 22
+    Text: c2 = s.count("'''")
+    Nachricht: unterminated string literal (detected at line 29)
+[R1680] Check 840/1213: tools\Runner_1084_FixGuard_ArgParse.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\tools\Runner_1084_FixGuard_ArgParse.py
+    Zeile 30, Spalte 54
+    Text: return (s.count('"""') % 2 != 0) or (s.count("'''") % 2 != 0)
+    Nachricht: unterminated string literal (detected at line 30)
+[R1680] Check 841/1213: tools\Runner_1089_ApplyNameDetect_GuardRun_Delete.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1089_ApplyNameDetect_GuardRun_Delete.py
+[R1680] Check 842/1213: tools\Runner_1090_FixIntake_Indent.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1090_FixIntake_Indent.py
+[R1680] Check 843/1213: tools\Runner_1092_FixRecycleBinIndent.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1092_FixRecycleBinIndent.py
+[R1680] Check 844/1213: tools\Runner_1093_FixIntake_IndentGlobal.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1093_FixIntake_IndentGlobal.py
+[R1680] Check 845/1213: tools\Runner_1094_FixRecycleBinIndentFinal.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1094_FixRecycleBinIndentFinal.py
+[R1680] Check 846/1213: tools\Runner_1095_ClassSafeguard_Intake.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1095_ClassSafeguard_Intake.py
+[R1680] Check 847/1213: tools\Runner_1096_Reindent_IntakeMethods.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1096_Reindent_IntakeMethods.py
+[R1680] Check 848/1213: tools\Runner_1097b_FixIntake_Reindent2.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1097b_FixIntake_Reindent2.py
+[R1680] Check 849/1213: tools\Runner_1097c_FixIntake_ReindentHard.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1097c_FixIntake_ReindentHard.py
+[R1680] Check 850/1213: tools\Runner_1097d_Reindent_Intake_Strict.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1097d_Reindent_Intake_Strict.py
+[R1680] Check 851/1213: tools\Runner_1097_FixIntake_Reindent.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1097_FixIntake_Reindent.py
+[R1680] Check 852/1213: tools\Runner_1098_FixIntake_ReindentClassBlocks.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1098_FixIntake_ReindentClassBlocks.py
+[R1680] Check 853/1213: tools\Runner_1099_FixIntake_RepairIndentPass2.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1099_FixIntake_RepairIndentPass2.py
+[R1680] Check 854/1213: tools\Runner_1100_FixIntake_ReindentAll.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1100_FixIntake_ReindentAll.py
+[R1680] Check 855/1213: tools\Runner_1100_Reindent_IntakeFrame_Harden.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1100_Reindent_IntakeFrame_Harden.py
+[R1680] Check 856/1213: tools\Runner_1101a_FixReplace_RecycleBin.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1101a_FixReplace_RecycleBin.py
+[R1680] Check 857/1213: tools\Runner_1101_FixIntake_ReindentAll.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1101_FixIntake_ReindentAll.py
+[R1680] Check 858/1213: tools\Runner_1102_FixIntake_ReindentAndScope.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1102_FixIntake_ReindentAndScope.py
+[R1680] Check 859/1213: tools\Runner_1103_FixIntake_ReindentAndScope.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1103_FixIntake_ReindentAndScope.py
+[R1680] Check 860/1213: tools\Runner_1104_ReplaceIntake_Clean.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1104_ReplaceIntake_Clean.py
+[R1680] Check 861/1213: tools\Runner_1105_FixDeleteSignature_Compile.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1105_FixDeleteSignature_Compile.py
+[R1680] Check 862/1213: tools\Runner_1106b_IntegrateGuard_UI.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1106b_IntegrateGuard_UI.py
+[R1680] Check 863/1213: tools\Runner_1106c_IntegrateGuard_UI_FixedFuture.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1106c_IntegrateGuard_UI_FixedFuture.py
+[R1680] Check 864/1213: tools\Runner_1106_ShrimpGuard_Integriert.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1106_ShrimpGuard_Integriert.py
+[R1680] Check 865/1213: tools\Runner_1107b_AutoRepair_IndentBlocks_ReturnFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1107b_AutoRepair_IndentBlocks_ReturnFix.py
+[R1680] Check 866/1213: tools\Runner_1107_AutoRepair_IndentBlocks.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1107_AutoRepair_IndentBlocks.py
+[R1680] Check 867/1213: tools\Runner_1107_AutoRepair_Intake_BindsAndTry.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1107_AutoRepair_Intake_BindsAndTry.py
+[R1680] Check 868/1213: tools\Runner_1108_DisableButtonReleaseBinds.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1108_DisableButtonReleaseBinds.py
+[R1680] Check 869/1213: tools\Runner_1109_EnableTkCallbackTrace.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1109_EnableTkCallbackTrace.py
+[R1680] Check 870/1213: tools\Runner_1110_FixIntake_ToolbarTryAndHelpers.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1110_FixIntake_ToolbarTryAndHelpers.py
+[R1680] Check 871/1213: tools\Runner_1112_DeepRepair_IntakeAndGUI.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1112_DeepRepair_IntakeAndGUI.py
+[R1680] Check 872/1213: tools\Runner_1113_DeepRepair_FixReturnScope.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1113_DeepRepair_FixReturnScope.py
+[R1680] Check 873/1213: tools\Runner_1114b_FixUnexpectedIndent_MainGUI.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1114b_FixUnexpectedIndent_MainGUI.py
+[R1680] Check 874/1213: tools\Runner_1114_DeepSanityAndRepair.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1114_DeepSanityAndRepair.py
+[R1680] Check 875/1213: tools\Runner_1115_IntegrateRepairUI.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1115_IntegrateRepairUI.py
+[R1680] Check 876/1213: tools\Runner_1116a_FixMainGUITabs.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1116a_FixMainGUITabs.py
+[R1680] Check 877/1213: tools\Runner_1116b_ReentrantBindGuard_AST.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1116b_ReentrantBindGuard_AST.py
+[R1680] Check 878/1213: tools\Runner_1116c_DeepFix_IntakeUI.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1116c_DeepFix_IntakeUI.py
+[R1680] Check 879/1213: tools\Runner_1116d_FixRecycleBinHelper_Only.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1116d_FixRecycleBinHelper_Only.py
+[R1680] Check 880/1213: tools\Runner_1116e_DeepFix_IntakeUI_Safe.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1116e_DeepFix_IntakeUI_Safe.py
+[R1680] Check 881/1213: tools\Runner_1116f_DumpSyntaxContext.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1116f_DumpSyntaxContext.py
+[R1680] Check 882/1213: tools\Runner_1116g_FixToolbarBlock.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1116g_FixToolbarBlock.py
+[R1680] Check 883/1213: tools\Runner_1116_ReentrantBindGuard.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1116_ReentrantBindGuard.py
+[R1680] Check 884/1213: tools\Runner_1117.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1117.py
+[R1680] Check 885/1213: tools\Runner_1118b_GlobalTkPatch.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1118b_GlobalTkPatch.py
+[R1680] Check 886/1213: tools\Runner_1118_SafeTkHandler.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1118_SafeTkHandler.py
+[R1680] Check 887/1213: tools\Runner_1119_TkGuardTopLevel.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1119_TkGuardTopLevel.py
+[R1680] Check 888/1213: tools\Runner_1120_FixFutureAndGuard.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1120_FixFutureAndGuard.py
+[R1680] Check 889/1213: tools\Runner_1121_CentralGuard.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1121_CentralGuard.py
+[R1680] Check 890/1213: tools\Runner_1122_RepairMainGUI_SafeLogging.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1122_RepairMainGUI_SafeLogging.py
+[R1680] Check 891/1213: tools\Runner_1123_EditorGuardPatch.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1123_EditorGuardPatch.py
+[R1680] Check 892/1213: tools\Runner_1124_AllFixes_IntakeStable.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1124_AllFixes_IntakeStable.py
+[R1680] Check 893/1213: tools\Runner_1125_IntakeRescue.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1125_IntakeRescue.py
+[R1680] Check 894/1213: tools\Runner_1126_IntakeRescue2.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1126_IntakeRescue2.py
+[R1680] Check 895/1213: tools\Runner_1127_IntakeDetox.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1127_IntakeDetox.py
+D:\ShrimpDev\tools\Runner_1163_DetectGuardFix.py:2: SyntaxWarning: invalid escape sequence '\s'
+  """
+D:\ShrimpDev\tools\Runner_1173b_IntakeUILayoutFix.py:2: SyntaxWarning: invalid escape sequence '\ '
+  """
+D:\ShrimpDev\tools\Runner_1173b_IntakeUILayoutFix.py:118: SyntaxWarning: invalid escape sequence '\ '
+  """
+D:\ShrimpDev\tools\Runner_1173c_IntakeTTKImportFix.py:90: SyntaxWarning: invalid escape sequence '\ '
+  """Fix f�r fr�here Artefakte: '=\ ' -> ' = '"""
+D:\ShrimpDev\tools\Runner_1173d_IntakeFallbackReturnFix.py:2: SyntaxWarning: invalid escape sequence '\S'
+  """
+[R1680] Check 896/1213: tools\Runner_1127_IntakeFix_All.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1127_IntakeFix_All.py
+[R1680] Check 897/1213: tools\Runner_1128_FixToolbarAndBindings.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1128_FixToolbarAndBindings.py
+[R1680] Check 898/1213: tools\Runner_1129_IntakeLoadGuard.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1129_IntakeLoadGuard.py
+[R1680] Check 899/1213: tools\Runner_1130_IntakeDiagnose.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1130_IntakeDiagnose.py
+[R1680] Check 900/1213: tools\Runner_1131_FixIntakeToolbar.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1131_FixIntakeToolbar.py
+[R1680] Check 901/1213: tools\Runner_1132_FixGuardParent.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1132_FixGuardParent.py
+[R1680] Check 902/1213: tools\Runner_1132_FixIntakeActions.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1132_FixIntakeActions.py
+[R1680] Check 903/1213: tools\Runner_1133_IntakeAutoHeal.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1133_IntakeAutoHeal.py
+[R1680] Check 904/1213: tools\Runner_1134_IntakePathFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1134_IntakePathFix.py
+[R1680] Check 905/1213: tools\Runner_1135_ModulesInitAndDiagnose.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1135_ModulesInitAndDiagnose.py
+[R1680] Check 906/1213: tools\Runner_1136_FixMissingRepairButton.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1136_FixMissingRepairButton.py
+[R1680] Check 907/1213: tools\Runner_1137a_IntakeLoadFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1137a_IntakeLoadFix.py
+[R1680] Check 908/1213: tools\Runner_1137_IntakeLoadFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1137_IntakeLoadFix.py
+[R1680] Check 909/1213: tools\Runner_1138_IntakeLoadFix2.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1138_IntakeLoadFix2.py
+[R1680] Check 910/1213: tools\Runner_1139_IntakeFrameRepair.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1139_IntakeFrameRepair.py
+[R1680] Check 911/1213: tools\Runner_1140_IntakeFinalFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1140_IntakeFinalFix.py
+[R1680] Check 912/1213: tools\Runner_1141_IntakeDefuse.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1141_IntakeDefuse.py
+[R1680] Check 913/1213: tools\Runner_1142_DefuseSafe.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1142_DefuseSafe.py
+[R1680] Check 914/1213: tools\Runner_1143b_IntakeToolbarGuardFix_Safe.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1143b_IntakeToolbarGuardFix_Safe.py
+[R1680] Check 915/1213: tools\Runner_1143_IntakeToolbarGuardFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1143_IntakeToolbarGuardFix.py
+[R1680] Check 916/1213: tools\Runner_1144_ReplaceIntakeSafe.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1144_ReplaceIntakeSafe.py
+[R1680] Check 917/1213: tools\Runner_1145_IntakeAudit.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1145_IntakeAudit.py
+[R1680] Check 918/1213: tools\Runner_1146_FeatureGapAudit.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1146_FeatureGapAudit.py
+[R1680] Check 919/1213: tools\Runner_1148b_ForceDetectionFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1148b_ForceDetectionFix.py
+[R1680] Check 920/1213: tools\Runner_1148_ImproveDetection.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1148_ImproveDetection.py
+[R1680] Check 921/1213: tools\Runner_1149_TablePopulate.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1149_TablePopulate.py
+[R1680] Check 922/1213: tools\Runner_1150_DetectionFinalFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1150_DetectionFinalFix.py
+[R1680] Check 923/1213: tools\Runner_1151_AddPackSaveButton.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1151_AddPackSaveButton.py
+[R1680] Check 924/1213: tools\Runner_1152_TableUX_Interactions.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1152_TableUX_Interactions.py
+[R1680] Check 925/1213: tools\Runner_1153d_RegexHyphenFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1153d_RegexHyphenFix.py
+[R1680] Check 926/1213: tools\Runner_1153e_PathInitFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1153e_PathInitFix.py
+[R1680] Check 927/1213: tools\Runner_1153f_SafeDetectRegex.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1153f_SafeDetectRegex.py
+[R1680] Check 928/1213: tools\Runner_1153g_SafeRegexAllIntake.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1153g_SafeRegexAllIntake.py
+[R1680] Check 929/1213: tools\Runner_1153h_FixDetectAndRegex.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1153h_FixDetectAndRegex.py
+[R1680] Check 930/1213: tools\Runner_1153k_DetectGuard.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1153k_DetectGuard.py
+[R1680] Check 931/1213: tools\Runner_1153_SmartDetect_AutoSave.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1153_SmartDetect_AutoSave.py
+[R1680] Check 932/1213: tools\Runner_1154b_AddDeleteButtons.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1154b_AddDeleteButtons.py
+[R1680] Check 933/1213: tools\Runner_1154c_AddDeleteButtons.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1154c_AddDeleteButtons.py
+[R1680] Check 934/1213: tools\Runner_1154d_FixIntakeToolbarAndGuard.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1154d_FixIntakeToolbarAndGuard.py
+[R1680] Check 935/1213: tools\Runner_1154e_IntakeSyntaxHeal.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\tools\Runner_1154e_IntakeSyntaxHeal.py
+    Zeile 73, Spalte 82
+    Text: - Zeilen mit genau 8 Spaces Einr�ckung, die NICHT mit def/cls-Header/@/#/""" beginnen
+    Nachricht: invalid syntax
+[R1680] Check 936/1213: tools\Runner_1154f_IntakeSyntaxHeal.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\tools\Runner_1154f_IntakeSyntaxHeal.py
+    Zeile 1, Spalte 7
+    Text: @echo off
+    Nachricht: invalid syntax
+[R1680] Check 937/1213: tools\Runner_1154g_FixIntakeButtonsAndGuard.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1154g_FixIntakeButtonsAndGuard.py
+[R1680] Check 938/1213: tools\Runner_1154h_FixMissingBuildUiDef.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1154h_FixMissingBuildUiDef.py
+[R1680] Check 939/1213: tools\Runner_1154_AddDeleteButtons.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\tools\Runner_1154_AddDeleteButtons.py
+    Zeile 142, Spalte 13
+    Text: nonlocal cls_src
+    Nachricht: name 'cls_src' is used prior to nonlocal declaration
+[R1680] Check 940/1213: tools\Runner_1155_IntakeBootDiag.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1155_IntakeBootDiag.py
+[R1680] Check 941/1213: tools\Runner_1156c_FixTtkAndInitUI.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1156c_FixTtkAndInitUI.py
+[R1680] Check 942/1213: tools\Runner_1156d_TtkGlobalizeLocals.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1156d_TtkGlobalizeLocals.py
+[R1680] Check 943/1213: tools\Runner_1156e_CombineInitAndTtk.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1156e_CombineInitAndTtk.py
+[R1680] Check 944/1213: tools\Runner_1156_AddInitAndBuildUI.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1156_AddInitAndBuildUI.py
+[R1680] Check 945/1213: tools\Runner_1157_FixDetectPatterns.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1157_FixDetectPatterns.py
+[R1680] Check 946/1213: tools\Runner_1158c_UX_ToolbarLayoutFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1158c_UX_ToolbarLayoutFix.py
+[R1680] Check 947/1213: tools\Runner_1158_UX_ToolbarLayout.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1158_UX_ToolbarLayout.py
+[R1680] Check 948/1213: tools\Runner_1161_DetectRegex_Hotfix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1161_DetectRegex_Hotfix.py
+[R1680] Check 949/1213: tools\Runner_1162_DetectRegexScanner.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1162_DetectRegexScanner.py
+[R1680] Check 950/1213: tools\Runner_1163b_DetectGuardFixSafe.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1163b_DetectGuardFixSafe.py
+[R1680] Check 951/1213: tools\Runner_1163d_DetectGuardFixSafePlain.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1163d_DetectGuardFixSafePlain.py
+[R1680] Check 952/1213: tools\Runner_1163e_DetectGuardFix_AST.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1163e_DetectGuardFix_AST.py
+[R1680] Check 953/1213: tools\Runner_1163f_FixPyHeadRegex.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1163f_FixPyHeadRegex.py
+[R1680] Check 954/1213: tools\Runner_1163h2_FixPythonHeadRegex_SafePlain.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1163h2_FixPythonHeadRegex_SafePlain.py
+[R1680] Check 955/1213: tools\Runner_1163h3_FixPythonHeadRegex_DirectReplace.py
+D:\ShrimpDev\tools\Runner_1174z_DebugPathFix.py:2: SyntaxWarning: invalid escape sequence '\S'
+  """
+D:\ShrimpDev\tools\Runner_1175a_MainGuiIntakeHelperFix.py:66: SyntaxWarning: invalid escape sequence '\S'
+  '''
+D:\ShrimpDev\tools\Runner_1175m_IntakeResurrect.py:2: SyntaxWarning: invalid escape sequence '\m'
+  """
+D:\ShrimpDev\tools\Runner_1176b_FixIntakeMount.py:2: SyntaxWarning: invalid escape sequence '\m'
+  """
+[R1680] OK: D:\ShrimpDev\tools\Runner_1163h3_FixPythonHeadRegex_DirectReplace.py
+[R1680] Check 956/1213: tools\Runner_1163h4_FixPythonHeadRegex_LineSwap.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1163h4_FixPythonHeadRegex_LineSwap.py
+[R1680] Check 957/1213: tools\Runner_1163h_FixPythonHeadRegex_Safe.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1163h_FixPythonHeadRegex_Safe.py
+[R1680] Check 958/1213: tools\Runner_1163_DetectGuardFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1163_DetectGuardFix.py
+[R1680] Check 959/1213: tools\Runner_1164b_OptionalConfirmOnClear.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1164b_OptionalConfirmOnClear.py
+[R1680] Check 960/1213: tools\Runner_1164c_ClearExt_And_OptionalConfirm.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1164c_ClearExt_And_OptionalConfirm.py
+[R1680] Check 961/1213: tools\Runner_1164d_ClearExt_OptionalConfirm_Traversal.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1164d_ClearExt_OptionalConfirm_Traversal.py
+[R1680] Check 962/1213: tools\Runner_1164_ClearAlsoClearsExt.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1164_ClearAlsoClearsExt.py
+[R1680] Check 963/1213: tools\Runner_1165_IntakeInitFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1165_IntakeInitFix.py
+[R1680] Check 964/1213: tools\Runner_1166b_IntakeScopeFix_SafeIndent.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1166b_IntakeScopeFix_SafeIndent.py
+[R1680] Check 965/1213: tools\Runner_1166c_Intake_MinimalScopeFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1166c_Intake_MinimalScopeFix.py
+[R1680] Check 966/1213: tools\Runner_1166d_Intake_IndentAndTTKFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1166d_Intake_IndentAndTTKFix.py
+[R1680] Check 967/1213: tools\Runner_1166e_Intake_FinalFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1166e_Intake_FinalFix.py
+[R1680] Check 968/1213: tools\Runner_1166f_Intake_DeepRepair.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1166f_Intake_DeepRepair.py
+[R1680] Check 969/1213: tools\Runner_1166g_Intake_SafeDedent.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1166g_Intake_SafeDedent.py
+[R1680] Check 970/1213: tools\Runner_1166h_Intake_SafeDedent2.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1166h_Intake_SafeDedent2.py
+[R1680] Check 971/1213: tools\Runner_1166_IntakeTTK_ScopeFix_and_Rules.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1166_IntakeTTK_ScopeFix_and_Rules.py
+[R1680] Check 972/1213: tools\Runner_1167a_Intake_SanityCheck.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1167a_Intake_SanityCheck.py
+[R1680] Check 973/1213: tools\Runner_1167b_GUIIntakePresenceCheck.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1167b_GUIIntakePresenceCheck.py
+[R1680] Check 974/1213: tools\Runner_1167c_GUIRenderTrace.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1167c_GUIRenderTrace.py
+[R1680] Check 975/1213: tools\Runner_1167d_GUIMountRefresher.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1167d_GUIMountRefresher.py
+[R1680] Check 976/1213: tools\Runner_1167e_RunnerExecSafeImport.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1167e_RunnerExecSafeImport.py
+[R1680] Check 977/1213: tools\Runner_1167f_RunnerExecSafeImport2.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1167f_RunnerExecSafeImport2.py
+[R1680] Check 978/1213: tools\Runner_1167g_RunnerExecLogAppendSafe.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1167g_RunnerExecLogAppendSafe.py
+[R1680] Check 979/1213: tools\Runner_1167h_IntakeErrDump.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1167h_IntakeErrDump.py
+[R1680] Check 980/1213: tools\Runner_1167i_IntakeFix_CallModuleFunc.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1167i_IntakeFix_CallModuleFunc.py
+[R1680] Check 981/1213: tools\Runner_1167j_IniDetectHelperPatch.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1167j_IniDetectHelperPatch.py
+[R1680] Check 982/1213: tools\Runner_1170a_IntakeRegression.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1170a_IntakeRegression.py
+[R1680] Check 983/1213: tools\Runner_1170b_IntakeBindRepair.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1170b_IntakeBindRepair.py
+[R1680] Check 984/1213: tools\Runner_1170c_IntakeShortcutWire.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1170c_IntakeShortcutWire.py
+[R1680] Check 985/1213: tools\Runner_1170d_UXLayoutPolish.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1170d_UXLayoutPolish.py
+[R1680] Check 986/1213: tools\Runner_1170e_IntakeLifecycleWire.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1170e_IntakeLifecycleWire.py
+[R1680] Check 987/1213: tools\Runner_1171a_IntakeUXAndDetect.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\tools\Runner_1171a_IntakeUXAndDetect.py
+    Zeile 224, Spalte 78
+    Text: elif head.strip().startswith(("{","[")): ext = ".json"
+    Nachricht: unterminated string literal (detected at line 224)
+[R1680] Check 988/1213: tools\Runner_1171b_IntakeUXAndDetect.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1171b_IntakeUXAndDetect.py
+[R1680] Check 989/1213: tools\Runner_1171c_IntakeDetectClean.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1171c_IntakeDetectClean.py
+[R1680] Check 990/1213: tools\Runner_1171d_IntakeHelperIndentFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1171d_IntakeHelperIndentFix.py
+[R1680] Check 991/1213: tools\Runner_1171e_IntakeToolbarFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1171e_IntakeToolbarFix.py
+[R1680] Check 992/1213: tools\Runner_1171f_IntakeToolbarFix2.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1171f_IntakeToolbarFix2.py
+[R1680] Check 993/1213: tools\Runner_1171g_IntakeToolbarReflow.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1171g_IntakeToolbarReflow.py
+[R1680] Check 994/1213: tools\Runner_1171h_IntakeHelperIndentSweep.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1171h_IntakeHelperIndentSweep.py
+[R1680] Check 995/1213: tools\Runner_1171j_IntakeToolbarReflowTopLevel.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1171j_IntakeToolbarReflowTopLevel.py
+[R1680] Check 996/1213: tools\Runner_1171k_IntakeToolbarReflowExternalize.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1171k_IntakeToolbarReflowExternalize.py
+[R1680] Check 997/1213: tools\Runner_1171m_IntakeToolbarReflowFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1171m_IntakeToolbarReflowFix.py
+[R1680] Check 998/1213: tools\Runner_1171n_IntakeSyntaxRebuilder.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1171n_IntakeSyntaxRebuilder.py
+[R1680] Check 999/1213: tools\Runner_1171p_IntakeIndentHeal.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1171p_IntakeIndentHeal.py
+[R1680] Check 1000/1213: tools\Runner_1171q_IntakeCleanAndExternalize.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1171q_IntakeCleanAndExternalize.py
+[R1680] Check 1001/1213: tools\Runner_1171q_IntakeToolbarReflowSafe.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1171q_IntakeToolbarReflowSafe.py
+[R1680] Check 1002/1213: tools\Runner_1171r_IntakeUILayoutTidy.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1171r_IntakeUILayoutTidy.py
+[R1680] Check 1003/1213: tools\Runner_1172_IntakeTabGuard.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1172_IntakeTabGuard.py
+[R1680] Check 1004/1213: tools\Runner_1173b_IntakeUILayoutFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1173b_IntakeUILayoutFix.py
+[R1680] Check 1005/1213: tools\Runner_1173c_IntakeTTKImportFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1173c_IntakeTTKImportFix.py
+[R1680] Check 1006/1213: tools\Runner_1173d_IntakeFallbackReturnFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1173d_IntakeFallbackReturnFix.py
+[R1680] Check 1007/1213: tools\Runner_1173e_MainGuiTabHelper.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1173e_MainGuiTabHelper.py
+[R1680] Check 1008/1213: tools\Runner_1173f_IntakeTabSafeAdd.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1173f_IntakeTabSafeAdd.py
+[R1680] Check 1009/1213: tools\Runner_1173g_IntakeTabSmoke.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1173g_IntakeTabSmoke.py
+[R1680] Check 1010/1213: tools\Runner_1173h_MainGuiHelpersOrderFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1173h_MainGuiHelpersOrderFix.py
+[R1680] Check 1011/1213: tools\Runner_1173i_MainGuiHeadDedent.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1173i_MainGuiHeadDedent.py
+[R1680] Check 1012/1213: tools\Runner_1173k_MainGuiCallRelocate.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1173k_MainGuiCallRelocate.py
+[R1680] Check 1013/1213: tools\Runner_1173m_MainGuiIntakeWireFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1173m_MainGuiIntakeWireFix.py
+D:\ShrimpDev\tools\Runner_1199_FixSaveAndLEDs.py:2: SyntaxWarning: invalid escape sequence '\)'
+  """
+D:\ShrimpDev\tools\Runner_1200_DevIntake_AutoDetectAndPolish.py:2: SyntaxWarning: invalid escape sequence '\*'
+  """
+D:\ShrimpDev\tools\Runner_1204_FixIndent_AutoDetect_SaveAs.py:2: SyntaxWarning: invalid escape sequence '\d'
+  """
+D:\ShrimpDev\tools\Runner_1206_FixIntakeCore.py:2: SyntaxWarning: invalid escape sequence '\*'
+  """
+D:\ShrimpDev\tools\Runner_1214_FixIntake_Final.py:2: SyntaxWarning: invalid escape sequence '\m'
+  """
+[R1680] Check 1014/1213: tools\Runner_1173p_MainGuiIntakeWireForce.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1173p_MainGuiIntakeWireForce.py
+[R1680] Check 1015/1213: tools\Runner_1173z_IntakeSmoke.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1173z_IntakeSmoke.py
+[R1680] Check 1016/1213: tools\Runner_1173_IntakeUILayoutFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1173_IntakeUILayoutFix.py
+[R1680] Check 1017/1213: tools\Runner_1174aa_IntakeTabCleanser.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174aa_IntakeTabCleanser.py
+[R1680] Check 1018/1213: tools\Runner_1174a_MainGuiIntakeHelpersFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174a_MainGuiIntakeHelpersFix.py
+[R1680] Check 1019/1213: tools\Runner_1174b_MainGuiIntakeHelpersFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174b_MainGuiIntakeHelpersFix.py
+[R1680] Check 1020/1213: tools\Runner_1174c_MainGuiIntakeHelpersFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174c_MainGuiIntakeHelpersFix.py
+[R1680] Check 1021/1213: tools\Runner_1174d_MainGuiIntakeCleanup.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174d_MainGuiIntakeCleanup.py
+[R1680] Check 1022/1213: tools\Runner_1174e_MainGuiIntakeCleanup.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174e_MainGuiIntakeCleanup.py
+[R1680] Check 1023/1213: tools\Runner_1174f_MainGuiIntakeCleanup.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174f_MainGuiIntakeCleanup.py
+[R1680] Check 1024/1213: tools\Runner_1174g_IntakeClassRebind.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174g_IntakeClassRebind.py
+[R1680] Check 1025/1213: tools\Runner_1174g_IntakePostBuildFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174g_IntakePostBuildFix.py
+[R1680] Check 1026/1213: tools\Runner_1174g_MainGuiReorderFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174g_MainGuiReorderFix.py
+[R1680] Check 1027/1213: tools\Runner_1174h_IntakeHardReset.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174h_IntakeHardReset.py
+[R1680] Check 1028/1213: tools\Runner_1174i_IntakeRestoreSmart.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174i_IntakeRestoreSmart.py
+[R1680] Check 1029/1213: tools\Runner_1174j_IntakeRestoreSmartFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174j_IntakeRestoreSmartFix.py
+[R1680] Check 1030/1213: tools\Runner_1174k_IntakeFeatureRestore.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174k_IntakeFeatureRestore.py
+[R1680] Check 1031/1213: tools\Runner_1174m_IntakeFrameRebuild.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174m_IntakeFrameRebuild.py
+[R1680] Check 1032/1213: tools\Runner_1174n_IntakeHotFix_UIInit.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174n_IntakeHotFix_UIInit.py
+[R1680] Check 1033/1213: tools\Runner_1174p_IntakeCtorFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174p_IntakeCtorFix.py
+[R1680] Check 1034/1213: tools\Runner_1174r_IntakeTabRebind.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174r_IntakeTabRebind.py
+[R1680] Check 1035/1213: tools\Runner_1174s_MainGuiSmoke.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174s_MainGuiSmoke.py
+[R1680] Check 1036/1213: tools\Runner_1174t_IntakeTabRebindFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174t_IntakeTabRebindFix.py
+[R1680] Check 1037/1213: tools\Runner_1174u_MainGuiRestoreLast.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174u_MainGuiRestoreLast.py
+[R1680] Check 1038/1213: tools\Runner_1174v_IntakeTabHarden.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174v_IntakeTabHarden.py
+[R1680] Check 1039/1213: tools\Runner_1174w_MainSyntaxSmoke.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174w_MainSyntaxSmoke.py
+[R1680] Check 1040/1213: tools\Runner_1174x_IntakeRevive.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174x_IntakeRevive.py
+[R1680] Check 1041/1213: tools\Runner_1174y_DebugPathFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174y_DebugPathFix.py
+[R1680] Check 1042/1213: tools\Runner_1174z_DebugPathFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174z_DebugPathFix.py
+[R1680] Check 1043/1213: tools\Runner_1174z_IntakeTabRestoreSafe.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1174z_IntakeTabRestoreSafe.py
+[R1680] Check 1044/1213: tools\Runner_1175a_MainGuiIntakeHelperFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1175a_MainGuiIntakeHelperFix.py
+[R1680] Check 1045/1213: tools\Runner_1175b_IntakeApiSoftGuard.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1175b_IntakeApiSoftGuard.py
+[R1680] Check 1046/1213: tools\Runner_1175d_MainEntryGuard.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1175d_MainEntryGuard.py
+[R1680] Check 1047/1213: tools\Runner_1175e_MainIntakeShim.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1175e_MainIntakeShim.py
+[R1680] Check 1048/1213: tools\Runner_1175f_IntakeShimFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1175f_IntakeShimFix.py
+[R1680] Check 1049/1213: tools\Runner_1175g_ModulesPackageFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1175g_ModulesPackageFix.py
+[R1680] Check 1050/1213: tools\Runner_1175h_IntakeCleanRestore.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1175h_IntakeCleanRestore.py
+[R1680] Check 1051/1213: tools\Runner_1175i_RemoveFakeNbAdd.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1175i_RemoveFakeNbAdd.py
+[R1680] Check 1052/1213: tools\Runner_1175m_IntakeResurrect.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1175m_IntakeResurrect.py
+[R1680] Check 1053/1213: tools\Runner_1175n_FixPyCallAndCleanMain.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1175n_FixPyCallAndCleanMain.py
+[R1680] Check 1054/1213: tools\Runner_1175q_IntakeHardRestore.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1175q_IntakeHardRestore.py
+[R1680] Check 1055/1213: tools\Runner_1176a_IntakeShimUpgrade.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1176a_IntakeShimUpgrade.py
+[R1680] Check 1056/1213: tools\Runner_1176b_FixIntakeMount.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1176b_FixIntakeMount.py
+[R1680] Check 1057/1213: tools\Runner_1176c_GatePanelIntegration.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1176c_GatePanelIntegration.py
+[R1680] Check 1058/1213: tools\Runner_1176d_FixShimName.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1176d_FixShimName.py
+[R1680] Check 1059/1213: tools\Runner_1176d_IntakeShimHotfix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1176d_IntakeShimHotfix.py
+[R1680] Check 1060/1213: tools\Runner_1177a_IntakeMountAdapter.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1177a_IntakeMountAdapter.py
+[R1680] Check 1061/1213: tools\Runner_1177a_IntakeMountAdapter_Hotfix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1177a_IntakeMountAdapter_Hotfix.py
+[R1680] Check 1062/1213: tools\Runner_1177b_DevIntakeRestore.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1177b_DevIntakeRestore.py
+[R1680] Check 1063/1213: tools\Runner_1177b_IntakeRestore.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1177b_IntakeRestore.py
+[R1680] Check 1064/1213: tools\Runner_1177c_IntakeRecover.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1177c_IntakeRecover.py
+[R1680] Check 1065/1213: tools\Runner_1177d_DevIntakeButtons.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1177d_DevIntakeButtons.py
+[R1680] Check 1066/1213: tools\Runner_1177e_DevToolbarFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1177e_DevToolbarFix.py
+[R1680] Check 1067/1213: tools\Runner_1177f_DevIntakeVisualFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1177f_DevIntakeVisualFix.py
+[R1680] Check 1068/1213: tools\Runner_1177g_DevIntakeCoreRebuild.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1177g_DevIntakeCoreRebuild.py
+[R1680] Check 1069/1213: tools\Runner_1177h_IntakeImportCheck.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1177h_IntakeImportCheck.py
+[R1680] Check 1070/1213: tools\Runner_1177i_ImportPathFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1177i_ImportPathFix.py
+[R1680] Check 1071/1213: tools\Runner_1177j_IntakeShimHardFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1177j_IntakeShimHardFix.py
+[R1680] Check 1072/1213: tools\Runner_1177k_RuntimeImportBridge.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1177k_RuntimeImportBridge.py
+[R1680] Check 1073/1213: tools\Runner_1177l_CleanTabMount.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1177l_CleanTabMount.py
+[R1680] Check 1074/1213: tools\Runner_1177m_FixMainAndGate.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1177m_FixMainAndGate.py
+[R1680] Check 1075/1213: tools\Runner_1177m_MainGuiFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1177m_MainGuiFix.py
+D:\ShrimpDev\tools\Runner_1293_UpdateIntakeMount.py:184: SyntaxWarning: invalid escape sequence '\m'
+  """Sucht letztes _Archiv\module_code_intake.py.*.bak und stellt zur�ck."""
+D:\ShrimpDev\tools\Runner_947_IntakeSelfTest.py:9: SyntaxWarning: invalid escape sequence '\S'
+  """
+[R1680] Check 1076/1213: tools\Runner_1177n_GatePanelUpdate.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1177n_GatePanelUpdate.py
+[R1680] Check 1077/1213: tools\Runner_1178i_ImportPathFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1178i_ImportPathFix.py
+[R1680] Check 1078/1213: tools\Runner_1178j_FixDevIntake.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1178j_FixDevIntake.py
+[R1680] Check 1079/1213: tools\Runner_1178m_FixGatePanelAndLaunch.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1178m_FixGatePanelAndLaunch.py
+[R1680] Check 1080/1213: tools\Runner_1178o_FixGatePanelAndLaunch.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1178o_FixGatePanelAndLaunch.py
+[R1680] Check 1081/1213: tools\Runner_1180_StartFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1180_StartFix.py
+[R1680] Check 1082/1213: tools\Runner_1181b_MainGuiIndentFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1181b_MainGuiIndentFix.py
+[R1680] Check 1083/1213: tools\Runner_1181c_MainGuiIndentFix2.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1181c_MainGuiIndentFix2.py
+[R1680] Check 1084/1213: tools\Runner_1181d_MainGuiTryFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1181d_MainGuiTryFix.py
+[R1680] Check 1085/1213: tools\Runner_1181_IntakeDeDuplicate.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1181_IntakeDeDuplicate.py
+[R1680] Check 1086/1213: tools\Runner_1182a_DevIntakePro_Clean.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1182a_DevIntakePro_Clean.py
+[R1680] Check 1087/1213: tools\Runner_1182_DevIntakePro.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\tools\Runner_1182_DevIntakePro.py
+    Zeile 21, Spalte 11
+    Text: ShrimpDev � Dev-Intake Pro (rein ShrimpDev, keine Hub-Vermischung)
+    Nachricht: invalid character '�' (U+2013)
+[R1680] Check 1088/1213: tools\Runner_1183c_DevIntakeUX_DetectFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1183c_DevIntakeUX_DetectFix.py
+[R1680] Check 1089/1213: tools\Runner_1183_DevIntakeUX.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1183_DevIntakeUX.py
+[R1680] Check 1090/1213: tools\Runner_1184_DevIntakeUX_Polish.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1184_DevIntakeUX_Polish.py
+[R1680] Check 1091/1213: tools\Runner_1185b_DevIntakeLEDs_Detect2Fix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1185b_DevIntakeLEDs_Detect2Fix.py
+[R1680] Check 1092/1213: tools\Runner_1185_DevIntakeLEDs_Detect2.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\tools\Runner_1185_DevIntakeLEDs_Detect2.py
+    Zeile 65, Spalte 74
+    Text: py += 1 * len(re.findall(r"'''|\"\"\"", t))          # triple quotes
+    Nachricht: unexpected character after line continuation character
+[R1680] Check 1093/1213: tools\Runner_1186_IntakeUX_FixDetectAndUX.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1186_IntakeUX_FixDetectAndUX.py
+[R1680] Check 1094/1213: tools\Runner_1187_IntakeLEDs_Add.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1187_IntakeLEDs_Add.py
+[R1680] Check 1095/1213: tools\Runner_1188_IntakeLEDs_DetectHardening.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1188_IntakeLEDs_DetectHardening.py
+[R1680] Check 1096/1213: tools\Runner_1189_IntakeRepairAndLEDsFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1189_IntakeRepairAndLEDsFix.py
+[R1680] Check 1097/1213: tools\Runner_1190_DevIntake_Install.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1190_DevIntake_Install.py
+[R1680] Check 1098/1213: tools\Runner_1191_DevIntake_CleanInstall.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1191_DevIntake_CleanInstall.py
+[R1680] Check 1099/1213: tools\Runner_1192_DevIntake_UIRefine.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1192_DevIntake_UIRefine.py
+[R1680] Check 1100/1213: tools\Runner_1193_DevIntake_FixDetectAndInstall.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1193_DevIntake_FixDetectAndInstall.py
+[R1680] Check 1101/1213: tools\Runner_1193_IntakeDetectUpgrade.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1193_IntakeDetectUpgrade.py
+[R1680] Check 1102/1213: tools\Runner_1194_DevIntake_UIArrange.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1194_DevIntake_UIArrange.py
+[R1680] Check 1103/1213: tools\Runner_1194_LEDBackgroundFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1194_LEDBackgroundFix.py
+[R1680] Check 1104/1213: tools\Runner_1195_DevIntake_UISortPolish.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1195_DevIntake_UISortPolish.py
+[R1680] Check 1105/1213: tools\Runner_1196_DevIntake_Apply.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1196_DevIntake_Apply.py
+[R1680] Check 1106/1213: tools\Runner_1198_IntakeLedFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1198_IntakeLedFix.py
+[R1680] Check 1107/1213: tools\Runner_1199_FixSaveAndLEDs.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1199_FixSaveAndLEDs.py
+[R1680] Check 1108/1213: tools\Runner_1199_IntakeHotfix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1199_IntakeHotfix.py
+[R1680] Check 1109/1213: tools\Runner_1200_DevIntake_AutoDetectAndPolish.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1200_DevIntake_AutoDetectAndPolish.py
+[R1680] Check 1110/1213: tools\Runner_1201_DevIntake_Stabilize.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1201_DevIntake_Stabilize.py
+[R1680] Check 1111/1213: tools\Runner_1202_FixIndentationPath.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1202_FixIndentationPath.py
+[R1680] Check 1112/1213: tools\Runner_1203_DevIntake_Recovery.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1203_DevIntake_Recovery.py
+[R1680] Check 1113/1213: tools\Runner_1204_FixIndent_AutoDetect_SaveAs.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1204_FixIndent_AutoDetect_SaveAs.py
+[R1680] Check 1114/1213: tools\Runner_1205_FixIntakeIndentAndLEDs.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1205_FixIntakeIndentAndLEDs.py
+[R1680] Check 1115/1213: tools\Runner_1206_FixIntakeCore.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1206_FixIntakeCore.py
+[R1680] Check 1116/1213: tools\Runner_1207_FixIntakeCoreSafe.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1207_FixIntakeCoreSafe.py
+[R1680] Check 1117/1213: tools\Runner_1208_FixRegexEscape.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1208_FixRegexEscape.py
+[R1680] Check 1118/1213: tools\Runner_1209_IntakePathFinalFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1209_IntakePathFinalFix.py
+[R1680] Check 1119/1213: tools\Runner_1210_DevIntake_FixCoreAndUX.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1210_DevIntake_FixCoreAndUX.py
+[R1680] Check 1120/1213: tools\Runner_1211_FixIntakeCoreStable.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\tools\Runner_1211_FixIntakeCoreStable.py
+    Zeile 96, Spalte 4
+    Text: Liefert den Zielpfad auf Basis der UI-Felder.
+    Nachricht: unexpected indent
+[R1680] Check 1121/1213: tools\Runner_1212_FixIntakeCoreStable.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1212_FixIntakeCoreStable.py
+[R1680] Check 1122/1213: tools\Runner_1213_FixIntakeCoreStable.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1213_FixIntakeCoreStable.py
+[R1680] Check 1123/1213: tools\Runner_1214_FixIntake_Final.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1214_FixIntake_Final.py
+[R1680] Check 1124/1213: tools\Runner_1215_FixIntakeCoreFinal.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1215_FixIntakeCoreFinal.py
+[R1680] Check 1125/1213: tools\Runner_1216_FixIntakeCore_Final.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1216_FixIntakeCore_Final.py
+[R1680] Check 1126/1213: tools\Runner_1217_FixIntakeCoreSuperSafe.py
+[R1680] ERROR: SyntaxError in D:\ShrimpDev\tools\Runner_1217_FixIntakeCoreSuperSafe.py
+    Zeile 16, Spalte 13
+    Text: Dev-Intake (stabiler Kern)
+    Nachricht: invalid syntax. Perhaps you forgot a comma?
+[R1680] Check 1127/1213: tools\Runner_1218_FixIntakeCoreSuperSafe.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1218_FixIntakeCoreSuperSafe.py
+[R1680] Check 1128/1213: tools\Runner_1218_FixIntake_NewlineSafe.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1218_FixIntake_NewlineSafe.py
+[R1680] Check 1129/1213: tools\Runner_1220_SyntaxGate_AllModules.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1220_SyntaxGate_AllModules.py
+[R1680] Check 1130/1213: tools\Runner_1221_IntakeCore_Addons.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1221_IntakeCore_Addons.py
+[R1680] Check 1131/1213: tools\Runner_1225_IntakeCore_RepairAndIntegrate.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1225_IntakeCore_RepairAndIntegrate.py
+[R1680] Check 1132/1213: tools\Runner_1230_RestoreIntakeFromBackup.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1230_RestoreIntakeFromBackup.py
+[R1680] Check 1133/1213: tools\Runner_1231_Intake_MinimalFixes.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1231_Intake_MinimalFixes.py
+[R1680] Check 1134/1213: tools\Runner_1234_IntakeCore_RepairIntegrate.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1234_IntakeCore_RepairIntegrate.py
+[R1680] Check 1135/1213: tools\Runner_1241_Intake_AllInOne.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1241_Intake_AllInOne.py
+[R1680] Check 1136/1213: tools\Runner_1242_Intake_RepairAndIntegrate.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1242_Intake_RepairAndIntegrate.py
+[R1680] Check 1137/1213: tools\Runner_1244b_SyntaxRecovery_Final.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1244b_SyntaxRecovery_Final.py
+[R1680] Check 1138/1213: tools\Runner_1244_SyntaxRecovery_Final.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1244_SyntaxRecovery_Final.py
+[R1680] Check 1139/1213: tools\Runner_1245_IntakeSyntaxResurrection.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1245_IntakeSyntaxResurrection.py
+[R1680] Check 1140/1213: tools\Runner_1246_IntakeCodePurge.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1246_IntakeCodePurge.py
+[R1680] Check 1141/1213: tools\Runner_1247_WriteTextFixer.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1247_WriteTextFixer.py
+[R1680] Check 1142/1213: tools\Runner_1248_IntakeSyntaxRescue.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1248_IntakeSyntaxRescue.py
+[R1680] Check 1143/1213: tools\Runner_1249_IntakeHardRestore.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1249_IntakeHardRestore.py
+[R1680] Check 1144/1213: tools\Runner_1250_MasterRulesPersist.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1250_MasterRulesPersist.py
+[R1680] Check 1145/1213: tools\Runner_1251_SanityGateDaemon.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1251_SanityGateDaemon.py
+[R1680] Check 1146/1213: tools\Runner_1257_AddCmdSupport.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1257_AddCmdSupport.py
+[R1680] Check 1147/1213: tools\Runner_1258_IntakeRebuildFinal.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1258_IntakeRebuildFinal.py
+[R1680] Check 1148/1213: tools\Runner_1259_IntakeRegexRebuild.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1259_IntakeRegexRebuild.py
+[R1680] Check 1149/1213: tools\Runner_1260_IntakeRegexFinalFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1260_IntakeRegexFinalFix.py
+[R1680] Check 1150/1213: tools\Runner_1262_IntakeRestoreFromBackups.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1262_IntakeRestoreFromBackups.py
+[R1680] Check 1151/1213: tools\Runner_1263_IntakeBackupDeepScan.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1263_IntakeBackupDeepScan.py
+[R1680] Check 1152/1213: tools\Runner_1264.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1264.py
+[R1680] Check 1153/1213: tools\Runner_1265.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1265.py
+[R1680] Check 1154/1213: tools\Runner_1293_UpdateIntakeMount.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_1293_UpdateIntakeMount.py
+[R1680] Check 1155/1213: tools\Runner_900_Setup.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_900_Setup.py
+[R1680] Check 1156/1213: tools\Runner_901_Verify.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_901_Verify.py
+[R1680] Check 1157/1213: tools\Runner_902_LogTail.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_902_LogTail.py
+[R1680] Check 1158/1213: tools\Runner_902_Starter.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_902_Starter.py
+[R1680] Check 1159/1213: tools\Runner_903_Fix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_903_Fix.py
+[R1680] Check 1160/1213: tools\Runner_904_WarnSilence.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_904_WarnSilence.py
+[R1680] Check 1161/1213: tools\Runner_905_FixToggle.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_905_FixToggle.py
+[R1680] Check 1162/1213: tools\Runner_910_Install.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_910_Install.py
+[R1680] Check 1163/1213: tools\Runner_911_Scan.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_911_Scan.py
+[R1680] Check 1164/1213: tools\Runner_912_Watch.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_912_Watch.py
+[R1680] Check 1165/1213: tools\Runner_913_Silence.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_913_Silence.py
+[R1680] Check 1166/1213: tools\Runner_914_NoPopup.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_914_NoPopup.py
+[R1680] Check 1167/1213: tools\Runner_915_QuietToggle.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_915_QuietToggle.py
+[R1680] Check 1168/1213: tools\Runner_916_ScanUX.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_916_ScanUX.py
+[R1680] Check 1169/1213: tools\Runner_917_FixIndent.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_917_FixIndent.py
+[R1680] Check 1170/1213: tools\Runner_918_FixIndentMain.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_918_FixIndentMain.py
+[R1680] Check 1171/1213: tools\Runner_930_AllInOne.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_930_AllInOne.py
+[R1680] Check 1172/1213: tools\Runner_935_FixMainGUI.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_935_FixMainGUI.py
+[R1680] Check 1173/1213: tools\Runner_940_CoreKit.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_940_CoreKit.py
+[R1680] Check 1174/1213: tools\Runner_941_Preflight.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_941_Preflight.py
+[R1680] Check 1175/1213: tools\Runner_942_NewModule.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_942_NewModule.py
+[R1680] Check 1176/1213: tools\Runner_943_NewRunner.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_943_NewRunner.py
+[R1680] Check 1177/1213: tools\Runner_944_AllGUIIntegrate.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_944_AllGUIIntegrate.py
+[R1680] Check 1178/1213: tools\Runner_946_IntakeSmart.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_946_IntakeSmart.py
+[R1680] Check 1179/1213: tools\Runner_947_IntakeSelfTest.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_947_IntakeSelfTest.py
+[R1680] Check 1180/1213: tools\Runner_948_IntakeUX.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_948_IntakeUX.py
+[R1680] Check 1181/1213: tools\Runner_949_TryFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_949_TryFix.py
+[R1680] Check 1182/1213: tools\Runner_950.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_950.py
+[R1680] Check 1183/1213: tools\Runner_951_FixAgentStart.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_951_FixAgentStart.py
+[R1680] Check 1184/1213: tools\Runner_952_FixTryEverywhere.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_952_FixTryEverywhere.py
+[R1680] Check 1185/1213: tools\Runner_953_FixLoneTry.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_953_FixLoneTry.py
+[R1680] Check 1186/1213: tools\Runner_954_MainCleanup.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_954_MainCleanup.py
+[R1680] Check 1187/1213: tools\Runner_956_Unswallow.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_956_Unswallow.py
+[R1680] Check 1188/1213: tools\Runner_957_FixMainBlock.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_957_FixMainBlock.py
+[R1680] Check 1189/1213: tools\Runner_960_BootFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_960_BootFix.py
+[R1680] Check 1190/1213: tools\Runner_960_Menus.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_960_Menus.py
+[R1680] Check 1191/1213: tools\Runner_961_MenuFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_961_MenuFix.py
+[R1680] Check 1192/1213: tools\Runner_962_FixMainGUI.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_962_FixMainGUI.py
+[R1680] Check 1193/1213: tools\Runner_970_AllInOneInstall.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_970_AllInOneInstall.py
+[R1680] Check 1194/1213: tools\Runner_971_UnifyTabs.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_971_UnifyTabs.py
+[R1680] Check 1195/1213: tools\Runner_972_SafePatch.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_972_SafePatch.py
+[R1680] Check 1196/1213: tools\Runner_980_DevConsolidate.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_980_DevConsolidate.py
+[R1680] Check 1197/1213: tools\Runner_981_IntakeUX.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_981_IntakeUX.py
+[R1680] Check 1198/1213: tools\Runner_982_IntakeUIEnhance.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_982_IntakeUIEnhance.py
+[R1680] Check 1199/1213: tools\Runner_983_IntakeFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_983_IntakeFix.py
+[R1680] Check 1200/1213: tools\Runner_984_IntakeGeometryFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_984_IntakeGeometryFix.py
+[R1680] Check 1201/1213: tools\Runner_990_FixGUI.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_990_FixGUI.py
+[R1680] Check 1202/1213: tools\Runner_991_AllTabsIntegrate.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_991_AllTabsIntegrate.py
+[R1680] Check 1203/1213: tools\Runner_995_IntakeDetectorFix.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_995_IntakeDetectorFix.py
+[R1680] Check 1204/1213: tools\Runner_996_IntakeFix_And_Default.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_996_IntakeFix_And_Default.py
+[R1680] Check 1205/1213: tools\Runner_997_Intake_BatAndDefault.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_997_Intake_BatAndDefault.py
+[R1680] Check 1206/1213: tools\Runner_998_DefaultIntake.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_998_DefaultIntake.py
+[R1680] Check 1207/1213: tools\Runner_998_IntakeBatDetector.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_998_IntakeBatDetector.py
+[R1680] Check 1208/1213: tools\Runner_999_Test.py
+[R1680] OK: D:\ShrimpDev\tools\Runner_999_Test.py
+[R1680] Check 1209/1213: tools\shrimpdev_event.py
+[R1680] OK: D:\ShrimpDev\tools\shrimpdev_event.py
+[R1680] Check 1210/1213: tools\TestRunner.py
+[R1680] OK: D:\ShrimpDev\tools\TestRunner.py
+[R1680] Check 1211/1213: tools\TestRunner_Error.py
+[R1680] OK: D:\ShrimpDev\tools\TestRunner_Error.py
+[R1680] Check 1212/1213: tools\TestRunner_Long.py
+[R1680] OK: D:\ShrimpDev\tools\TestRunner_Long.py
+[R1680] Check 1213/1213: tools\TestRunner_Warn.py
+[R1680] OK: D:\ShrimpDev\tools\TestRunner_Warn.py
+
+[R1680] Zusammenfassung:
+[R1680]   OK:     1185
+[R1680]   Fehler: 28
+[R1680] WARN: Es wurden Syntaxfehler gefunden.
+[R1680] 2025-11-25 12:24:56 SyntaxCheck beendet � Fehler: 28, OK: 1185
+[R1680] Beendet mit Code 1
+
+[Runner beendet mit Code 0]
