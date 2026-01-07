@@ -1,0 +1,17 @@
+ShrimpDev Architektur-Notiz – R2079 (LearningJournal Scroll-Fix)
+====================================================================
+
+Bereich:
+  - Modul: modules.module_learningjournal
+  - Funktion: build_learningjournal_tab
+
+Aenderung durch R2079:
+  - Bugfix: yscrollcommand war fälschlich an text_detail.set gebunden,
+    was zu AttributeError fuehrte, da Text-Widgets keine set()-Methode
+    besitzen.
+  - Korrektur auf scroll_detail.set, also die Scrollbar, die an das
+    Text-Widget gekoppelt ist.
+
+Auswirkung:
+  - ShrimpDev startet wieder, LearningJournal-Tab baut sich korrekt auf.
+  - Keine weiteren Verhaltensaenderungen am LearningJournal, reine Bugfix.

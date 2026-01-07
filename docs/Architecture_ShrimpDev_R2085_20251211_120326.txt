@@ -1,0 +1,9 @@
+ShrimpDev Architektur-Notiz – R2085
+
+Aenderung:
+  - R1802 wurde als Diagnose-Runner neu aufgebaut.
+  - R1802 liest learning_journal.json, erstellt eine Zusammenfassung
+    (Events, Level, Zeitraum, letzte Fehler) und schreibt Reports in _Reports.
+  - Laufzeitfehler in der Diagnose koennen ShrimpDev nicht beeinflussen;
+    sie werden geloggt und abgefangen.
+

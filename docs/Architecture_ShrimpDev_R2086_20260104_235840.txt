@@ -1,0 +1,14 @@
+Runner R2086 – Error-Scan fuer LearningJournal
+Timestamp: 20260104_235840
+
+Funktion:
+- Liest debug_output.txt im Projekt-Root.
+- Zaehlt Fehlerzeilen, SyntaxLED-Meldungen und Tracebacks.
+- Schreibt einen kompakten LearningJournal-Eintrag mit event_type=error_scan.
+- Schreibt einen Text-Report unter _Reports.
+
+Letzte bekannte Werte:
+  total_lines=7499
+  error_lines=368
+  syntax_led=0
+  tracebacks=84

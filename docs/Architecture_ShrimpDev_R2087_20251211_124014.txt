@@ -1,0 +1,8 @@
+ShrimpDev Architektur-Notiz – R2087
+
+Aenderung:
+  - LearningJournal-Tab erhaelt einen zusaetzlichen Button 'Scans'.
+  - Button ruft show_scans() auf, welches Filter auf alle + Suche 'error_scan' setzt.
+  - Ziel: schnelle Sicht auf error_scan-Eintraege aus Error-Scans (z. B. R2086).
+  - Keine weiteren Funktionen oder Module wurden angepasst.
+

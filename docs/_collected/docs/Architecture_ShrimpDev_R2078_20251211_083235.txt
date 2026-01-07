@@ -1,0 +1,25 @@
+ShrimpDev Architektur-Notiz – R2078 (LearningJournal-Tab mit Filter/Suche)
+===========================================================================
+
+Bereich:
+  - Modul: modules.module_learningjournal
+  - Funktion: build_learningjournal_tab(parent, app)
+
+Aenderungen durch R2078:
+  - Header um Filter-/Suchzeile erweitert:
+      * Combobox filter_var: alle, error, runner, intake, meta
+      * Suchfeld search_var fuer Volltextsuche ueber einen Eintrag
+      * Reset-Button fuer Ruecksetzen von Filter und Suche
+  - State ergaenzt um 'filtered'-Liste, die aktuell sichtbare Eintraege enthaelt.
+  - apply_filter(): wendet Filter + Suche auf entries an und fuellt die Listbox.
+  - on_select(): liest Eintrag aus state['filtered'] statt aus der Roh-Liste.
+  - reload_entries(): laedt entries ueber _load_learning_journal, aktualisiert
+    info_var, stats_var und ruft anschliessend apply_filter() auf.
+  - run_diagnose(): startet wie bisher R1802.cmd, Meldungen gehen in info_var
+    und werden mit _log protokolliert.
+
+Benutzerwirkung:
+  - LearningJournal-Tab kann nun interaktiv nach Event-Typ und Freitext gefiltert
+    werden, ohne die JSON-Struktur oder die LearningEngine zu aendern.
+  - Die bestehende Dateistruktur (learning_journal.json) bleibt unveraendert; es
+    handelt sich um eine reine UI-Erweiterung im Tab.
