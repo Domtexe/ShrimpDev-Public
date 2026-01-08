@@ -1,3 +1,28 @@
+<!-- PIPELINE_V1_START -->
+# PIPELINE v1 — Lanes & Turnus (Source of Truth)
+
+**Ziel:** Alle Themen (ShrimpDev/ShrimpHub/Website/Doku/Tooling) gleichmäßig voranbringen — ohne Chaos.  
+**Regel:** Start-/Crash-Stabilität schlägt alles.
+
+## Lanes (Themenbahnen)
+- **Lane A — Stabilität / Crash / Startfähigkeit (P0/P1)**
+- **Lane B — Core Features (P1/P2)**
+- **Lane C — Tooling / Automationen (P1/P2)**
+- **Lane D — Doku / Regeln / Konsistenz (P1/P2)**
+- **Lane E — Website / SEO-Netzwerk (P2/P3)**
+
+## Turnus
+1. **Hard Override:** Wenn es **P0 in Lane A** gibt → **immer zuerst**.
+2. Sonst rotieren wir: **A → B → C → D → E → (repeat)**.
+3. Pro Session: **1 Anchor-Task** aus der aktuellen Lane (optional Kleinkram max. 20%).
+
+## Arbeitskonvention (kurz)
+- Tasks sind pro Lane gruppiert.
+- Jede Änderung an Pipeline: **Backup + Report**.
+<!-- PIPELINE_V1_END -->
+
+---
+
 ## P0 – ui_toolbar.py entschärfen (Modularisierung + Stabilitäts-Guards)
 
 **Priorität:** P0 / superurgent  
@@ -314,4 +339,29 @@ _added 2026-01-08 12:26 via R3147_
 
 - [ ] (P3) [STRAT] Website-MVP: Indexierung & Impressions beobachten (Search Console)
 - [ ] (P3) [STRAT] Website-MVP: Entscheidung dokumentieren (skalieren oder verwerfen)
+
+## Lane E — Website / SEO-Netzwerk (P2/P3)
+
+**Ziel:** Systematisches Portfolio aus Nischenwebsites (SEO-getrieben), monetarisierbar via Affiliate/Ads/Lead.  
+**Strategie:** Weg von gesättigten Märkten (z. B. Sneaker) → hin zu klaren Nischen mit echter Suchintention.  
+**Prinzip:** Produkte/Probleme statt breite Kategorien; Portfolio-Denken (viele kleine Sites).
+
+### P2 — Setup & Entscheidungsgrundlagen
+- [ ] (P2) **WE-01: Marken-/Domain-Strategie festlegen** (eine Marke vs. viele; Namenssystem)
+- [ ] (P2) **WE-02: Technik-Stack festlegen** (Static/Hybrid/CMS; Generierungs-Workflow)
+- [ ] (P2) **WE-03: Nischen-Funnel definieren** (Idee → Validierung → Content-Cluster → Launch)
+- [ ] (P2) **WE-04: “Suchlücken”-Validierungscheckliste** (Suchintention, Konkurrenz, Monetarisierung, Aufwand)
+
+### P2 — Erste Umsetzung (minimal, realistisch)
+- [ ] (P2) **WE-10: 10 Nischenideen sammeln** (kurz, messbar)
+- [ ] (P2) **WE-11: Top 3 Nischen validieren** (SERP-Check, Konkurrenz grob, Monetarisierungsweg)
+- [ ] (P2) **WE-12: Erste Site auswählen + Scope 1** (Start: 1 Thema, 1 Struktur)
+- [ ] (P2) **WE-13: Content-Cluster Plan** (Pillar + 10 Supporting Posts)
+- [ ] (P2) **WE-14: Produktions-Template für Inhalte** (vergleichbar/entscheidungshilfe-orientiert)
+
+### P3 — Skalierung (später)
+- [ ] (P3) **WE-20: Multi-Site-Orchestrierung** (Vorlagen, Deployment, Tracking)
+- [ ] (P3) **WE-21: KPI-Tracking** (Impressions/Clicks/CTR/Revenue; wöchentliche Review)
+
+---
 

@@ -220,3 +220,26 @@ Ein Rewrite (größerer Block/Datei) ist **ausnahmsweise erlaubt**, wenn **alle*
 - **Nie** in `tools\` belassen, nur weil im Archiv bereits eine Version liegt.
 - Zulässige Namensschemata (Beispiel): `R2691__01.py` / `R2691__02.cmd` oder Timestamp-Variante.
 - Ziel: `tools\` bleibt schlank, kein Leichenfeld.
+
+## MR-REF — Refactoring- und Code-Cleanup-Disziplin (Stand: 2026-01-08 17:27:15)
+
+**MR-REF-01 — Funktionalität bleibt erhalten**
+- Obsoleter/Legacy-Code darf entfernt oder verbessert werden.
+- **Die Funktion des Systems darf dabei nicht verloren gehen** (Semantik/Keys/INI-Verhalten/UX-Verhalten bleibt identisch).
+
+**MR-REF-02 — Dead-Code nur belegt entfernen**
+- Entfernen nur, wenn **nachweislich ungenutzt** (Callsites/Entry-Points/Logs/grep/Tests).
+- Wenn unklar: zuerst **deprecated markieren**, erst später löschen.
+
+**MR-REF-03 — Minimal-invasive Schnitte**
+- Pro Runner: **ein klar umrissener Fix/Cleanup** (eine Datei oder ein enges Subsystem).
+- Kein Vollrewrite ohne explizite Zustimmung.
+
+**MR-REF-04 — Sicherheitspflicht**
+- Immer: **Backup first** → Patch → Report → Smoke-Test-Checkliste.
+- Wenn ein Fix nicht sofort verifiziert: **Diagnose zuerst**, dann gezielter Patch.
+
+**MR-REF-05 — Keine riskanten Auto-Edits in Funktionskörpern**
+- Keine automatischen Einfügungen/Kommentierungen in Funktionskörpern, wenn Einrückung/Scope nicht 100% eindeutig ist.
+- Wenn nötig: AST-sicher oder extrem zielgerichtet (kleine, kontrollierte Änderung) – sonst Diagnose + manuell formulierter Patch.
+

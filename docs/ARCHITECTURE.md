@@ -201,3 +201,7 @@ Text-/Policy-Abschnitte sind sinnvoll, erzeugen aber **keine** Einträge in der 
 **Begründung:**
 R1851 ist für Standard-Reports (typisch Markdown). R2224 liefert TXT → Format-Mismatch → leere Wrapper-Anzeige.  
 Option A hält das System stabil, minimal-invasiv und wartbar.
+
+### Doku-Notiz (R3154, 2026-01-08 17:27:15)
+- MR-REF (Refactoring/Cleanup) ergänzt: Obsoleter Code darf raus, **aber Funktion bleibt**; belegt entfernen; minimal-invasive Runner; Backup+Report+Smoke-Test; keine riskanten Auto-Edits in Funktionskörpern.
+
