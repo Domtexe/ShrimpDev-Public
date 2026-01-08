@@ -49,3 +49,14 @@ Ein Rewrite (größerer Block/Datei) ist **ausnahmsweise erlaubt**, wenn **alle*
 - **Nie** in `tools\` belassen, nur weil im Archiv bereits eine Version liegt.
 - Zulässige Namensschemata (Beispiel): `R2691__01.py` / `R2691__02.cmd` oder Timestamp-Variante.
 - Ziel: `tools\` bleibt schlank, kein Leichenfeld.
+
+## Docking Rules
+_added 2026-01-08 12:26 via R3147_
+
+### MR-DCK-01 — Docking Persistence
+- Persist **only actual runtime state**.
+- Never enforce defaults during save.
+
+### MR-DCK-02 — Defaults vs Persistence
+- Defaults are applied only at first-run or via explicit reset runner.
+- Persistence must be state-faithful.

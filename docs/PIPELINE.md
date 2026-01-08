@@ -286,3 +286,10 @@ Verhindert Root-Fehlermatches (OneDrive/Startpfad), macht Push-Buttons determini
 - **Log-Tab Suche:** Suchfeld im Log-Tab, das das Log (Text) durchsucht.
 - **Search-Clear-X:** In Suchfeldern rechtsbündig ein **X** zum Beenden/Leeren der Suche.
 - **Agent-Tab:** Empfohlene Runner automatisch vorschlagen und optional (bewusst) ausführen lassen; Sinn/Nutzen prüfen.
+
+## Resolved: Docking Double Tabs
+_added 2026-01-08 12:26 via R3147_
+
+- Docking incident resolved (legacy INI state).
+- No further action required.
+- Area marked as stable.

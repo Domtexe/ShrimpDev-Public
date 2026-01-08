@@ -21,3 +21,15 @@
 - Bugfix: Entfernt kaputten Aufruf mit undefinierten cfg/sec in undock_readonly().
 - Restore-Fallback: liest x/y/w/h aus ShrimpDev.ini und baut restore_geometry, auch wenn Screen-Size beim Boot noch 0 ist.
 - Center nur, wenn wirklich keine Restore-Daten vorhanden sind.
+
+## Docking State Persistence
+_added 2026-01-08 12:26 via R3147_
+
+## Persist & Restore Semantics
+- Docking persistence stores **runtime state only**.
+- All undocked windows at shutdown are persisted with `.open = 1`.
+- Restore recreates exactly these windows.
+
+### Defaults
+- Defaults (e.g. only `main`) are applied **only** via explicit reset or first-run.
+- Persistence must never enforce defaults.
