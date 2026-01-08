@@ -1,6 +1,10 @@
 <!-- PIPELINE_V1_START -->
 # PIPELINE v1 — Lanes & Turnus (Source of Truth)
 
+## Lane A — Stabilität & Core
+- [ ] (P0) [CORE] (HIGHEST / BLOCKER) **R2372 – Architektur: INI Single Writer (Design + API)** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2370.py:L122)
+- [ ] (P0) [CORE] (HIGHEST / BLOCKER) **R2376 – Docking über Single Writer** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2370.py:L141)
+
 **Ziel:** Alle Themen (ShrimpDev/ShrimpHub/Website/Doku/Tooling) gleichmäßig voranbringen — ohne Chaos.  
 **Regel:** Start-/Crash-Stabilität schlägt alles.
 
@@ -123,10 +127,8 @@ ruff check modules main_gui.py --select E9
 > Auto-importiert (Extended Scan: inkl. Markdown TODOs + Legacy). Bitte später konsolidieren.
 
 - [ ] (P0) [CORE] NOTE: that CI blockers were fixed via R2576. _(src: C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/R2576.py:L103)_ (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/Reports/Report_R2658_20251225_202537.md:L18)- [ ] (P0) (HIGHEST / BLOCKER) **R2373 – Implementierung: zentraler INI-Writer (Merge + atomic)** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/docs/INI_WriteMap.md:L14478)- [ ] (P0) (HIGHEST / BLOCKER) **R2371 – INI-WriteMap (READ-ONLY Diagnose)** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2370.py:L117)
-- [ ] (P0) [CORE] (HIGHEST / BLOCKER) **R2372 – Architektur: INI Single Writer (Design + API)** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2370.py:L122)
 - [ ] (P0) [CORE] (HIGHEST / BLOCKER) **R2374 – config_manager Save konsolidieren** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2370.py:L133)
 - [ ] (P0) [CORE] (HIGHEST / BLOCKER) **R2375 – Shims: config_loader.py / config_mgr.py** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2370.py:L137)
-- [ ] (P0) [CORE] (HIGHEST / BLOCKER) **R2376 – Docking über Single Writer** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2370.py:L141)
 - [ ] (P0) [CORE] (HIGHEST / BLOCKER) **R2377 – Monkeypatch/Altlogik Quarantäne** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2370.py:L148)
 - [ ] (P0) [CORE] (HIGHEST / BLOCKER) **R2378 – Restore Reihenfolge finalisieren** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2370.py:L152)
 - [ ] (P0) [CORE] (HIGHEST / BLOCKER) **R2379 – Regression-Testplan** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2370.py:L156)

@@ -60,3 +60,15 @@ _added 2026-01-08 12:26 via R3147_
 ### MR-DCK-02 — Defaults vs Persistence
 - Defaults are applied only at first-run or via explicit reset runner.
 - Persistence must be state-faithful.
+
+## R3172 — SingleWriter erzwingen (config_loader.save)
+- `modules/config_loader.py::save()` darf **ShrimpDev.ini nie direkt** via `cfg.write()` schreiben.
+- Delegation: `config_manager.get().save()` (Fallback: `ini_writer.write_configparser_atomic`).
+- Ziel: **eine** zentrale Schreibstelle für `ShrimpDev.ini`.
+
+## [R3175] Docking-Persistenz: immer zentrale INI-Quelle
+Marker: R3175-DOCKING-CFG-MERGE
+
+- `module_docking` darf keinen separaten ConfigParser “privat” speichern, den der Restore nicht liest.
+- Regel: Docking-State wird in den zentralen ConfigParser (aus `config_manager.get()`) **gemerged** und anschließend ausschließlich via `config_manager.save()` persistiert.
+- Fallback (nur bei Fehler): `ini_writer.write_configparser_atomic(path, cfg)` — aber niemals `cfg.write(open(...,'w'))`.
