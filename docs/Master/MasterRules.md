@@ -243,3 +243,17 @@ Ein Rewrite (größerer Block/Datei) ist **ausnahmsweise erlaubt**, wenn **alle*
 - Keine automatischen Einfügungen/Kommentierungen in Funktionskörpern, wenn Einrückung/Scope nicht 100% eindeutig ist.
 - Wenn nötig: AST-sicher oder extrem zielgerichtet (kleine, kontrollierte Änderung) – sonst Diagnose + manuell formulierter Patch.
 
+### MR-DOCK-01 (Single Source of Truth)
+Docking Persist/Restore ist verbindlich in `docs/Architecture/Current/Docking_Persist_Current.md` dokumentiert.
+Änderungen am Docking-Code erfordern ein Update dieser Datei.
+
+### MR-DOCK-02 (Single Writer)
+Docking schreibt INI ausschließlich über den dokumentierten Single-Writer.
+Multi-Writer (z. B. `config_loader` + `ini_writer` parallel) ist verboten.
+
+### MR-DOCK-03 (Diagnose zuerst)
+Wenn Persist/Restore nicht funktioniert: erst Diagnose (belegbarer IST-Pfad), dann Fix.
+Kein Trial-and-Error-Patching.
+
+### MR-DOCK-04 (Persist muss committen)
+`persist_all()` darf nicht erfolgreich sein, wenn kein Write/Commit stattgefunden hat.

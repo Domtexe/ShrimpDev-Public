@@ -367,3 +367,17 @@ _added 2026-01-08 12:26 via R3147_
 
 ---
 
+## BUG: Docking state not persisted -> undocked tabs not restored
+
+### Symptom
+- `ShrimpDev.ini` `[Docking]` bleibt unverändert trotz undocked Tabs / App close.
+- Nach Neustart werden undocked Tabs nicht wiederhergestellt.
+
+### Root Cause (IST)
+- `modules/module_docking.py`: `DockManager.persist_all()` führt keinen finalen Write/Commit aus (Legacy/Fragment; kein zuverlässiger Save).
+- `_persist_one()` enthält try/except-Leichen; Writer-Pfad nicht robust/diagnostizierbar.
+
+### Plan
+1) Architektur & Single-Writer verbindlich dokumentieren: `docs/Architecture/Current/Docking_Persist_Current.md`
+2) Code fix: `persist_all()` + `_persist_one()` auf Single-Writer konsolidieren, minimalen Diagnosepfad ergänzen
+3) Regression-Test: undock->close main->verify INI changed->restart->tabs restored

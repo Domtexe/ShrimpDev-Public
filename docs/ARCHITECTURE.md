@@ -1,5 +1,9 @@
 # Architektur – ShrimpDev
 
+## Current architecture anchors
+- **Docking Persist/Restore (Current)** → `docs/Architecture/Current/Docking_Persist_Current.md`
+
+
 ## Ziel
 Stabiles, nachvollziehbares Entwickeln/Diagnostizieren/Reparieren komplexer Projekte über Runner.
 
