@@ -178,3 +178,25 @@ aber die App wegen Import-/File-Drift nicht startet.
 - App-Start: `INI_REDIRECT.log` bleibt leer  
 - Undock/Restore: `INI_REDIRECT.log` bleibt leer  
 - Access-Profiling zeigt nur Canonical-Zugriffe (`registry/ShrimpDev.ini`)
+
+## MR-INI-CONTENT-01 — INI-Content hat Owner, Trigger und Vollständigkeit (P0)
+
+**Ziel:** Die INI ist nicht „irgendwo ein Dump“, sondern ein definierter Vertrag. Jede Sektion wird vollständig und deterministisch geschrieben.
+
+**Regeln**
+1. **Jede INI-Section hat genau einen Owner**
+   - Pro Section ist exakt ein Modul/Subsystem verantwortlich (z. B. Docking → `module_docking`, Filter → `ui_filters`).
+2. **Owner schreibt vollständig beim definierten Trigger**
+   - Keine inkrementellen Zufallsschreibungen über die App verteilt.
+   - „Partial persist“ ohne klaren Vertrag ist verboten.
+3. **Fehlende Sections/Keys sind ein Bug**
+   - Wenn Code eine Section/Key erwartet, muss der Owner sie zuverlässig schreiben (inkl. Defaults).
+4. **Single Source of Truth**
+   - INI-Pfad bleibt canonical (`registry/ShrimpDev.ini`) und wird nur über `config_loader`/`ini_writer` geschrieben.
+5. **Verifikation ist Pflicht**
+   - Für jede Owner-Section existiert mindestens ein Verify (py_compile + deterministische Key-Präsenzprüfung).
+
+**Akzeptanzkriterien**
+- Für jede INI-Section existiert ein definierter Owner und Trigger
+- `registry/ShrimpDev.ini` enthält die erwarteten Sections/Keys nach dem Trigger
+- Keine „mystery writes“ (Schreiber/Callsites sind bekannt & begrenzt)
