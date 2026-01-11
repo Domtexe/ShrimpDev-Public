@@ -1,3 +1,9 @@
+> **DEPRECATED / HISTORISCH**
+>
+> Die kanonische, gültige MasterRules-Quelle ist: `docs/MasterRules.md`
+>
+> Dieser Inhalt bleibt zur Historie erhalten, soll aber nicht mehr als Source of Truth dienen.
+
 # MasterRules – Gesamtüberblick
 
 _Automatisch generiert durch R2037 am 2025-12-09 09:39:55_

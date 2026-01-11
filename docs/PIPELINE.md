@@ -344,6 +344,13 @@ _added 2026-01-08 12:26 via R3147_
 
 ## Lane E — Website / SEO-Netzwerk (P2/P3)
 
+
+**Lane-E Contract (Isolation / Artefakte):**
+- **Isolation:** keine Abhängigkeit zu ShrimpDev-Core-State (kein Zugriff auf `ShrimpDev.ini`, Docking/UI-State, Runner-Registry).
+- **Erlaubt:** gemeinsame Tooling-Runner (Scanner/Generator/Reports) **ohne** Shared State.
+- **Artefakte:** jede Site lebt unter `docs/websites/<site>/...` (Decision, MVP, KPIs, Kill/Scale).
+- **Kill/Scale Kriterien:** müssen pro Site schriftlich definiert sein (kein "wird schon").
+
 **Ziel:** Systematisches Portfolio aus Nischenwebsites (SEO-getrieben), monetarisierbar via Affiliate/Ads/Lead.  
 **Strategie:** Weg von gesättigten Märkten (z. B. Sneaker) → hin zu klaren Nischen mit echter Suchintention.  
 **Prinzip:** Produkte/Probleme statt breite Kategorien; Portfolio-Denken (viele kleine Sites).

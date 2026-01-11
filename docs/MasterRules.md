@@ -1,4 +1,19 @@
 
+<!-- MR_INDEX_BEGIN -->
+## MasterRules Index
+
+| MR-ID | Status | Scope | Owner |
+|---|---|---|---|
+| `MR-DCK-01` | ACTIVE | TBD | TBD |
+| `MR-DCK-02` | ACTIVE | TBD | TBD |
+| `MR-DOC-ALL-01` | ACTIVE | TBD | TBD |
+| `MR-WEB-01` | ACTIVE | TBD | TBD |
+| `MR-WEB-02` | ACTIVE | TBD | TBD |
+
+> Hinweis: Scope/Owner werden schrittweise präzisiert. Status ist aus Überschrift abgeleitet.
+<!-- MR_INDEX_END -->
+
+
 
 ## MR-ERGÄNZUNG: Diagnose-Pflicht & Scope-Lock
 
@@ -72,3 +87,94 @@ Marker: R3175-DOCKING-CFG-MERGE
 - `module_docking` darf keinen separaten ConfigParser “privat” speichern, den der Restore nicht liest.
 - Regel: Docking-State wird in den zentralen ConfigParser (aus `config_manager.get()`) **gemerged** und anschließend ausschließlich via `config_manager.save()` persistiert.
 - Fallback (nur bei Fehler): `ini_writer.write_configparser_atomic(path, cfg)` — aber niemals `cfg.write(open(...,'w'))`.
+
+## MR-DOC-ALL-01 — Contract-first Documentation
+
+**Scope:** ShrimpDev + ShrimpHub (alle Lanes)
+
+**Prinzip:** Dokumentiere alles, was **Verhalten/Verträge** ändert – nicht jede lokale Variable.
+
+**Dokupflicht, wenn mindestens eins zutrifft:**
+1) **Public/Shared Contract** (öffentliche Funktionen, modulübergreifende APIs)
+2) **Persistenz & State** (INI-Schema, Keys/Defaults/Semantik, Restore/Persist, Side-Effects)
+3) **Architektur/Ownership** (Zuständigkeiten, Abhängigkeiten, Single-Writer/SSOT)
+
+**Minimalformat pro Change:**
+- Was / Warum / Impact (Module/Keys/Trigger) / Bezug (Runner+Report)
+
+**Enforcement:**
+- Jeder APPLY-Runner muss Doc-Änderungen enthalten **oder** im Report begründen: `Docs not needed`.
+- Fehlt beides → Runner gilt als MR-Verstoß.
+
+## MR-WEB-01 — Website Isolation Contract
+
+**Scope:** Lane E (Websites)
+
+**Regel:** Websites sind **isoliert** vom ShrimpDev-Core.
+
+**Verboten:**
+- Zugriff auf `ShrimpDev.ini` / Core-Config-State
+- Nutzung von Docking/UI-Persistenz als Website-State
+- Side-Effects im Core (Dateien verschieben/überschreiben außerhalb Website-Artefakte)
+
+**Erlaubt:**
+- gemeinsame Tooling-Runner (Scanner/Generator/Reports), solange **kein Shared State** geschrieben wird.
+- Nutzung allgemeiner Diagnose/MR-Prinzipien (MR-DIAG-*, MR-DOC-ALL-01).
+
+## MR-WEB-02 — Website Decision Documentation
+
+**Scope:** Lane E (Websites)
+
+**Regel:** Jede Site braucht eine schriftliche Entscheidung + Kriterien.
+
+**Pflicht-Dateien pro Site:**
+- `docs/websites/<site>/DECISION.md` (Nische, Monetarisierung, Zielgruppe, Suchintention, Risiko)
+- `docs/websites/<site>/KPI.md` (Traffic, CTR, RPM/Revenue, Costs)
+- `docs/websites/<site>/KILL_SCALE.md` (Kill/Scale Kriterien + Stichtage)
+
+**Kein MVP ohne DECISION.md.**
+
+## MR-IMPORT-STABILITY-01 — Modul-Integrität & Import-Verifikation (P0)
+
+**Ziel:** Es darf nie wieder passieren, dass ein Fix syntaktisch „ok“ wirkt,
+aber die App wegen Import-/File-Drift nicht startet.
+
+**Regeln**
+1. **Jede Änderung an `modules/` (neu, Rename, Restore, Replace) benötigt einen Import-Smoketest**
+   - `python -c "from modules import <modulname>"` muss grün sein
+   - Bei `from modules import X` muss `modules/X.py` existieren **oder**
+     `X` explizit in `modules/__init__.py` exportiert werden
+2. **Compile-Pflicht**
+   - Vor jedem APPLY: `python -m py_compile <datei>`
+   - Für Startmodule zusätzlich Import-Smoketest
+3. **Keine Pattern-/Regex-Patches an produktiv geladenen Modulen**
+   - Kein eindeutiger Match → **ABORT**
+   - Fehler nach Patch → **sofortiger Rollback**
+4. **Dateinamen sind API**
+   - `config_loader.py` darf nicht als `*_FIXED.py` verbleiben
+   - Windows-Falle: niemals `.py.txt`
+
+**Akzeptanzkriterien**
+- `py_compile` grün  
+- `python -c "from modules import config_loader"` grün  
+- GUI startet sichtbar
+
+## MR-INI-MIGRATION-02 — Redirects sind temporär, nicht dauerhaft (P0)
+
+**Ziel:** Redirect-Logging (`INI_REDIRECT.log`) ist nur für Migration erlaubt. Im Dauerbetrieb muss es leer bleiben.
+
+**Regeln**
+1. **Redirect-Logging ist ausschließlich für Migration zulässig**
+   - `INI_REDIRECT.log` dient als Beweis/Telemetry, nicht als Normalzustand.
+2. **Module, die den Canonical-Pfad kennen, dürfen nicht mehr als „legacy“ laufen**
+   - Wenn Canonical bekannt: direkte Nutzung, kein Redirect-Auslösen.
+3. **Nach erfolgreicher Migration gilt: neue Redirects sind Regression**
+   - Neue Einträge in `INI_REDIRECT.log` nach Stichtag/Commit → Diagnosepflicht.
+4. **Kein Pfad-Orakel in Feature-Modulen**
+   - INI-Pfad kommt aus `modules/config_loader.py` (Single Source of Truth).
+   - Feature-Module (z. B. Docking) dürfen keine eigene INI-Pfad-Logik pflegen.
+
+**Akzeptanzkriterien**
+- App-Start: `INI_REDIRECT.log` bleibt leer  
+- Undock/Restore: `INI_REDIRECT.log` bleibt leer  
+- Access-Profiling zeigt nur Canonical-Zugriffe (`registry/ShrimpDev.ini`)
