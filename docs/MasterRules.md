@@ -200,3 +200,16 @@ aber die App wegen Import-/File-Drift nicht startet.
 - Für jede INI-Section existiert ein definierter Owner und Trigger
 - `registry/ShrimpDev.ini` enthält die erwarteten Sections/Keys nach dem Trigger
 - Keine „mystery writes“ (Schreiber/Callsites sind bekannt & begrenzt)
+
+
+## MR-PIPELINE-REVIEW-01 — Adaptive Pipeline-Priorisierung
+
+**Geltungsbereich:** Assistent (verbindlich)
+
+**Regel:**
+- Die Pipeline ist die primäre Entscheidungs- und Priorisierungsinstanz.
+- Der Assistent hat die Pflicht, während der Arbeit eine kontinuierliche Pipeline-Review durchzuführen.
+- Ändern sich Risiko, Brisanz oder Wirkung eines Themas, muss die Priorisierung neu bewertet werden.
+- Prioritätsänderungen sind zu begründen und in der Pipeline zu dokumentieren.
+- Es erfolgt keine permanente Umsortierung, aber bewusste Anpassung bei relevanten Veränderungen.
+- Die Wahl des nächsten Themas erfolgt pipeline-getrieben, nicht gesprächsgetrieben.

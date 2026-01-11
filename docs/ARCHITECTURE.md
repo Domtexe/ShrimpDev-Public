@@ -3,6 +3,11 @@
 ## Current architecture anchors
 - **Docking Persist/Restore (Current)** → `docs/Architecture/Current/Docking_Persist_Current.md`
 
+<!-- R3316_ARCH_ANCHOR_INSERT -->
+- **Docking Undock UI (Current)** → `docs/Architecture/Current/Docking_Undock_Current.md`
+<!-- /R3316_ARCH_ANCHOR_INSERT -->
+
+
 
 ## Ziel
 Stabiles, nachvollziehbares Entwickeln/Diagnostizieren/Reparieren komplexer Projekte über Runner.

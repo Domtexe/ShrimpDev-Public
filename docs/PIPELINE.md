@@ -5,6 +5,12 @@
 - [ ] (P0) [CORE] (HIGHEST / BLOCKER) **R2372 – Architektur: INI Single Writer (Design + API)** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2370.py:L122)
 - [ ] (P0) [CORE] (HIGHEST / BLOCKER) **R2376 – Docking über Single Writer** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2370.py:L141)
 
+<!-- R3316_PIPELINE_DOCKING_TASKS_INSERT -->
+- [ ] (P1) [CORE] Docking: **Konsolidierung der Undock-Overrides** (R3302–R3315) in eine kanonische Implementierung
+- [ ] (P1) [CORE] Docking: **Verify-Runner** für Undock/Restore/UI-Integration (inkl. Log-Tab Button-Row)
+<!-- /R3316_PIPELINE_DOCKING_TASKS_INSERT -->
+
+
 **Ziel:** Alle Themen (ShrimpDev/ShrimpHub/Website/Doku/Tooling) gleichmäßig voranbringen — ohne Chaos.  
 **Regel:** Start-/Crash-Stabilität schlägt alles.
 
@@ -388,3 +394,15 @@ _added 2026-01-08 12:26 via R3147_
 1) Architektur & Single-Writer verbindlich dokumentieren: `docs/Architecture/Current/Docking_Persist_Current.md`
 2) Code fix: `persist_all()` + `_persist_one()` auf Single-Writer konsolidieren, minimalen Diagnosepfad ergänzen
 3) Regression-Test: undock->close main->verify INI changed->restart->tabs restored
+
+## Abgeschlossene Themen
+
+### Docking / INI / Persistenz
+- **Status:** Done / Parked
+- **Abschluss:** 2026-01-11
+- **Begründung:**
+  - Canonical Docking-Core (_r3321_) aktiv
+  - Single Writer etabliert
+  - Diagnose (R3327) ergab: kein gefahrlos löschbarer Code
+  - Weiterer Abbau = eigenes Refactoring-Projekt
+- **Letzte Runner:** R3321–R3327, R3329
