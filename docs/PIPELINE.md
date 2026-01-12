@@ -25,7 +25,7 @@
 - [x] (P1) [CORE] **INI Redirect Logging Noise gedrosselt (Callsite-Gating)** (R3334)
 
 <!-- R3316_PIPELINE_DOCKING_TASKS_INSERT -->
-- [ ] (P1) [CORE] Docking: **Konsolidierung der Undock-Overrides** (R3302–R3315) in eine kanonische Implementierung
+- [x] (P1) [CORE] Docking: **Konsolidierung der Undock-Overrides** (R3302–R3315) in eine kanonische Implementierung — DONE (verified) (Report_R3397_20260112_224300.md) (Report_R3398_20260112_225641.md)
 - [ ] (P1) [CORE] Docking: **Verify-Runner** für Undock/Restore/UI-Integration (inkl. Log-Tab Button-Row)
 <!-- /R3316_PIPELINE_DOCKING_TASKS_INSERT -->
 
@@ -65,6 +65,22 @@
 - Smoke-Test/Import-Check Runner vorhanden
 
 **Umsetzungsplan (MR: mehrere kleine Runner)**
+<!-- R3382_UI_TOOLBAR_SUBTASKS_BEGIN -->
+
+**Unterpunkte (geordnet, verifizierbar – kein Chaos)**
+- **P0.A Runner-Execution isolieren**: Threading/Subprocess aus `ui_toolbar.py` hinter eine klare API; UI ruft nur noch Orchestrator auf.
+  - DoD: keine Runner-Startlogik direkt im UI; 1 definierte `run_runner(...)`-Entry; UI bleibt responsiv.
+- **P0.B Smoke/Crash-Schutz**: Read-only Smoke-Runner vor APPLY-Stufen (Import + minimaler Toolbar-Aufbau wenn möglich). — DONE (verified via R3390 on 2026-01-12) (Verification: Report_R3390_20260112_210110.md)
+  - DoD: Smoke grün nach jedem APPLY; Report + Exitcodes.
+- **P1.A Popup/Report-Handling konsolidieren**: ein kanonischer Pfad für Report-Anzeige (Push/Purge gemäß Standard). — DONE (verified) (Report_R3393_20260112_221547.md) (Report_R3394_20260112_222242.md)
+  - DoD: keine doppelten Popup-Overlays; konsistentes Verhalten.
+- **P1.B Import-Hygiene/Verantwortlichkeiten**: redundante/verteile Imports reduzieren (nur minimal, ohne Semantikänderung).
+  - DoD: Top-level Imports sauber; keine überraschenden Side-Effects.
+- **P2 Nested-def Reduktion (nur wo nötig)**: kritische nested Worker/Callbacks testbarer machen (ohne Vollrewrite).
+  - DoD: weniger Tiefe im Runner-Cluster; Verhalten unverändert.
+
+<!-- R3382_UI_TOOLBAR_SUBTASKS_END -->
+
 1. **READ-ONLY Toolbar Map Report**
    - listet Funktionen, nested helper, after()-ticks, referenced actions, risk lines
 2. **Extract repo/registry helpers** → `modules/toolbar_helpers_repo.py`
@@ -163,8 +179,7 @@ ruff check modules main_gui.py --select E9
 - [ ] (P1) [CORE] (P1) ... (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/docs/ARCHITECTURE.md:L176)
 - [ ] (P1) [CORE] TODO: -Pipeline: eigener GUI-Tab MasterRules (Viewer + Open/Refresh). (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/docs/Pipeline_Notes.md:L29)
 - [ ] (P1) [CORE] TODO: (Pipeline), sondern bekommen einen eigenen Tab.` (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/docs/Report_R2383_Docking_Diagnose_20251219_101914.md:L19929)
-- [ ] (P1) [CORE] TODO: -Pipeline: eigener GUI-Tab MasterRules (Viewer + Open/Refresh).\n"` (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/docs/Report_R2383_Docking_Diagnose_20251219_101914.md:L19950)
-- [ ] (P1) [CORE] TODO: ) Pipeline-Eintrag: Tracebacks wieder ins Log (HIGH)` (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/docs/Report_R2383_Docking_Diagnose_20251219_101914.md:L19967)
+- [x] (P1) [CORE] TODO: -Pipeline: eigener GUI-Tab MasterRules (Viewer + Open/Refresh).\n"` (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/docs/Report_R2383_Docking_Diagnose_20251219_101914.md:L19950)- [ ] (P1) [CORE] TODO: ) Pipeline-Eintrag: Tracebacks wieder ins Log (HIGH)` (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/docs/Report_R2383_Docking_Diagnose_20251219_101914.md:L19967)
 - [ ] (P1) [CORE] TODO: in der Pipeline-Datei.` (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/docs/Report_R2383_Docking_Diagnose_20251219_101914.md:L7958)
 - [ ] (P1) [CORE] TODO: in docs/Master/Pipeline_Notes.md eintragen:` (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/docs/Report_R2383_Docking_Diagnose_20251219_101914.md:L8944)
 - [ ] (P1) [CORE] TODO: (Pipeline), sondern bekommen einen eigenen Tab. (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2143.py:L2)
