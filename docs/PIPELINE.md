@@ -2,8 +2,27 @@
 # PIPELINE v1 — Lanes & Turnus (Source of Truth)
 
 ## Lane A — Stabilität & Core
-- [ ] (P0) [CORE] (HIGHEST / BLOCKER) **R2372 – Architektur: INI Single Writer (Design + API)** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2370.py:L122)
+- [x] (P0) [CORE] (HIGHEST / BLOCKER) **R2372 – Architektur: INI Single Writer (Design + API)** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2370.py:L122)
+
+  - [x] (DONE) APPLY: module_docking cfg.write(f) -> ini_writer.write() (R3354)
+    - report: Report_R3354_20260112_145514.md | pipeline mark: R3355 | 2026-01-12 15:02
+
+
+  - [x] (DONE) APPLY: Fix: Runner-ID mismatch (py = cmd-1) (R3351)
+    - report: Report_R3351_*.md | pipeline mark: R3352 | 2026-01-12 14:39
+
+
+  - [x] (DONE) APPLY: config_loader INI writes -> ini_writer.write() (R3349)
+    - report: Report_R3349_*.md | pipeline mark: R3350 | 2026-01-12 14:26
+
+  - [x] (DONE) DIAG: INI write offenders scan (R3347) → Report_R3347_20260112_125757.md
+  - [x] (DONE) Docs: Runner Architecture – Lessons Learned (R3346)
+    - Pipeline-Markierung via R3348
+    - gesetzt am 2026-01-12 14:14
+
 - [ ] (P0) [CORE] (HIGHEST / BLOCKER) **R2376 – Docking über Single Writer** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2370.py:L141)
+- [x] (P0) [CORE] **main_gui.py Stabilität: Silent-Exceptions sichtbar gemacht** (R3333; DIAG: R3331/R3332)
+- [x] (P1) [CORE] **INI Redirect Logging Noise gedrosselt (Callsite-Gating)** (R3334)
 
 <!-- R3316_PIPELINE_DOCKING_TASKS_INSERT -->
 - [ ] (P1) [CORE] Docking: **Konsolidierung der Undock-Overrides** (R3302–R3315) in eine kanonische Implementierung

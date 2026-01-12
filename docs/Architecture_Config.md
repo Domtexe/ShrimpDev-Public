@@ -16,3 +16,4 @@
 ## R3172 — config_loader.save Delegation
 - Compat-API `config_loader.save(cfg)` delegiert auf den zentralen Config-Writer.
 - Keine direkten File-Writes (`cfg.write(open(...))`) außerhalb des Writers.
+\n## R2346 (Compat API Restore)\n- modules/config_loader.py und modules/config_mgr.py stellen wieder load()/save() bereit.\n- Lesen/Schreiben: Projektroot/ShrimpDev.ini (konservativ, ohne neue Abhängigkeiten).\n

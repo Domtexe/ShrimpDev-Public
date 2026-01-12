@@ -28,3 +28,81 @@
 ### 5. Archiv ist kein Friedhof
 - Alte Runner bleiben lesbar.
 - Archiv = Wissens- & Diagnosequelle.
+
+## Runner Architecture – Lessons Learned
+
+### 1. Runner-Erzeugung ≠ Runner-Ausführung
+ShrimpDev besitzt eine klare, aber **nicht zentralisierte** Trennung zwischen:
+- **Runner-Erzeugung** (UI / Toolbar / Popup)
+- **Runner-Ausführung** (cmd/bat, Threads, neue Konsolen)
+- **Runner-Beobachtung** (Busy-Flags, Reports, GUI-Capture)
+
+Fehler in der Runner-ID oder im Artefakt-Layout entstehen **vor** der Ausführung
+und sind durch reine Exec-Analyse nicht erklärbar.
+
+**Konsequenz:**  
+Diagnose beginnt immer bei der Runner-Erzeugung, nicht bei `exec`.
+
+---
+
+### 2. Runner-ID ist ein Dateinamen-Kontrakt
+In der Architektur existiert die Runner-ID (`R####`) **nicht als Objekt**,
+sondern ausschließlich als **Dateiname**.
+
+Alle Ableitungen (UI, Logs, Reports, Titel) basieren auf:
+- `R####.cmd`
+- `R####.py`
+
+**Architekturwahrheit:**  
+> Der Dateiname ist die **Single Source of Truth** für Runner-Identität.
+
+Abweichende Stämme zwischen `.cmd` und `.py` führen zwangsläufig zu
+Inkonsistenzen in UI, Logs und Nutzerwahrnehmung.
+
+---
+
+### 3. `.bat` ist ein systemgeneriertes Transport-Artefakt
+Neben `.cmd` und `.py` existiert faktisch ein dritter Artefakttyp:
+- `<R####>.bat`
+- automatisch erzeugt
+- ausschließlich für GUI-Ausführung
+
+`.bat` ist **kein Runner**, sondern ein **Shim**.
+
+**Konsequenz:**  
+Cleanup-, Purge- und Diagnose-Regeln müssen `.bat` berücksichtigen,
+dürfen ihn aber niemals als Identitätsquelle verwenden.
+
+---
+
+### 4. Mehrere Ausführungspfade mit unterschiedlichen Garantien
+Es existieren mehrere Runner-Startpfade:
+- Thread-basierte Ausführung mit Busy-Flag
+- Direkter `.cmd`-Start in neuer Konsole
+- Toolbar-Aktionen mit eigenem Subprocess-Pfad
+
+**Konsequenz:**  
+„Ein Runner läuft gerade“ ist **kein global konsistenter Zustand**,
+sondern pfadabhängig.
+
+---
+
+### 5. Best-Effort-Stabilität vor harter Eskalation
+Die UI ist bewusst so gebaut, dass sie:
+- Fehler abfängt
+- nicht crasht
+- best-effort weiterarbeitet
+
+**Konsequenz:**  
+Fehler können leise bleiben.  
+Wiederholtes oder unklar reproduzierbares Fehlverhalten erfordert
+gezielte **DIAG-Runner mit Instrumentierung**.
+
+---
+
+### 6. Meta-Erkenntnis zur Dokumentation
+Die relevanten Informationen existierten verteilt
+(Runner-Docs, Architektur, Regeln, Pipeline),
+aber nicht zusammenhängend formuliert.
+
+Diese Datei dient dazu, **implizites Architekturwissen explizit festzuhalten**.

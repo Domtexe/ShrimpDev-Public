@@ -214,3 +214,10 @@ Option A hält das System stabil, minimal-invasiv und wartbar.
 ### Doku-Notiz (R3154, 2026-01-08 17:27:15)
 - MR-REF (Refactoring/Cleanup) ergänzt: Obsoleter Code darf raus, **aber Funktion bleibt**; belegt entfernen; minimal-invasive Runner; Backup+Report+Smoke-Test; keine riskanten Auto-Edits in Funktionskörpern.
 
+### Runner Identity & Execution Model
+
+Details und gewonnene Erkenntnisse zur Runner-Architektur
+(Erzeugung, Identität, Ausführungspfade, Lessons Learned)
+finden sich in:
+
+→ `Architecture_Lessons_Learned.md`

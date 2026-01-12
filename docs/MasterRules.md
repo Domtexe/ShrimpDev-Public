@@ -213,3 +213,25 @@ aber die App wegen Import-/File-Drift nicht startet.
 - Prioritätsänderungen sind zu begründen und in der Pipeline zu dokumentieren.
 - Es erfolgt keine permanente Umsortierung, aber bewusste Anpassung bei relevanten Veränderungen.
 - Die Wahl des nächsten Themas erfolgt pipeline-getrieben, nicht gesprächsgetrieben.
+
+## MR-RUNNER-SAFE-INGEST-01 — Syntax-sichere Runner-Erstellung
+
+### Motivation
+ShrimpDev speichert **keine Python-Dateien mit Syntaxfehlern**.
+Patch-Runner auf nicht gespeicherte oder nicht kompilierbare Dateien sind logisch unmöglich.
+
+### Verbindliche Regeln
+1. **Jeder neue Runner muss syntax-sicher sein, bevor er gespeichert wird.**
+   - Keine riskanten Konstrukte beim Erstellen (z. B. f-Strings mit `{}` im eingebetteten Template).
+2. **Code-Templates dürfen niemals als f-string implementiert werden**, wenn sie selbst `{}` oder `\` enthalten.
+   - Stattdessen: Triple-Quoted-Strings + String-Konkatenation  
+     oder `.format()` mit **escaped braces**.
+3. **Wenn ein Runner wegen Syntax nicht speicherbar ist:**
+   - ❌ Kein Patch-Runner
+   - ✅ Immer vollständige, reparierte `.py`-Datei 1:1 ausliefern
+4. **Ein Runner gilt nur als geliefert, wenn `py_compile` erfolgreich ist**
+   **und der Exit-Code = 0**.
+
+### Kurzfassung
+> Templates nie als f-string, wenn `{}` vorkommt.  
+> Nicht speicherbarer Runner ⇒ komplette, lauffähige Datei liefern.
