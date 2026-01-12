@@ -33,3 +33,6 @@ The system is considered **clean** when:
 - No “just cleaning up” actions
 - No moving productive code without explicit decision
 
+
+## Update
+- Ignore policy: filenames containing 'manuell' are treated as non-production and excluded from scans (e.g. config_loader manuell …).

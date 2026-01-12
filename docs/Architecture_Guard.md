@@ -12,6 +12,8 @@ All persistence must go through **modules.ini_writer** (Single-Writer rule).
 - Detects `cfg.write(` calls in live code paths
 
 ## What the Guard ignores (by design)
+
+- Ignore policy: filenames containing 'manuell' are treated as non-production and excluded from scans (e.g. config_loader manuell …).
 - Comments and strings
 - Template code blocks
 - Non-productive paths:

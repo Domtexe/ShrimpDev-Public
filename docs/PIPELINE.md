@@ -20,7 +20,7 @@
     - Pipeline-Markierung via R3348
     - gesetzt am 2026-01-12 14:14
 
-- [ ] (P0) [CORE] (HIGHEST / BLOCKER) **R2376 – Docking über Single Writer** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2370.py:L141)
+- [x] (P0) [CORE] (HIGHEST / BLOCKER) **R2376 – Docking über Single Writer** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2370.py:L141) — DONE (verified 2026-01-12 via R3378/R3379)
 - [x] (P0) [CORE] **main_gui.py Stabilität: Silent-Exceptions sichtbar gemacht** (R3333; DIAG: R3331/R3332)
 - [x] (P1) [CORE] **INI Redirect Logging Noise gedrosselt (Callsite-Gating)** (R3334)
 
