@@ -68,7 +68,7 @@
 <!-- R3382_UI_TOOLBAR_SUBTASKS_BEGIN -->
 
 **Unterpunkte (geordnet, verifizierbar – kein Chaos)**
-- **P0.A Runner-Execution isolieren**: Threading/Subprocess aus `ui_toolbar.py` hinter eine klare API; UI ruft nur noch Orchestrator auf.
+- **P0.A Runner-Execution isolieren**: Threading/Subprocess aus `ui_toolbar.py` hinter eine klare API; UI ruft nur noch Orchestrator auf. — DONE (verified) (Report_R3402_20260112_233849.md) (Report_R3403_20260112_234334.md)
   - DoD: keine Runner-Startlogik direkt im UI; 1 definierte `run_runner(...)`-Entry; UI bleibt responsiv.
 - **P0.B Smoke/Crash-Schutz**: Read-only Smoke-Runner vor APPLY-Stufen (Import + minimaler Toolbar-Aufbau wenn möglich). — DONE (verified via R3390 on 2026-01-12) (Verification: Report_R3390_20260112_210110.md)
   - DoD: Smoke grün nach jedem APPLY; Report + Exitcodes.
