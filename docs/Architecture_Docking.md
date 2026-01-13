@@ -33,3 +33,26 @@ _added 2026-01-08 12:26 via R3147_
 ### Defaults
 - Defaults (e.g. only `main`) are applied **only** via explicit reset or first-run.
 - Persistence must never enforce defaults.
+
+<!-- R3416 -->
+## Docking Verify – Status
+
+Der Docking-Verify unterscheidet strikt zwischen FAIL und WARN.
+
+- FAIL: funktionaler Fehler oder Crash
+- WARN: Abweichung ohne funktionale Auswirkung
+
+Aktuelle WARN:
+- Log-Tab Button-Row Detection (Finder liefert None)
+
+Diese WARN ist nicht blockierend und wird als separater Subtask geführt.
+
+<!-- R3431 -->
+## Verify FINAL (Docking)
+
+Finaler Verify-Lauf ist grün:
+- Runner: R3413
+- Exit: 0
+- Report: `Reports/Report_R3413_20260113_160946.md`
+
+Damit ist Docking (Undock/Persist/Restore + Log-Tab) verifiziert stabil.

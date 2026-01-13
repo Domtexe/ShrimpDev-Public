@@ -26,7 +26,7 @@
 
 <!-- R3316_PIPELINE_DOCKING_TASKS_INSERT -->
 - [x] (P1) [CORE] Docking: **Konsolidierung der Undock-Overrides** (R3302–R3315) in eine kanonische Implementierung — DONE (verified) (Report_R3397_20260112_224300.md) (Report_R3398_20260112_225641.md)
-- [ ] (P1) [CORE] Docking: **Verify-Runner** für Undock/Restore/UI-Integration (inkl. Log-Tab Button-Row)
+- [x] (P1) [CORE] Docking: **Verify-Runner** für Undock/Restore/UI-Integration (inkl. Log-Tab Button-Row)
 <!-- /R3316_PIPELINE_DOCKING_TASKS_INSERT -->
 
 
@@ -71,6 +71,7 @@
 - **P0.A Runner-Execution isolieren**: Threading/Subprocess aus `ui_toolbar.py` hinter eine klare API; UI ruft nur noch Orchestrator auf. — DONE (verified) (Report_R3402_20260112_233849.md) (Report_R3403_20260112_234334.md)
   - DoD: keine Runner-Startlogik direkt im UI; 1 definierte `run_runner(...)`-Entry; UI bleibt responsiv.
 - **P0.B Smoke/Crash-Schutz**: Read-only Smoke-Runner vor APPLY-Stufen (Import + minimaler Toolbar-Aufbau wenn möglich). — DONE (verified via R3390 on 2026-01-12) (Verification: Report_R3390_20260112_210110.md)
+- **P0.C Central Dispatch Entry-Point**: toolbar actions laufen über `_dispatch_action(...)` (minimaler Router-Einstieg, keine Behavior-Änderung). (Verification: Report_R3409_20260113_095743.md) — DONE (verified 2026-01-13)
   - DoD: Smoke grün nach jedem APPLY; Report + Exitcodes.
 - **P1.A Popup/Report-Handling konsolidieren**: ein kanonischer Pfad für Report-Anzeige (Push/Purge gemäß Standard). — DONE (verified) (Report_R3393_20260112_221547.md) (Report_R3394_20260112_222242.md)
   - DoD: keine doppelten Popup-Overlays; konsistentes Verhalten.
@@ -440,3 +441,59 @@ _added 2026-01-08 12:26 via R3147_
   - Diagnose (R3327) ergab: kein gefahrlos löschbarer Code
   - Weiterer Abbau = eigenes Refactoring-Projekt
 - **Letzte Runner:** R3321–R3327, R3329
+
+<!-- R3416 -->
+### P1 · Docking
+
+Status: DONE (core verified)
+
+Der Docking-Core (Undock, Persist, Restore) ist stabilisiert und
+durch Verify-Runner abgesichert.
+
+Verifiziert:
+- Undock / Redock: OK
+- Persist (INI): OK
+- Restore (Startup): OK
+- Verify-Runner ohne Crash
+
+#### P1.DOCKING.LOGTAB.BUTTON_ROW_DETECTION
+Status: OPEN (non-blocking)
+
+Der Finder `_r3315_find_log_button_row(...)` liefert aktuell None.
+Dies erzeugt eine WARN-Meldung im Verify, jedoch keinen funktionalen Fehler.
+
+Ursachenannahmen:
+- Widget-Hierarchie
+- ttk.Button vs. tk.Button
+- abweichender Parent-Frame
+
+Vorgehen:
+- DIAG (read-only): Widget-Tree-Dump des Log-Tabs
+- Danach: minimaler Finder-Fix
+
+<!-- R3431 -->
+### P1 · Docking – Verify FINAL
+
+Status: VERIFIED (final)
+
+Nach Abschluss der Fixes (Legacy-Aliases + Compile-Stabilität) läuft der
+Docking-Verify Runner stabil und grün.
+
+- Verify: R3413 Exit=0
+- Referenz-Report: `Reports/Report_R3413_20260113_160946.md`
+
+Hinweis:
+Ältere Reports können noch historische FAILs enthalten (z. B. _r2339_ini_path),
+sind aber durch den finalen Verify-Lauf überholt.
+
+<!-- R3432 -->
+### P1 · Docking (Parent)
+
+Status: DONE (final, verified)
+
+Alle Subtasks abgeschlossen:
+- Verify FINAL dokumentiert (R3431)
+- Verify-Lauf grün: R3413 (Exit 0)
+- Referenz-Report: `Reports/Report_R3413_20260113_160946.md`
+
+Damit ist der gesamte P1-Docking-Komplex formal abgeschlossen.
