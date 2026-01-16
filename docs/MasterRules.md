@@ -235,3 +235,17 @@ Patch-Runner auf nicht gespeicherte oder nicht kompilierbare Dateien sind logisc
 ### Kurzfassung
 > Templates nie als f-string, wenn `{}` vorkommt.  
 > Nicht speicherbarer Runner ⇒ komplette, lauffähige Datei liefern.
+
+<!-- R3511_MR_RULE -->
+## Regel: Phantom-Runner-IDs (Pipeline/Docs) dürfen keinen Fix-Loop auslösen
+- Wenn eine Runner-ID in Pipeline/Docs auftaucht, aber keine aktiven Runner-Dateien existieren (cmd/py), ist das ein **Phantom**.
+- Vorgehen: zuerst rekursiv scannen (z. B. R3510), dann **entweder** materialisieren **oder** Pipeline-Eintrag archivieren/downgraden.
+- Keine Reparatur-Kaskaden ohne belegte Existenz der betroffenen Artefakte.
+<!-- R3511_MR_RULE -->
+
+
+## MR: INI Canonical Path + SingleWriter
+- Canonical INI is `registry/ShrimpDev.ini`.
+- No new code may hardcode root `ShrimpDev.ini` paths.
+- UI modules must not write INI directly; only via central writer/merge API.
+- If config/restore issues appear: run a DIAG runner first, then one minimal APPLY.

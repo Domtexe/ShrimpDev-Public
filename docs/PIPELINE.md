@@ -2,6 +2,26 @@
 # PIPELINE v1 — Lanes & Turnus (Source of Truth)
 
 ## Lane A — Stabilität & Core
+<!-- R3512_LANE_A_P0_START -->
+**R3512 NOTE – Lane A P0 Clarification (post-phantom cleanup):**
+- Only items that **block app start** or **cause crashes in default flows** remain P0.
+- Historical/architectural items or feature hardening belong to P1/P2.
+- Each remaining P0 must state a *crash/start symptom* and a *clear DoD*.
+
+**Action:** Review the following Lane-A items and downgrade any that do not meet P0 criteria.
+
+<!-- R3512_LANE_A_P0_END -->
+
+<!-- R3511_NOTE_START -->
+
+**R3511 NOTE (verified by R3510 recursive scan):**
+- `R2374 / R2375 / R2377 / R2378` are **referenced historically** (docs/pipeline), but **no active runner files** were found in the repo scan.
+- `R2379` exists as tools runner files, but other references are largely docs/reports.
+- Treat these as **ARCH/HISTORICAL** unless we explicitly *materialize* missing runners.
+- Rule: *Pipeline items with missing runner artifacts must be tagged as Phantom/Archived until materialized.*
+
+<!-- R3511_NOTE_END -->
+
 - [x] (P0) [CORE] (HIGHEST / BLOCKER) **R2372 – Architektur: INI Single Writer (Design + API)** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2370.py:L122)
 
   - [x] (DONE) APPLY: module_docking cfg.write(f) -> ini_writer.write() (R3354)
@@ -168,12 +188,14 @@ ruff check modules main_gui.py --select E9
 
 > Auto-importiert (Extended Scan: inkl. Markdown TODOs + Legacy). Bitte später konsolidieren.
 
+- [ ] (P0) [CORE] (HIGHEST / BLOCKER) **Central Runner-Executor API (App ↔ logic_actions)** — UI-Actions dürfen keine Runner-IDs kennen; 1 kanonischer Executor + Smoke-Test
 - [ ] (P0) [CORE] NOTE: that CI blockers were fixed via R2576. _(src: C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/R2576.py:L103)_ (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/Reports/Report_R2658_20251225_202537.md:L18)- [ ] (P0) (HIGHEST / BLOCKER) **R2373 – Implementierung: zentraler INI-Writer (Merge + atomic)** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/docs/INI_WriteMap.md:L14478)- [ ] (P0) (HIGHEST / BLOCKER) **R2371 – INI-WriteMap (READ-ONLY Diagnose)** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2370.py:L117)
 - [ ] (P0) [CORE] (HIGHEST / BLOCKER) **R2374 – config_manager Save konsolidieren** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2370.py:L133)
 - [ ] (P0) [CORE] (HIGHEST / BLOCKER) **R2375 – Shims: config_loader.py / config_mgr.py** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2370.py:L137)
 - [ ] (P0) [CORE] (HIGHEST / BLOCKER) **R2377 – Monkeypatch/Altlogik Quarantäne** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2370.py:L148)
 - [ ] (P0) [CORE] (HIGHEST / BLOCKER) **R2378 – Restore Reihenfolge finalisieren** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2370.py:L152)
 - [ ] (P0) [CORE] (HIGHEST / BLOCKER) **R2379 – Regression-Testplan** (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2370.py:L156)
+- [ ] (P1) [CORE] **Prüfen/Plan: modules/ui_toolbar.py modularisieren** (Import-kritisch) — Ziel: kleine Module (builders/actions/hooks), weniger Seiteneffekte, bessere Testbarkeit
 - [ ] (P1) [PROD] TODO: \n- File: `{pipeline}`\n- Backup: `{backup}`\n", _(src: C:/Users/rasta/OneDrive/ShrimpDev_REPO/_Archiv/Runner_Staging_2025-12-25/R2598.py:L59)_ (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/Reports/Report_R2658_20251225_202537.md:L24)
 - [ ] (P1) [CORE] NOTE: Did not match expected 'run: uvx ruff ...' lines. Please verify ci.yml manually.", _(src: C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/R2580.py:L109)_ (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/Reports/Report_R2658_20251225_202537.md:L25)
 - [ ] (P1) [PROD] TODO: ][HIGH] Runner-Cleanup – Archivierung unbenutzter Runner _(src: C:/Users/rasta/OneDrive/ShrimpDev_REPO/_Pipeline/Pipeline_R2016_RunnerCleanup_20251208_154653.txt:L1)_ (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/Reports/Report_R2658_20251225_202537.md:L27)
@@ -497,3 +519,48 @@ Alle Subtasks abgeschlossen:
 - Referenz-Report: `Reports/Report_R3413_20260113_160946.md`
 
 Damit ist der gesamte P1-Docking-Komplex formal abgeschlossen.
+### Lane A / Stability
+- [ ] INI redirects -> trend to zero (canonical path: `registry/ShrimpDev.ini`, remove hardcoded root INI reads/writes)
+
+<!-- R3518_LANE_B_START -->
+
+## Lane B — Hardening / Guardrails (post-P&P, post-R3510..R3517)
+
+### B1 — Canonical Runner Executor API (Single Source of Truth)
+- [ ] Define one canonical entrypoint (e.g. `runner_exec.run_by_id(app, "R####")` or `app.run_runner_by_id("R####")`)
+- [ ] Replace any ad-hoc subprocess/runner wiring in UI code to call the executor only
+- [ ] Executor responsibilities:
+  - [ ] validate runner id format
+  - [ ] resolve cmd path deterministically
+  - [ ] run in a robust way (cwd/root consistent)
+  - [ ] log report path and exit code (no Tk callback explosions)
+- **DoD**
+  - [ ] Push uses executor, Purge uses executor
+  - [ ] No UI module calls subprocess directly
+  - [ ] One place to change behavior (Single Source of Truth)
+
+### B2 — ui_toolbar.py Modularisierung (UI-only)
+- [ ] ui_toolbar becomes UI-only:
+  - [ ] no INI writes
+  - [ ] no runner wiring logic beyond calling logic_actions/executor
+  - [ ] no duplicate button builders
+- [ ] Extract pure helper pieces if needed (icons/layout/widgets) into small modules
+- **DoD**
+  - [ ] One Push button + one Purge button in code (no duplicates)
+  - [ ] Buttons call logic_actions → executor
+  - [ ] py_compile green
+
+### B3 — Redirect/Config Hygiene (Signal stays meaningful)
+- [x] Rotate/truncate INI redirect log (R3517) so warnings represent real deltas
+- [ ] Add a short “when this warning appears” troubleshooting snippet (docs-only)
+- **DoD**
+  - [ ] Warning indicates NEW redirects, not historical noise
+
+### B4 — MR Guardrails (anti-kaskade)
+- [ ] Explicitly enforce: DIAG → one APPLY → stop; no “runner fixes runner fixes runner”
+- [ ] Phantom runner references: must be tagged/archived until materialized (already started)
+- **DoD**
+  - [ ] Reduced repair cascades; fixes are measured & bounded
+
+<!-- R3518_LANE_B_END -->
+
