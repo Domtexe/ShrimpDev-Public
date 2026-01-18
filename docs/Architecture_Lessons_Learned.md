@@ -106,3 +106,12 @@ Die relevanten Informationen existierten verteilt
 aber nicht zusammenhängend formuliert.
 
 Diese Datei dient dazu, **implizites Architekturwissen explizit festzuhalten**.
+
+<!-- R3538 BEGIN: LessonsLearned Entry -->
+## Lessons Learned – Housekeeping/Purge (Runner-Relevanz)
+
+- Reference-Noise (Docs/Logs/Runner-Text) kann falsche Sicherheit erzeugen: *„alles wirkt gebraucht“* → Purge bewegt nichts.
+- Runtime-Relevanz muss semantisch bestimmt werden: Entry-Graph/Module-Quellen zählen, nicht Runner-Querverweise.
+- MR-Guardrail hat sich bewährt: **kein Patch ohne sicheren Anchor** → lieber Exit 21 + DIAG als syntaktische Regression.
+
+<!-- R3538 END2 -->

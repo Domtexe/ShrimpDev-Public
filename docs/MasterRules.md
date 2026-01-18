@@ -4,14 +4,21 @@
 
 | MR-ID | Status | Scope | Owner |
 |---|---|---|---|
+| `MR-PIPELINE-SSOT-01` | ACTIVE | ShrimpDev/ShrimpHub (alle Lanes) | Assistent |
+| `MR-DIAG-FIRST-ENFORCED-01` | ACTIVE | ShrimpDev/ShrimpHub (alle Lanes) | Assistent |
+| `MR-RUNNER-SCOPE-LOCK-01` | ACTIVE | ShrimpDev/ShrimpHub (alle Lanes) | Assistent |
+| `MR-DOD-01` | ACTIVE | ShrimpDev/ShrimpHub (alle Lanes) | Assistent |
+| `MR-STOP-CRITERIA-01` | ACTIVE | ShrimpDev/ShrimpHub (alle Lanes) | Assistent |
+<!-- R3568_MR_INDEX_PATCH_BEGIN -->
+<!-- R3568_MR_INDEX_PATCH_END -->
+| `MR-STRAT-FOCUS-01` | ACTIVE | ShrimpDev/ShrimpHub (alle Lanes) | Assistent |
 | `MR-DCK-01` | ACTIVE | TBD | TBD |
 | `MR-DCK-02` | ACTIVE | TBD | TBD |
 | `MR-DOC-ALL-01` | ACTIVE | TBD | TBD |
 | `MR-WEB-01` | ACTIVE | TBD | TBD |
 | `MR-WEB-02` | ACTIVE | TBD | TBD |
 
-> Hinweis: Scope/Owner werden schrittweise präzisiert. Status ist aus Überschrift abgeleitet.
-<!-- MR_INDEX_END -->
+> Hinweis: Scope/Owner werden schrittweise präzisiert. Status ist aus Überschrift abgeleitet.<!-- MR_INDEX_END -->
 
 
 
@@ -204,6 +211,21 @@ aber die App wegen Import-/File-Drift nicht startet.
 
 ## MR-PIPELINE-REVIEW-01 — Adaptive Pipeline-Priorisierung
 
+
+<!-- R3564_MR_STRAT_FOCUS_01_BEGIN -->
+## MR-STRAT-FOCUS-01 — Basis vor Produkt (Fokusregel)
+
+**Ziel:** Monetarisierungsdruck darf das Fundament nicht destabilisieren. ShrimpDev bleibt zuerst.
+
+**Regeln**
+1. **Pipeline first:** Arbeitsthemen werden pipeline-getrieben gewählt (siehe `MR-PIPELINE-REVIEW-01`).
+2. **Kein neues Produkt/Repo**, solange relevante **P0/P1 in Lane A/B** offen sind.
+3. **Ideen sind erlaubt**, aber nur als **Parking/Doku** (kein Implementations-Scope außerhalb Pipeline).
+4. **Assistentenpflicht:** Wenn der Nutzer deutlich abweicht, sachlich auf Pipeline + diese Regel verweisen.
+5. **Ausnahme nur explizit:** Neue Produktarbeit nur bei ausdrücklicher Freigabe *und* dokumentierter Risikoabwägung.
+
+**Bezug:** Thread-Entscheidung „erst ShrimpDev fertigstellen, dann monetarisieren“.
+<!-- R3564_MR_STRAT_FOCUS_01_END -->
 **Geltungsbereich:** Assistent (verbindlich)
 
 **Regel:**
@@ -213,6 +235,60 @@ aber die App wegen Import-/File-Drift nicht startet.
 - Prioritätsänderungen sind zu begründen und in der Pipeline zu dokumentieren.
 - Es erfolgt keine permanente Umsortierung, aber bewusste Anpassung bei relevanten Veränderungen.
 - Die Wahl des nächsten Themas erfolgt pipeline-getrieben, nicht gesprächsgetrieben.
+
+<!-- R3568_GOVERNANCE_GUARDRAILS_BEGIN -->
+## MR-PIPELINE-SSOT-01 — Pipeline ist Single Source of Truth (SSOT)
+
+**Scope:** ShrimpDev + ShrimpHub (alle Lanes)  
+**Owner:** Assistent
+
+**Regel**
+- `docs/PIPELINE.md` ist die **primäre** Entscheidungs- und Priorisierungsinstanz.
+- **Was nicht in der Pipeline steht, existiert nicht** (Ideen/Chat/Logs sind kein Arbeitsauftrag).
+- Umsetzung außerhalb Pipeline ist **Regelverstoß** (Ausnahme nur mit expliziter Freigabe + Doku).
+
+## MR-DIAG-FIRST-ENFORCED-01 — Diagnose vor Fix (Enforcement)
+
+**Scope:** ShrimpDev + ShrimpHub (alle Lanes)  
+**Owner:** Assistent
+
+**Regel**
+- Vor jedem APPLY-Fix muss der IST-Zustand **messbar** gemacht werden (mind. Log/Trace/py_compile/kleiner DIAG-Runner).
+- Fix ohne belegte Ursache gilt als **ungültig**.
+- Wenn ein Fix nicht beim ersten Versuch verifiziert funktioniert: **sofort Diagnose-Modus** (Instrumentierung + minimaler DIAG-Runner), keine Trial-&-Error-Kaskade.
+
+## MR-RUNNER-SCOPE-LOCK-01 — Runner Scope-Lock (Anti-Scope-Leak)
+
+**Scope:** ShrimpDev + ShrimpHub (alle Lanes)  
+**Owner:** Assistent
+
+**Regel**
+- Jeder Runner hat einen klaren Scope. Änderungen außerhalb dieses Scopes sind verboten.
+- Keine stillen Rewrites, keine verdeckten Funktionsentfernungen.
+- Wenn Anchor/Match unsicher ist: **ABORT** (kein “best effort” Patch auf produktiven Dateien).
+- Report muss nennen: Ziele, Deltas, betroffene Dateien, Nebenwirkungen.
+
+## MR-DOD-01 — Definition of Done (global)
+
+**Scope:** ShrimpDev + ShrimpHub (alle Lanes)  
+**Owner:** Assistent
+
+Ein Task gilt nur als **DONE**, wenn:
+- Doku/Pipeline/Code sind synchron (oder bewusst “Docs not needed” begründet).
+- Ein Report existiert (Runner-ID, Ergebnis, Pfade).
+- Verifikation passt zum Scope (mind. py_compile bei Runtime-Änderungen; bei Docs-only: Marker/Anchors ok).
+- Keine offenen Nebenwirkungen / TODO-Ketten ohne Pipeline-Eintrag.
+
+## MR-STOP-CRITERIA-01 — Bewusst beenden statt Zombie-Themen
+
+**Scope:** ShrimpDev + ShrimpHub (alle Lanes)  
+**Owner:** Assistent
+
+**Regel**
+- Abbruch/Stop ist erlaubt, aber muss **explizit** dokumentiert werden (Pipeline: `skip` / `obsolet` / “archived” + kurzer Grund).
+- “Liegen lassen” ohne Status ist verboten.
+
+<!-- R3568_GOVERNANCE_GUARDRAILS_END -->
 
 ## MR-RUNNER-SAFE-INGEST-01 — Syntax-sichere Runner-Erstellung
 
@@ -249,3 +325,30 @@ Patch-Runner auf nicht gespeicherte oder nicht kompilierbare Dateien sind logisc
 - No new code may hardcode root `ShrimpDev.ini` paths.
 - UI modules must not write INI directly; only via central writer/merge API.
 - If config/restore issues appear: run a DIAG runner first, then one minimal APPLY.
+
+<!-- R3539 BEGIN: MasterRules Housekeeping/Purge -->
+## MasterRules – Housekeeping / Purge (verbindlich)
+
+1. **Housekeeping ist ein System, kein Einmal-Fix.**  
+   Purge/Prune muss dauerhaft stabil laufen und die Runner-Liste klein halten.
+
+2. **Runtime-Relevanz Policy:**  
+   `tools/` ist **keine** Runtime-Reference-Quelle. Runner-Querverweise zählen nicht als „operativ gebraucht“.  
+   Runtime-Relevanz kommt aus `modules/` (Entry-Graph/Executor/Core) und `registry/` (Allowlist/Registry) plus Schutzmechanismen (last-N).
+
+3. **Kein Patch ohne sicheren Anchor:**  
+   Wenn ein Apply-Runner keinen eindeutigen Patch-Anker findet → **ExitCode 21** + **DIAG-Runner** bauen.  
+   Kein Trial-&-Error im Blindflug.
+
+4. **Purge archiviert, löscht nicht.**  
+   Verschieben ins Archiv ist Standard (voll reversibel). Deletes nur mit expliziter Zustimmung.
+
+<!-- R3539 END -->
+
+<!-- R3566 BEGIN -->
+### Purge Guard: canonical tools_keep
+
+- Purge entrypoint in UI MUST ensure canonical keep file exists:
+  - `registry/tools_keep.txt` (ONLY)
+- If missing/unreadable: Purge is blocked (MR-safe).
+<!-- R3566 END -->

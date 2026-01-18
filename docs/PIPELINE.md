@@ -58,6 +58,21 @@
 - **Lane B — Core Features (P1/P2)**
 - **Lane C — Tooling / Automationen (P1/P2)**
 - **Lane D — Doku / Regeln / Konsistenz (P1/P2)**
+
+<!-- R3569_LANE_D_GOV_TASKS_BEGIN -->
+### Lane D — Governance-Schärfung (Docs-only)
+
+- [ ] (P1) **Governance-Schärfung (R3568/R3569):** Pipeline-SSOT, Diagnose-first (Enforcement), Runner Scope-Lock, Definition of Done, Stop-Kriterien
+  - **DoD**
+    - [ ] MR-Block vorhanden (R3568) ✅
+    - [ ] Pipeline-Tasks vorhanden (R3569)
+    - [ ] Architektur-Prinzipien ergänzt (R3569)
+    - [ ] Report vorhanden (R3568 + R3569)
+
+- [ ] (P2) **Public/Private Repo Audit-Rhythmus** definieren (z. B. alle 10 Runner oder wöchentlich): „was darf public / was nie“
+- [ ] (P2) **Decision-/Rejected-Ideas-Log** minimal pflegen (1 Satz „warum nicht“ statt Vergessen)
+<!-- R3569_LANE_D_GOV_TASKS_END -->
+
 - **Lane E — Website / SEO-Netzwerk (P2/P3)**
 
 ## Turnus
@@ -340,6 +355,17 @@ Verhindert Root-Fehlermatches (OneDrive/Startpfad), macht Push-Buttons determini
 
 ## Policy Updates
 
+
+
+<!-- R3563_FOCUS_POLICY_BEGIN -->
+### Fokus-Leitplanke: Basis vor Produkt (Thread-Entscheidung)
+
+- **Priorität:** ShrimpDev-Stabilität + Reproduzierbarkeit + Doku gehen vor Monetarisierung.
+- **Regel:** Solange relevante P0/P1 (Lane A/B) offen sind, werden keine neuen Produkte/Repros gestartet.
+- **Ideen dürfen existieren**, aber nur als Doku/Parking (keine Umsetzung außerhalb der Pipeline).
+- **Verankerung:** siehe `MR-STRAT-FOCUS-01` in `docs/MasterRules.md`.
+<!-- R3563_FOCUS_POLICY_END -->
+
 ### Public Repo Contract (export policy)
 
 - The public repo is **not a mirror**. It is a curated export.
@@ -526,6 +552,14 @@ Damit ist der gesamte P1-Docking-Komplex formal abgeschlossen.
 
 ## Lane B — Hardening / Guardrails (post-P&P, post-R3510..R3517)
 
+
+### P1 — Housekeeping-Konzept (Auto-Purge über Canonical Executor)
+- **Ziel**: Automatisches Housekeeping, insbesondere **Purge wieder vollautomatisch** (kein manueller R3106-Run).
+- **Prinzip**: UI delegiert ausschließlich an `modules/toolbar_runner_exec.py` (Single Source of Truth).
+- **Safety**: Guards/Confirm/Logging/Report-Popup (MR-konform, diagnose-first).
+- **Aktion**: B2.1 Purge reaktivieren → Executor → R3106 (oder definierter Nachfolger).
+- **Public GitHub Referenz**: https://github.com/Domtexe/ShrimpDev-Public
+
 ### B1 — Canonical Runner Executor API (Single Source of Truth)
 - [ ] Define one canonical entrypoint (e.g. `runner_exec.run_by_id(app, "R####")` or `app.run_runner_by_id("R####")`)
 - [ ] Replace any ad-hoc subprocess/runner wiring in UI code to call the executor only
@@ -564,3 +598,179 @@ Damit ist der gesamte P1-Docking-Komplex formal abgeschlossen.
 
 <!-- R3518_LANE_B_END -->
 
+<!-- R3541 BEGIN: Housekeeping Follow-ups -->
+## Lane B – Hardening: Housekeeping (Follow-ups)
+
+**Done (Housekeeping Baseline):**
+- Purge/Housekeeping ist produktiv: räumt real auf (Archiv statt Delete), Relevanz-Policy aktiv (`tools/` zählt nicht als runtime).
+
+**Next Tasks (priorisiert):**
+1) **Allowlist standardisieren & aktivieren**  
+   Ziel: explizite Pinning-Möglichkeit für kritische Runner (Override unabhängig von Scan/Policy).
+
+2) **Auto-Purge Strategy definieren**  
+   Optionen: manuell (Button), zyklisch (z. B. wöchentlich), event-basiert (nach X Runner / vor Push).  
+   Entscheidung + Doku + minimaler Implementationspfad.
+
+3) **Noise-Source Hygiene**  
+   `debug_output.txt` & ähnliche Artefakte: dauerhaft excluded/abtrennen, damit Diagnosen nicht „Referenzen“ aufblasen.
+
+**Hinweis (Prozessregel):**
+- Pipeline-Review ist verpflichtend, aber nicht chaotisch: Prioritäten werden angepasst, wenn Brisanz steigt/fällt.
+
+<!-- R3541 END -->
+
+---
+
+## Lane E — Websites / SEO / Monetarisierung (Ideen-Dump)
+**Hinweis:** Konsolidiert nach `## Lane E — Websites / SEO / Monetarisierung (konsolidiert)` durch R3555 (2026-01-17 23:39).
+- Dump archiviert/ersetzt, um Dubletten zu vermeiden.
+
+## Lane E — Websites / SEO / Monetarisierung (konsolidiert)
+
+**Quelle:** R3555  
+**Zeit:** 2026-01-17 23:39  
+**Regel:** Konsolidiert = unique Items, keine Bewertung
+
+### STRAT — Strategie / Grundsatz
+
+- Website-Portfolio-Strategie (viele kleine vs. wenige große)
+- Domain-Strategie (1 Domain = 1 Nische?)
+- Naming- & Branding-System für Sites
+- Vertrauens- & Ethik-Regeln (wann bewusst NICHT monetarisieren)
+- Affiliate-Abhängigkeiten & Risiken
+- Monetarisierungs-Reihenfolge (Affiliate → Own Product → Bundle)
+- Kill-Kriterien für Websites (wann beenden?)
+- Erfolgsdefinition Phase 1 (Indexierung, nicht Umsatz)
+- Erfolgsdefinition Phase 2 (Conversion, nicht Traffic)
+- Internationale Expansion (DE → EN?)
+- Multi-Site-Orchestrierung vs. Single-Mega-Site
+
+- Vergleichsseiten (v1, v2, vX)
+- Alternativen-Seiten
+- Buy-or-Skip-Seiten
+- Hub-Seiten
+- Übersichtsseiten
+- Entscheidungs-PDFs
+- Checklisten
+- Templates
+- Bundles
+
+- Google Search Console Beobachtung
+- Indexierungsstatus
+- CTR von Titles
+- Conversion pro Seitentyp
+- Affiliate-Performance
+- Update-Frequenz vs. Ranking
+- Kill-Entscheidung dokumentieren
+- Skalierungs-Trigger definieren
+- priorisiert
+- gesplittet
+- gemerged
+- auf `skip` gesetzt
+- oder als `obsolet` markiert werden.
+
+- Eigene PDFs (Decision Guides)
+- Templates (Matrix, Checklisten)
+- Produkt-Bundles
+- Preis-Experimente
+- Affiliate-Programme (Mapping)
+- Risiko-Reduktion (nicht alles verlinken)
+- Monetarisierung ohne Cookie-Hölle
+
+- Static-Site-Ansatz evaluieren
+- Generator/Exporter aus docs/websites/pages
+- Build-Pipeline (Markdown → HTML)
+- Frontmatter-Validator
+- Broken-Link-Checker
+- Sitemap-Generator
+- Indexing-Helper
+- QA-Runner für Veröffentlichungs-Gates
+- Content-Skeleton-Generator
+- Hub/Spoke-Autogenerator
+- Multi-Domain-Deploy
+- Page-Speed-Baseline
+- Accessibility-Basics
+
+- Vergleichsseiten-Template
+- Alternativen-Seiten-Template
+- Buy-or-Skip-Template
+- Hub-Seiten-Template
+- Content-Guidelines
+- SEO-Guidelines
+- Page-Metadata-Standard
+- Release- & Update-Workflow
+- Entscheidungs-Matrix-Vorlagen
+- Monetarisierungs-Richtlinien
+- Interne-Link-Standards
+- Review-Checklisten
+
+
+### DOC — Definitionen / Standards
+
+- (leer)
+
+### FEAT — Umsetzung / Technik
+
+- (leer)
+
+### CONTENT — Seiten & Assets
+
+- (leer)
+
+### MONETIZATION — Geld & Produkte
+
+- (leer)
+
+### OBS — Beobachtung / Messen
+
+- (leer)
+
+<!-- BAUSTEIN_SNIPPET_STANDARD:START -->
+## Baustein-/Snippet-Standard fuer modulare Features (Core)
+
+**Zweck:** Standardisierung neuer Funktionen und GUI-Elemente ueber wiederverwendbare Bausteine/Snippets mit definiertem Contract.  
+**Ziel:** Stabilitaet, Skalierbarkeit, produktuebergreifende Wiederverwendung.  
+**Regel:** **Neue Features = Baustein** (Bestand bleibt unangetastet, keine Voll-Rewrites).
+
+### P0 – Definition (Docs-only)
+- [ ] Baustein-/Snippet-Spec (1 Seite)
+- [ ] Definition of Done (Baustein)
+- [ ] No-Gos & Escape-Hatches (80/20, Fail-soft, kein Magie-Scanning ohne Whitelist)
+
+### P1 – Referenz (Add-on, risikoarm)
+- [ ] `modules/baustein_contract.py` (Result/Contract)
+- [ ] `modules/baustein_registry.py` (Registry, fail-soft)
+- [ ] 1 Referenz-Action-Baustein (Hello/Diag)
+- [ ] Optional: 1 Referenz-GUI-Tab-Baustein (Notebook-Tab)
+
+### P2 – Nutzungspflicht fuer Neues
+- [ ] Pipeline-Eintraege fuer neue Features referenzieren eine Baustein-ID
+- [ ] Keine Migration als Ziel (nur Standard fuer Neues)
+
+### P3 – Opportunistische Anpassung
+- [ ] Nur wenn bestehende Module ohnehin angefasst werden
+- [ ] Adapter statt Rewrite (Mastermodus: minimal-invasiv, rueckbaubar)
+
+### P4 – Produkt-Rollout
+- [ ] ShrimpHub uebernimmt Baustein-Standard schrittweise per Produkt-Pipeline
+- [ ] Weitere Produkte uebernehmen Standard nach Bedarf
+
+
+<!-- BAUSTEIN_SNIPPET_GOVERNANCE -->
+### Governance & Geltung
+
+- **Gilt ab:** Runner **R3561**
+- **Regel:** Neue Features und neue GUI-Elemente **muessen** als Baustein/Snippet umgesetzt werden.
+- **Nicht-Ziel:** Keine Voll-Rewrites, keine Zwangsmigration bestehender Module.
+- **Vorgehen:** Anpassung bestehender Module **nur opportunistisch** (wenn sie ohnehin angefasst werden).
+- **Prinzip:** Add-on zuerst, Adapter statt Umbau, immer rueckbaubar.
+
+### Explizite P0-Aufgabe (offen)
+- [ ] **Baustein-/Snippet-Spec (1 Seite) inkl. DoD, No-Gos, Escape-Hatches**
+
+<!-- BAUSTEIN_SNIPPET_STANDARD:END -->
+
+<!-- R3566 BEGIN -->
+- [x] Lane B: UI Purge Guard enforces canonical `registry/tools_keep.txt` (R3566).
+<!-- R3566 END -->

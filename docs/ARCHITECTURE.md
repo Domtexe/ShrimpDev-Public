@@ -10,6 +10,16 @@
 
 
 ## Ziel
+
+<!-- R3569_ARCH_WORK_PRINCIPLES_BEGIN -->
+## Arbeitsprinzipien (verbindlich)
+
+- **Pipeline ist SSOT:** Planung und Priorisierung laufen über `docs/PIPELINE.md` (nicht über Chat/Notizen).
+- **Diagnose-first (enforced):** Vor Fixes wird gemessen/geloggt; bei Fehlversuch sofort Diagnose-Modus (keine Trial-&-Error-Kaskade).
+- **Definition of Done:** “Fertig” ist definiert (Doku/Pipeline/Verifikation/Report), nicht Gefühlssache.
+- **Scope-Lock:** Runner arbeiten minimal-invasiv im klaren Scope; unsichere Anchors → ABORT.
+- **Bewusst beenden:** Themen bekommen Status (`skip/obsolet/archived`) statt still zu verrotten.
+<!-- R3569_ARCH_WORK_PRINCIPLES_END -->
 Stabiles, nachvollziehbares Entwickeln/Diagnostizieren/Reparieren komplexer Projekte über Runner.
 
 ## Hauptbereiche (typisch)
