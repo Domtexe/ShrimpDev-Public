@@ -388,6 +388,13 @@ Verhindert Root-Fehlermatches (OneDrive/Startpfad), macht Push-Buttons determini
 - **Status:** neu (eingesortiert durch R3019 am 2026-01-04T16:52:58).
 
 
+### P2 – LearningEngine Phase D: Runner-Vorschläge aus LearningJournal (read-only)
+- **Ziel:** Aus LJ/Logs/Reports **Vorschläge** ableiten (Cluster/Häufigkeit/Impact), **ohne** Auto-Fix.
+- **Output:** Vorschlagsliste als Report/JSON (z. B. `Reports/LearningEngine/Suggestions_*.json`) + kurzer Markdown-Report.
+- **Verwandtschaft:** **Agent-Tab** konsumiert diese Vorschläge (anzeigen, filtern, erklären) und führt Runner **nur opt-in** aus.
+- **Sicherheit:** Allowlist + Dry-Run/Preview; niemals destructive Runner ohne explizite Bestätigung.
+- **Status:** neu (eingesortiert durch R3586 am 2026-01-18T23:50:22).
+
 ### P2 – Agent-Tab: empfohlene Runner automatisch ausführen (prüfen)
 - **Idee:** Agent-Tab, der auf Basis von Zustand/Logs/Reports Runner **vorschlägt**.
 - **Option:** *Auto-Execute* nur **opt-in**.
