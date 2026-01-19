@@ -1,6 +1,23 @@
 <!-- PIPELINE_V1_START -->
 # PIPELINE v1 — Lanes & Turnus (Source of Truth)
 
+<!-- LANE_OVERVIEW:CANONICAL -->
+## 🧭 Pipeline-Lanes – Überblick (kanonisch)
+
+| Lane | Zweck | Typische Tasks | Standard-Priorität |
+|------|------|---------------|--------------------|
+| **A** | Stabilität, Startfähigkeit, Crash/Import-Risiken, Safety | DIAG → APPLY, Guarding, Smoke-Tests | **P0/P1** |
+| **B** | Core-Funktionalität ShrimpDev/ShrimpHub (UI/Features) | APPLY (modular), kleine Verbesserungen | **P1/P2** |
+| **C** | Tooling & Automationen (Build/Patch/Push/Scans) | DIAG/APPLY, Hygiene, Automatisierung | **P1/P2** |
+| **D** | Regeln, Doku, Governance, Konsistenz | DOCS-only, Pipeline-Schärfung | **P1/P2** |
+| **E** | Websites/SEO/Monetarisierung (Shirimpi) | Ideen → Plan → Umsetzung | **P2/P3** |
+
+**Turnus (Rotation):** A → B → C → D → E → repeat  
+**Hard-Override:** Wenn in **Lane A** ein **P0** existiert, hat das Vorrang vor Rotation.  
+**Arbeitsmodus:** *Diagnose zuerst*, dann **minimal-invasiver Fix**, immer mit Backup + Report.
+
+---
+
 ## Lane A — Stabilität & Core
 <!-- R3512_LANE_A_P0_START -->
 **R3512 NOTE – Lane A P0 Clarification (post-phantom cleanup):**
@@ -561,6 +578,9 @@ Damit ist der gesamte P1-Docking-Komplex formal abgeschlossen.
 
 
 ### P1 — Housekeeping-Konzept (Auto-Purge über Canonical Executor)
+<!-- PURGE_ARCH_LINK:CANONICAL -->
+- **ARCH:** Purge/Housekeeping Soll-Definition: `docs/ARCH_Purge.md`
+
 - **Ziel**: Automatisches Housekeeping, insbesondere **Purge wieder vollautomatisch** (kein manueller R3106-Run).
 - **Prinzip**: UI delegiert ausschließlich an `modules/toolbar_runner_exec.py` (Single Source of Truth).
 - **Safety**: Guards/Confirm/Logging/Report-Popup (MR-konform, diagnose-first).
