@@ -231,3 +231,22 @@ Details und gewonnene Erkenntnisse zur Runner-Architektur
 finden sich in:
 
 → `Architecture_Lessons_Learned.md`
+
+
+## Runner-Whitelist & NextFree-Logik
+
+- `tools/runner_whitelist.txt` ist die **Quelle der Wahrheit**
+  für **SR-/Reserved-Runner-IDs**.
+- **NextFree-Logik**:
+  - zählt **nur normale Runner**
+  - **ignoriert alle IDs** aus `runner_whitelist.txt`
+  - **keine Hardcodes**, keine Sonderbereiche im Code
+- Ziel: stabile, deterministische Runner-Nummerierung.
+
+
+## Runner-Whitelist (Quelle der Wahrheit)
+
+- Die **einzige Quelle der Wahrheit** für SR/Reserved-Runner-IDs ist:
+  `registry/runner_whitelist.txt`
+- Runner-Scans / NextFree-Logik **müssen ausschließlich diesen Pfad lesen**.
+- Keine Kopien unter `tools/`.

@@ -801,3 +801,11 @@ Damit ist der gesamte P1-Docking-Komplex formal abgeschlossen.
 <!-- R3566 BEGIN -->
 - [x] Lane B: UI Purge Guard enforces canonical `registry/tools_keep.txt` (R3566).
 <!-- R3566 END -->
+
+
+## Lane E — Monetization (ACTIVE)
+- **Fokus:** Vergleichsseiten (Affiliate/SEO)
+- **MVP:** *Eine* Vergleichsseite
+- **KPI:** Erste indexierte Seite (GSC sichtbar)
+- **Regel:** Erst Proof, dann Skalierung
+- **Nächster Block:** Docs/Strat (kein Code)

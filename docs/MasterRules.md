@@ -352,3 +352,13 @@ Patch-Runner auf nicht gespeicherte oder nicht kompilierbare Dateien sind logisc
   - `registry/tools_keep.txt` (ONLY)
 - If missing/unreadable: Purge is blocked (MR-safe).
 <!-- R3566 END -->
+
+
+## Runner-ID, Templates und NextFree (verbindlich)
+
+- **Runner-ID wird ausschließlich aus dem Dateinamen abgeleitet**
+  (`R####.cmd` + `R####.py`).
+- **Mismatch cmd ↔ py oder ungültiger Dateiname ⇒ ABORT.**
+- **Template-Pflicht**: Neue Runner dürfen nur aus
+  `tools/templates/` erstellt werden.
+- **Keine manuelle ID-Vergabe** im Code, keine Fallbacks.

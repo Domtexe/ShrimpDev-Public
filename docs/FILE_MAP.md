@@ -1,0 +1,682 @@
+# FILE MAP (Single Source of Truth)
+
+## Canonical locations
+- **architecture_root**: `docs/ARCHITECTURE.md`
+- **masterrules**: `docs/MasterRules.md`
+- **pipeline**: `docs/PIPELINE.md`
+- **runner_execution_arch**: `docs/Architecture_RunnerExecution.md`
+- **stability_policy**: `docs/Architecture_StabilityPolicy.md`
+
+## Key directories
+- **docs**: `docs`
+- **modules**: `modules`
+- **pipelines_dir**: `docs/pipelines`
+- **registry**: `registry`
+- **reports**: `Reports`
+- **tools**: `tools`
+- **websites_docs**: `docs/websites`
+
+## Rules
+- This file is the **human** lookup table.
+- `registry/file_map.json` is the **machine** lookup table.
+- If files move, the mover-runner must update both.
+- Archives/backups are excluded from the tree snapshot.
+
+# Tree Snapshot (depth <= 3)
+
+## docs/
+```text
+- .Archive/
+- Architecture/
+  - Current/
+    - Architecture_ShrimpDev_R1931_20251203_200209.txt
+    - Architecture_ShrimpDev_R1931b_20251204_084652.txt
+    - Docking_Persist_Current.md
+  - Docking_Persist_Contract.md
+  - Hardening_Plan_LaneB_Executor_UI_Toolbar.md
+  - INI_Canonical_Path_and_SingleWriter.md
+  - INI_Content_Map.md
+  - INI_SingleWriter.md
+  - INI_SingleWriter_API.md
+  - INI_SingleWriter_Migration.md
+  - Runner_Reference_Policy.md
+  - WEBSITE_SYSTEM.md
+- Guides/
+  - CI_Workflow.md
+  - Intake_Paste_Guide.md
+  - LearningEngine_Design.md
+  - Push_Purge_System.md
+- Incidents/
+  - Docking_R2379-R2395.md
+  - Incident_Docking_DoubleTabs.md
+- Legacy/
+- Master/
+  - MasterRules.md
+  - MasterRules_Core.md
+  - MasterRules_GUI.md
+  - MasterRules_Intake.md
+  - MasterRules_Runners.md
+  - MasterRules_Syntax.md
+  - MasterRules_Syntax_Quality_R2036_20251209_090056.md
+  - MasterRules_Syntax_Quality_R2036_LATEST.md
+  - MasterRules_Tech.md
+  - MoveJournal_Spec_R2060_20251209_214712.md
+  - Pipeline_Notes.md
+  - Strategy_Focus.md
+- pipelines/
+  - Pipeline_ShrimpBridge.md
+  - Pipeline_ShrimpHub.md
+  - PIPELINES_INDEX.md
+- Reports/
+  - README_MARKER.md
+  - REPORTS_MOVED.txt
+- websites/
+  - pages/
+    - alternativen-zu-notion.md
+    - notion-vs-obsidian.md
+    - zapier-vs-make.md
+  - templates/
+    - Alternatives_Page_Template.md
+    - BuyOrSkip_Template.md
+    - Comparison_Page_Template.md
+  - _TEMPLATE_DECISION.md
+  - Comparisons_Backlog_v1.md
+  - Content_Guidelines_v1.md
+  - Link_Plan_v1.md
+  - Monetization_Model_ComparisonSites.md
+  - MVP_Monetization_ComparisonSite.md
+  - MVP_Monetization_NextSteps.md
+  - Page_Metadata_Standard_v1.md
+  - Production_Plan_Top3_v1.md
+  - README.md
+  - Release_Update_Workflow_v1.md
+  - SEO_Guidelines_v1.md
+  - Website_MVP_Format.md
+- ARCH_Purge.md
+- ARCHITECTURE.md
+- Architecture_Actions_and_Gating.md
+- Architecture_Config.md
+- Architecture_ContextMenus.md
+- Architecture_DnD_FileOut.md
+- Architecture_Docking.md
+- Architecture_Guard.md
+- Architecture_Lessons_Learned.md
+- ARCHITECTURE_MAP.md
+- ARCHITECTURE_PERSISTENCE.md
+- Architecture_ProjectTab.md
+- Architecture_Purge_Actions.md
+- Architecture_RunnerExecution.md
+- Architecture_ShrimpDev.md
+- Architecture_ShrimpDev_ContextState.md
+- Architecture_StabilityPolicy.md
+- Architecture_Tools.md
+- Architecture_Workspaces.md
+- ARCHITEKTUR_ShrimpDev_vs_ShrimpHub.md
+- ASSISTANT_BRIEFING.md
+- BOOTSTRAP_PROMPT.txt
+- CHANGELOG.md
+- CHANGELOG_ContextMenus_R2497-R2522.md
+- ConfigManager_WritePaths.md
+- CRITICAL_DEPENDENCIES.md
+- DEVELOPMENT_RULES.md
+- Diagnosis_Playbook_GUI.md
+- GUI_Obsolete_Buttons.md
+- GUI_Tab_Inventory.md
+- Housekeeping_Concept.md
+- INI_WriteMap.md
+- LearningJournal.md
+- MasterRules.md
+- MasterRules_Popups_Standard.md
+- Obsolete_Configs_R2344.md
+- PIPELINE.md
+- PIPELINE.md.__backup_R3586_20260118_235022__
+- PIPELINE.md.__backup_R3596_20260119_073812__
+- PIPELINE.md.__backup_R3599_20260119_124622__
+- Pipeline_Notes.md
+- Runner_Archive_Plan.md
+- Runner_Index.md
+- Runner_Prune_Plan.md
+- Runner_Registry.md
+- Runner_Status.md
+- special_runners.txt
+- SR_Guide_R2131.md
+- TABS.md
+- Tools_Purge_Flat_Plan.md
+- Tools_Purge_Plan.md
+- UI_Governance.md
+```
+
+## registry/
+```text
+- INI_DOCKING_DUMP.log
+- module_registry.json
+- private_repo_root.txt
+- public_allowlist.txt
+- public_export.txt
+- public_export_root.txt
+- runner_whitelist.txt
+- ShrimpDev.ini
+- tools_keep.txt
+- workspaces.json
+```
+
+## tools/
+```text
+- templates/
+  - STD_CMD_PYTHON_FALLBACK.cmd
+  - STD_CMD_PYTHON_FALLBACK.cmd.__backup_R3612_20260119_191725__
+  - STD_PY_RUNNER_TEMPLATE.py
+- R1252.cmd
+- R1252.py
+- R1351.py
+- R1802.cmd
+- R1802.py
+- R2020.cmd
+- R2020.py
+- R2021.cmd
+- R2021.py
+- R2022.cmd
+- R2022.py
+- R2028.cmd
+- R2028.py
+- R2030.cmd
+- R2030.py
+- R2032.cmd
+- R2032.py
+- R2044.cmd
+- R2044.py
+- R2045.cmd
+- R2045.py
+- R2052.cmd
+- R2052.py
+- R2053.cmd
+- R2053.py
+- R2064.cmd
+- R2064.py
+- R2066.cmd
+- R2066.py
+- R2070.cmd
+- R2070.py
+- R2072.cmd
+- R2072.py
+- R2082.cmd
+- R2082.py
+- R2086.cmd
+- R2086.py
+- R2099.cmd
+- R2099.py
+- R2118.cmd
+- R2118.py
+- R2119.cmd
+- R2119.py
+- R2120.cmd
+- R2120.py
+- R2130.cmd
+- R2130.py
+- R2133.cmd
+- R2133.py
+- R2134.cmd
+- R2134.py
+- R2212.cmd
+- R2212.py
+- R2213.cmd
+- R2213.py
+- R2218.cmd
+- R2218.py
+- R2224.cmd
+- R2224.py
+- R2226.cmd
+- R2226.py
+- R2243.cmd
+- R2243.py
+- R2256.cmd
+- R2256.py
+- R2296.cmd
+- R2296.py
+- R2300.cmd
+- R2300.py
+- R2303.cmd
+- R2303.py
+- R2304.cmd
+- R2304.py
+- R2306.cmd
+- R2306.py
+- R2339.cmd
+- R2339.py
+- R2346.cmd
+- R2346.py
+- R2367.cmd
+- R2367.py
+- R2368.cmd
+- R2368.py
+- R2369.cmd
+- R2369.py
+- R2371.cmd
+- R2371.py
+- R2372.cmd
+- R2379.cmd
+- R2379.py
+- R2385.cmd
+- R2385.py
+- R2388.cmd
+- R2388.py
+- R2402.cmd
+- R2402.py
+- R2403.cmd
+- R2403.py
+- R2406.cmd
+- R2406.py
+- R2515.cmd
+- R2515.py
+- R2665.cmd
+- R2665.py
+- R2668.cmd
+- R2668.py
+- R2676.cmd
+- R2676.py
+- R2687.cmd
+- R2687.py
+- R2691.cmd
+- R2691.py
+- R2692.cmd
+- R2692.py
+- R2693.cmd
+- R2693.py
+- R2789.cmd
+- R2789.py
+- R2791.cmd
+- R2791.py
+- R2795.cmd
+- R2795.py
+- R2797.cmd
+- R2797.py
+- R2805.cmd
+- R2805.py
+- R2924.cmd
+- R2924.py
+- R2954.cmd
+- R2954.py
+- R2997.cmd
+- R2997.py
+- R3070.cmd
+- R3070.py
+- R3083.cmd
+- R3083.py
+- R3085.cmd
+- R3085.py
+- R3097.cmd
+- R3097.py
+- R3098.cmd
+- R3098.py
+- R3100.cmd
+- R3100.py
+- R3104.cmd
+- R3104.py
+- R3105.cmd
+- R3105.py
+- R3106.cmd
+- R3106.py
+- R3107.cmd
+- R3107.py
+- R3108.cmd
+- R3108.py
+- R3109.cmd
+- R3109.py
+- R3110.cmd
+- R3110.py
+- R3111.cmd
+- R3111.py
+- R3115.cmd
+- R3115.py
+- R3116.cmd
+- R3116.py
+- R3120.cmd
+- R3120.py
+- R3389.cmd
+- R3389.py
+- R3390.cmd
+- R3390.py
+- R3392.cmd
+- R3392.py
+- R3401.cmd
+- R3401.py
+- R3404.cmd
+- R3404.py
+- R3501.cmd
+- R3501.py
+- R3515.cmd
+- R3515.py
+- R3559.cmd
+- R3559.py
+- R3591.cmd
+- R3591.py
+- R3592.cmd
+- R3592.py
+- R3593.cmd
+- R3593.py
+- R3594.cmd
+- R3594.py
+- R3595.cmd
+- R3595.py
+- R3596.cmd
+- R3596.py
+- R3597.cmd
+- R3597.py
+- R3598.cmd
+- R3598.py
+- R3599.cmd
+- ... (truncated)
+```
+
+## modules/
+```text
+- learning_engine/
+  - __init__.py
+  - action_logger.py
+  - cluster.py
+  - engine_core.py
+  - graph.py
+  - heatmap.py
+  - knowledge_graph.py
+  - pattern_analyzer.py
+  - persistence.py
+  - suggestion_provider.py
+- snippets/
+  - __init__.py
+  - agent_client.py
+  - file_detect_snippet.py
+  - intake_toolbar_reflow_helper.py
+  - logger_snippet.py
+  - runner_template.py
+  - safeio.py
+  - snippet_auto_category.py
+  - snippet_dev_intake_toolbar.py
+  - snippet_file_ops.py
+  - snippet_intake_detect_v2.py
+  - snippet_intake_syntax_gate.py
+  - snippet_log_runner.py
+  - snippet_syntax_guard.py
+  - tooltip.py
+  - ui_helpers.py
+- tools/
+  - apply_pending_patches.bat
+  - DevIntake_Pack_20251104_144729.zip
+  - module_intake_core_addons.py
+  - patchlib_guard.py
+  - Runner_1000_IntakeActions.bat
+  - Runner_1001_AlwaysOnTopFixImports.bat
+  - Runner_1002_SnippetsRestore.bat
+  - Runner_1003_FixIndentFallbackLogger.bat
+  - Runner_1004_ShrimpDev_PathFix.bat
+  - Runner_1005_MainGUI_Rewrite.bat
+  - Runner_1006_ConfigMgr_Restore.bat
+  - Runner_1007_UIFrames_Restore.bat
+  - Runner_1008_IntakeUX_Revamp.bat
+  - Runner_1010_IntakeUX_Refine.bat
+  - Runner_1011_IntakeUX_ActionsBar.bat
+  - Runner_1012_FixMenuIndent.bat
+  - Runner_1013_SafeBoot_Debug.bat
+  - Runner_1014_SafeBoot_StringFix.bat
+  - Runner_1015_SafeBoot_StringHardFix.bat
+  - Runner_1016_IntakeFix_ContextActions.bat
+  - Runner_1017_IntakeUX_CopyPasteName.bat
+  - Runner_1018_ExtOverride_AndQA.bat
+  - Runner_1019_ExtOverride_DetectFix.bat
+  - Runner_1020_SafeBoot_Logfix.bat
+  - Runner_1021_SafeBoot_FinalFix.bat
+  - Runner_1022_MainGUI_SafeImportsRepair.bat
+  - Runner_1023_SafeFallbackRepair.bat
+  - Runner_1024_LoggerAtomicFix.bat
+  - Runner_1025_SafeFallbackCapture.bat
+  - Runner_1026_IntakeIndentFix.bat
+  - Runner_1027_IntakeSaveRewrite.bat
+  - Runner_1028_IntakeModule_Reset.bat
+  - Runner_1030_IntakeButtons_Fix.bat
+  - Runner_1031_ButtonsForceWire_Debug.bat
+  - Runner_1032_ButtonsHardBind_Ping.bat
+  - Runner_1033_FixBrokenPanedwindow.bat
+  - Runner_1034_IntakeDetect_SmartFix.bat
+  - Runner_1035_DetectWire_All.bat
+  - Runner_1036_NameDetect_FromCode.bat
+  - Runner_1037_FixDetectSyntax.bat
+  - Runner_1038_DetectBlock_Rewrite.bat
+  - Runner_1039_IndentFix_TryExcept.bat
+  - Runner_1040_Intake_FullReset.bat
+  - Runner_1041_AutoDetect_OnPaste.bat
+  - Runner_1042_AutoDetect_Hardwire_Scan.bat
+  - Runner_1043_NoBell_StripTypeHints.bat
+  - Runner_1044_Intake_Reinstall_Clean.bat
+  - Runner_1045_NameForceAndDateCols.bat
+  - Runner_1046_NameDocstring_Fallback_DateCols.bat
+  - Runner_1047_Intake_CleanHardReset.bat
+  - Runner_1048_Intake_DeleteAndRecent50.bat
+  - Runner_1049_Intake_ResizeNameExt.bat
+  - Runner_1050_ExtDetectStrong.bat
+  - Runner_1051_ExtDetectStrong_FixSub.bat
+  - Runner_1052_FixEntExtGrid.bat
+  - Runner_1053_Intake_ClearOnDelete_RefreshOnPaste.bat
+  - Runner_1054_Intake_QuoteFix_ClearDelete_PasteReset.bat
+  - Runner_1055_FixIndent_OnEditorModified.bat
+  - Runner_1056_FixIndent_OnEditorModified_Strict.bat
+  - Runner_1057_IndentAudit_IntakeFrame.bat
+  - Runner_1058_FixKeyAndModified_Block.bat
+  - Runner_1059_FixDeleteIndent.bat
+  - Runner_1060_FixAskYesNo_StringConcat.bat
+  - Runner_1062_FutureAtTop.bat
+  - Runner_1063_Intake_SanityGuard.bat
+  - Runner_1065_IntakeRescueAndRollback.bat
+  - Runner_1114_DeepSanityAndRepair.bat
+  - Runner_1114b_FixUnexpectedIndent_MainGUI.bat
+  - Runner_1117.bat
+  - Runner_1125_IntakeRescue.bat
+  - Runner_1126_IntakeRescue2.bat
+  - Runner_1127_IntakeDetox.bat
+  - Runner_1127_IntakeFix_All.bat
+  - Runner_1128_FixToolbarAndBindings.bat
+  - Runner_1129_IntakeLoadGuard.bat
+  - Runner_1130_IntakeDiagnose.bat
+  - Runner_1131_FixIntakeToolbar.bat
+  - Runner_1132_FixGuardParent.bat
+  - Runner_1132_FixIntakeActions.bat
+  - Runner_1133_IntakeAutoHeal.bat
+  - Runner_1134_IntakePathFix.bat
+  - Runner_1135_ModulesInitAndDiagnose.bat
+  - Runner_1136_FixMissingRepairButton.bat
+  - Runner_1137_IntakeLoadFix.bat
+  - Runner_1137a_IntakeLoadFix.bat
+  - Runner_1138_IntakeLoadFix2.bat
+  - Runner_1139_IntakeFrameRepair.bat
+  - Runner_1140_IntakeFinalFix.bat
+  - Runner_1141_IntakeDefuse.bat
+  - Runner_1142_DefuseSafe.bat
+  - Runner_1143_IntakeToolbarGuardFix.bat
+  - Runner_1143b_IntakeToolbarGuardFix_Safe.bat
+  - Runner_1144_ReplaceIntakeSafe.bat
+  - Runner_1145_IntakeAudit.bat
+  - Runner_1146_FeatureGapAudit.bat
+  - Runner_1148_ImproveDetection.bat
+  - Runner_1148b_ForceDetectionFix.bat
+  - Runner_1149_TablePopulate.bat
+  - Runner_1150_DetectionFinalFix.bat
+  - Runner_1151_AddPackSaveButton.bat
+  - Runner_1152_TableUX_Interactions.bat
+  - Runner_1153_SmartDetect_AutoSave.bat
+  - Runner_1153d_RegexHyphenFix.bat
+  - Runner_1153e_PathInitFix.bat
+  - Runner_1153f_SafeDetectRegex.bat
+  - Runner_1153g_SafeRegexAllIntake.bat
+  - Runner_1153h_FixDetectAndRegex.bat
+  - Runner_1153k_DetectGuard.bat
+  - Runner_1154_AddDeleteButtons.bat
+  - Runner_1154b_AddDeleteButtons.bat
+  - Runner_1154c_AddDeleteButtons.bat
+  - Runner_1154d_FixIntakeToolbarAndGuard.bat
+  - Runner_1154e_IntakeSyntaxHeal.bat
+  - Runner_1154f_IntakeSyntaxHeal.bat
+  - Runner_1154g_FixIntakeButtonsAndGuard.bat
+  - Runner_1154h_FixMissingBuildUiDef.bat
+  - Runner_1155_IntakeBootDiag.bat
+  - Runner_1156_AddInitAndBuildUI.bat
+  - Runner_1156c_FixTtkAndInitUI.bat
+  - Runner_1156d_TtkGlobalizeLocals.bat
+  - Runner_1156e_CombineInitAndTtk.bat
+  - Runner_1157_FixDetectPatterns.bat
+  - Runner_1158_UX_ToolbarLayout.bat
+  - Runner_1158c_UX_ToolbarLayoutFix.bat
+  - Runner_1161_DetectRegex_Hotfix.bat
+  - Runner_1162_DetectRegexScanner.bat
+  - Runner_1163_DetectGuardFix.bat
+  - Runner_1163b_DetectGuardFixSafe.bat
+  - Runner_1163d_DetectGuardFixSafePlain.bat
+  - Runner_1163e_DetectGuardFix_AST.bat
+  - Runner_1163f_FixPyHeadRegex.bat
+  - Runner_1163h2_FixPythonHeadRegex_SafePlain.bat
+  - Runner_1163h3_FixPythonHeadRegex_DirectReplace.bat
+  - Runner_1163h4_FixPythonHeadRegex_LineSwap.bat
+  - Runner_1163h_FixPythonHeadRegex_Safe.bat
+  - Runner_1164_ClearAlsoClearsExt.bat
+  - Runner_1164b_OptionalConfirmOnClear.bat
+  - Runner_1164c_ClearExt_And_OptionalConfirm.bat
+  - Runner_1164d_ClearExt_OptionalConfirm_Traversal.bat
+  - Runner_1165_IntakeInitFix.bat
+  - Runner_1166_IntakeTTK_ScopeFix_and_Rules.bat
+  - Runner_1166b_IntakeScopeFix_SafeIndent.bat
+  - Runner_1166c_Intake_MinimalScopeFix.bat
+  - Runner_1166d_Intake_IndentAndTTKFix.bat
+  - Runner_1166e_Intake_FinalFix.bat
+  - Runner_1166f_Intake_DeepRepair.bat
+  - Runner_1166g_Intake_SafeDedent.bat
+  - Runner_1166h_Intake_SafeDedent2.bat
+  - Runner_1167a_Intake_SanityCheck.bat
+  - Runner_1167b_GUIIntakePresenceCheck.bat
+  - Runner_1167c_GUIRenderTrace.bat
+  - Runner_1167d_GUIMountRefresher.bat
+  - Runner_1167e_RunnerExecSafeImport.bat
+  - Runner_1167f_RunnerExecSafeImport2.bat
+  - Runner_1167g_RunnerExecLogAppendSafe.bat
+  - Runner_1167h_IntakeErrDump.bat
+  - Runner_1167i_IntakeFix_CallModuleFunc.bat
+  - Runner_1167j_IniDetectHelperPatch.bat
+  - Runner_1170a_IntakeRegression.bat
+  - Runner_1170b_IntakeBindRepair.bat
+  - Runner_1170c_IntakeShortcutWire.bat
+  - Runner_1170d_UXLayoutPolish.bat
+  - Runner_1170e_IntakeLifecycleWire.bat
+  - Runner_1171a_IntakeUXAndDetect.bat
+  - Runner_1171b_IntakeUXAndDetect.bat
+  - Runner_1171c_IntakeDetectClean.bat
+  - Runner_1171d_IntakeHelperIndentFix.bat
+  - Runner_1171e_IntakeToolbarFix.bat
+  - Runner_1171f_IntakeToolbarFix2.bat
+  - Runner_1171g_IntakeToolbarReflow.bat
+  - Runner_1171h_IntakeHelperIndentSweep.bat
+  - Runner_1171i_IntakeToolbarReflowSafe.bat
+  - Runner_1171j_IntakeToolbarReflowTopLevel.bat
+  - Runner_1171k_IntakeToolbarReflowExternalize.bat
+  - Runner_1171m_IntakeToolbarReflowFix.bat
+  - Runner_1171n_IntakeSyntaxRebuilder.bat
+  - Runner_1171p_IntakeIndentHeal.bat
+  - Runner_1171q_IntakeCleanAndExternalize.bat
+  - Runner_1171q_IntakeToolbarReflowSafe.bat
+  - Runner_1171r_IntakeUILayoutTidy.bat
+  - Runner_1172_IntakeTabGuard.bat
+  - Runner_1173_IntakeUILayoutFix.bat
+  - Runner_1173b_IntakeUILayoutFix.bat
+  - Runner_1173c_IntakeTTKImportFix.bat
+  - Runner_1173d_IntakeFallbackReturnFix.bat
+  - Runner_1173e_MainGuiTabHelper.bat
+  - Runner_1173f_IntakeTabSafeAdd.bat
+  - Runner_1173g_IntakeTabSmoke.bat
+  - Runner_1173h_MainGuiHelpersOrderFix.bat
+  - Runner_1173i_MainGuiHeadDedent.bat
+  - Runner_1173k_MainGuiCallRelocate.bat
+  - Runner_1173m_MainGuiIntakeWireFix.bat
+  - Runner_1173p_MainGuiIntakeWireForce.bat
+  - Runner_1173z_IntakeSmoke.bat
+  - Runner_1174a_MainGuiIntakeHelpersFix.bat
+  - Runner_1174aa_IntakeTabCleanser.bat
+  - Runner_1174b_MainGuiIntakeHelpersFix.bat
+  - Runner_1174c_MainGuiIntakeHelpersFix.bat
+  - Runner_1174d_MainGuiIntakeCleanup.bat
+  - Runner_1174e_MainGuiIntakeCleanup.bat
+  - ... (truncated)
+- __init__.py
+- common_tabs.py
+- config_loader manuell 20260111_011600.py
+- config_loader.py
+- config_manager.py
+- config_mgr.py
+- context_state.py
+- exception_logger.py
+- ini_writer.py
+- learning_engine.py
+- logic_actions.py
+- logic_actions.tmp_r2247
+- logic_intake.py
+- logic_tools.py
+- logic_tools.py.__backup_R3576_20260118_225138__
+- logic_tools.py.__backup_R3582_20260118_233642__
+- main_shortcuts_patch.py
+- module_agent.py
+- module_agent_ui.py
+- module_code_intake.py
+- module_code_intake_v1.py
+- module_docking.py
+- module_docking_FIXED_v2.py
+- module_docking_manuell_20260108_224600.py
+- module_gate_panel.py
+- module_gate_smoke.py
+- module_intake_workers.py
+- module_learningjournal.py
+- module_learningjournal_ui_ext.py
+- module_patch_release.py
+- module_preflight.py
+- module_project_scan.py
+- module_project_ui.py
+- module_registry.py
+- module_runner_board.py
+- module_runner_exec.py
+- module_runner_popup.py
+- module_runnerbar.py
+- module_settings_ui.py
+- module_shim_intake.py
+- move_journal.py
+- neu 1
+- toolbar_action_router.py
+- toolbar_helpers_repo.py
+- toolbar_helpers_state.py
+- toolbar_runner_exec.py
+- toolbar_runner_exec.py.__backup_R3611_20260119_180311__
+- ui_buttons.py
+- ui_filters.py
+- ui_learningpanel.py
+- ui_leds.py
+- ui_left_panel.py
+- ui_link_led_button.py
+- ui_lists.py
+- ui_log_tab.py
+- ui_menus.py
+- ui_pipeline_tab.py
+- ui_pipeline_tab_manuell_20260108_205205.py
+- ui_project_tree.py
+- ui_runner_products_tab.py
+- ui_settings_tab.py
+- ui_statusbar.py
+- ui_theme_classic.py
+- ui_themes.py
+- ui_toolbar.py
+- ui_toolbar.py.__backup_R3592_20260119_004137__
+- ui_toolbar.py.__backup_R3594_20260119_004527__
+- ui_toolbar.py.__backup_R3602_20260119_151811__
+- ui_toolbar.py.__backup_R3604_20260119_162427__
+- ui_toolbar.py.__backup_R3606_20260119_163154__
+- ui_toolbar.py.__backup_R3607_20260119_164044__
+- ui_toolbar.py.__backup_R3608_20260119_164514__
+- ui_toolbar.py.__backup_R3611_20260119_180311__
+- ui_toolbar.py.bak_R3624
+- ui_toolbar_dev.py
+- ui_toolbar_FIXED_R3492.py
+- ui_tooltips.py
+- workspace_registry.py
+```
+
