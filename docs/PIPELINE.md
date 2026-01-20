@@ -809,3 +809,8 @@ Damit ist der gesamte P1-Docking-Komplex formal abgeschlossen.
 - **KPI:** Erste indexierte Seite (GSC sichtbar)
 - **Regel:** Erst Proof, dann Skalierung
 - **Nächster Block:** Docs/Strat (kein Code)
+
+
+- **ThreadCut (Pflicht)**  
+  Jeder abgeschlossene Thread endet mit einem ThreadCut zur Verwertung
+  von Regeln, Lernen, Dokumentation und Pipeline-Anpassungen.

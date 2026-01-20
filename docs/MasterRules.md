@@ -362,3 +362,22 @@ Patch-Runner auf nicht gespeicherte oder nicht kompilierbare Dateien sind logisc
 - **Template-Pflicht**: Neue Runner dürfen nur aus
   `tools/templates/` erstellt werden.
 - **Keine manuelle ID-Vergabe** im Code, keine Fallbacks.
+
+
+## MasterRule – ThreadCut (verbindlich)
+
+Ein **ThreadCut** ist ein verpflichtender Abschlussmechanismus für ShrimpDev-Threads.
+
+**Regeln**
+- Ein ThreadCut markiert das Ende eines Threads.
+- Nach einem ThreadCut werden keine neuen Inhalte mehr diskutiert.
+- Alle verwertbaren Erkenntnisse werden explizit überführt in:
+  - MasterRules
+  - Pipeline
+  - Dokumentation
+  - Lernsystem (LearningJournal / Reports)
+- Ein neuer Thread muss ohne Kontextverlust startfähig sein.
+
+**Grundsatz**
+> Ein ThreadCut beendet Denken und beginnt Ordnung.
+> Was danach existiert, ist klar, dokumentiert und reproduzierbar.
