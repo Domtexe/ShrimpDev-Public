@@ -381,3 +381,58 @@ Ein **ThreadCut** ist ein verpflichtender Abschlussmechanismus für ShrimpDev-Th
 **Grundsatz**
 > Ein ThreadCut beendet Denken und beginnt Ordnung.
 > Was danach existiert, ist klar, dokumentiert und reproduzierbar.
+
+## Websites / Content-Systeme (Static Sites, Hugo, Clarivoo)
+
+### Geltungsbereich
+Dieser Abschnitt gilt für alle Website-/Content-Systeme, insbesondere:
+- Clarivoo
+- Hugo / Static Sites
+- Vergleichs-, Wissens- und Affiliate-Websites
+
+Er gilt ausdrücklich **nicht** für:
+- ShrimpDev Core (App/Runner-System)
+- ShrimpHub GUI/Tools (Desktop-App-Logik)
+
+### Grundprinzipien
+1. **Struktur vor Content**: Informationsarchitektur (IA) hat Vorrang vor Textproduktion.
+2. **Content vor Branding**: Visuelle Marken-/Designarbeit erst, wenn Inhalte Tiefe/Traktion haben.
+3. **Manuelle IA-Entscheidung vor Automation**: Top-Level, Pfade und Seitentypen werden zuerst bewusst festgelegt.
+4. **Deadlinks sind zulässig, wenn bewusst**: Unresolved Links sind kein Bug, solange sie als Struktur-Delta verstanden werden.
+
+### Runner-Regeln für Websites
+Runner im Website-Kontext sind **Struktur-Tools**, keine Content-Generatoren.
+
+**Runner dürfen:**
+- Navigation und Menüs konsolidieren (nur nach klarer IA-Vorgabe)
+- `_index.md`/Index-Seiten synchronisieren und konsistent halten
+- bestehende Pfade/Slugs angleichen, wenn Zielstruktur explizit definiert ist
+- Deadlink-/Unresolved-Reports erzeugen (ohne automatische „Heilung“)
+
+**Runner dürfen NICHT:**
+- neue Inhalte „raten“ oder generieren, um Links zu befriedigen
+- Seiten automatisch anlegen, nur um Unresolved Targets zu eliminieren
+- Strukturentscheidungen implizit treffen (Top-Level/Taxonomie/Pfade)
+- Branding/Layout/Design ohne expliziten Auftrag verändern
+
+### ExitCode-Semantik (Website-spezifisch)
+Im Website-/Content-Kontext bedeutet ein ABORT/ExitCode **nicht automatisch** einen Systemfehler.
+
+- **ExitCode 2 = Struktur-Unsicherheit / IA nicht final**
+- ABORT ist korrekt, wenn:
+  - Zielpfade semantisch/inhaltlich unklar sind
+  - die IA (Top-Level, Slugs, Index-only vs Content) noch nicht entschieden ist
+  - ein Runner sonst raten müsste (verboten)
+
+### Phasenmodell (Websites)
+1. **IA-Phase (manuell)**: Top-Level, Seitenarten, Slugs, Index-only vs Content festlegen.
+2. **Struktur-Runner (gezielt, einzeln)**: Navigation + `_index.md` konsistent machen, ohne Content zu schreiben.
+3. **Content-Phase**: Artikel erstellen/erweitern, interne Verlinkung bewusst aufbauen.
+4. **Skalierung/Automatisierung**: Serien, Templates, Massenpflege, Vergleichslogik ausrollen.
+
+**Regel:** Keine Runner-Stapelung vor Abschluss von Phase 1.
+
+### No-Gos (verbindlich)
+- Keine weiteren „Fix-Runner“, solange die IA nicht klar entschieden ist.
+- Kein automatisches Link-Raten oder „autofill“ fehlender Ziele.
+- Kein Branding-Tuning vor Content-Tiefe.
