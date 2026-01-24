@@ -814,3 +814,16 @@ Damit ist der gesamte P1-Docking-Komplex formal abgeschlossen.
 - **ThreadCut (Pflicht)**  
   Jeder abgeschlossene Thread endet mit einem ThreadCut zur Verwertung
   von Regeln, Lernen, Dokumentation und Pipeline-Anpassungen.
+
+## Backlog
+- [ ] **Intake: Button „Gate: R3677“ (Pipeline)**
+  - Zweck: Ein-Klick-Ausführung von `R3677` (Hugo build + interne Deadlink/Target-Prüfung).
+  - Scope: **Planung** (keine Implementierung in diesem Schritt).
+  - Verhalten (Zielbild):
+    - nutzt den kanonischen Runner-Executor
+    - zeigt nach Run den neuesten Report (Report-Viewer, kein Log-Popup)
+    - klar als **Gate** gekennzeichnet (protected/whitelisted)
+  - Acceptance (für spätere Umsetzung):
+    - Klick startet R3677 mit korrektem Root
+    - Report wird angezeigt
+    - R3677 bleibt purge-protected
