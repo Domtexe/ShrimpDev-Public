@@ -436,3 +436,14 @@ Im Website-/Content-Kontext bedeutet ein ABORT/ExitCode **nicht automatisch** ei
 - Keine weiteren „Fix-Runner“, solange die IA nicht klar entschieden ist.
 - Kein automatisches Link-Raten oder „autofill“ fehlender Ziele.
 - Kein Branding-Tuning vor Content-Tiefe.
+
+## Templates
+
+- Für **wiederkehrende** Dinge werden **Templates** unter `docs/templates/` angelegt und gepflegt (Runner-CMD/PY, DIAG/APPLY Patterns, Checklisten, ThreadCut, Halt-Stop, etc.).
+- Ziel: weniger Fehler, schnellere Umsetzung, konsistente MR-konforme Ausgaben.
+
+## Python Policy
+
+- **Python gilt als verfügbar (PATH)**, solange kein Messbeweis das Gegenteil zeigt.
+- Runner geben **keine WARN** aus, nur weil kein venv vorhanden ist.
+- Runner dürfen **nur failen**, wenn Python **nicht lauffähig** ist (Messung via `python -c ...`).
