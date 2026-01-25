@@ -447,3 +447,56 @@ Im Website-/Content-Kontext bedeutet ein ABORT/ExitCode **nicht automatisch** ei
 - **Python gilt als verfügbar (PATH)**, solange kein Messbeweis das Gegenteil zeigt.
 - Runner geben **keine WARN** aus, nur weil kein venv vorhanden ist.
 - Runner dürfen **nur failen**, wenn Python **nicht lauffähig** ist (Messung via `python -c ...`).
+
+
+## Erweiterungen – Runner / Architektur (2026-01)
+
+### MR-A1: Central Runner Executor (Pflicht)
+Alle Runner (.cmd / .bat / .py) dürfen ausschließlich über:
+`modules/module_runner_exec.run(...)`
+gestartet werden. Direkte subprocess-/os.system-Aufrufe sind verboten.
+
+### MR-A2: Bypass-Beseitigung – Ablauf zwingend
+DIAG (read-only) → APPLY (1 Datei / 1 Stelle) → Test → Report → ThreadCut.
+
+### MR-A3: Single-Writer-Prinzip
+Für jede schreibende Ressource existiert genau ein Owner.
+Lesen ist frei, Schreiben ausschließlich über den Owner.
+
+### MR-A4: Projekt-Threads fixen keine Blocker
+Core-Blocker (Runner, INI, Start/Crash, Pipeline) gehören immer in die Pipeline.
+
+### MR-A5: Diagnose schlägt Aktion
+Unsicherheit erzwingt Diagnose. Vermutungsfixes sind unzulässig.
+
+## Nachsorge & Guards (Anti-Regression)
+
+### MR-NG1: Guards beobachten, nicht erzwingen
+Guards (z. B. Output-Guard) dienen zur Messung und Transparenz.
+Hohe Fail-Zahlen bei Altbestand sind zulässig, solange sie nicht weiter steigen.
+
+### MR-NG2: Stichtagsregel (Neuzeit)
+Als Stichtag für den Output-Standard gilt: **R3752**.
+- Runner **ab R3752** müssen Template-/Output-Standard einhalten.
+- Runner **vor R3752** gelten als Altbestand.
+
+### MR-NG3: Opportunistische Modernisierung
+Wenn ein Alt-Runner ohnehin geändert wird, muss er dabei auf Output-Standard gebracht werden
+(CMD-Banner/ExitCode/Report-Hinweis; PY: Report schreiben + Report-Pfad printen).
+
+### MR-NG4: Regression-Trigger
+Wenn Guard-Metriken schlechter werden (z. B. steigende Fail-Zahlen bei Neuzeit-Runnern),
+wird automatisch **Nachsorge** ausgelöst (Regeln/Doku/Pipeline-Nachsorge).
+
+### MR-NG5: Codewort „Nachsorge“
+Das Codewort **Nachsorge** löst aus:
+- Regeln ableiten (allgemein + projektspezifisch)
+- Doku konsolidieren (Docs-only, per Runner)
+- MasterRules ggf. ergänzen
+- Pipeline-Status nachziehen
+- Nachsorge-Report erzeugen
+- optional ThreadCut, wenn Übergabe/Abschluss sinnvoll ist
+
+### Referenzen
+- Output-Guard: **R3753**
+- Output-Standardisierung/Templates: **R3752** (`docs/templates`)
