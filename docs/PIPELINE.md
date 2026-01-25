@@ -80,9 +80,7 @@
 ### Lane D — Governance-Schärfung (Docs-only)
 
 <!-- PIPELINE_LANE_D_BEGIN -->
-- [ ] (P1) **Report-Agent: Reports-Auswertung → Todos ableiten → priorisieren → Pipeline-Einsortierung (MVP DIAG, optional APPLY)**  <!-- TASK_REPORT_AGENT__R3755_NACHSORGE_RUNNER_PROTECT -->
-  - **Quelle/Referenz:** R3755 (Agent-Report), R3753 (Output-Guard), Nachsorge-Regeln (MR-NG*)
-  - **MVP (DIAG / read-only):**
+- [ ] (P1) **Report-Agent: Reports-Auswertung → Todos ableiten → priorisieren → Pipeline-Einsortierung (MVP DIAG, optional APPLY)**  <!-- TASK_REPORT_AGENT__R3755_NACHSORGE_RUNNER_PROTECT -->  - **Quelle/Referenz:** R3755 (Agent-Report), R3753 (Output-Guard), Nachsorge-Regeln (MR-NG*)  - **MVP (DIAG / read-only):**
     - [ ] `Reports/` scannen (z. B. letzte 30)
     - [ ] FAIL/WARN/ExitCodes + Keywords clustern (Dedup)
     - [ ] Priorität P0–P2 vergeben
