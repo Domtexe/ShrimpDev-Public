@@ -588,7 +588,9 @@ Damit ist der gesamte P1-Docking-Komplex formal abgeschlossen.
 
 <!-- R3518_LANE_B_START -->
 
-## Lane B — Hardening / Guardrails (post-P&P, post-R3510..R3517)
+## Lane B
+
+- **Lane B – DONE**  (Nachsorge & Hardening: R3770, R3772, R3773, R3774, R3775) — Hardening / Guardrails (post-P&P, post-R3510..R3517)
 
 
 ### P1 — Housekeeping-Konzept (Auto-Purge über Canonical Executor)
