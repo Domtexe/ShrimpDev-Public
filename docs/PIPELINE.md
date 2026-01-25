@@ -79,6 +79,21 @@
 <!-- R3569_LANE_D_GOV_TASKS_BEGIN -->
 ### Lane D — Governance-Schärfung (Docs-only)
 
+<!-- PIPELINE_LANE_D_BEGIN -->
+- [ ] (P1) **Report-Agent: Reports-Auswertung → Todos ableiten → priorisieren → Pipeline-Einsortierung (MVP DIAG, optional APPLY)**  <!-- TASK_REPORT_AGENT__R3755_NACHSORGE_RUNNER_PROTECT -->
+  - **Quelle/Referenz:** R3755 (Agent-Report), R3753 (Output-Guard), Nachsorge-Regeln (MR-NG*)
+  - **MVP (DIAG / read-only):**
+    - [ ] `Reports/` scannen (z. B. letzte 30)
+    - [ ] FAIL/WARN/ExitCodes + Keywords clustern (Dedup)
+    - [ ] Priorität P0–P2 vergeben
+    - [ ] Empfehlung: Lane/Phase + nächster Runner-Typ (DIAG/APPLY)
+    - [ ] Ergebnis als Agent-Report schreiben (kein Auto-Schreiben in PIPELINE)
+  - **Optional (kontrolliert, APPLY):**
+    - [ ] „Übernimm Todo #X“ schreibt **genau einen** Pipeline-Eintrag (dedupe-sicher, Token Pflicht)
+  - **Nachsorge-Plus: Runner-Schutz und modulare Ablösung**
+    - [ ] Runner, die künftig wieder genutzt werden, müssen **protected/whitelisted** werden
+    - [ ] Wenn Funktion ersetzt wird: **modularer Ersatz**, Alt-Runner erst nach Stabilitätsnachweis aus der kritischen Nutzung nehmen
+
 - [ ] (P1) **Governance-Schärfung (R3568/R3569):** Pipeline-SSOT, Diagnose-first (Enforcement), Runner Scope-Lock, Definition of Done, Stop-Kriterien
   - **DoD**
     - [ ] MR-Block vorhanden (R3568) ✅
@@ -455,6 +470,7 @@ _added 2026-01-08 12:26 via R3147_
 - [ ] (P3) [STRAT] Website-MVP: Indexierung & Impressions beobachten (Search Console)
 - [ ] (P3) [STRAT] Website-MVP: Entscheidung dokumentieren (skalieren oder verwerfen)
 
+<!-- PIPELINE_LANE_D_END -->
 ## Lane E — Website / SEO-Netzwerk (P2/P3)
 
 
