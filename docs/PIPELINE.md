@@ -1,6 +1,19 @@
 <!-- PIPELINE_V1_START -->
 # PIPELINE v1 — Lanes & Turnus (Source of Truth)
 
+
+## Tech Debt / Hygiene
+
+<!-- ACTIVE_TASK:START -->
+- [ ] (LOW) Runner-WARN `venv python not found` / Template-Policy: WARN ist kosmetisch; Templates greifen nur bei Neugenerierung; optional später `REQUIRE_VENV`-Flag (WARN nur wenn explizit verlangt).
+## ACTIVE_TASK
+- id: P1-R2086-baseline-and-pipeline-active-flag
+- since: 2026-01-26 08:41
+- owner: Dom
+- status: ACTIVE
+- note: Baseline/Delta for R2086 + ACTIVE flag mechanism in pipeline
+<!-- ACTIVE_TASK:END -->
+
 <!-- LANE_OVERVIEW:CANONICAL -->
 ## 🧭 Pipeline-Lanes – Überblick (kanonisch)
 
