@@ -2,6 +2,7 @@
 # PIPELINE v1 — Lanes & Turnus (Source of Truth)
 
 
+- [x] (DONE) Agent-Tab Empfehlungen stabilisiert: R2086 baseline/delta + R1802 Stamp (Agent_LastDiag.json) + robust anchors (R3837–R3844).
 ## Tech Debt / Hygiene
 
 <!-- ACTIVE_TASK:START -->
