@@ -857,3 +857,39 @@ Damit ist der gesamte P1-Docking-Komplex formal abgeschlossen.
     - Klick startet R3677 mit korrektem Root
     - Report wird angezeigt
     - R3677 bleibt purge-protected
+
+## Lane G – Monetarisierung (passiv, beobachtend)
+
+### G1 – Artefakt-Extraktion aus bestehender Arbeit
+- Priorität: HOCH
+- Status: Beobachtung
+- Beschreibung:
+Identifikation und Sammlung bereits existierender Artefakte (MasterRules, Pipeline-Patterns, ThreadCut-Struktur, Entscheidungslogik), die ohne Systemänderung extern nutzbar wären.
+- Kein Bau neuer Produkte
+- Nur Markierung & Sammlung
+- Rein beobachtend
+
+### G2 – Produktionsmaschine für Affiliate- & Content-Projekte
+- Priorität: HOCH
+- Status: Beobachtung
+- Beschreibung:
+Nutzung von ShrimpDev als interne Produktions- und Stabilitätsmaschine für Seiten wie Clarivoo und Folgeprojekte.
+- Geld entsteht über Output, nicht über ShrimpDev
+- Kein Einfluss auf Kernarchitektur
+
+### G3 – Asynchrones Governance-/Audit-Modell (Marker)
+- Priorität: MITTEL
+- Status: Beobachtung
+- Beschreibung:
+Reines Denkmodell: Reports statt Calls, Diagnose statt Beratung.
+- Kein Angebot
+- Kein Vertrieb
+- Nur als potenziell wertvolle Struktur markiert
+
+### G4 – Read-only / Denkmodell-Abkömmlinge
+- Priorität: NIEDRIG
+- Status: Beobachtung
+- Beschreibung:
+Abstrakte Ableitungen (Read-only Tools, Denk-Frameworks), nur falls sie sich organisch ergeben.
+- Kein Entwicklungsziel
+- Kein Zeitdruck
