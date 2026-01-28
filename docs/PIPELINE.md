@@ -933,3 +933,18 @@ Abstrakte Ableitungen (Read-only Tools, Denk-Frameworks), nur falls sie sich org
 - Separater Pipeline-Punkt, kein Bestandteil dieses P0
 
 *(Dokumentiert nach APPLY R8415)*
+
+### Lane A / P0 – Central Runner-Executor API (App ↔ logic_actions)
+
+**Status:** DONE (Foundation + Smoke-Test)
+
+**Ergebnis**
+- Zentrale Executor-Schnittstelle vorhanden (`modules/runner_executor.py`)
+- Smoke-Test **GREEN** (R8417)
+- Keine Registry-/Allowlist-Annahmen (runner_ids = SSOT via Konstanten)
+- Keine Migration bestehender Aufrufer (bewusst vertagt)
+
+**Hinweis**
+- Migration einzelner Aufrufer erfolgt als separater Pipeline-Punkt.
+
+*(Dokumentiert: 2026-01-28 12:38, Runner R8418)*
