@@ -893,3 +893,27 @@ Reines Denkmodell: Reports statt Calls, Diagnose statt Beratung.
 Abstrakte Ableitungen (Read-only Tools, Denk-Frameworks), nur falls sie sich organisch ergeben.
 - Kein Entwicklungsziel
 - Kein Zeitdruck
+
+## Nachsorge+ (2026-01-26) — Runner-IDs, Header-Fixes, Verifikation
+### Ergebnis (Lane B abgeschlossen)
+- **Runner-ID-Migration** in aktiven `modules/`-Dateien abgeschlossen → zentrale Nutzung über `modules/runner_ids.py`.
+- **Header-Fix-Pattern** verifiziert: Wenn `from __future__ import annotations` nicht „first statement“ ist → **separater Header-Fix-Runner zuerst**, dann eigentlicher Patch.
+
+### Umgesetzt (Runner-Referenzen)
+- Header-Fix: `logic_tools.py` (**R8397**)
+- APPLY: `logic_tools.py` → `runner_ids.*` (**R8398**)
+- APPLY: `ui_toolbar.py` → `runner_ids.*` (**R8399**)
+- DIAG: Scan aktive `'R####'` Literale (unfiltered) (**R8400**)
+- Header-Fix: `toolbar_runner_exec.py` (**R8402**)
+- APPLY: `toolbar_runner_exec.py` → `runner_ids.*` (**R8401**, OK-Lauf)
+- APPLY: `module_agent.py` → `runner_ids.*` (**R8403**)
+- DIAG: Finaler Filter-Scan (Artefakte ignoriert) (**R8405**) → **keine aktiven Treffer** (außer `runner_ids.py` als Definitionsquelle)
+
+### Lessons Learned (dauerhaft)
+- **Diagnose zuerst**, dann **minimaler APPLY**, dann **Stop** (kein Fix-Cascade).
+- DOCS-Runner: **keine festen Pfadannahmen** für Pipeline-Dateien → bevorzugt `docs/PIPELINE.md`, sonst robust suchen.
+
+### Offene Nachsorge+ Punkte (als nächste Runner)
+- Artefakt-Hygiene: `modules/*.pre_*`, `*.bak_*`, `*_FIXED_*` aus `modules/` nach Archiv verschieben **oder** offiziell dokumentiert ignorieren.
+- Regression-Guard: DIAG-Runner als dauerhafte Prüfung „keine aktiven `'R####'` Literale mehr“ (ohne `runner_ids.py` + ohne Artefakte).
+
