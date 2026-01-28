@@ -917,3 +917,19 @@ Abstrakte Ableitungen (Read-only Tools, Denk-Frameworks), nur falls sie sich org
 - Artefakt-Hygiene: `modules/*.pre_*`, `*.bak_*`, `*_FIXED_*` aus `modules/` nach Archiv verschieben **oder** offiziell dokumentiert ignorieren.
 - Regression-Guard: DIAG-Runner als dauerhafte Prüfung „keine aktiven `'R####'` Literale mehr“ (ohne `runner_ids.py` + ohne Artefakte).
 
+
+
+### Lane A / P0 – Central Runner-Executor API (App ↔ logic_actions)
+
+**Status:** DONE (Foundation)
+
+**Ergebnis**
+- Zentraler, minimaler Einstiegspunkt `modules/runner_executor.py` eingeführt
+- Keine Migration bestehender Aufrufer (bewusst vertagt)
+- Keine Verhaltensänderung, reine Entkopplung
+
+**Nächster Schritt**
+- Schrittweise Migration einzelner Aufrufer auf `execute_runner()`
+- Separater Pipeline-Punkt, kein Bestandteil dieses P0
+
+*(Dokumentiert nach APPLY R8415)*
