@@ -18,7 +18,9 @@
 | `MR-WEB-01` | ACTIVE | TBD | TBD |
 | `MR-WEB-02` | ACTIVE | TBD | TBD |
 
-> Hinweis: Scope/Owner werden schrittweise präzisiert. Status ist aus Überschrift abgeleitet.<!-- MR_INDEX_END -->
+> Hinweis: Scope/Owner werden schrittweise präzisiert. Status ist aus Überschrift abgeleitet.| `MR-EXCEL-DISPO-CORE-01` | ACTIVE | Excel / DISPO Tool | Assistent |
+| `MR-EXCEL-LANE-00` | ACTIVE | Excel Lane | Assistent |
+<!-- MR_INDEX_END -->
 
 
 
@@ -500,3 +502,151 @@ Das Codewort **Nachsorge** löst aus:
 ### Referenzen
 - Output-Guard: **R3753**
 - Output-Standardisierung/Templates: **R3752** (`docs/templates`)
+
+
+<!-- MR_EXCEL_DISPO_CORE_01_BEGIN -->
+## MR-EXCEL-DISPO-CORE-01 — DISPO-Tool: Single-Module Core + Anti-Chaos (Excel Lane)
+
+**Zweck:** Dauerhaft stabile Planung ohne Code-Chaos, Nebenlogiken oder Datenkorruption.  
+**Scope:** Excel / DISPO Tool  
+**Owner:** Assistent  
+**Status:** ACTIVE
+
+### MR-D1 — Single Source of Code
+- Es existiert **genau ein** fachliches VBA-Modul als Wahrheitsquelle: `m_DISPO_Core`.
+- **Jede** fachliche Logik und **jeder** Button-Entry-Point liegt dort.
+- Andere Fachmodule sind **verboten**.
+
+**Verstoß → Maßnahme:** Fremdmodule entfernen oder in `m_DISPO_Core` integrieren.
+
+### MR-D2 — Single Source of Truth (Daten)
+- `t_DISPO_Slots` ist die **einzige Wahrheit** für Slots/Planung.
+- Keine Parallelberechnungen in anderen Sheets.
+
+**Verstoß → Maßnahme:** Fremdlogik löschen, nur noch Lesen aus Slots.
+
+### MR-D3 — Spaltennamen sind API
+- Zugriff ausschließlich über **Headernamen** (Header-Mapping).
+- Keine festen Spaltennummern.
+
+**Verstoß → Maßnahme:** Code an Header-Mapping anpassen.
+
+### MR-D4 — Harte Schreibverbote
+Makros dürfen **nie** schreiben in:
+- `Final`
+- `Final_ID`
+- `Status`
+
+Diese Spalten sind **Formelspalten**.
+
+**Verstoß → Maßnahme:** Code sofort korrigieren; Formeln wiederherstellen.
+
+### MR-D5 — Erlaubte Schreibfelder
+Makros dürfen nur schreiben:
+- Slot-Definition (BuildSlots)
+- `Vorschlag` (Assign)
+
+`Override` ist manuell.
+
+**Verstoß → Maßnahme:** Schreibzugriff entfernen.
+
+### MR-D6 — Klare Ownership
+- **BuildSlots:** erzeugt Slots aus `t_Aufgaben` (und nur das).
+- **Assign:** schreibt nur Vorschläge (`Vorschlag`).
+- **Reset:** leert nur `Vorschlag` und `Override`.
+- **EnsureFormulas:** stellt Formelspalten sicher (`Final`/`Final_ID`/`Status`), ohne Werte zu hardcoden.
+
+Keine Überschneidungen.
+
+**Verstoß → Maßnahme:** Verantwortlichkeiten trennen.
+
+### MR-D7 — Button-Disziplin
+- Jeder Button ruft genau **ein** `BTN_*` Makro.
+- `BTN_*` enthält keine Fachlogik, nur Orchestrierung.
+
+**Verstoß → Maßnahme:** Button neu zuweisen.
+
+### MR-D8 — Namenskonvention
+- Public: `BTN_*`
+- Private: `p_*`, `v_*`, `x_*`
+- Keine generischen Namen (Test, Neu, Macro1).
+
+**Verstoß → Maßnahme:** Umbenennen.
+
+### MR-D9 — Keine Duplikate
+- Keine zweite Version derselben Funktion.
+- Alte Varianten werden gelöscht, nicht geparkt.
+
+**Verstoß → Maßnahme:** Bereinigen.
+
+### MR-D10 — Stabilitäts-Gate (Pflichttest)
+Nach Änderungen:
+1) BuildSlots  
+2) Assign  
+3) Reset  
+Formeln prüfen.
+
+**Fehler → Maßnahme:** Rollback + Diagnose.
+
+### MR-D11 — Logging-Pflicht
+- Jede BTN-Aktion schreibt Log (Debug oder Sheet).
+- Fehler werden mit Ursache + Kontext ausgegeben.
+
+**Verstoß → Maßnahme:** Logging ergänzen.
+
+### MR-D12 — Kontrolliertes Löschen
+- Aufräumen erst nach stabilem Testlauf.
+- Vorher Backup.
+
+**Verstoß → Maßnahme:** Backup nachholen.
+
+### MR-D13 — Formeln bleiben Formeln
+- Keine Werte-only in Formelspalten.
+- Code setzt Formeln nur wieder ein.
+
+**Verstoß → Maßnahme:** Formelstruktur reparieren.
+
+### MR-D14 — Views sind Read-Only
+- Views lesen nur `Final`/`Final_ID`.
+- Keine Rückschreibungen.
+
+**Verstoß → Maßnahme:** Schreibzugriffe entfernen.
+
+### MR-D15 — Strukturänderungen = Codepflicht
+- Jede Tabellenänderung erfordert Code-Update + Gate-Test.
+
+**Verstoß → Maßnahme:** Mapping aktualisieren.
+
+---
+
+## Enforcement (Sofortmaßnahmen)
+> **Ein Modul. Eine Wahrheit. Klare Zuständigkeiten.**
+
+Regelverstoß ⇒ **Rollback/Backup**, dann Diagnose.  
+Jede Rückschreib- oder Formel-Zerstörung gilt als **P0**.
+
+<!-- MR_EXCEL_DISPO_CORE_01_END -->
+
+
+
+<!-- MR_EXCEL_LANE_00_BEGIN -->
+# Excel Lane — MasterRules
+
+**Scope:** Excel-Projekte (z. B. DISPO Tool)  
+**Prinzip:** Stabilität vor Feature-Ausbau. Kein Makro-Chaos.
+
+## Excel-Regelwerke (Index)
+- `MR-EXCEL-LANE-00` — diese Sammelsektion (Excel Lane)
+- `MR-EXCEL-DISPO-CORE-01` — DISPO Tool: Single-Module Core + Anti-Chaos
+
+## Grundsätze
+- **Single Source of Truth**: Tabellen sind Datenquelle; keine Parallel-Wahrheiten in Views.
+- **Single Source of Code**: Fachlogik zentralisiert (projektabhängig, i. d. R. `m_*_Core`).
+- **Formelspalten sind tabu**: Makros dürfen Formelspalten nicht überschreiben.
+- **Button-Disziplin**: Buttons rufen eindeutige Entry-Points auf (`BTN_*`).
+
+## Enforcement
+- Verstöße gelten als **P0** → Rollback/Backup + Diagnose.
+
+<!-- MR_EXCEL_LANE_00_END -->
+

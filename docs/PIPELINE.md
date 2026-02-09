@@ -125,6 +125,49 @@
 3. Pro Session: **1 Anchor-Task** aus der aktuellen Lane (optional Kleinkram max. 20%).
 
 ## Arbeitskonvention (kurz)
+
+## Lane F — Excel / DISPO (P0)
+
+- [ ] (P0) **DISPO-Tool V1 stabilisieren (produktiver Einsatz)**
+  - **Ziel:** V1.0 „daily usable“ ohne Workarounds
+  - **Scope (V1):**
+    - stabile Datenstruktur / klare Tabellen
+    - Vorschlagslogik stabil (Primär/Sekundär) + reproduzierbar
+    - Tageswechsel sauber (Neuer Tag / Reset)
+    - Reset-Mechanismus für neue Mitarbeitende
+    - **1 Haupt-View** (Einteilung), Rest in separaten Tabs
+  - **DoD (V1):**
+    - keine #NAME? / Spill-Fehler / „schreibt sonstwo hin“
+    - reproduzierbare Ergebnisse (gleiches Input → gleiches Output)
+    - Bedienung im Alltag: „Klick-Workflow“ ohne Basteln
+
+
+
+## ShrimpDev Core – Diagnose & Stabilität (P1)
+
+- [ ] (P1) **DIAG-Standard vereinheitlichen** (SOLL/IST, Ursachen, Next Steps, Pfadchecks)
+- [ ] (P1) **Runner-Preflight zentralisieren** (python/venv/git/node/rights/root)
+- [ ] (P1) **FAIL-Report-Header standardisieren** (Fail-Reason, Top-3 Ursachen, Next Runner)
+- [ ] (P1) **Report-Index** (letzte Reports, OK/FAIL, Links)
+- [ ] (P1) **Last-Known-Good Marker** nach grünem Smoke-Test
+
+
+
+## Clarivoo – Content & Aktualisierung (P2)
+
+- [ ] (P2) **Hybrid-Seitenkonzept**: plain + hochwertiger Mehrwert-Content (nicht nur Tabellen)
+- [ ] (P2) **Update-Routine**: regelmäßige Content-Aktualisierung (Fälligkeiten, Sichtbarkeit „lebt“)
+- [ ] (P2) **Automatisierungskonzept**: ShrimpDev-gestützt planen/tracken; später Trigger/Deploy prüfen (Hosting: netcup)
+
+
+
+## Codex – Worker-Pilot (P3)
+
+- [ ] (P3) **Codex CLI Setup** (Installation + local smoke: `codex --version`)
+- [ ] (P3) **Pilot: DIAG-only Worker** (Workspace-Isolation, Diff/Report, kein Auto-Apply)
+- [ ] (P3) **Security/Controls**: strikt nur im Workspace, Report-Gate, keine direkten Änderungen am Haupttree
+
+
 - Tasks sind pro Lane gruppiert.
 - Jede Änderung an Pipeline: **Backup + Report**.
 <!-- PIPELINE_V1_END -->
