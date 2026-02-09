@@ -22,3 +22,7 @@ _added 2026-01-08 12:26 via R3147_
 <!-- R3432 -->
 - DOCS: P1 Docking (Parent) final auf DONE gesetzt
 - DOCS: Referenz auf finalen Verify-Report: Reports/Report_R3413_20260113_160946.md
+
+## 2026-02-09 – R8429
+- DOCS: Neue kanonische SOP eingeführt: `docs/NACHSORGE_PLUS_SOP.md`
+- Zweck: standardisierte Nachsorge (Read-Only Diagnose → Bewertung → optional Apply)
