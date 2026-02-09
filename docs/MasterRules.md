@@ -20,6 +20,7 @@
 
 > Hinweis: Scope/Owner werden schrittweise präzisiert. Status ist aus Überschrift abgeleitet.| `MR-EXCEL-DISPO-CORE-01` | ACTIVE | Excel / DISPO Tool | Assistent |
 | `MR-EXCEL-LANE-00` | ACTIVE | Excel Lane | Assistent |
+| `MR-EXCEL-DISPO-ASSIGN-02` | ACTIVE | Excel / DISPO | Assistent |
 <!-- MR_INDEX_END -->
 
 
@@ -649,4 +650,50 @@ Jede Rückschreib- oder Formel-Zerstörung gilt als **P0**.
 - Verstöße gelten als **P0** → Rollback/Backup + Diagnose.
 
 <!-- MR_EXCEL_LANE_00_END -->
+
+
+<!-- MR_EXCEL_DISPO_ASSIGN_02_BEGIN -->
+## MR-EXCEL-DISPO-ASSIGN-02 — DISPO: Assign-Algorithmus (Prio-Pässe, Tie-Breaker, Cap)
+
+**Zweck:** Verhindert „MA-Spam“, Tabellenreihenfolge-Bias und Silent-Fails.  
+**Scope:** DISPO Tool / Excel Lane  
+**Status:** ACTIVE
+
+### A02-1 — SkillReq-Datenvertrag (Mapping-Pflicht)
+- `t_DISPO_Slots[SkillReq]` darf `Skill_XX` enthalten **nur wenn** ein Mapping existiert:
+  `Skill_XX -> Spaltenname in t_MA_Skills` (z. B. Aufgaben-Spalten `Mozart`, `ASM`, …).
+- Wenn Skill-Spalte fehlt oder Mapping nicht möglich:
+  - Assign darf **nicht** komplett blockieren,
+  - `Hinweis` wird gesetzt (z. B. `SKILLCOL_MISSING`), Candidate-Check wird „soft“.
+
+### A02-2 — Prio-Pässe sind Pflicht
+- Assign verarbeitet Slots strikt in Durchgängen:
+  1) Prio=1
+  2) Prio=2
+  3) Prio=3
+- Andere Reihenfolgen sind **nicht zulässig**.
+
+### A02-3 — Tie-Breaker ist Pflicht (Run-Load)
+- Score muss mindestens enthalten:
+  - Fairness (historisch, aus `t_Fairness`)
+  - Run-Load (wie oft der MA im aktuellen Lauf schon vergeben wurde)
+- Ohne Run-Load führt Gleichstand zu „erster in Tabelle gewinnt“ ⇒ **Regelverstoß**.
+
+### A02-4 — Hardcap pro Lauf
+- Maximal **3 Slots pro MA** pro Assign-Lauf (Standard).
+- Cap darf ausschließlich über `Vorschlag`/`Hinweis` gesteuert werden.
+- **Nie** schreiben in: `Final`, `Final_ID`, `Status` (siehe MR-D4).
+
+### A02-5 — Kein Silent-Fail
+- Wenn kein Kandidat gefunden oder Cap blockt:
+  - `Vorschlag` bleibt leer,
+  - `Hinweis` wird gesetzt (z. B. `CAP_OR_NO_MATCH`).
+- Ursachen müssen dadurch sichtbar bleiben.
+
+### A02-6 — Determinismus & Reproduzierbarkeit
+- Ergebnis darf nicht von Zufall abhängen.
+- Änderungen am Algorithmus erfordern Gate-Test:
+  BuildSlots → EnsureFormulas → Assign → Reset.
+
+<!-- MR_EXCEL_DISPO_ASSIGN_02_END -->
 
