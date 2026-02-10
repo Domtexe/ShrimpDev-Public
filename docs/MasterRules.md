@@ -697,3 +697,49 @@ Jede Rückschreib- oder Formel-Zerstörung gilt als **P0**.
 
 <!-- MR_EXCEL_DISPO_ASSIGN_02_END -->
 
+
+
+## MR-EXCEL-VBA-COMPILE-GATE-01 — VBA: Compile-Gate ist Pflicht (Excel Lane)
+**Scope:** Excel / DISPO Tool  
+**Status:** ACTIVE  
+**Owner:** Assistent
+
+### Regel
+- Nach strukturellen VBA-Änderungen: **Debuggen → VBAProject kompilieren**.
+- Arbeiten auf rotem Compile-Status ist verboten.
+
+### Enforcement
+- Compile nicht grün ⇒ Rollback + Diagnose.
+
+
+## MR-EXCEL-VBA-PARSER-BYPASS-01 — VBA: Parser-Bypass bei „gelbem Funktionskopf“
+**Scope:** Excel / DISPO Tool  
+**Status:** ACTIVE  
+**Owner:** Assistent
+
+### Regel
+- Bei 2× identischem Syntaxfehler mit gelbem Funktionskopf:
+  - Modul sichern
+  - Modul leeren
+  - Minimal-Sub kompilieren
+  - Logik als Single-Sub inline herstellen
+  - Erst danach modularisieren
+
+### No-Gos
+- Keine Mini-Flicks am Funktionskopf.
+
+
+## MR-EXCEL-MAIL-SSOT-01 — DISPO: Mail ist SSOT-tabellenbasiert
+**Scope:** Excel / DISPO Tool  
+**Status:** ACTIVE  
+**Owner:** Assistent
+
+### Regel
+- Mail liest nur aus:
+  - `t_DISPO_Slots`
+  - `t_Status_Zahlen`
+- VIEW ist Anzeige, nicht Datenquelle.
+
+### KPI Pflicht
+- KPI immer enthalten.
+- Fehlende Tabelle/Spalten ⇒ harter Fehler.

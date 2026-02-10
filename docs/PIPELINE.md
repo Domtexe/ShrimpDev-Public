@@ -990,3 +990,9 @@ Abstrakte Ableitungen (Read-only Tools, Denk-Frameworks), nur falls sie sich org
 - Migration einzelner Aufrufer erfolgt als separater Pipeline-Punkt.
 
 *(Dokumentiert: 2026-01-28 12:38, Runner R8418)*
+
+
+- [ ] (P0) **DISPO Mail: feste KPI finalisieren (View → Mail → fertig)**
+  - Ziel: KPI immer in Mail (t_Status_Zahlen) + Zuteilungen aus t_DISPO_Slots
+  - No-Gos: keine optionalen KPI, keine stillen Fallbacks
+  - DoD: Compile grün + E2E Mail ok
