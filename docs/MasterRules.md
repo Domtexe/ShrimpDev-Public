@@ -794,3 +794,26 @@ Next Runner: R8432
 - Anchor wird bei relevanten Änderungen aktualisiert.
 
 <!-- MR_ANCHOR_POLICY_01_END -->
+
+<!-- MR_PROTECT_R8433_BEGIN -->
+## MR — Protected Runner: R8433 (Quality Gate)
+
+**R8433 ist geschützt.**
+- Nicht löschen, nicht umbenennen, nicht ersetzen.
+- R8433 ist der Standard-Gatekeeper für UI-Boundary-Drift.
+
+### Pflicht-Ausführung
+Nach jeder Änderung an:
+- `modules/ui_*.py`
+- `modules/logic_actions*.py`
+- Bridge/Adapter im UI↔Logic Umfeld
+
+### Gate-Regel
+- R8433 ExitCode **2** (P0) ⇒ **SOFORT STOP**
+- Erst weiter, wenn **P0=0**.
+
+### Zielzustand
+- Minimum akzeptiert: **YELLOW** (P1/P2 = Technikschuld)
+- Pflicht: **P0=0**
+
+<!-- MR_PROTECT_R8433_END -->
