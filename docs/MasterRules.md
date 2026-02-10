@@ -21,6 +21,7 @@
 > Hinweis: Scope/Owner werden schrittweise präzisiert. Status ist aus Überschrift abgeleitet.| `MR-EXCEL-DISPO-CORE-01` | ACTIVE | Excel / DISPO Tool | Assistent |
 | `MR-EXCEL-LANE-00` | ACTIVE | Excel Lane | Assistent |
 | `MR-EXCEL-DISPO-ASSIGN-02` | ACTIVE | Excel / DISPO | Assistent |
+| `MR-ANCHOR-POLICY-01` | ACTIVE | Governance | Assistent |
 <!-- MR_INDEX_END -->
 
 
@@ -743,3 +744,53 @@ Jede Rückschreib- oder Formel-Zerstörung gilt als **P0**.
 ### KPI Pflicht
 - KPI immer enthalten.
 - Fehlende Tabelle/Spalten ⇒ harter Fehler.
+
+<!-- MR_RESUME_ANCHOR_POLICY_BEGIN -->
+## MR — Resume-Anchor Pflicht (Pipeline-Anker)
+
+Bei Kontextwechsel oder Pause ist ein Resume-Anchor Pflicht.
+
+### Mindestinhalt
+- letzter stabiler Runner
+- aktive Lane
+- nächster Schritt
+- nächste Runner-ID
+
+### Enforcement
+Ohne Anchor kein neuer Runner.
+
+<!-- MR_RESUME_ANCHOR_POLICY_END -->
+
+<!-- SHRIMPDEV_CURRENT_ANCHOR_BEGIN -->
+=== RESUME ANCHOR ===
+Anchor-ID: ANCHOR-PRE-EXCEL-2026-02
+Runner: R8421 (last stable pre-Excel core work)
+Lane: B — Boundary/Härtung
+Context: UI ↔ logic_actions Entkopplung + Boundary-Regeln (pre-Excel)
+Next: DIAG Boundary Drift (active UI scan)
+Next Runner: R8432
+=====================
+<!-- SHRIMPDEV_CURRENT_ANCHOR_END -->
+
+
+
+<!-- MR_ANCHOR_POLICY_01_BEGIN -->
+## MR-ANCHOR-POLICY-01 — Resume-Anchor Pflicht (Pipeline-Anker)
+
+**Zweck:** Wiedereinstieg ohne Kontextverlust, Drift vermeiden.
+
+### Regel
+- Bei **jedem Kontextwechsel**, **Lane-Wechsel** oder **Pause** wird ein **Resume-Anchor** gesetzt.
+- Anchor wird **per Runner** geschrieben (DOCS-only), nicht manuell.
+
+### Mindestinhalt
+1. Letzter stabiler Runner (ID + Kurz-Zweck)
+2. Aktive Lane
+3. Nächster Schritt (genau 1 Task)
+4. Nächste freie Runner-Nummer
+
+### Enforcement
+- **Ohne Anchor kein neuer Runner-Start.**
+- Anchor wird bei relevanten Änderungen aktualisiert.
+
+<!-- MR_ANCHOR_POLICY_01_END -->
