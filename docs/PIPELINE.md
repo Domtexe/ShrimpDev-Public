@@ -996,3 +996,5 @@ Abstrakte Ableitungen (Read-only Tools, Denk-Frameworks), nur falls sie sich org
   - Ziel: KPI immer in Mail (t_Status_Zahlen) + Zuteilungen aus t_DISPO_Slots
   - No-Gos: keine optionalen KPI, keine stillen Fallbacks
   - DoD: Compile grün + E2E Mail ok
+
+- [2026-02-12 13:32] R8488: DISPO Layout manuell finalisiert (Nachsorge-Report: Report_R8488_20260212_133247.md)

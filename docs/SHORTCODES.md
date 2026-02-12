@@ -13,14 +13,14 @@ damit sie von Mensch **und Assistent** zuverlässig gelesen werden kann.
 - Shortcodes sind **konzeptionelle Befehle**, keine Implementierungsdetails.
 - Änderungen an Shortcodes erfolgen **ausschließlich dokumentiert**.
 - Diese Datei ist maßgeblich – implizites Wissen gilt nicht.
-- Nicht jeder Shortcode enthält automatisch Alignment (siehe Definitionen).
+- Nicht jeder Shortcode enthält automatisch Setup (siehe Definitionen).
 
 ---
 
-## Alignment (neu)
+## Setup
 
 **Zweck**  
-Reiner Orientierungs- und Regelhinweis.  
+Reiner Orientierungs- und Regelhinweis vor Arbeitsbeginn.  
 Keine Analyse, kein Status, kein zusätzlicher Inhalt.
 
 **Ausgabe enthält ausschließlich:**
@@ -29,6 +29,7 @@ Keine Analyse, kein Status, kein zusätzlicher Inhalt.
 - Hinweis auf **Pipeline** (`docs/PIPELINE.md`)
 - Hinweis auf weiteres relevantes Regelwerk
 - Hinweis auf das **Public GitHub Repository**
+- optional: Pfad-Reminder (Repo-Root / Excel-Projekte)
 
 **No-Gos**
 - Kein Status
@@ -36,7 +37,6 @@ Keine Analyse, kein Status, kein zusätzlicher Inhalt.
 - Keine Entscheidungen
 - Kein zusätzlicher Text
 
----
 
 ## ThreadCut
 
@@ -51,9 +51,31 @@ Saubere Übergabe zwischen Threads / Arbeitssessions.
 - No-Gos / verbindliche Regeln
 
 **Pflicht**
-- **MUSS Alignment enthalten**
+- **MUSS Setup enthalten**
 
 ---
+
+
+
+## Nachsorge
+
+**Zweck**  
+Kurze, faktenbasierte Stabilitäts- und Konsistenzprüfung nach Änderungen – inkl. Governance-/Docs-Pflege.
+
+**Inhalt**
+- Was wurde geändert (faktisch)
+- Systemzustand (läuft es stabil, Daten ok)
+- Risiken / Seiteneffekte / technische Schuld (kurz)
+- Offenes (was fehlt bis „stabil“)
+- **Dokumentation & Pflege**: notwendige Updates unter `root/docs` (Pipeline, Architektur, Regeln, Guides etc.)
+- **Neue Regeln / MR**: falls entstanden → ableiten & niederschreiben (kurz, präzise)
+- **Templates**: falls betroffen → definieren oder updaten
+
+**No-Gos**
+- Keine neuen Features
+- Keine Richtungswechsel
+- Keine Multi-Patches ohne Test
+
 
 ## Status
 
@@ -66,7 +88,7 @@ Kompakte Übersicht über Fortschritt und Zustand.
 - ggf. Ausblick
 
 **Wichtig**
-- **Enthält bewusst KEIN Alignment**
+- **Enthält bewusst KEIN Setup**
 
 ---
 
@@ -81,7 +103,7 @@ Sofortiger Kollaborations-Reset.
 
 **Hinweis**
 - Sonderfall
-- Kein Alignment erforderlich
+- Kein Setup erforderlich
 
 ---
 
@@ -98,7 +120,7 @@ Maximal hochwertige Produktionsausgaben (z. B. Sora / Storyboards).
 
 **Hinweis**
 - Produktionsmodus
-- Kein Alignment erforderlich
+- Kein Setup erforderlich
 
 ---
 
