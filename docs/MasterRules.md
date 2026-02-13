@@ -18,10 +18,12 @@
 | `MR-WEB-01` | ACTIVE | TBD | TBD |
 | `MR-WEB-02` | ACTIVE | TBD | TBD |
 
-> Hinweis: Scope/Owner werden schrittweise präzisiert. Status ist aus Überschrift abgeleitet.| `MR-EXCEL-DISPO-CORE-01` | ACTIVE | Excel / DISPO Tool | Assistent |
+> Hinweis: Scope/Owner werden schrittweise präzisiert. Status ist aus Überschrift abgeleitet.
+| `MR-EXCEL-DISPO-CORE-01` | ACTIVE | Excel / DISPO Tool | Assistent |
 | `MR-EXCEL-LANE-00` | ACTIVE | Excel Lane | Assistent |
 | `MR-EXCEL-DISPO-ASSIGN-02` | ACTIVE | Excel / DISPO | Assistent |
 | `MR-ANCHOR-POLICY-01` | ACTIVE | Governance | Assistent |
+| `MR-SYSTEM-MAP-01` | ACTIVE | Governance | Assistent |
 <!-- MR_INDEX_END -->
 
 
@@ -817,3 +819,59 @@ Nach jeder Änderung an:
 - Pflicht: **P0=0**
 
 <!-- MR_PROTECT_R8433_END -->
+
+---
+
+## MR-SYSTEM-MAP-01: System Map ist Pflicht (Living Map)
+
+**Ziel:** Wir verhindern dauerhaft „Drölf-Module-Chaos“ durch eine **aktuelle, zentrale Map** des Systems.
+
+### Regel
+- Für **jedes Projekt** existiert eine **System Map** als Markdown (living doc).
+- Die Map wird **primär per Runner** erzeugt/aktualisiert (kein manuelles Rumgefummel).
+- Jede Änderung an **Sheets, Tabellen, Modulen, Entry-Points, Contracts** muss in der Map reflektiert sein (automatisch oder im Nachgang sofort).
+
+### Mindestinhalt einer System Map
+- **Workbook/Surface:** Sheets (Name + CodeName), Buttons/Entry-Points, Ereignisse.
+- **Datenmodell:** alle relevanten **ListObjects** inkl. Spalten-Contract (Headernamen), Schlüssel, Statusfelder.
+- **Code:** Module + Public Entry-Points + wichtigste Helper; grober Call-Flow (Neuer Tag / Tagesabschluss / Planung / Mail).
+- **Risiko-Zonen:** bekannte Kollisionen (Mehrdeutige Namen), kritische Abhängigkeiten, Smoke-Checks.
+
+### Ablage
+- Repo-weit: `docs/FILE_MAP.md` enthält einen Index/Links.
+- Projekt-Map: z. B. `Excel-Projekte/<Projekt>/SYSTEM_MAP.md`.
+
+### Gate
+- Neue Features/Fixes dürfen **nur** gemergt werden, wenn:
+  - Runner „Map Refresh“ erfolgreich ist (Report + Diff),
+  - und keine Mehrdeutigkeits-/Compile-Fehler durch neue Namen entstehen.
+
+## System Map Pflicht (Excel-Projekte / DISPO)
+
+### Zweck
+Damit keine “Mehrdeutiger Name / Sub nicht definiert / Variable nicht definiert”-Hölle mehr entsteht,
+gibt es eine zentrale, maschinenlesbare System Map pro Excel-Projekt.
+
+### Artefakt
+- Datei: `Excel-Projekte/Dispo-Tool/SYSTEM_MAP.md`
+- Inhalt (Minimum):
+  - Sheets (CodeName ↔ Blattname)
+  - ListObjects (Tabellen) + Spaltenreihenfolge (Header-Contract)
+  - Module + Public Entry Points (Buttons/Runner-Entry)
+  - Known Hotspots (z. B. Namenskollisionen)
+  - Optional: Named Ranges / Buttons / Shape-Makros
+
+### Regeln (verbindlich)
+1. **Jede Änderung** an:
+   - Tabellen (Name/Spalten/Reihenfolge),
+   - VBA-Modulen,
+   - Public Subs/Functions,
+   - PlanDate-/Fairness-Logik,
+   muss **sofort** in der System Map reflektiert werden.
+2. Updates erfolgen **nur** über den Runner `SystemMap_Update` (kein Handpflegen).
+3. Vor jedem “größeren” Fix gilt: **Map aktualisieren → Compile prüfen → erst dann Patch**.
+
+### Routine
+- Bei jedem Runner, der VBA/Tabellen verändert:
+  - am Ende automatisch `SystemMap_Update` ausführen
+  - Reportlink im jeweiligen Runner-Report vermerken

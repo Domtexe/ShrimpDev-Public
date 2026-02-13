@@ -680,3 +680,8 @@
 - workspace_registry.py
 ```
 
+## Excel-Projekte
+
+### Dispo-Tool
+- System Map: `Excel-Projekte/Dispo-Tool/SYSTEM_MAP.md`
+
