@@ -176,6 +176,11 @@
 
 ## P0 – ui_toolbar.py entschärfen (Modularisierung + Stabilitäts-Guards)
 
+- [ ] (P0) (AFTER DISPO V1.0) **FIX: Push + Purge Buttons ohne Funktion (Verdrahtung/Action-Routing defekt)**
+  - **Symptom:** Buttons *Push* und *Purge* reagieren nicht / keine Aktion.
+  - **Hypothese:** UI-Action Verdrahtung/Dispatch/Registry-Map zeigt ins Leere.
+  - **DoD:** Push & Purge lösen zuverlässig die korrekten Runner/Actions aus (inkl. Report-Popup gemäß Standard).
+
 **Priorität:** P0 / superurgent  
 **Problem:** `modules/ui_toolbar.py` ist import-kritisch und fragil (Indent/Scope/NameError). Kleine Änderungen können den App-Start crashen.  
 **Ziel:** Startstabilität absichern + Risiko modular reduzieren, ohne Vollrewrite.
