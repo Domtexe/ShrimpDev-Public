@@ -875,3 +875,18 @@ gibt es eine zentrale, maschinenlesbare System Map pro Excel-Projekt.
 - Bei jedem Runner, der VBA/Tabellen verändert:
   - am Ende automatisch `SystemMap_Update` ausführen
   - Reportlink im jeweiligen Runner-Report vermerken
+
+
+<!-- R9002_RULES_BEGIN -->
+## MR-DISPO-01 — Produktionsmaßstab DISPO
+„Fertig“ bedeutet reproduzierbar + alltagstauglich, nicht nur funktionsfähig.
+
+## MR-FOCUS-01 — Ein Hauptthema pro Session
+Bei komplexen Systemen wird pro Session genau ein Kernziel verfolgt. Nebenthemen werden geparkt.
+
+## MR-CONTENT-01 — Clarivoo Qualitätsregel
+Qualität vor Seitenanzahl. Jede Seite braucht echten Mehrwert.
+
+## MR-ROTATION-01 — Lane-Disziplin
+Rotation erst nach erreichter Minimal-Stabilität im aktuellen Lane-Thema.
+<!-- R9002_RULES_END -->
