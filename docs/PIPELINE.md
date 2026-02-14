@@ -143,6 +143,24 @@
 
 
 
+<!-- R9001_DISPO_BLOCK_BEGIN -->
+- [ ] (P0) **A: Fairness/Snapshot stabilisieren (Ursache final isolieren, kein Trial-&-Error)**
+  - Frage: **Warum werden Fairness-Punkte nicht gutgeschrieben, obwohl Snapshot gefüllt ist?**
+  - Output/Check: Fairness-Delta muss deterministisch sein (gleiches Input → gleiches Ergebnis).
+  - Hinweis-Idee: Wenn `Final` (Name) gefüllt ist ⇒ MA ist geplant ⇒ 1 Punkt auf MA-ID (nur wenn Regel/Contract das so will).
+
+- [ ] (P1) **B: Assign/Override/Final-Flow konsolidieren + Orchestrator „Neue Planung“**
+  - Ziel: 1 Klick-Workflow, klare Ownership, keine Side-Writes in Formelspalten.
+
+- [ ] (P1) **C: View/Mail finalisieren**
+  - Umlaute/Encoding sauber
+  - Tasknamen statt IDs
+  - Layout final
+
+- [x] (DONE) **Intake/Intake.py / Runner-Thema fallen gelassen (Nutzerwunsch)**
+  - Markiert am 2026-02-14 08:08:17
+<!-- R9001_DISPO_BLOCK_END -->
+
 ## ShrimpDev Core – Diagnose & Stabilität (P1)
 
 - [ ] (P1) **DIAG-Standard vereinheitlichen** (SOLL/IST, Ursachen, Next Steps, Pfadchecks)

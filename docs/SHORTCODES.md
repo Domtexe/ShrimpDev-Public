@@ -8,129 +8,149 @@ damit sie von Mensch **und Assistent** zuverlässig gelesen werden kann.
 
 ---
 
-## Grundregeln
+# Grundregeln
 
 - Shortcodes sind **konzeptionelle Befehle**, keine Implementierungsdetails.
 - Änderungen an Shortcodes erfolgen **ausschließlich dokumentiert**.
 - Diese Datei ist maßgeblich – implizites Wissen gilt nicht.
 - Nicht jeder Shortcode enthält automatisch Setup (siehe Definitionen).
+- Public GitHub ist Referenz für den Assistenten.
+
+**Raw Single-Source-of-Truth (Public GitHub)**  
+- FILE_MAP  
+  https://raw.githubusercontent.com/Domtexe/ShrimpDev-Public/refs/heads/main/docs/FILE_MAP.md
+- MasterRules  
+  https://raw.githubusercontent.com/Domtexe/ShrimpDev-Public/refs/heads/main/docs/MasterRules.md
+- PIPELINE  
+  https://raw.githubusercontent.com/Domtexe/ShrimpDev-Public/refs/heads/main/docs/PIPELINE.md
+- SHORTCODES  
+  https://raw.githubusercontent.com/Domtexe/ShrimpDev-Public/refs/heads/main/docs/SHORTCODES.md
 
 ---
 
-## Setup
+# Setup
 
-**Zweck**  
+## Zweck
 Reiner Orientierungs- und Regelhinweis vor Arbeitsbeginn.  
 Keine Analyse, kein Status, kein zusätzlicher Inhalt.
 
-**Ausgabe enthält ausschließlich:**
+## Ausgabe enthält ausschließlich
 - Hinweis auf **Master Rules (MR)**
 - Hinweis auf **Templates** (`docs/templates/`)
 - Hinweis auf **Pipeline** (`docs/PIPELINE.md`)
 - Hinweis auf weiteres relevantes Regelwerk
 - Hinweis auf das **Public GitHub Repository**
+- Hinweis auf die **Raw Single-Source-of-Truth Dateien**:
+  - FILE_MAP  
+    https://raw.githubusercontent.com/Domtexe/ShrimpDev-Public/refs/heads/main/docs/FILE_MAP.md
+  - MasterRules  
+    https://raw.githubusercontent.com/Domtexe/ShrimpDev-Public/refs/heads/main/docs/MasterRules.md
+  - PIPELINE  
+    https://raw.githubusercontent.com/Domtexe/ShrimpDev-Public/refs/heads/main/docs/PIPELINE.md
+  - SHORTCODES  
+    https://raw.githubusercontent.com/Domtexe/ShrimpDev-Public/refs/heads/main/docs/SHORTCODES.md
 - optional: Pfad-Reminder (Repo-Root / Excel-Projekte)
 
-**No-Gos**
-- Kein Status
-- Keine Analyse
-- Keine Entscheidungen
+## No-Gos
+- Kein Status  
+- Keine Analyse  
+- Keine Entscheidungen  
 - Kein zusätzlicher Text
 
+---
 
-## ThreadCut
+# ThreadCut
 
-**Zweck**  
+## Zweck
 Saubere Übergabe zwischen Threads / Arbeitssessions.
 
-**Inhalt**
-- Aktueller Stand
-- Erledigt
-- Offen
-- Nächster logischer Einstieg
-- No-Gos / verbindliche Regeln
+## Inhalt
+- Aktueller Stand  
+- Erledigt  
+- Offen  
+- Nächster logischer Einstieg  
+- No-Gos / verbindliche Regeln  
 
-**Pflicht**
+## Pflicht
 - **MUSS Setup enthalten**
 
 ---
 
+# Nachsorge
 
-
-## Nachsorge
-
-**Zweck**  
+## Zweck
 Kurze, faktenbasierte Stabilitäts- und Konsistenzprüfung nach Änderungen – inkl. Governance-/Docs-Pflege.
 
-**Inhalt**
-- Was wurde geändert (faktisch)
-- Systemzustand (läuft es stabil, Daten ok)
-- Risiken / Seiteneffekte / technische Schuld (kurz)
-- Offenes (was fehlt bis „stabil“)
-- **Dokumentation & Pflege**: notwendige Updates unter `root/docs` (Pipeline, Architektur, Regeln, Guides etc.)
-- **Neue Regeln / MR**: falls entstanden → ableiten & niederschreiben (kurz, präzise)
-- **Templates**: falls betroffen → definieren oder updaten
+## Inhalt
+- Was wurde geändert (faktisch)  
+- Systemzustand  
+- Risiken / Seiteneffekte / technische Schuld  
+- Offenes bis „stabil“  
+- Dokumentationspflege in `root/docs`  
+- Neue Regeln/MR ableiten  
+- Templates pflegen
 
-**No-Gos**
-- Keine neuen Features
-- Keine Richtungswechsel
+## No-Gos
+- Keine neuen Features  
+- Keine Richtungswechsel  
 - Keine Multi-Patches ohne Test
 
+---
 
-## Status
+# Status
 
-**Zweck**  
+## Zweck
 Kompakte Übersicht über Fortschritt und Zustand.
 
-**Inhalt**
-- Fortschritt nach Bereichen / Lanes (oft in %)
-- Stabilität / Risiko
+## Inhalt
+- Fortschritt nach Lanes/Bereichen  
+- Stabilität / Risiko  
 - ggf. Ausblick
 
-**Wichtig**
-- **Enthält bewusst KEIN Setup**
+**Wichtig**  
+- Enthält bewusst **KEIN Setup**
 
 ---
 
-## Halt, Stop!
+# Halt, Stop!
 
-**Zweck**  
+## Zweck
 Sofortiger Kollaborations-Reset.
 
-**Inhalt**
-- Arbeitsstopp
-- Klärung von Ziel, Modus und nächstem Schritt
+## Inhalt
+- Arbeitsstopp  
+- Ziel/Modus/Nächster Schritt klären
 
-**Hinweis**
-- Sonderfall
+**Hinweis**  
+- Sonderfall  
 - Kein Setup erforderlich
 
 ---
 
-## Ultra
+# Ultra
 
-**Zweck**  
-Maximal hochwertige Produktionsausgaben (z. B. Sora / Storyboards).
+## Zweck
+Maximal hochwertige Produktionsausgaben.
 
-**Merkmale**
-- Zeitmarken
-- Copy-Buttons
-- 10-Sekunden-kompatible Segmente
+## Merkmale
+- Zeitmarken  
+- Copy-Buttons  
+- 10-Sekunden-Segmente  
 - Produktionsstandard
 
-**Hinweis**
-- Produktionsmodus
+**Hinweis**  
+- Produktionsmodus  
 - Kein Setup erforderlich
 
 ---
 
-## Pflege & Governance
+# Pflege & Governance
 
-- Diese Datei ist **verbindlich**.
-- Neue Shortcodes werden **hier ergänzt**, nicht implizit benutzt.
-- Änderungen erfolgen über **Docs-only Runner**.
-- Nach Änderungen ist ein **Push ins Public GitHub** erforderlich.
+- Diese Datei ist **verbindlich**.  
+- Neue Shortcodes werden **hier ergänzt**.  
+- Änderungen über **Docs-only Runner**.  
+- Danach **Push ins Public GitHub**.
 
 ---
 
-*Stand: 2026-01-28 07:04*
+*Stand: 2026-02-14*
