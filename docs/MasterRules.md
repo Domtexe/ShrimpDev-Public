@@ -909,3 +909,13 @@ Rotation erst nach erreichter Minimal-Stabilität im aktuellen Lane-Thema.
 - `SYSTEM_MAP.md` ist **projektbezogen** und liegt im jeweiligen Projektordner:
   - `Excel-Projekte\<Projekt>\SYSTEM_MAP.md`
 
+
+<!-- R8590 AUTO-APPEND START -->
+## R8590 (Nachsorge) – Regeln für VBA-HTML-Patches (2026-02-15 00:57:01)
+
+- Bei `"<...>" & _`-HTML-Verkettung: **keine Insert-Trial-&-Error**.
+- Änderungen bevorzugt als **kompletter Function-Replacement (1:1)** oder minimaler Patch mit stabilen Anchors.
+- **Diagnose zuerst:** Zielblock sichern, dann nur 1 Änderung, sofort testen.
+- Debug-Marker nicht als Plain-Text in HTML ausgeben (nur Comment/Report).
+
+<!-- R8590 AUTO-APPEND END -->

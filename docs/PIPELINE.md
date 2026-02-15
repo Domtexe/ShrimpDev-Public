@@ -1021,3 +1021,13 @@ Abstrakte Ableitungen (Read-only Tools, Denk-Frameworks), nur falls sie sich org
   - DoD: Compile grün + E2E Mail ok
 
 - [2026-02-12 13:32] R8488: DISPO Layout manuell finalisiert (Nachsorge-Report: Report_R8488_20260212_133247.md)
+
+<!-- R8590 AUTO-APPEND START -->
+## [2026-02-15 00:57:01] R8590 – Nachsorge DISPO Mail/HTML (Nachlass-Block)
+
+- Status: **UNSTABLE** (Nachlass-Status rendert als Text statt Tabelle)
+- Ursache: String/Concatenation-Brüche in `BuildNachlassStatusTable` (Insert/Patch Drift)
+- SOLL: `DMS` + `Mails` als 2 Body-Zeilen direkt über `Summe` (Spalte 1)
+- Next: **Function-Replacement** `BuildNachlassStatusTable` (1:1), danach visuelle Abnahme
+
+<!-- R8590 AUTO-APPEND END -->
