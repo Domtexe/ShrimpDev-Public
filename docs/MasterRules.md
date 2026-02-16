@@ -919,3 +919,11 @@ Rotation erst nach erreichter Minimal-Stabilität im aktuellen Lane-Thema.
 - Debug-Marker nicht als Plain-Text in HTML ausgeben (nur Comment/Report).
 
 <!-- R8590 AUTO-APPEND END -->
+
+<!-- BEGIN:R8605 -->
+## R8605 Beobachtungen (noch nicht als neue MR finalisiert)
+- PlanDate kann als Text vorliegen → Parsing/Setzung prüfen.
+- Doppelte Funktionsnamen in VBA verursachen 'Mehrdeutiger Name' → konsistente Prefix-Strategie.
+- ListObject-Delete/Lookup robust per Loop statt Name-Lookup+Unlist.
+<!-- END:R8605 -->
+

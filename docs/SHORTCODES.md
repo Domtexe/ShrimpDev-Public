@@ -154,3 +154,10 @@ Maximal hochwertige Produktionsausgaben.
 ---
 
 *Stand: 2026-02-14*
+
+<!-- BEGIN:R8605 -->
+## R8605 Hinweis
+- Nachsorge-Report für heute: `Excel-Projekte\Reports\Report_R8605_20260216_092823.md`
+- Relevante Themen: Fairness (Totals/Day-Snapshot), PlanDate als Text, doppelte Helper-Namen
+<!-- END:R8605 -->
+

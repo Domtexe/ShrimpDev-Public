@@ -1031,3 +1031,22 @@ Abstrakte Ableitungen (Read-only Tools, Denk-Frameworks), nur falls sie sich org
 - Next: **Function-Replacement** `BuildNachlassStatusTable` (1:1), danach visuelle Abnahme
 
 <!-- R8590 AUTO-APPEND END -->
+
+<!-- BEGIN:R8605 -->
+## R8605 (Auto-Note) – DISPO Fairness / PlanDate / VBA Stabilität
+- Report: `Excel-Projekte\Reports\Report_R8605_20260216_092823.md`
+- Date: 2026-02-16
+
+### Learnings
+- Fairness war leer, obwohl Planungen korrekt liefen (Status=OK, Final_ID gesetzt).
+- Ursache: DISPO!C2 war optisch Datum, aber technisch Text → IsDate() schlägt fehl; robustes Parsing nötig.
+- Fehlerklasse: 'Mehrdeutiger Name' durch doppelte Helper-Funktionen (ColIx/ColIxSafe/IsJa/IsWahr etc.).
+- Fehlerklasse: Fehler 9 ('Index außerhalb des gültigen Bereichs') bei ListObject-Operationen mit Name-Lookup/Unlist/Delete → Loop-basierte Suche + lo.Delete ist stabiler.
+- Fairness 'Cnt bleibt 1' ist für EINEN Tag plausibel; >1 entsteht erst über mehrere Tage oder mehrfach gleiche Aufgabe pro MA am selben Tag.
+
+### TODO (Diagnose-first)
+- P0: Kumulierung über Tage verifizieren: PlanDate wirklich wechseln (>) und dann Fairness Totals prüfen (Cnt > 1 muss vorkommen).
+- P1: Diagnose-first: Fairness-Run soll 3 Zahlen loggen (Rows gelesen / Keys gezählt / PlanDate serial).
+- P1: Slot-Tabelle robust referenzieren (t_SLOTS vs t_DISPO_Slots) – keine harten Namen ohne Fallback.
+- P2: Abwesenheit (AbwesendHeute=Ja) → Button 'Replan (Safe)' triggert Replan + Delta-Update (Totals = Totals - Alt + Neu).
+<!-- END:R8605 -->
