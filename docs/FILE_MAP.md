@@ -704,3 +704,15 @@
 - P1: Slot-Tabelle robust referenzieren (t_SLOTS vs t_DISPO_Slots) – keine harten Namen ohne Fallback.
 - P2: Abwesenheit (AbwesendHeute=Ja) → Button 'Replan (Safe)' triggert Replan + Delta-Update (Totals = Totals - Alt + Neu).
 <!-- END:R8605 -->
+
+<!-- R8602 BEGIN -->
+## DISPO-Tool (V1) – relevante Module/Komponenten
+
+- `m_DISPO_Core.bas`
+  - Planung: `AssignSuggestions*`, `AssignSuggestions_PrioPass`, `PickBestEmployeeName`
+  - Unique-per-day: `SeedTaskAssignedFromExistingFinal`, `IsTaskAssigned`, `MarkTaskAssigned`
+  - Fairness: `Fairness_RebuildFromFinal`, `LoadDaySnapshotForDate`, `ReplaceDaySnapshotForDate`, `ApplyDeltaToFairness`, Date-Parser (`TryParseDate_V2`)
+  - Replan: Abwesenheits-Replan (minimal-invasiv; nur ungültige Slots)
+- `modMail` / `m50_ViewMail`
+  - Status: V1 vertagt (Outlook/Client-Thema), später V1.1+
+<!-- R8602 END -->

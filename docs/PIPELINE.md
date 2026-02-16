@@ -195,6 +195,27 @@
 ## P0 – ui_toolbar.py entschärfen (Modularisierung + Stabilitäts-Guards)
 
 - [ ] (P0) (AFTER DISPO V1.0) **FIX: Push + Purge Buttons ohne Funktion (Verdrahtung/Action-Routing defekt)**
+
+<!-- R8608 BEGIN -->
+### Update: P&P (Push/Purge) — DIAG verifiziert (R8603, 20260216_160709)
+
+**DIAG Ergebnis (R8603):**
+- Compile OK: `modules/ui_toolbar.py`, `modules/logic_actions.py`, `modules/toolbar_runner_exec.py`, `modules/module_runner_popup.py`
+- UI-Wiring ist vorhanden:
+  - Push ruft `action_autopush_both` (Autopush Both) auf
+  - Purge ruft `action_purge_one` auf
+- Purge ist zur Laufzeit **gated** (bewusst): Button-Enablement hängt u. a. an `tools/R2218.cmd|py` und Busy-Guard / canonical keep-file checks.
+
+**Schlussfolgerung (präzisiert):**
+- Das Problem ist **nicht primär „Verdrahtung fehlt“**, sondern wahrscheinlicher:
+  - Runner-Presence / Pfad / Repo-Root / keep-file / Busy-Guard blockiert
+  - Exceptions werden best-effort geloggt, aber UX kann „wirkt tot“ aussehen
+
+**Next (MR: Diagnose zuerst, dann minimal APPLY):**
+- R8609: Trace-DIAG „Click → Dispatch → Runner resolve → subprocess → rc → Popup“
+- Danach erst minimaler APPLY (nur der erste belegte Blocker, keine Rewrites)
+<!-- R8608 END -->
+
   - **Symptom:** Buttons *Push* und *Purge* reagieren nicht / keine Aktion.
   - **Hypothese:** UI-Action Verdrahtung/Dispatch/Registry-Map zeigt ins Leere.
   - **DoD:** Push & Purge lösen zuverlässig die korrekten Runner/Actions aus (inkl. Report-Popup gemäß Standard).
@@ -1050,3 +1071,20 @@ Abstrakte Ableitungen (Read-only Tools, Denk-Frameworks), nur falls sie sich org
 - P1: Slot-Tabelle robust referenzieren (t_SLOTS vs t_DISPO_Slots) – keine harten Namen ohne Fallback.
 - P2: Abwesenheit (AbwesendHeute=Ja) → Button 'Replan (Safe)' triggert Replan + Delta-Update (Totals = Totals - Alt + Neu).
 <!-- END:R8605 -->
+
+<!-- R8602 BEGIN -->
+## DISPO-Tool V1 (Freeze / Nachsorge)
+
+**DONE (V1):**
+- Planung stabil (Vorschlag/Override/Final), Final als Wahrheit
+- Harte Regel: 1× Aufgabe pro MA/Tag (keine Doppelvergabe z. B. T08)
+- Abwesenheit: Absent-Safe-Replan (nur betroffene Slots neu)
+- Fairness Delta: `t_Fairness_Day` (Snapshot) → `t_Fairness` (Totals)
+- Date-Serial-Fix: Value2-Dates robust geparst (kein Doppelcount)
+- Fairness Reset: All-to-zero oder ab Stichtag (Rollback)
+
+**NEXT (V1.1+):**
+- Mail-Export ohne Outlook-Abhängigkeit (HTML-Datei/Entwurf)
+- Optional: Outlook Classic Add-on (wenn Policy/Client passt)
+- Diagnose „No candidate“ (Regelkonflikt/zu wenige qualifizierte MAs)
+<!-- R8602 END -->
