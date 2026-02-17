@@ -26,3 +26,12 @@ _added 2026-01-08 12:26 via R3147_
 ## 2026-02-09 – R8429
 - DOCS: Neue kanonische SOP eingeführt: `docs/NACHSORGE_PLUS_SOP.md`
 - Zweck: standardisierte Nachsorge (Read-Only Diagnose → Bewertung → optional Apply)
+
+## 2026-02-16 — P6P Buttons
+- Fix: P6P Push/Purge starten Runner wieder über einheitlichen Pfad.
+- Cleanup: PP_DIAG-Dateien entfernt.
+- Nachsorge: `Report_R8651_20260216_233513.md`
+---
+
+## 2026-02-17
+- Lane B: Runner-SSOT stabilisiert (Popup delegiert an `runner_executor.execute_runner`), DIAG-Kette R8652–R8659; Output-Capture in `logic_actions.py` bewusst beibehalten (rc/out/err), TechDebt tasks in Pipeline ergänzt.

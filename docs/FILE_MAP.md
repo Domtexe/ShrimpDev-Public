@@ -716,3 +716,15 @@
 - `modMail` / `m50_ViewMail`
   - Status: V1 vertagt (Outlook/Client-Thema), später V1.1+
 <!-- R8602 END -->
+
+- `modules/ui_action_bridge.py` — UI Action Bridge (Toolbar → Actions → logic_actions)
+- `modules/logic_actions.py` — Canonical actions, start runners via runner_exec
+- `modules/module_runner_exec.py` — Runner execution backend (must keep __future__ at top)
+---
+
+## 2026-02-17 — Nachsorge Lane B: Runner-SSOT (Popup) + DIAG-Kette R8652–R8659
+
+**SSOT / Runner Execution:**
+- `modules/runner_executor.py` — canonical executor API: `execute_runner(app, runner_id, label=None, popup=False)`
+- `modules/module_runner_popup.py` — Popup-Flow delegiert Runner-Start an `runner_executor.execute_runner` (keine Direct-Execs im Popup-Pfad)
+- `modules/logic_actions.py` — enthält Output-Capture Exec-Blöcke (rc/out/err); bewusst nicht auf fire-and-forget umgestellt (TechDebt: Capture-API)

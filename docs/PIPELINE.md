@@ -199,6 +199,8 @@
 <!-- R8608 BEGIN -->
 ### Update: P&P (Push/Purge) — DIAG verifiziert (R8603, 20260216_160709)
 
+- ✅ **P6P/P&P Buttons stabil** (Push/Purge): Bridge→logic_actions→runner_exec, PP_DIAG entfernt. (Nachsorge: `Report_R8651_20260216_233513.md`)
+
 **DIAG Ergebnis (R8603):**
 - Compile OK: `modules/ui_toolbar.py`, `modules/logic_actions.py`, `modules/toolbar_runner_exec.py`, `modules/module_runner_popup.py`
 - UI-Wiring ist vorhanden:
@@ -1088,3 +1090,18 @@ Abstrakte Ableitungen (Read-only Tools, Denk-Frameworks), nur falls sie sich org
 - Optional: Outlook Classic Add-on (wenn Policy/Client passt)
 - Diagnose „No candidate“ (Regelkonflikt/zu wenige qualifizierte MAs)
 <!-- R8602 END -->
+---
+
+## 2026-02-17 — Nachsorge Lane B: Runner-SSOT (Popup) + DIAG-Kette R8652–R8659
+
+**Abgeschlossen (Lane B / Core):**
+- Popup-Runner delegiert Execution an `modules/runner_executor.execute_runner` (SSOT).
+- Direct-Exec im Popup-Pfad entfernt (keine `subprocess.Popen` mehr in Popup-Flow).
+- `logic_actions.py` direkte `subprocess.run([cmd_path])` Blöcke bewusst **nicht** umgestellt: benötigt `rc/out/err` (Output-Capture); `execute_runner` ist fire-and-forget (siehe `_r1851/_r1852`).
+
+**TechDebt / Tasks (in Pipeline aufnehmen):**
+- [TD] Define **return contract** / capture-mode for runner execution:
+  - Option 1: New API `execute_runner_capture(...) -> (rc, out, err)` (or dict).
+  - Option 2: Extend `execute_runner(..., capture=True)` with explicit return type.
+- [TD] Consolidate duplicated Output-Capture blocks in `logic_actions.py` (L1428/L1698) into one internal helper (no behavior change).
+- [TD] Document SSOT boundary: UI-triggered runner starts must use SSOT; Output-Capture exec may stay local unless capture-API exists.

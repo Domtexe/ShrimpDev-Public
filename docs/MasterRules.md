@@ -927,3 +927,14 @@ Rotation erst nach erreichter Minimal-Stabilität im aktuellen Lane-Thema.
 - ListObject-Delete/Lookup robust per Loop statt Name-Lookup+Unlist.
 <!-- END:R8605 -->
 
+---
+
+## 2026-02-17 — Nachsorge Lane B: Runner-SSOT (Popup) + DIAG-Kette R8652–R8659
+
+**Regel / Learning (SSOT vs Output-Capture):**
+- **SSOT gilt strikt für UI-getriggerte Runner-Starts** (Buttons/Popup/UI-Actions): Route über `runner_executor.execute_runner` (oder kanonische SSOT-Schicht).
+- **Output-Capture ist ein eigener Vertrag**: Wenn `rc/out/err` benötigt werden, darf keine Umstellung auf fire-and-forget erfolgen, bevor ein Capture-Contract existiert.
+- **Keine Refactors ohne Contract-Check**: Vor Umstellung von Exec-Pfaden immer Return-/Side-Effect-Contract belegen (DIAG, AST, Report).
+
+**No-Go:**
+- Kein “SSOT um jeden Preis”, wenn dadurch Reporting/UX (rc/out/err) verloren geht.
