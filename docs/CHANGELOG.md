@@ -35,3 +35,28 @@ _added 2026-01-08 12:26 via R3147_
 
 ## 2026-02-17
 - Lane B: Runner-SSOT stabilisiert (Popup delegiert an `runner_executor.execute_runner`), DIAG-Kette R8652–R8659; Output-Capture in `logic_actions.py` bewusst beibehalten (rc/out/err), TechDebt tasks in Pipeline ergänzt.
+
+---
+
+## Lane C Nachsorge (2026-02-17 10:56)
+
+Status:
+- Preflight-Modul vorhanden (modules/preflight_checks.py)
+- Zentraler Hook NICHT gesetzt (bewusste Entscheidung nach DIAG)
+- Keine Blind-Patches gemäß MasterRules
+
+DIAG-Kette:
+R8661–R8666
+
+Entscheidung:
+- Kein Risiko-Patch ohne eindeutigen Gatekeeper
+- Zentraler Hook bleibt Tech-Debt Task
+
+Tech-Debt:
+- Global Runner Entry Mapping fehlt
+- Preflight noch nicht SSOT-gekoppelt
+
+Lane-C-Bewertung:
+➡️ bearbeitet  
+➡️ stabil  
+➡️ nicht vollständig abgeschlossen

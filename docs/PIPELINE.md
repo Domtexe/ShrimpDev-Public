@@ -1105,3 +1105,28 @@ Abstrakte Ableitungen (Read-only Tools, Denk-Frameworks), nur falls sie sich org
   - Option 2: Extend `execute_runner(..., capture=True)` with explicit return type.
 - [TD] Consolidate duplicated Output-Capture blocks in `logic_actions.py` (L1428/L1698) into one internal helper (no behavior change).
 - [TD] Document SSOT boundary: UI-triggered runner starts must use SSOT; Output-Capture exec may stay local unless capture-API exists.
+
+---
+
+## Lane C Nachsorge (2026-02-17 10:56)
+
+Status:
+- Preflight-Modul vorhanden (modules/preflight_checks.py)
+- Zentraler Hook NICHT gesetzt (bewusste Entscheidung nach DIAG)
+- Keine Blind-Patches gemäß MasterRules
+
+DIAG-Kette:
+R8661–R8666
+
+Entscheidung:
+- Kein Risiko-Patch ohne eindeutigen Gatekeeper
+- Zentraler Hook bleibt Tech-Debt Task
+
+Tech-Debt:
+- Global Runner Entry Mapping fehlt
+- Preflight noch nicht SSOT-gekoppelt
+
+Lane-C-Bewertung:
+➡️ bearbeitet  
+➡️ stabil  
+➡️ nicht vollständig abgeschlossen

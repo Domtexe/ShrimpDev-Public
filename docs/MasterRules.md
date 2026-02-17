@@ -938,3 +938,28 @@ Rotation erst nach erreichter Minimal-Stabilität im aktuellen Lane-Thema.
 
 **No-Go:**
 - Kein “SSOT um jeden Preis”, wenn dadurch Reporting/UX (rc/out/err) verloren geht.
+
+---
+
+## Lane C Nachsorge (2026-02-17 10:56)
+
+Status:
+- Preflight-Modul vorhanden (modules/preflight_checks.py)
+- Zentraler Hook NICHT gesetzt (bewusste Entscheidung nach DIAG)
+- Keine Blind-Patches gemäß MasterRules
+
+DIAG-Kette:
+R8661–R8666
+
+Entscheidung:
+- Kein Risiko-Patch ohne eindeutigen Gatekeeper
+- Zentraler Hook bleibt Tech-Debt Task
+
+Tech-Debt:
+- Global Runner Entry Mapping fehlt
+- Preflight noch nicht SSOT-gekoppelt
+
+Lane-C-Bewertung:
+➡️ bearbeitet  
+➡️ stabil  
+➡️ nicht vollständig abgeschlossen
