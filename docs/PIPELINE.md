@@ -1190,3 +1190,12 @@ Lane-C-Bewertung:
 ### No-Gos
 - Keine Mass-Patches/Regex über Core-Module.
 - Keine Refactors (Popup/Output/Toolbar) ohne Plan.
+
+<!-- SHRIMPDEV_AUTOGEN:R8486 NACHsorge START -->
+## Nachsorge R8486 — RUN Stabilisierung / Legacy BAT
+
+- **P0**: R8485 Rollback/Restore (zu breite Änderungen; MR-H1/H7)
+- **P0**: Central BAT Guard (1 Chokepoint, rc=7 + Report), keine Massenedits
+- **P0**: Smoke-Test RUN (DirectRun + Compile-Gate)
+- **P1**: BAT-Entkopplung vervollständigen (nach Guard)
+<!-- SHRIMPDEV_AUTOGEN:R8486 NACHsorge END -->
