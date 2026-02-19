@@ -1,6 +1,49 @@
 <!-- PIPELINE_V1_START -->
 # PIPELINE v1 — Lanes & Turnus (Source of Truth)
 
+<!-- SHRIMPDEV_AUTOGEN:R8476 PIPELINE START -->
+## RUN Stabilisierung (Programm) — Direct Mode + RunnerExec Neubau
+
+**Kurzfazit:** RUN ist P0-kritisch. Ziel: Kontrolle zurückholen → dann sauber neu aufbauen.
+
+### Lane A — Stabilität / Start / Crash
+
+- **A-P0-01: RUN wieder funktionsfähig via Direct-Run Bypass**
+  - DoD: RUN startet zuverlässig aus **Tree-Selection**, nicht Intake; vollständiger Run-Context; sichtbarer rc/Report.
+  - Runner-Sequenz: DIAG wiring → APPLY DirectRun (ein Einklinkpunkt) → DIAG End-to-End.
+
+- **A-P0-02: Compile-Gate blockierend vor RUN & APPLY (Code)**
+  - DoD: Gate läuft automatisch; FAIL ⇒ rc=7; keine Folgepatches.
+
+- **A-P1-01: RunnerExec Clean-Rebuild (minimal, testbar)**
+  - DoD: neu, klein, stabil: `run(cmd, args, cwd)` + logging + rc; optional threading sauber getrennt; Smoke-Tests.
+
+- **A-P1-02: Protected-Files Schutzglas (Infra-Runner only)**
+  - DoD: Protected-Liste + Infra-Runner-Template (Backup/Diff/Gate/Smoke) + MR-Verweis.
+
+### Lane B — Core-Funktionalität
+
+- **B-P1-01: SSOT-Refactor RUN (Selection-only)**
+  - DoD: alle RUN-Actions holen Context aus Selection; Intake nur Preview/Defaults.
+
+### Lane C — Tooling / Automationen
+
+- **C-P1-01: Legacy Sweep — BAT-Reste inventarisieren & neutralisieren**
+  - DoD: Report: alle `.bat` + Referenzen; entfernen/archivieren; keine produktiven Callsites.
+
+- **C-P1-02: Report-Agent MVP (Reports → Todos → Priorisierung, read-only)**
+  - DoD: Scan letzte Reports; dedup Root-Causes; Vorschläge Lane/Priority; kein Auto-Write.
+
+### Lane D — Governance / Doku
+
+- **D-P1-01: MR-Update Block “Stop-the-line / Protected / SSOT / Bypass”**
+  - DoD: MR-Kapitel mit H1–H7 + H2a (Docs-only Ausnahme).
+
+- **D-P1-02: PIPELINE-Schärfung für diese RUN-Stabi-Serie**
+  - DoD: DoD & Runner-Sequenzen klar; P0 Lane A hat Vorrang.
+<!-- SHRIMPDEV_AUTOGEN:R8476 PIPELINE END -->
+
+
 
 - [x] (DONE) Agent-Tab Empfehlungen stabilisiert: R2086 baseline/delta + R1802 Stamp (Agent_LastDiag.json) + robust anchors (R3837–R3844).
 ## Tech Debt / Hygiene

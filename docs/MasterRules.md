@@ -963,3 +963,78 @@ Lane-C-Bewertung:
 ➡️ bearbeitet  
 ➡️ stabil  
 ➡️ nicht vollständig abgeschlossen
+
+<!-- SHRIMPDEV_AUTOGEN:R8476 MR START -->
+## Stop-the-line, Protected Infrastructure, SSOT, Bypass (HARD)
+
+> Dieser Block ist **hart**. Bei Konflikt gilt: **Stop-the-line**.
+
+### MR-H1: Infrastruktur ist “Protected”
+**Protected-Files (min.):**
+- `modules/module_runner_exec.py`
+- `modules/ui_action_bridge.py`
+- `modules/logic_actions.py` (RUN/Dispatch-Teil)
+- `modules/ui_toolbar.py` (RUN/Dispatch-Teil)
+
+**Regel:**
+- Änderungen an Protected-Files **nur** über dedizierte **Infra-Runner** (DIAG → APPLY) mit:
+  - Backup
+  - (optional) Diff im Report
+  - Compile-Gate (blockierend für Code-Änderungen)
+  - Smoke-Test (Import + Minimal-Call)
+
+---
+
+### MR-H2: Compile-Gate ist blockierend (Stop-the-line)
+**Regel:**
+- Vor **jedem** RUN-Start und vor **jedem** APPLY-Runner mit Code-Änderungen:
+  - `py_compile` auf Protected + Run-Pfad
+- Gate FAIL ⇒ Exitcode **7** und **keine** Folge-Änderungen.
+
+**H2a (Docs-only Ausnahme):**
+- **Docs-only Runner** (nur `.md`/Doku) dürfen laufen, auch wenn Code kaputt ist.
+  - Grund: Governance muss im Worst-Case weiter gepflegt werden.
+  - Trotzdem: Report muss klar markieren “Docs-only; Gate nicht blockierend”.
+
+---
+
+### MR-H3: SSOT für RUN ist Tree-Selection (nie Intake)
+**Regel:**
+- RUN-Kontext (Target/Name/Endung/Zielpfad) kommt **ausschließlich** aus Tree-Selection.
+- Intake darf nur Preview/Defaults liefern, **nicht** Source-of-Truth.
+
+**Enforcement:**
+- Zentraler Entry-Point `get_run_context_from_selection()` (oder äquivalent), den alle RUN-Actions verwenden.
+
+---
+
+### MR-H4: Bypass ist Pflicht (Direct-Run Mode)
+**Regel:**
+- Es muss immer eine funktionierende Ausweichroute existieren:
+  - `DirectRun` startet `.cmd`/`.py` direkt per subprocess
+  - ohne RunnerExec/Legacy
+- Wenn RunnerExec kaputt ist, bleibt Debug möglich.
+
+---
+
+### MR-H5: Legacy-Ban (BAT endgültig)
+**Regel:**
+- Keine produktiven `.bat`-Pfade.
+- Gefundene `.bat` werden:
+  - entfernt/archiviert **oder**
+  - als “PHANTOM/ARCHIVED” markiert (ohne Referenzen).
+
+---
+
+### MR-H6: Exception Hygiene
+**Regel:**
+- Standard: `except Exception as e:`
+- `except:` ist verboten in UI/Bridge/Run-Pfaden (außer explizit begründet + Kommentar).
+
+---
+
+### MR-H7: One-change principle bei Infrastruktur
+**Regel:**
+- Pro APPLY-Runner **genau 1** belegter Fix (ein Root Cause).
+- Keine Multi-System-Änderungen in einem Runner.
+<!-- SHRIMPDEV_AUTOGEN:R8476 MR END -->
