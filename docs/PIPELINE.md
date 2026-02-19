@@ -1130,3 +1130,20 @@ Lane-C-Bewertung:
 ➡️ bearbeitet  
 ➡️ stabil  
 ➡️ nicht vollständig abgeschlossen
+
+## ANCHOR — Run/Intake Stabilisierung
+- Datum: **2026-02-18 23:45:04**
+- Snapshot: `_Backups/R8724_20260218_234504`
+- Nachsorge-Report: `Reports/Report_R8724_20260218_234504.md`
+
+### Status
+- Run-Flow weiterhin **instabil / no-op** (GUI → Bridge/Logic → Executor unklar).
+- Executor-Seite: cmd.exe-wrapper/timeout/cwd Themen bereits angefasst (siehe Snapshot/Reports).
+
+### Nächster Einstieg
+- DIAG-first: echten Run-Flow auflösen (welche Funktion wird vom Run-Button wirklich aufgerufen?).
+- Danach 1 gezielter Fix (nur ein Layer).
+
+### No-Gos
+- Keine Mass-Patches/Regex über Core-Module.
+- Keine Refactors (Popup/Output/Toolbar) ohne Plan.
