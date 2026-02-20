@@ -112,28 +112,6 @@ Kompakte Übersicht über Fortschritt und Zustand.
 
 ---
 
-# Status+
-
-## Zweck
-Vollständiger **Overall-Status** über das gesamte ShrimpDev-Ökosystem (alle Projekte, Teilprojekte, Produkte) – als **verbindlicher Abschluss** einer Session.
-
-## Inhalt
-- Gesamtbewertung (Reife/Stabilität/Produktionsfähigkeit/Monetarisierungsnähe)
-- Status je Bereich/Projekt inkl. Teilprojekte (in %; kurz begründet)
-- Top-Engpässe / Risiken (max. 3)
-- Nächster Fokus / nächster GO-Anker (konkret)
-- Optional: Money-Lane Kurzstand (wenn relevant)
-
-**Wichtig**
-- Enthält bewusst **KEIN Setup**
-- Keine neuen Entscheidungen/Features – reine Lage + nächster Schritt
-
-## Standard
-- Am Ende jeder Session standardmäßig: **Status+** (sofern nicht ausdrücklich abgewählt)
-
----
-
-
 # Halt, Stop!
 
 ## Zweck
