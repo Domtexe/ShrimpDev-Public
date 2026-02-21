@@ -1199,3 +1199,95 @@ Lane-C-Bewertung:
 - **P0**: Smoke-Test RUN (DirectRun + Compile-Gate)
 - **P1**: BAT-Entkopplung vervollständigen (nach Guard)
 <!-- SHRIMPDEV_AUTOGEN:R8486 NACHsorge END -->
+
+<!-- R8524_NACHSORGE_2026-02-21 -->
+
+## P0 – Nachsorge Hardenings (2026-02-21)
+- [P0] Purge auf Whitelist-SSOT umstellen (Exact-only) – Scan nur Diagnose
+- [P0] R3106 entschärfen oder deaktivieren (kein Scan-driven Entscheidungs-Purge)
+- [P0] Compile-Gate: zusätzlicher Guard “broken try/except/finally” (blockierend rc=7) – zentral, eine Stelle
+- [P0] Smoke-Test Routine: (1) Import-Check (R8502) (2) GUI-Start (3) RUN (dry)
+
+## P1 – Stabilisierung & UX
+- [P1] Debug Output: SSOT `root/debug_output.txt` + GUI Log-Tab/View (statt Runner-Popup)
+- [P1] Purge-Reports standardisieren (was bleibt/was geht/warum), ohne Docs/Reports als Referenzquelle
+
+<!-- R8524_NACHSORGE_2026-02-21 -->
+
+
+
+<!-- R8525_IDEA_POOL_BEGIN -->
+## 🚀 IDEEN-POOL (AUTO-GENERIERT R8525)
+
+### Lane B — Core / System (P1–P2)
+
+- [ ] (P1) ShrimpCore: Command-System (plan/fix/build)
+- [ ] (P1) State Engine + Session Snapshot
+- [ ] (P1) ShrimpDev Brain (Decision + Pattern Recognition)
+- [ ] (P2) LearningJournal 2.0 (Auto-Learn aus Fehlern)
+- [ ] (P2) Anti-Chaos Engine (Fokus/Task-Lock)
+- [ ] (P2) Execution Engine (Idee → Runner-Kette)
+- [ ] (P2) System Health Score (Module/Runner Bewertung)
+
+---
+
+### Lane C — Tools / Automationen (P1–P2)
+
+- [ ] (P1) Fix Engine (Scan → Analyse → Auto-Fix)
+- [ ] (P1) Crash Analyzer (Logs clustern + Ursachen)
+- [ ] (P1) Auto-Runner Generator (KI-basiert)
+- [ ] (P2) Data Cleaner Tool
+- [ ] (P2) Folder Organizer Tool
+- [ ] (P2) Routine Builder
+- [ ] (P2) Mail Automation Engine
+
+---
+
+### Lane D — Governance / Meta (P1–P2)
+
+- [ ] (P1) Idea Incubator (Ideen sammeln + bewerten)
+- [ ] (P1) Pipeline Auto-Optimizer
+- [ ] (P1) Project DNA System (Ziel / Aufwand / ROI)
+- [ ] (P2) Decision Log (Rejected Ideas Tracking)
+- [ ] (P2) Feedback Loop System (Learnings → MR)
+
+---
+
+### Lane E — Websites / Monetarisierung (P2–P3)
+
+- [ ] (P2) Clarivoo Content Factory (Batch Seiten)
+- [ ] (P2) Decision Websites (Produktentscheidungen)
+- [ ] (P2) Affiliate Funnel (Tool → Website → Conversion)
+- [ ] (P3) Nischen-Wiki Systeme
+- [ ] (P3) Local SEO Seiten
+
+---
+
+### Lane F — DISPO / Excel (P1–P2)
+
+- [ ] (P1) DISPO Flexibilität (Config Fields + Regeln)
+- [ ] (P1) Dynamische Views (Auto-Anpassung)
+- [ ] (P2) Simulation Mode
+- [ ] (P2) KPI Dashboard Ausbau
+- [ ] (P2) Externe Produktversion vorbereiten
+
+---
+
+### Lane C/E Hybrid — KI Integration (P1–P2)
+
+- [ ] (P1) Lokale KI Integration (Ollama API Bridge)
+- [ ] (P1) KI Log Analyzer
+- [ ] (P1) KI Code Fixer
+- [ ] (P2) KI Content Generator
+- [ ] (P2) KI Decision Engine
+
+---
+
+### Business Modelle (Meta → später zuweisen)
+
+- [ ] (P2) Fix-as-a-Product (Mini Tools verkaufen)
+- [ ] (P2) Decision Engines (Website + Tool Kombi)
+- [ ] (P3) Tool Library (ShrimpLib Bundle)
+
+<!-- R8525_IDEA_POOL_END -->
+

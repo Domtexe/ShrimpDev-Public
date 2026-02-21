@@ -1038,3 +1038,33 @@ Lane-C-Bewertung:
 - Pro APPLY-Runner **genau 1** belegter Fix (ein Root Cause).
 - Keine Multi-System-Änderungen in einem Runner.
 <!-- SHRIMPDEV_AUTOGEN:R8476 MR END -->
+
+<!-- R8524_NACHSORGE_2026-02-21 -->
+
+## Nachsorge & Systemhärtung (verbindlich)
+
+### Regel: Nachsorge kommt immer zuerst
+- Nach jedem größeren Arbeitsblock ist **zuerst** Nachsorge zu erstellen (Report, Learnings, Pipeline/MR/Shortcodes).
+- Ohne Nachsorge kein “weiter so”.
+
+### Regel: Purge SSOT = Whitelist
+- Purge/Retention wird **ausschließlich** über eine Whitelist gesteuert (`registry/runner_whitelist.txt`).
+- Referenz-Scan (Text/Docs/Reports) ist **nie** Quelle der Wahrheit (SSOT).
+
+### Regel: Scan ist Diagnose, nicht Entscheidung
+- Scan darf nur **Diagnose/Reports** liefern (z. B. “was referenziert was”).
+- Scan darf niemals Dateien als “safe to purge” klassifizieren, ohne Whitelist/Registry-Entscheid.
+
+### Regel: Whitelist ist Exact-Only
+- Whitelist enthält **nur** exakte Runner-IDs (z. B. `R2693`).
+- **Keine Patterns**, keine Wildcards, kein Regex.
+
+### Regel: Import-Check verpflichtend
+- Nach jedem Patch/Fix ist ein Import-Check (z. B. `R8502`) verpflichtend.
+- Compile-Gate bleibt blockierend: keine Ausführung bei Import-Fehlern.
+
+### Regel: Keine Struktur-Hacks bei try/except
+- Keine “orphan except/finally” oder “neutralize try” Hacks als Standardlösung.
+- Bei strukturellen Syntaxschäden: gezielte Reparatur mit vollständigem Block-Kontext + Import-Check.
+
+<!-- R8524_NACHSORGE_2026-02-21 -->

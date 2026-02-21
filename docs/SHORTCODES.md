@@ -183,3 +183,22 @@ Maximal hochwertige Produktionsausgaben.
 - Relevante Themen: Fairness (Totals/Day-Snapshot), PlanDate als Text, doppelte Helper-Namen
 <!-- END:R8605 -->
 
+<!-- R8524_NACHSORGE_2026-02-21 -->
+
+## STATUS_ALL (Overall Status – kommt am Schluss)
+**Befehl:** `StatusAll` / `STATUS_ALL`
+
+**Zweck:** Am Ende jedes Threads/Sessions: vollständiger Gesamtstatus über alle Projekte/Teilprojekte/Produkte.
+
+**Ausgabe umfasst:**
+- ShrimpDev Core (GUI/Runner/RUN/DirectRun/Compile-Gate)
+- Purge-System (Whitelist-SSOT, R3106 Status)
+- DISPO-Tool (Version/Restpunkte)
+- Clarivoo (Stand Content/Monetarisierung)
+- Governance (MR/Pipeline/Shortcodes/Maps)
+- Stabilität (Import-Check, Smoke-Test)
+- Nächste 3 Schritte + höchste Risiken
+
+**Regel:** STATUS_ALL kommt **nach Nachsorge**, nicht davor.
+
+<!-- R8524_NACHSORGE_2026-02-21 -->
