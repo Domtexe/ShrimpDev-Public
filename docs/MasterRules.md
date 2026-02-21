@@ -1056,9 +1056,11 @@ Lane-C-Bewertung:
 - Scan darf niemals Dateien als “safe to purge” klassifizieren, ohne Whitelist/Registry-Entscheid.
 
 ### Regel: Whitelist ist Exact-Only
-- Whitelist enthält **nur** exakte Runner-IDs (z. B. `R2693`).
+- Whitelist enthält **nur** exakte IDs:
+  - Standard-Runner: `R####`
+  - Test-Runner: `T###` (z. B. `T666` als universaler Testrunner)
 - **Keine Patterns**, keine Wildcards, kein Regex.
-
+- **T666 ist erlaubt** und darf in der Whitelist verbleiben. Wenn `tools/T666.*` fehlt: **materialisieren** (kein Phantom).
 ### Regel: Import-Check verpflichtend
 - Nach jedem Patch/Fix ist ein Import-Check (z. B. `R8502`) verpflichtend.
 - Compile-Gate bleibt blockierend: keine Ausführung bei Import-Fehlern.

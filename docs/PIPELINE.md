@@ -48,6 +48,41 @@
 - [x] (DONE) Agent-Tab Empfehlungen stabilisiert: R2086 baseline/delta + R1802 Stamp (Agent_LastDiag.json) + robust anchors (R3837–R3844).
 ## Tech Debt / Hygiene
 
+<!-- R8526_PIPELINE_DEDUP_BEGIN -->
+## R8526 — Pipeline Konsolidierungs-Index (Docs-only)
+
+- Stand: 2026-02-21 21:12:44
+- Tasks gescannt (task-like): **241**
+- Normalisierte Keys gewertet: **223**
+- Potenzielle Dubletten (Keys mit >1 Vorkommen): **4**
+
+**Regel:** Dies ist eine *Hinweis-/Arbeitsliste*. Keine Einträge wurden gelöscht oder umsortiert.
+
+### Cluster-Übersicht (heuristisch)
+- **Reports / Diagnose / Logs**: 1
+- **Governance / MR / Pipeline**: 2
+- **Other**: 1
+
+### Dubletten-Kandidaten (Top)
+- **todo implement logic here**  _(Vorkommen: 2)_
+  - L427 | Lane F: - [ ] (P3) [CORE] TODO: implement logic here` (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/docs/Report_R2383_Docking_Diagnose_20251219_101914.md:L15280)
+  - L463 | Lane F: - [ ] (P3) [CORE] TODO: implement logic here (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/Runner_943_NewRunner.py:L49)
+- **todo list add a high priority item about tracebacks in log**  _(Vorkommen: 2)_
+  - L429 | Lane F: - [ ] (P3) [CORE] TODO: list: add a high-priority item about tracebacks in log.` (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/docs/Report_R2383_Docking_Diagnose_20251219_101914.md:L19969)
+  - L442 | Lane F: - [ ] (P3) [CORE] TODO: list: add a high-priority item about tracebacks in log. (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2144.py:L118)
+- **todo pipeline eigener gui tab masterrules viewer open refresh n**  _(Vorkommen: 2)_
+  - L395 | Lane F: - [x] (P1) [CORE] TODO: -Pipeline: eigener GUI-Tab MasterRules (Viewer + Open/Refresh).\n"` (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/docs/Report_R2383_Docking_Diagnose_20251219_101914.md:L19950)- [ ] (P1) [CORE] TODO: ) Pipeline-Eintrag: Tracebacks wieder ins Log (HIGH)` (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/docs/Report_R2383_Docking_Diagnose_20251219_101914.md:L19967)
+  - L399 | Lane F: - [ ] (P1) [CORE] TODO: -Pipeline: eigener GUI-Tab MasterRules (Viewer + Open/Refresh).\n" (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2143.py:L250)
+- **todo pipeline sondern bekommen einen eigenen tab**  _(Vorkommen: 2)_
+  - L394 | Lane F: - [ ] (P1) [CORE] TODO: (Pipeline), sondern bekommen einen eigenen Tab.` (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/docs/Report_R2383_Docking_Diagnose_20251219_101914.md:L19929)
+  - L398 | Lane F: - [ ] (P1) [CORE] TODO: (Pipeline), sondern bekommen einen eigenen Tab. (src:C:/Users/rasta/OneDrive/ShrimpDev_REPO/tools/Archiv/R2143.py:L2)
+
+### Empfehlung (manuell, später)
+- Pro Dublette: 1 kanonischen Task definieren, Rest als Referenz/Archived markieren oder zusammenführen.
+- Wenn Runner-Artefakte fehlen: Phantom/Archived taggen (bestehende Regel beibehalten).
+
+<!-- R8526_PIPELINE_DEDUP_END -->
+
 <!-- ACTIVE_TASK:START -->
 - [ ] (LOW) Runner-WARN `venv python not found` / Template-Policy: WARN ist kosmetisch; Templates greifen nur bei Neugenerierung; optional später `REQUIRE_VENV`-Flag (WARN nur wenn explizit verlangt).
 ## ACTIVE_TASK
@@ -1290,4 +1325,3 @@ Lane-C-Bewertung:
 - [ ] (P3) Tool Library (ShrimpLib Bundle)
 
 <!-- R8525_IDEA_POOL_END -->
-

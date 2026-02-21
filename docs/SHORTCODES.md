@@ -89,6 +89,10 @@ Kurze, faktenbasierte Stabilitäts- und Konsistenzprüfung nach Änderungen – 
 - Dokumentationspflege in `root/docs`  
 - Neue Regeln/MR ableiten  
 - Templates pflegen
+- File Map pflegen / anlegen
+- System Map pflegen / anlegen
+- Changelog
+- Versionsnummer
 
 ## No-Gos
 - Keine neuen Features  
@@ -146,6 +150,17 @@ Sofortiger Kollaborations-Reset.
 **Hinweis**  
 - Sonderfall  
 - Kein Setup erforderlich
+
+---
+
+# Tagesabschluss
+
+## Zweck
+Soll verhindern, dass wichtige Änderungen verlorengehen oder Abschlussarbeiten vergessen werden.
+
+## Inhalt
+- Aufruf von # Nachsorge # Status # Status+
+Kein Setup. Feierabend!
 
 ---
 
