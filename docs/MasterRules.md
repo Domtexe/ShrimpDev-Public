@@ -1070,3 +1070,44 @@ Lane-C-Bewertung:
 - Bei strukturellen Syntaxschäden: gezielte Reparatur mit vollständigem Block-Kontext + Import-Check.
 
 <!-- R8524_NACHSORGE_2026-02-21 -->
+
+<!-- BEGIN:R8598 -->
+## R8598 — UI-Änderungen: Compile-Gate & Restore-Regel
+
+**Regel (verbindlich):**
+- Jeder Runner, der UI/Core-Python-Dateien patcht (z. B. `main_gui.py`, UI-Module), **MUSS** am Ende `python -m py_compile <ziel>` ausführen.
+- Bei Syntax-/Indent-Fehlern, die nach einem Patch bestehen bleiben: **sofort Restore auf letzte kompilierbare `.bak`** (keine Trial-&-Error-Patches).
+
+**Begründung (kurz):**
+- UI-Patches sind anfällig für Einrückungs-/Blockfehler.
+- Restore ist schneller und stabiler als “noch ein Patch”.
+<!-- END:R8598 -->
+
+<!-- BEGIN:SHORTCODES_EXEC_CONTRACT -->
+## Shortcode-Ausführungsvertrag (verbindlich)
+
+Wenn der Nutzer einen Shortcode aufruft, gilt:
+
+1) **Ausführen statt erklären**  
+   Der Assistent muss die geforderte Arbeit **tatsächlich durchführen** (im Chat), nicht nur beschreiben.
+
+2) **Änderungen nur per Runner**  
+   Jede Änderung an Code/Doku/Governance erfolgt über Runner (`tools\R####.cmd` + `tools\R####.py`) inkl.:
+   - Backup(s)
+   - Report in `root/Reports`
+
+3) **Nachsorge / Tagesabschluss = Runner-Pflicht**  
+   Wenn im Thread Änderungen entstanden sind, muss der Assistent als Abschluss einen **Nachsorge-Runner** liefern, der (mindestens) aktualisiert:
+   - `docs/MasterRules.md`
+   - `docs/PIPELINE.md`
+   - `docs/FILE_MAP.md`
+   - `docs/SHORTCODES.md` (wenn betroffen)
+   - `docs/CHANGELOG.md` (falls vorhanden)
+
+4) **Safety Gate**  
+   UI/Core-Python-Patches müssen ein Compile-Gate enthalten (z. B. `python -m py_compile ...`).  
+   Wenn ein Fix nicht sofort verifiziert funktioniert: **Diagnose zuerst**, keine Trial-&-Error-Patches.
+<!-- END:SHORTCODES_EXEC_CONTRACT -->
+
+
+R8601: Shortcodes Execution enforced

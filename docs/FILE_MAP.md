@@ -4950,3 +4950,7 @@
 - `tools/R9999.py`
 - `tools/templates/STD_CMD_PYTHON_FALLBACK.cmd`
 - `tools/templates/STD_PY_RUNNER_TEMPLATE.py`
+- `modules/ui_output_display.py` — Central OutputDisplay widget (Output/Copy/Clear)
+
+
+R8601: UI + Shortcode System updated

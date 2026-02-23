@@ -1,22 +1,37 @@
-# ShrimpDev – Shortcodes
+# ShrimpDev – Shortcodes (SSOT)
 
 **Single Source of Truth**
 
 Diese Datei definiert alle offiziell existierenden **Shortcodes**.
 Sie liegt bewusst im Repository und wird ins **Public GitHub** gespiegelt,
-damit sie von Mensch **und Assistent** zuverlässig gelesen werden kann.
+damit Mensch **und Assistent** zuverlässig dieselben Regeln verwenden.
 
 ---
 
-# Grundregeln
+# Grundprinzip: Ausführungsvertrag (verbindlich)
 
-- Shortcodes sind **konzeptionelle Befehle**, keine Implementierungsdetails.
-- Änderungen an Shortcodes erfolgen **ausschließlich dokumentiert**.
-- Diese Datei ist maßgeblich – implizites Wissen gilt nicht.
-- Nicht jeder Shortcode enthält automatisch Setup (siehe Definitionen).
-- Public GitHub ist Referenz für den Assistenten.
+Jeder Shortcode hat zwei Ebenen:
 
-**Raw Single-Source-of-Truth (Public GitHub)**  
+1) **Inhaltsebene** (was der Shortcode bedeutet)  
+2) **Ausführungsebene** (was der Assistent bei Aufruf *tatsächlich* liefern/machen muss)
+
+## A. Assistenten-Pflichten bei JEDEM Shortcode-Aufruf
+- **Keine Theorie ohne Aktion**: Wenn der Shortcode eine Aufgabe impliziert, muss der Assistent konkrete Schritte liefern.
+- **Änderungen nur mit Runner**: Jede Code-/Doku-/Governance-Änderung wird als Runner (`tools\R####.cmd` + `tools\R####.py`) geliefert – inkl. Backup + Report.
+- **Safety Gate**: Bei UI/Core-Python-Änderungen ist ein Compile-Gate verpflichtend (z. B. `python -m py_compile ...`) im Runner.
+- **Keine Heuristik-Patches** ohne Diagnose: Wenn ein Fix nicht beim ersten Versuch verifiziert funktioniert → Diagnose-Runner.
+
+## B. Docs-/Governance-Sicherung (Pflicht, wenn Änderungen passiert sind)
+Wenn im Thread/auf Anfrage Änderungen erzeugt wurden, muss als Abschluss ein **Nachsorge-Runner** kommen, der mindestens aktualisiert:
+- `docs/MasterRules.md`
+- `docs/PIPELINE.md`
+- `docs/FILE_MAP.md`
+- `docs/SHORTCODES.md` (nur wenn betroffen)
+- `docs/CHANGELOG.md` (falls vorhanden)
+
+---
+
+# Raw Single-Source-of-Truth (Public GitHub)
 - FILE_MAP  
   https://raw.githubusercontent.com/Domtexe/ShrimpDev-Public/refs/heads/main/docs/FILE_MAP.md
 - MasterRules  
@@ -31,31 +46,18 @@ damit sie von Mensch **und Assistent** zuverlässig gelesen werden kann.
 # Setup
 
 ## Zweck
-Reiner Orientierungs- und Regelhinweis vor Arbeitsbeginn.  
-Keine Analyse, kein Status, kein zusätzlicher Inhalt.
+Reiner Orientierungs- und Regelhinweis vor Arbeitsbeginn.
 
-## Ausgabe enthält ausschließlich
-- Hinweis auf **Master Rules (MR)**
-- Hinweis auf **Templates** (`docs/templates/`)
-- Hinweis auf **Pipeline** (`docs/PIPELINE.md`)
-- Hinweis auf weiteres relevantes Regelwerk
-- Hinweis auf das **Public GitHub Repository**
-- Hinweis auf die **Raw Single-Source-of-Truth Dateien**:
-  - FILE_MAP  
-    https://raw.githubusercontent.com/Domtexe/ShrimpDev-Public/refs/heads/main/docs/FILE_MAP.md
-  - MasterRules  
-    https://raw.githubusercontent.com/Domtexe/ShrimpDev-Public/refs/heads/main/docs/MasterRules.md
-  - PIPELINE  
-    https://raw.githubusercontent.com/Domtexe/ShrimpDev-Public/refs/heads/main/docs/PIPELINE.md
-  - SHORTCODES  
-    https://raw.githubusercontent.com/Domtexe/ShrimpDev-Public/refs/heads/main/docs/SHORTCODES.md
-- optional: Pfad-Reminder (Repo-Root / Excel-Projekte)
-
-## No-Gos
-- Kein Status  
-- Keine Analyse  
-- Keine Entscheidungen  
-- Kein zusätzlicher Text
+## Ausführung (Assistent MUSS)
+- Ausgabe enthält **ausschließlich**:
+  - Hinweis auf **Master Rules (MR)**
+  - Hinweis auf **Templates** (`docs/templates/`)
+  - Hinweis auf **Pipeline** (`docs/PIPELINE.md`)
+  - Hinweis auf weiteres relevantes Regelwerk
+  - Hinweis auf das **Public GitHub Repository**
+  - Hinweis auf die **Raw SSOT Dateien** (FILE_MAP/MR/PIPELINE/SHORTCODES)
+- Optional: Pfad-Reminder (Repo-Root / Excel-Projekte)
+- **No-Gos**: kein Status, keine Analyse, keine Entscheidungen
 
 ---
 
@@ -65,14 +67,17 @@ Keine Analyse, kein Status, kein zusätzlicher Inhalt.
 Saubere Übergabe zwischen Threads / Arbeitssessions.
 
 ## Inhalt
-- Aktueller Stand  
-- Erledigt  
-- Offen  
-- Nächster logischer Einstieg  
-- No-Gos / verbindliche Regeln  
+- Aktueller Stand
+- Erledigt
+- Offen
+- Nächster logischer Einstieg
+- No-Gos / verbindliche Regeln
 
-## Pflicht
-- **MUSS Setup enthalten**
+## Ausführung (Assistent MUSS)
+- **MUSS Setup enthalten** (als eigener Abschnitt)
+- Muss außerdem liefern:
+  - klare „Next Step“-Anweisung (1–3 Schritte)
+  - falls im Thread Änderungen entstanden: Hinweis „Nachsorge folgt/ist Pflicht“
 
 ---
 
@@ -82,22 +87,24 @@ Saubere Übergabe zwischen Threads / Arbeitssessions.
 Kurze, faktenbasierte Stabilitäts- und Konsistenzprüfung nach Änderungen – inkl. Governance-/Docs-Pflege.
 
 ## Inhalt
-- Was wurde geändert (faktisch)  
-- Systemzustand  
-- Risiken / Seiteneffekte / technische Schuld  
-- Offenes bis „stabil“  
-- Dokumentationspflege in `root/docs`  
-- Neue Regeln/MR ableiten  
+- Was wurde geändert (faktisch)
+- Systemzustand
+- Risiken / Seiteneffekte / technische Schuld
+- Offenes bis „stabil“
+- Dokumentationspflege in `root/docs`
+- Neue Regeln/MR ableiten
 - Templates pflegen
 - File Map pflegen / anlegen
 - System Map pflegen / anlegen
 - Changelog
 - Versionsnummer
 
-## No-Gos
-- Keine neuen Features  
-- Keine Richtungswechsel  
-- Keine Multi-Patches ohne Test
+## Ausführung (Assistent MUSS)
+- **Immer** einen **Nachsorge-Runner** liefern, der:
+  - Backups macht
+  - Report schreibt
+  - Docs/MR/Pipeline/Maps aktualisiert (minimal-invasiv, marker-basiert)
+- **No-Gos**: keine neuen Features, keine Richtungswechsel, keine Multi-Patches ohne Test
 
 ---
 
@@ -107,19 +114,20 @@ Kurze, faktenbasierte Stabilitäts- und Konsistenzprüfung nach Änderungen – 
 Kompakte Übersicht über Fortschritt und Zustand.
 
 ## Inhalt
-- Fortschritt nach Lanes/Bereichen  
-- Stabilität / Risiko  
+- Fortschritt nach Lanes/Bereichen
+- Stabilität / Risiko
 - ggf. Ausblick
 
-**Wichtig**  
-- Enthält bewusst **KEIN Setup**
+## Ausführung (Assistent MUSS)
+- Nur Status (bewusst **kein Setup**)
+- Keine neuen Entscheidungen/Features
 
 ---
 
 # Status+
 
 ## Zweck
-Vollständiger **Overall-Status** über das gesamte ShrimpDev-Ökosystem (alle Projekte, Teilprojekte, Produkte) – als **verbindlicher Abschluss** einer Session.
+Vollständiger Overall-Status über das gesamte ShrimpDev-Ökosystem (alle Projekte, Teilprojekte, Produkte).
 
 ## Inhalt
 - Gesamtbewertung (Reife/Stabilität/Produktionsfähigkeit/Monetarisierungsnähe)
@@ -128,15 +136,14 @@ Vollständiger **Overall-Status** über das gesamte ShrimpDev-Ökosystem (alle P
 - Nächster Fokus / nächster GO-Anker (konkret)
 - Optional: Money-Lane Kurzstand (wenn relevant)
 
-**Wichtig**
-- Enthält bewusst **KEIN Setup**
-- Keine neuen Entscheidungen/Features – reine Lage + nächster Schritt
+## Ausführung (Assistent MUSS)
+- Reiner Lagebericht + nächster Schritt (bewusst **kein Setup**)
+- Keine neuen Entscheidungen/Features
 
 ## Standard
 - Am Ende jeder Session standardmäßig: **Status+** (sofern nicht ausdrücklich abgewählt)
 
 ---
-
 
 # Halt, Stop!
 
@@ -144,11 +151,11 @@ Vollständiger **Overall-Status** über das gesamte ShrimpDev-Ökosystem (alle P
 Sofortiger Kollaborations-Reset.
 
 ## Inhalt
-- Arbeitsstopp  
+- Arbeitsstopp
 - Ziel/Modus/Nächster Schritt klären
 
-**Hinweis**  
-- Sonderfall  
+## Ausführung (Assistent MUSS)
+- Sofort stoppen + neu ausrichten
 - Kein Setup erforderlich
 
 ---
@@ -158,9 +165,15 @@ Sofortiger Kollaborations-Reset.
 ## Zweck
 Soll verhindern, dass wichtige Änderungen verlorengehen oder Abschlussarbeiten vergessen werden.
 
-## Inhalt
-- Aufruf von # Nachsorge # Status # Status+
-Kein Setup. Feierabend!
+## Inhalt (Reihenfolge ist fix)
+1) Nachsorge (inkl. Runner!)
+2) Status
+3) Status+
+
+## Ausführung (Assistent MUSS)
+- Wenn Änderungen im Thread passiert sind:
+  - **Nachsorge-Runner ist Pflicht** (Docs/MR/Pipeline/Maps sichern)
+- Kein Setup. Feierabend.
 
 ---
 
@@ -170,50 +183,34 @@ Kein Setup. Feierabend!
 Maximal hochwertige Produktionsausgaben.
 
 ## Merkmale
-- Zeitmarken  
-- Copy-Buttons  
-- 10-Sekunden-Segmente  
+- Zeitmarken
+- Copy-Buttons
+- 10-Sekunden-Segmente
 - Produktionsstandard
 
-**Hinweis**  
-- Produktionsmodus  
+## Ausführung (Assistent MUSS)
+- Ausgabe exakt im Ultra-Standard
 - Kein Setup erforderlich
+
+---
+
+# STATUS_ALL (Overall Status – kommt am Schluss)
+
+**Befehl:** `StatusAll` / `STATUS_ALL`
+
+## Zweck
+Am Ende jedes Threads/Sessions: vollständiger Gesamtstatus über alle Projekte/Teilprojekte/Produkte.
+
+## Ausführung (Assistent MUSS)
+- **Regel:** STATUS_ALL kommt **nach Nachsorge**, nicht davor.
 
 ---
 
 # Pflege & Governance
 
-- Diese Datei ist **verbindlich**.  
-- Neue Shortcodes werden **hier ergänzt**.  
-- Änderungen über **Docs-only Runner**.  
+- Diese Datei ist **verbindlich**.
+- Neue Shortcodes werden **hier ergänzt**.
+- Änderungen über **Docs-only Runner**.
 - Danach **Push ins Public GitHub**.
 
----
-
-*Stand: 2026-02-14*
-
-<!-- BEGIN:R8605 -->
-## R8605 Hinweis
-- Nachsorge-Report für heute: `Excel-Projekte\Reports\Report_R8605_20260216_092823.md`
-- Relevante Themen: Fairness (Totals/Day-Snapshot), PlanDate als Text, doppelte Helper-Namen
-<!-- END:R8605 -->
-
-<!-- R8524_NACHSORGE_2026-02-21 -->
-
-## STATUS_ALL (Overall Status – kommt am Schluss)
-**Befehl:** `StatusAll` / `STATUS_ALL`
-
-**Zweck:** Am Ende jedes Threads/Sessions: vollständiger Gesamtstatus über alle Projekte/Teilprojekte/Produkte.
-
-**Ausgabe umfasst:**
-- ShrimpDev Core (GUI/Runner/RUN/DirectRun/Compile-Gate)
-- Purge-System (Whitelist-SSOT, R3106 Status)
-- DISPO-Tool (Version/Restpunkte)
-- Clarivoo (Stand Content/Monetarisierung)
-- Governance (MR/Pipeline/Shortcodes/Maps)
-- Stabilität (Import-Check, Smoke-Test)
-- Nächste 3 Schritte + höchste Risiken
-
-**Regel:** STATUS_ALL kommt **nach Nachsorge**, nicht davor.
-
-<!-- R8524_NACHSORGE_2026-02-21 -->
+*Stand: 2026-02-22*

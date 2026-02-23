@@ -60,3 +60,15 @@ Lane-C-Bewertung:
 ➡️ bearbeitet  
 ➡️ stabil  
 ➡️ nicht vollständig abgeschlossen
+
+<!-- BEGIN:R8598 -->
+## 2026-02-22 — UI OutputDisplay + Recovery
+
+- Display/Output zentralisiert (OutputDisplay in main_gui, Tree entkoppelt)
+- UI-Polish OutputDisplay (Header/Copy/Clear/Scrollbars)
+- Recovery nach `IndentationError`: Restore auf kompilierbare Backup-Version
+- Governance: Compile-Gate + Restore-Regel (siehe MR Block R8598)
+<!-- END:R8598 -->
+
+## 20260223_000540
+- Governance + Shortcodes stabilized

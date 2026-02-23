@@ -1012,6 +1012,18 @@ Damit ist der gesamte P1-Docking-Komplex formal abgeschlossen.
   von Regeln, Lernen, Dokumentation und Pipeline-Anpassungen.
 
 ## Backlog
+### Brainstorming 2026-02-23 (10 Ideen)
+- [P2][IDEA] ShrimpDev AutoFix Engine (LearningJournal → Auto-Fix Vorschläge aus Logs/Patterns)
+- [P2][IDEA] Clarivoo Money Radar (Trends/Suchintention → Content-Priorisierung)
+- [P2][IDEA] ShrimpHub Storyboard → AutoVideo Pipeline (Script/Szenen/Prompts/VO/Struktur)
+- [P2][IDEA] DISPO Reality Mode (Abwesenheiten/Änderungen simulieren → Replan Vorschläge)
+- [P2][IDEA] ShrimpDev Crash Heatmap (häufigste Crashes nach Modul/Runner/Zeit)
+- [P2][IDEA] Clarivoo Evergreen Engine (evergreen Kategorien identifizieren & priorisieren)
+- [P2][IDEA] ShrimpDev Runner DNA System (Analyse erfolgreicher Runner-Strukturen → Best Practices)
+- [P2][IDEA] DISPO Fairness Score 2.0 (Index über Wochen, schwere Aufgaben, Schichten)
+- [P2][IDEA] ShrimpHub Asset Brain (Wiederverwendung: Assets/Skripte/VO intelligent matchen)
+- [P2][IDEA] Clarivoo Conversion Booster Pages (Top3/Use-Case Seiten → höhere CTR/CVR)
+
 - [ ] **Intake: Button „Gate: R3677“ (Pipeline)**
   - Zweck: Ein-Klick-Ausführung von `R3677` (Hugo build + interne Deadlink/Target-Prüfung).
   - Scope: **Planung** (keine Implementierung in diesem Schritt).
@@ -1325,3 +1337,14 @@ Lane-C-Bewertung:
 - [ ] (P3) Tool Library (ShrimpLib Bundle)
 
 <!-- R8525_IDEA_POOL_END -->
+
+<!-- BEGIN:R8598 -->
+## R8598 — P0 Stabilisierung (UI/Compile-Gate)
+
+- [P0] Safe UI-Polish (Spacing/Alignment/Buttons) **ohne** große Block-Rewrites in `main_gui.py`
+- [P0] Compile-Gate-Pflicht für UI-Patch-Runner (`python -m py_compile ...`)
+- [P1] UI-Layout-Konsolidierung (pack/grid nicht mischen) — nur nach Diagnose + klarer Strategie
+<!-- END:R8598 -->
+
+
+R8601: Governance stabilized
