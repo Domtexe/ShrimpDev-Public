@@ -1,5 +1,17 @@
 # FILE MAP (auto)
 
+<!-- AUTO:FILE_MAP -->
+
+## Kernpfade (aktuell)
+- `docs/MasterRules.md` — MasterRules ✅
+- `docs/FILE_MAP.md` — File Map ✅
+- `docs/PIPELINE.md` — Pipeline ✅
+- `docs/SHORTCODES.md` — Shortcodes ✅
+- `modules/module_runner_exec.py` — Runner execution / cmd generation ✅
+- `tools/` — Tools (runners, scripts) ✅
+- `Reports/` — Reports output ✅
+- `Backups/` — Backups output ✅
+
 Generated: 2026-02-28 20:43:26.902390
 
 📁 %~dp0

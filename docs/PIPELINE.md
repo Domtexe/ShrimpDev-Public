@@ -111,6 +111,12 @@
 <!-- R8526_PIPELINE_DEDUP_BEGIN -->
 ## R8526 — Pipeline Konsolidierungs-Index (Docs-only)
 
+<!-- AUTO:PIPELINE_META -->
+
+## Meta / Governance
+- Änderungen müssen docs-konsistent sein (MasterRules, FILE_MAP, PIPELINE, SHORTCODES).
+- `.cmd` ist Standard-Runnerformat (keine `.bat`).
+
 - Stand: 2026-02-21 21:12:44
 - Tasks gescannt (task-like): **241**
 - Normalisierte Keys gewertet: **223**

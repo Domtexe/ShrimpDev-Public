@@ -1,6 +1,16 @@
 
 <!-- MR_INDEX_BEGIN -->
 ## MasterRules Index
+
+<!-- AUTO:MR_RULES -->
+
+## CMD-Schreibstandard (SSOT)
+- `.cmd` Dateien müssen **atomar** geschrieben werden (Tempfile → `os.replace`).
+- Encoding: **ASCII**, `errors="replace"` (kein BOM/UTF-16).
+- Line-Endings: **CRLF**.
+- Nach dem Schreiben: **Hard-Validation** (keine NUL-Bytes/BOM, Header enthält `@echo off`).
+- Backups/Reports dürfen von Audit-/Patch-Tools **nie** gescannt/editiert werden.
+
 <!-- FEIERABEND_RULE_BEGIN -->
 ## MasterRule: Feierabend nur per Runner
 

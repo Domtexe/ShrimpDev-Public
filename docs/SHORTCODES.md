@@ -16,6 +16,15 @@ Jeder Shortcode hat zwei Ebenen:
 2) **Ausführungsebene** (was der Assistent bei Aufruf *tatsächlich* liefern/machen muss)
 
 ## A. Assistenten-Pflichten bei JEDEM Shortcode-Aufruf
+
+<!-- AUTO:SHORTCODES_CORE -->
+
+## Setup-Links (Core)
+- FILE_MAP: `docs/FILE_MAP.md`
+- MasterRules: `docs/MasterRules.md`
+- Pipeline: `docs/PIPELINE.md`
+- Shortcodes: `docs/SHORTCODES.md`
+
 - **Keine Theorie ohne Aktion**: Wenn der Shortcode eine Aufgabe impliziert, muss der Assistent konkrete Schritte liefern.
 - **Änderungen nur mit Runner**: Jede Code-/Doku-/Governance-Änderung wird als Runner (`tools\R####.cmd` + `tools\R####.py`) geliefert – inkl. Backup + Report.
 - **Safety Gate**: Bei UI/Core-Python-Änderungen ist ein Compile-Gate verpflichtend (z. B. `python -m py_compile ...`) im Runner.
