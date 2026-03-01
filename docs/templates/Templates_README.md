@@ -22,3 +22,11 @@ In .cmd-Dateien müssen Sonderzeichen in `echo` escaped werden:
 - `|` als `^|`
 - `>` als `^>` und `<` als `^<`
 Sonst interpretiert CMD das als Befehlsverkettung/Redirect.
+
+<!-- R9241_TEMPLATES_README -->
+## Runner_CMD_Template.cmd Requirements
+- Must start with `@echo off`.
+- Must set `RC` via `set "RC=%ERRORLEVEL%"` and exit `exit /b %RC%`.
+- Must call `python tools\%RUNNER_ID%.py` (never `py -3`).
+- Must be saved as ASCII+CRLF (guarded).
+

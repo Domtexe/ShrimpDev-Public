@@ -1185,3 +1185,10 @@ Ein CLI-Tool gilt als integriert wenn:
 - reproduzierbar im Runner-Kontext
 - unabhängig vom System-PATH
 
+<!-- R9241_TEMPLATES_RULES -->
+## Runner Templates (CMD+PY)
+- SSOT: `docs/templates/Runner_CMD_Template.cmd` und `docs/templates/Runner_PY_Template.py`.
+- Runner-Wrapper sind **CMD-only** (kein `.bat`).
+- Wrapper müssen `python tools\R####.py` nutzen (kein `py -3`).
+- CMD-Dateien werden **ASCII + CRLF + atomic write** gespeichert und per Guard geprüft (`@echo off`, kein BOM/NUL).
+

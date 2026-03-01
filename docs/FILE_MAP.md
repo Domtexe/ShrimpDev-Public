@@ -18090,3 +18090,8 @@ Generated: 2026-02-28 20:43:26.902390
   - docs/SHORTCODES.md
   - docs/MasterRules.md
   - Reports/Report_R9157_20260301_015122.md
+
+<!-- R9241_FILEMAP -->
+- `modules/cmd_writer.py` — Safe CMD writer (ASCII+CRLF+atomic+guard) + template renderer.
+- `docs/templates/Runner_CMD_Template.cmd` — SSOT runner CMD template.
+
