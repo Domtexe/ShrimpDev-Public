@@ -160,7 +160,7 @@ Sofortiger Kollaborations-Reset.
 
 ---
 
-# Tagesabschluss
+# Feierabend
 
 ## Zweck
 Soll verhindern, dass wichtige Änderungen verlorengehen oder Abschlussarbeiten vergessen werden.

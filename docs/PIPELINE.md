@@ -1,6 +1,66 @@
 <!-- PIPELINE_V1_START -->
 # PIPELINE v1 — Lanes & Turnus (Source of Truth)
 
+<!-- R9108:PIPELINE_INSERT:BEGIN -->
+# P0 — Codex Integration (PRIO 0, ganz vorne)
+**Ziel:** Codex als kontrollierter Runner-Worker, der konsequent `DIAG → 1 Fix → Smoke → Report` erzwingt.
+
+## TODOs (P0)
+- [ ] **Codex CLI installieren & Projekt-Trust setzen** (lokal) + Basiskonfig (read-only default)
+- [ ] **Projekt-Konfig:** `.codex/config.toml` im Repo (read-only → workspace-write nur für Fix-Runner)
+- [ ] **Runbook:** `docs/CODEX_RUNBOOK.md` (No-Gos: keine Rewrites, DIAG first, max 1 Fix, Smoke Pflicht)
+- [ ] **Runner-Set (cmd+py):** `codex_readonly`, `codex_diag`, `codex_fix_one`
+- [ ] **Smoke-Runner:** `smoke_min` (Start/Import/GUI sanity, Exit-Codes, Report)
+- [ ] **Reports erweitern:** Diff-Übersicht, betroffene Dateien, Tests, „Was wurde NICHT geändert“
+
+---
+
+# P0 — ShrimpDev Intake/Layout Stabilisierung (kein Raten mehr)
+## TODOs (P0)
+- [ ] **Call-Site DIAG:** echten Intake-Builder finden (Name/Ort/Signatur) + Call-Sites belegen
+- [ ] **Layout-Fix (nur 1 Patch):** LEFT=Intake, RIGHT=Output+Toolbar+Tree (erst messen, dann fixen)
+- [ ] **Treeview leer:** Datenquelle/Bindings/Refresh messen (Logs), dann minimal fixen
+- [ ] **Doppelte UI-Blöcke:** erst entfernen, wenn neue Verdrahtung verifiziert ist (Smoke grün)
+
+---
+
+# P0 — Diagnose-Gates & Anti-Drift
+## TODOs (P0)
+- [ ] **Diagnose zuerst erzwingen:** Wenn Fix nicht beim 1. Versuch verifiziert → Diagnose-Runner Pflicht
+- [ ] **Anchor-Patch Prinzip:** 1 Runner = 1 klarer Fehler, keine Multi-Patches
+- [ ] **Pre-Start Gate:** Import/Syntax/Smoke vor GUI-Work (Reportpflicht)
+
+---
+
+# P1 — Purge/Whitelist SSOT finalisieren
+## TODOs (P1)
+- [ ] **Purge strikt Whitelist (Exact-only)**, keine Patterns
+- [ ] **Schutz-Count normalisieren:** Ursachen dauerhaft abstellen (Scan-Breite/Doku-Effekt)
+- [ ] **Kritische Runner absichern:** Wiederherstellung + Schutzregeln (z. B. T666 & Co.)
+
+---
+
+# P1 — RUN/DirectRun/Compile-Gate Stabilität
+## TODOs (P1)
+- [ ] RUN soll **ausführen**, nicht Generator eskalieren (cmd+py Standard bleibt)
+- [ ] RunnerExec/DirectRun Regeln dokumentieren + enforced
+
+---
+
+# P1 — Nachsorge Pflichtpaket (Runner-basiert)
+## TODOs (P1)
+- [ ] Nachsorge-Runner immer: Backups + Report + marker-basierte Docs-Updates
+
+---
+
+# P2 — Stabilitäts-Metriken (Crash-Ideen)
+## TODOs (P2)
+- [ ] Crash-Heatmap, Wiederholquote, Zeit-of-Pain
+- [ ] Hot/Cold Modul-Matrix
+- [ ] Stabilitäts-Score in GUI
+
+<!-- R9108:PIPELINE_INSERT:END -->
+
 <!-- SHRIMPDEV_AUTOGEN:R8476 PIPELINE START -->
 ## RUN Stabilisierung (Programm) — Direct Mode + RunnerExec Neubau
 
@@ -266,11 +326,38 @@
 
 - Tasks sind pro Lane gruppiert.
 - Jede Änderung an Pipeline: **Backup + Report**.
+<!-- SHRIMPDEV_AUTOGEN:R9049 NACH_SORGE START -->
+## Nachsorge (Runner) — R9049
+
+**Zweck:** Konsolidiert SSOT-Doku und Schutz/Integrity-Nacharbeiten nach Fixes.
+
+**SSOT-Pfade (verbindlich):**
+- `docs/MasterRules.md`
+- `docs/PIPELINE.md`
+- `docs/SHORTCODES.md`
+- `docs/templates/*`
+- `docs/FILE_MAP.md`, `docs/SYSTEM_MAP.md` (falls vorhanden)
+- `docs/CHANGELOG.md`, `docs/VERSION.txt`
+
+**No-Gos:** keine neuen Features; marker-basiert; Backups + Report.
+
+**Sequenz:** RUN DIAG → RUN FIX → Nachsorge FINAL (dieser Runner).
+<!-- SHRIMPDEV_AUTOGEN:R9049 NACH_SORGE END -->
+
+
 <!-- PIPELINE_V1_END -->
 
 ---
 
 ## P0 – ui_toolbar.py entschärfen (Modularisierung + Stabilitäts-Guards)
+
+<!-- R9142_CODEX_P0_INSERTED -->
+### Codex Integration (Runner/GUI) — Stabilize
+- **DONE:** R9140 Codex im Runner-Kontext ausführbar (rc=0, codex --version ok).
+- **DONE:** R9141 MasterRules ergänzt (Windows CLI & Runner Standards).
+- **NEXT (P0):** GUI-Integration Codex-Buttons über Anchors (kein main_gui Wild-Patching).
+- **NEXT (P0):** Compile-Gate Pflicht bei jedem GUI-Patch (py_compile + Report).
+- **NOTE:** Windows CLI Calls: immer .cmd/.exe bevorzugen, cmd /c via argv tokens, kein Quote-String.
 
 - [ ] (P0) (AFTER DISPO V1.0) **FIX: Push + Purge Buttons ohne Funktion (Verdrahtung/Action-Routing defekt)**
 
@@ -649,7 +736,25 @@ _added 2026-01-08 12:26 via R3147_
 - [ ] (P3) [STRAT] Website-MVP: Entscheidung dokumentieren (skalieren oder verwerfen)
 
 <!-- PIPELINE_LANE_D_END -->
-## Lane E — Website / SEO-Netzwerk (P2/P3)
+## Lane E — Website / SEO-Netzwerk
+
+### P3 — Neue Ideen (Auto-Intake 2026-02-26)
+
+- [ ] (P3) [STRAT] DealRadar — echte Deals mit Preisverlauf + Affiliate
+- [ ] (P3) [STRAT] FoodOptimizer — Zutaten → Rezept (Content + Affiliate)
+- [ ] (P3) [STRAT] Was lohnt sich heute — Mikro-Entscheidungs-App (lokal + Affiliate)
+- [ ] (P3) [STRAT] QuickSite Builder — 1-Klick Affiliate Seiten (Langfrist-Plattform)
+- [ ] (P3) [STRAT] RealityCheck — ehrliche Zielbewertung (viral Potential)
+- [ ] (P3) [STRAT] KidSignal — Kinderverhalten verstehen (Premium Content)
+
+### P3 — Tools / System Ideen (Parken, kein Build)
+
+- [ ] (P3) [CORE] JobHelper — Excel Automation Tools (Monetarisierung schnell möglich)
+- [ ] (P3) [CORE] Digital Declutter — File Cleanup Tool (ShrimpDev Integration möglich)
+- [ ] (P3) [CORE] AutoFix AI — Diagnose Tool (skalierbar, später)
+- [ ] (P3) [CORE] SecondBrain Lite — Minimal Tracking (LJ Integration möglich)
+
+ (P2/P3)
 
 
 **Lane-E Contract (Isolation / Artefakte):**
@@ -1348,3 +1453,172 @@ Lane-C-Bewertung:
 
 
 R8601: Governance stabilized
+
+
+### P0 — Intake SSOT (verbindlich, keine Interpretation)
+
+#### Buttons
+
+- Neu:
+  - Editor leeren
+  - neue Runner-ID vorbereiten
+  - Default-Zielpfad setzen
+  - LEDs reset
+
+- Einfügen:
+  - Neu triggern
+  - Clipboard → Editor
+  - Erkennen triggern
+
+- Erkennen:
+  - Name/Ext erkennen
+  - Runner-ID erkennen
+  - LEDs setzen
+  - KEINE Seiteneffekte
+
+- Speichern:
+  - Datei → tools\
+  - Backup erstellen
+  - Report erstellen
+  - Liste refresh
+
+- Undo:
+  - letzten Zustand wiederherstellen
+  - Backup-Fallback
+
+- AOT:
+  - Mode togglen
+
+- Restart:
+  - GUI neu starten
+
+#### LEDs
+
+- Syntax   = Code valide
+- Name/Ext = erkannt
+- Datei    = vorhanden
+- Zielpfad = gültig
+- AOT      = aktiv
+
+#### HARTE REGELN
+
+- Einfügen = Clipboard ONLY (kein Datei-Load)
+- UI enthält KEINE Logik → nur Bindings
+- Alle Aktionen laufen über logic_actions (SSOT)
+- Keine Runner patchen → neue Runner bauen
+
+
+<!-- SHRIMPDEV_AUTOGEN:R9062 START -->
+## Lane A — P0 (Autogen)
+
+- [ ] Intake Build stabilisieren (keine geschluckten Exceptions).
+- [ ] `ui_project_tree.enable_*` Calls: `hasattr`-guard oder entfernen.
+- [ ] Left/Right (Paned) korrekt: `paned.add(...)`, keine `left/right.pack(...)` Restlinien.
+- [ ] Rechte Seite wieder aufbauen: Tree/Toolbar/OutputDisplay wieder einhängen.
+- [ ] Danach: RUN Button wiring DIAG → 1 Fix → Funktionstest (cmd/py Dispatch).
+
+_Quelle: Nachsorge R9062 (2026-02-25 23:51:06)_
+<!-- SHRIMPDEV_AUTOGEN:R9062 END -->
+
+
+<!-- IDEAS_INBOX_START -->
+
+### 🧠 Auto-Imported Ideas (20260226_212126)
+
+#### Funktionen
+- Explain this UI Button
+- Auto-Workflow Builder
+- Undo Everything System
+- Smart Notification Filter
+- Cross-App Copy Engine
+- Auto Documentation Generator
+- Dead Feature Detector
+- Sandbox Mode
+- Error Explainer
+- Workflow Memory
+
+#### Tools
+- Software Pain Scanner
+- Mini CRM (Teamleiter)
+- Excel Macro Visualizer
+- Meeting → Task Converter
+- File Chaos Cleaner
+- Broken Process Detector
+- Local AI Assistant
+- Smart Screenshot Tool
+- Affiliate Page Generator
+- Plugin Marketplace
+
+#### Monetarisierung
+- Freemium
+- Pay-per-Automation
+- Team-Lizenzen
+- White-Label
+- Done-for-you Service
+- Marketplace Revenue
+- API Access
+- Template Store
+- Affiliate Einnahmen
+- Consulting Bundle
+
+#### Entwicklung / Strategie
+- Problem first
+- Nische statt Masse
+- MVP in 2–4 Wochen
+- Feedback Loop
+- Reuse statt Neubau
+- Eigene Workflows automatisieren
+- Doku als Feature
+- Modularität
+- Monetarisierung pro Feature
+- Workflow-Denken
+
+
+<!-- IDEAS_INBOX_END -->
+
+
+<!-- AUTO:IDEA_INTAKE_START -->
+## Auto-Intake: Automatisierungs-Ideen (R9064)
+
+| Prio | Bereich | Titel | Aufwand | Wert |
+|---|---|---|---|---|
+| P0 | ShrimpDev | Auto-PIPELINE Ingestor (Ideen → Tasks) | S | High |
+| P0 | ShrimpDev | Runner Auto-Generator (Template Engine) | M | High |
+| P0 | ShrimpDev | ShrimpDev Health Monitor | S | High |
+| P1 | Clarivoo | Affiliate Link Manager | S | Med |
+| P1 | Clarivoo | Clarivoo Content Auto-Builder | M | High |
+| P1 | ShrimpDev | Auto-Diagnose System | M | High |
+| P1 | ShrimpDev | Auto-Doc Sync Engine | M | High |
+| P1 | ShrimpDev | Auto-Purge Intelligence | S | Med |
+| P2 | Cross | Feature → Monetarisierung Mapper | S | Med |
+| P2 | Cross | One-Click Productizer | L | Med |
+
+### Reihenfolge
+P0 → P1 → P2
+<!-- AUTO:IDEA_INTAKE_END -->
+
+
+## CLARIVOO – AUTO CONTENT & SCALING
+
+### 🔴 P0 – FOUNDATION (MUST HAVE)
+- Programmatic SEO (Template + Daten)
+- Produktdaten SSOT (Zentrale DB)
+- Content-Modularisierung (Bausteinsystem)
+
+### 🟠 P1 – SCALING
+- AI Content Pipeline (Keyword → AI → QC)
+- Auto Vergleichstabellen Generator
+- Automatische interne Verlinkung
+
+### 🟡 P2 – OPTIMIZATION
+- Evergreen Auto-Refresh (Preis/Verfügbarkeit)
+- Performance-basierte Content-Optimierung
+- Longtail Keyword Expansion
+
+### 🔵 P3 – ADVANCED
+- A/B Testing für Content
+- Auto-Nischen-Finder (Trends + Nachfrage)
+
+
+## Nachsorge
+- 2026-02-28 00:21 Nachsorge R9107: Stabilisierung/Backups + SyntaxGate. Drift-Risiko bestätigt; nächster Schritt: Call-Site-DIAG für Intake-Builder (kein Raten nach _build_intake).

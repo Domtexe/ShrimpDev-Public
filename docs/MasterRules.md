@@ -1111,3 +1111,60 @@ Wenn der Nutzer einen Shortcode aufruft, gilt:
 
 
 R8601: Shortcodes Execution enforced
+
+<!-- SHRIMPDEV_AUTOGEN:R9062 START -->
+## MR-Ergänzung — UI Build Stabilität (Autogen)
+
+- UI-Build darf **niemals** durch optionale Feature-Hooks crashen.
+  - Externe/optionale Calls (z. B. `ui_project_tree.enable_*`) **immer** via `hasattr(...)` guard.
+- Frame-SSOT: `left/right` müssen **explizit** definiert sein, bevor sie gepackt/benutzt werden.
+- Runner-Patches an GUI-Strukturblöcken nur **nach DIAG** und **minimal-invasiv**.
+
+_Quelle: Nachsorge R9062 (2026-02-25 23:51:06)_
+<!-- SHRIMPDEV_AUTOGEN:R9062 END -->
+
+
+## Nachsorge
+- 2026-02-28 00:21 Nachsorge R9107: Stabilisierung/Backups + SyntaxGate. Drift-Risiko bestätigt; nächster Schritt: Call-Site-DIAG für Intake-Builder (kein Raten nach _build_intake).
+
+
+## WINDOWS CLI & RUNNER STANDARDS
+
+### 1. CLI Execution (Windows Pflichtregel)
+- CLI Tools aus npm (z. B. codex) werden IMMER über `.cmd` ausgeführt
+- NIEMALS extensionlose Namen verwenden (z. B. `codex`)
+- Bevorzugte Reihenfolge:
+  1. .cmd
+  2. .exe
+  3. .bat
+
+### 2. subprocess Regeln (KRITISCH)
+- subprocess wird IMMER mit Argument-Liste verwendet:
+  -> ["cmd", "/d", "/c", full_path, "args"]
+- KEINE zusammengesetzten Strings mit Quotes
+- KEIN shell=True
+
+### 3. PATH Handling
+- PATH darf NUR lokal im Runner angepasst werden
+- KEINE globalen Änderungen
+- Erweiterung:
+  env["PATH"] = tool_dir + ";" + old_path
+
+### 4. Diagnoseregel
+- Vor JEDEM CLI-Fix:
+  - where <tool>
+  - Pfad loggen
+  - Existenz prüfen
+
+### 5. No-Go Liste
+- ❌ cmd /c "irgendwas mit Quotes"
+- ❌ subprocess("string")
+- ❌ Nutzung von extensionlosen CLI Namen
+- ❌ Trial & Error ohne Diagnose
+
+### 6. Erfolgsdefinition
+Ein CLI-Tool gilt als integriert wenn:
+- rc=0 im Runner
+- reproduzierbar im Runner-Kontext
+- unabhängig vom System-PATH
+

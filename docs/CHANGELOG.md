@@ -72,3 +72,12 @@ Lane-C-Bewertung:
 
 ## 20260223_000540
 - Governance + Shortcodes stabilized
+## 2026-02-25 — Nachsorge R9062
+
+- Nachsorge automatisiert: Backups + Report + marker-basierte Docs-Updates.
+- Problem-Kontext: Intake Build brach durch fehlende optionale Hooks (`enable_lasso`) ab; UI blieb leer.
+- Nächste Schritte: Intake-Build stabilisieren, rechte Seite (Tree/Toolbar/Output) wieder einhängen, danach RUN verifizieren.
+
+
+## Nachsorge
+- 2026-02-28 00:21 Nachsorge R9107: Stabilisierung/Backups + SyntaxGate. Drift-Risiko bestätigt; nächster Schritt: Call-Site-DIAG für Intake-Builder (kein Raten nach _build_intake).
