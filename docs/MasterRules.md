@@ -1,6 +1,13 @@
 
 <!-- MR_INDEX_BEGIN -->
 ## MasterRules Index
+<!-- FEIERABEND_RULE_BEGIN -->
+## MasterRule: Feierabend nur per Runner
+
+- Der Tagesabschluss („Feierabend“) gilt nur als durchgeführt, wenn `tools\R9157.cmd` erfolgreich gelaufen ist.
+- Pflichtbestandteile: Backup → py_compile Gate → Report → Docs (SHORTCODES/MR) → FILE_MAP append-only.
+- No-Gos: Feature-Entwicklung, Trial-&-Error, breite Rewrites im Feierabend-Runner.
+<!-- FEIERABEND_RULE_END -->
 
 | MR-ID | Status | Scope | Owner |
 |---|---|---|---|

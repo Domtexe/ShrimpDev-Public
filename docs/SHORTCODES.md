@@ -165,15 +165,14 @@ Sofortiger Kollaborations-Reset.
 ## Zweck
 Soll verhindern, dass wichtige Änderungen verlorengehen oder Abschlussarbeiten vergessen werden.
 
-## Inhalt (Reihenfolge ist fix)
-1) Nachsorge (inkl. Runner!)
-2) Status
-3) Status+
-
 ## Ausführung (Assistent MUSS)
 - Wenn Änderungen im Thread passiert sind:
-  - **Nachsorge-Runner ist Pflicht** (Docs/MR/Pipeline/Maps sichern)
+- **Nachsorge-Runner ist Pflicht** (Docs/MR/Pipeline/Maps sichern)
 - Kein Setup. Feierabend.
+- Nachsorge (inkl. Runner!)
+- Status
+- Status+
+
 
 ---
 
@@ -214,3 +213,25 @@ Am Ende jedes Threads/Sessions: vollständiger Gesamtstatus über alle Projekte/
 - Danach **Push ins Public GitHub**.
 
 *Stand: 2026-02-22*
+## Feierabend
+
+<!-- FEIERABEND_BEGIN -->
+### Zweck
+Vollständiger Tagesabschluss **nur per Runner**, damit nichts verloren geht.
+
+### Ausführung
+- **Doppelklick:** `tools\R9157.cmd`
+
+### Was passiert automatisch
+1. Backups (main_gui + zentrale docs)
+2. Whitespace-Normalisierung (tabs→spaces in leading indent, main_gui)
+3. `py_compile` Gate (hart)
+4. Update `docs/SHORTCODES.md` (dieser Abschnitt), `docs/MasterRules.md` (Feierabend-Regel)
+5. FILE_MAP append-only Log
+6. Git-Status Snapshot
+7. Optional: AutoPush via `tools\R2693.cmd` (nur wenn vorhanden **und** Repo clean)
+
+### No-Gos
+- Kein “nur Text”-Feierabend mehr.
+- Keine neuen Features im Feierabend-Runner.
+<!-- FEIERABEND_END -->

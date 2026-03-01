@@ -1622,3 +1622,26 @@ P0 → P1 → P2
 
 ## Nachsorge
 - 2026-02-28 00:21 Nachsorge R9107: Stabilisierung/Backups + SyntaxGate. Drift-Risiko bestätigt; nächster Schritt: Call-Site-DIAG für Intake-Builder (kein Raten nach _build_intake).
+
+
+
+### 🟢 R9158 – Global Status System (ShrimpDev Übersicht)
+- Eingetragen: 2026-03-01 08:20
+- Status: Nice-to-have (P3)
+
+**Ziel**
+Zentrale Statusübersicht für das gesamte System
+
+**Inhalt**
+- Systemstatus (GUI, Runner, Compile, Git)
+- Projektstatus (Dispo, ASM, Clarivoo, Apps)
+- Pipeline-Fortschritt
+- Tech-Debt / Risiken
+- Monetarisierung
+
+**Output**
+- GUI Tab "Status"
+- optional Report / CLI
+
+**Begründung**
+Verbesserte Übersicht und Steuerung, aber nicht betriebskritisch
