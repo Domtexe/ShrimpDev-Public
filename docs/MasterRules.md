@@ -1192,3 +1192,12 @@ Ein CLI-Tool gilt als integriert wenn:
 - Wrapper müssen `python tools\R####.py` nutzen (kein `py -3`).
 - CMD-Dateien werden **ASCII + CRLF + atomic write** gespeichert und per Guard geprüft (`@echo off`, kein BOM/NUL).
 
+<!-- R9250_BEGIN -->
+## R9250 — SSOT: `action_save` darf nicht doppelt definiert sein
+
+- Report: `C:/Users/rasta/OneDrive/ShrimpDev_REPO/Reports/Report_R9250_20260302_165226.md`
+- Ergebnis: B: legacy `action_save(app, *args, **kwargs)` umbenannt zu `_action_save_legacy`
+
+**Regel:** In `modules/logic_actions.py` darf es **nur eine** aktive `def action_save(...)` geben.
+Legacy-Varianten müssen umbenannt oder entfernt werden, sonst entsteht Drift durch Überschreiben beim Import.
+<!-- R9250_END -->
