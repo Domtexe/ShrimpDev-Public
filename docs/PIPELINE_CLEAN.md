@@ -1,0 +1,804 @@
+# PIPELINE CLEAN
+
+
+## Lane ?
+
+- **1 Haupt-View** (Einteilung), Rest in separaten Tabs
+- **ARCH:** Purge/Housekeeping Soll-Definition: `docs/ARCH_Purge.md`
+- **Abschluss:** 2026-01-11
+- **Agent-Tab:** Empfohlene Runner automatisch vorschlagen und optional (bewusst) ausführen lassen; Sinn/Nutzen prüfen.
+- **Aktion**: B2.1 Purge reaktivieren → Executor → R3106 (oder definierter Nachfolger).
+- **Archive/Legacy layer (may be broken):** `_OldStuff/**`, `_Trash/**`, `tools/Archiv/**`, historische Runner/Friedhof
+- **Artefakte:** jede Site lebt unter `docs/websites/<site>/...` (Decision, MVP, KPIs, Kill/Scale).
+- **Begründung:**
+- **Copy Report** (kopiert den vollständigen Report-Text in die Zwischenablage)
+- **DONE:** R9140 Codex im Runner-Kontext ausführbar (rc=0, codex --version ok).
+- **DONE:** R9141 MasterRules ergänzt (Windows CLI & Runner Standards).
+- **Diagnose zuerst**, dann **minimaler APPLY**, dann **Stop** (kein Fix-Cascade).
+- **DoD (V1):**
+- **DoD**
+- **DoD:** Push & Purge lösen zuverlässig die korrekten Runner/Actions aus (inkl. Report-Popup gemäß Standard).
+- **Erlaubt:** gemeinsame Tooling-Runner (Scanner/Generator/Reports) **ohne** Shared State.
+- **Feature:** In Suchfeldern rechtsbündig ein ✕ zum **Clear/Stop**.
+- **Feature:** Suchfeld im Log-Tab, das das Log (Textwidget) live/auf Enter durchsucht.
+- **Fokus:** Vergleichsseiten (Affiliate/SEO)
+- **Gilt ab:** Runner **R3561**
+- **Goal:** Wenn Runner einen Report erzeugen, soll der Report im Runner-Popup direkt nutzbar sein.
+- **Governance / MR / Pipeline**: 2
+- **Header-Fix-Pattern** verifiziert: Wenn `from __future__ import annotations` nicht „first statement“ ist → **separater Header-Fix-Runner zuerst**, dann eigentlicher Patch.
+- **Idee:** Agent-Tab, der auf Basis von Zustand/Logs/Reports Runner **vorschlägt**.
+- **Ideen dürfen existieren**, aber nur als Doku/Parking (keine Umsetzung außerhalb der Pipeline).
+- **Isolation:** keine Abhängigkeit zu ShrimpDev-Core-State (kein Zugriff auf `ShrimpDev.ini`, Docking/UI-State, Runner-Registry).
+- **KPI:** Erste indexierte Seite (GSC sichtbar)
+- **Kill/Scale Kriterien:** müssen pro Site schriftlich definiert sein (kein "wird schon").
+- **Letzte Runner:** R3321–R3327, R3329
+- **Log-Tab Suche:** Suchfeld im Log-Tab, das das Log (Text) durchsucht.
+- **MVP:** *Eine* Vergleichsseite
+- **Nachsorge-Plus: Runner-Schutz und modulare Ablösung**
+- **Nicht-Ziel:** Keine Voll-Rewrites, keine Zwangsmigration bestehender Module.
+- **Nächster Block:** Docs/Strat (kein Code)
+- **Open Report** (klickbarer Link, öffnet Datei via Default-App)
+- **Option:** *Auto-Execute* nur **opt-in**.
+- **Optional (kontrolliert, APPLY):**
+- **Other**: 1
+- **Output:** Vorschlagsliste als Report/JSON (z. B. `Reports/LearningEngine/Suggestions_*.json`) + kurzer Markdown-Report.
+- **Prinzip**: UI delegiert ausschließlich an `modules/toolbar_runner_exec.py` (Single Source of Truth).
+- **Prinzip:** Add-on zuerst, Adapter statt Umbau, immer rueckbaubar.
+- **Production layer (must be syntactically clean):** `modules/**`, `main_gui.py` (und nur ausdrücklich freigegebene Prod-Tools)
+- **Public GitHub Referenz**: https://github.com/Domtexe/ShrimpDev-Public
+- **Regel:** Erst Proof, dann Skalierung
+- **Regel:** Neue Features und neue GUI-Elemente **muessen** als Baustein/Snippet umgesetzt werden.
+- **Regeln:** niemals destructive Runner ohne explizite Bestätigung; keine Background-Exec.
+- **Reports / Diagnose / Logs**: 1
+- **Runner-ID-Migration** in aktiven `modules/`-Dateien abgeschlossen → zentrale Nutzung über `modules/runner_ids.py`.
+- **Safety**: Guards/Confirm/Logging/Report-Popup (MR-konform, diagnose-first).
+- **Scope (V1):**
+- **Scope:** Log-Tab (Suche), Pipeline-Tab, weitere Filterfelder nach Bedarf.
+- **Shortcuts:** `Esc` triggert denselben Clear/Stop; optional Tooltip “Clear”.
+- **Sicherheit:** Allowlist + Dry-Run/Preview; niemals destructive Runner ohne explizite Bestätigung.
+- **Sicherheit:** Allowlist erlaubter Runner + **Dry-Run/Preview** + Abbruch/Undo.
+- **Symptom:** Buttons *Push* und *Purge* reagieren nicht / keine Aktion.
+- **Tech:** keine Blockade im UI-Thread bei sehr großem Log (chunked search / after()).
+- **ThreadCut (Pflicht)**
+- **UX:** Treffer markieren + Next/Prev (F3 / Shift+F3), optional Case-Sensitive Toggle.
+- **Verankerung:** siehe `MR-STRAT-FOCUS-01` in `docs/MasterRules.md`.
+- **Verwandtschaft:** **Agent-Tab** konsumiert diese Vorschläge (anzeigen, filtern, erklären) und führt Runner **nur opt-in** aus.
+- **Vorgehen:** Anpassung bestehender Module **nur opportunistisch** (wenn sie ohnehin angefasst werden).
+- **Why:** Spart Zeit, verhindert „Report suchen“ und erleichtert Debug/Sharing.
+- **Ziel**: Automatisches Housekeeping, insbesondere **Purge wieder vollautomatisch** (kein manueller R3106-Run).
+- **Ziel:** Aus LJ/Logs/Reports **Vorschläge** ableiten (Cluster/Häufigkeit/Impact), **ohne** Auto-Fix.
+- **Ziel:** V1.0 „daily usable“ ohne Workarounds
+- **todo implement logic here** _(Vorkommen: 2)_
+- **todo list add a high priority item about tracebacks in log** _(Vorkommen: 2)_
+- **todo pipeline eigener gui tab masterrules viewer open refresh n** _(Vorkommen: 2)_
+- **todo pipeline sondern bekommen einen eigenen tab** _(Vorkommen: 2)_
+- 2026-02-28 00:21 Nachsorge R9107: Stabilisierung/Backups + SyntaxGate. Drift-Risiko bestätigt; nächster Schritt: Call-Site-DIAG für Intake-Builder (kein Raten nach _build_intake).
+- A/B Testing für Content
+- AI Content Pipeline (Keyword → AI → QC)
+- AI Food Planner
+- AOT = aktiv
+- AOT:
+- API Access
+- APPLY: `logic_tools.py` → `runner_ids.*` (**R8398**)
+- APPLY: `module_agent.py` → `runner_ids.*` (**R8403**)
+- APPLY: `toolbar_runner_exec.py` → `runner_ids.*` (**R8401**, OK-Lauf)
+- APPLY: `ui_toolbar.py` → `runner_ids.*` (**R8399**)
+- AST Guard System
+- Abwesenheit: Absent-Safe-Replan (nur betroffene Slots neu)
+- Acceptance (für spätere Umsetzung):
+- Accessibility-Basics
+- Affiliate Einnahmen
+- Affiliate Opportunity Scanner
+- Affiliate Page Generator
+- Affiliate-Abhängigkeiten & Risiken
+- Affiliate-Performance
+- Affiliate-Programme (Mapping)
+- Alle Aktionen laufen über logic_actions (SSOT)
+- Alternativen-Seiten
+- Alternativen-Seiten-Template
+- Alternatives Pages
+- Any policy breach triggers a repair runner that sanitizes the public repo.
+- App Comparison Hub
+- Architekturentscheidung dokumentiert (PanedWindow → Grid)
+- Area marked as stable.
+- Artefakt-Hygiene: `modules/*.pre_*`, `*.bak_*`, `*_FIXED_*` aus `modules/` nach Archiv verschieben **oder** offiziell dokumentiert ignorieren.
+- Auto Documentation Generator
+- Auto Vergleichstabellen Generator
+- Auto-Content Engine (CRITICAL)
+- Auto-DIAG Engine (Codex-driven)
+- Auto-Fix Library
+- Auto-Nischen-Finder (Trends + Nachfrage)
+- Auto-Update Bot
+- Auto-Workflow Builder
+- Automation Freelancing
+- Automatische interne Verlinkung
+- Autopush reports are generated locally under `Reports/` and are not versioned in git.
+- B2B Internal Tools
+- Backup erstellen
+- Backup-Fallback
+- Bedienung im Alltag: „Klick-Workflow“ ohne Basteln
+- Broken Process Detector
+- Broken-Link-Checker
+- Bug Probability Scanner
+- Build-Pipeline (Markdown → HTML)
+- Builder-Funktion, reduziert nested closures im Hauptfile
+- Bulk Page Creator
+- Bundles
+- Buy-or-Skip-Seiten
+- Buy-or-Skip-Template
+- CTR Optimizer
+- CTR von Titles
+- Canonical Docking-Core (_r3321_) aktiv
+- Canonical autopush backend (OneDrive repo-only): `tools/R2691` (Private), `tools/R2692` (Public), `tools/R2693` (Both).
+- Chaos-to-Order
+- Checklisten
+- Clarivoo Affiliate (PRIMARY)
+- Clipboard Intelligence
+- Clipboard → Editor
+- Code Drift Prediction
+- Comparison Matrix Generator
+- Compile OK: `modules/ui_toolbar.py`, `modules/logic_actions.py`, `modules/toolbar_runner_exec.py`, `modules/module_runner_popup.py`
+- Config Integrity Guard
+- Configurator Pages
+- Consulting Bundle
+- Content-Guidelines
+- Content-Modularisierung (Bausteinsystem)
+- Content-Skeleton-Generator
+- Conversion pro Seitentyp
+- Copy: Tk clipboard (`root.clipboard_clear(); root.clipboard_append(path)`).
+- Crash Replay System
+- Crash Timeline Analyzer
+- Cross-App Copy Engine
+- DIAG (read-only): Widget-Tree-Dump des Log-Tabs
+- DIAG-first: echten Run-Flow auflösen (welche Funktion wird vom Run-Button wirklich aufgerufen?).
+- DIAG: Finaler Filter-Scan (Artefakte ignoriert) (**R8405**) → **keine aktiven Treffer** (außer `runner_ids.py` als Definitionsquelle)
+- DIAG: Scan aktive `'R####'` Literale (unfiltered) (**R8400**)
+- DISPO Tool Produktisierung
+- DOCS-Runner: **keine festen Pfadannahmen** für Pipeline-Dateien → bevorzugt `docs/PIPELINE.md`, sonst robust suchen.
+- Daily Reflection
+- Danach 1 gezielter Fix (nur ein Layer).
+- Danach erst minimaler APPLY (nur der erste belegte Blocker, keine Rewrites)
+- Danach: minimaler Finder-Fix
+- Das Problem ist **nicht primär „Verdrahtung fehlt“**, sondern wahrscheinlicher:
+- Date-Serial-Fix: Value2-Dates robust geparst (kein Doppelcount)
+- Date: 2025-12-28 23:08:17
+- Date: 2026-02-16
+- Datei = vorhanden
+- Datei → tools\
+- Datum: **2026-02-18 23:45:04**
+- Dead Feature Detector
+- Default-Zielpfad setzen
+- Dependency Graph Viewer
+- Dependency Map (visual)
+- Deprecated: `R2692/R2691` legacy autopush runners (workspace-bound). Do not wire GUI buttons to them.
+- Diagnose (R3327) ergab: kein gefahrlos löschbarer Code
+- Diagnose „No candidate“ (Regelkonflikt/zu wenige qualifizierte MAs)
+- Digital Products
+- Direct-Exec im Popup-Pfad entfernt (keine `subprocess.Popen` mehr in Popup-Flow).
+- DoD: Compile grün + E2E Mail ok
+- DoD: Gate läuft automatisch; FAIL ⇒ rc=7; keine Folgepatches.
+- DoD: MR-Kapitel mit H1–H7 + H2a (Docs-only Ausnahme).
+- DoD: Protected-Liste + Infra-Runner-Template (Backup/Diff/Gate/Smoke) + MR-Verweis.
+- DoD: RUN startet zuverlässig aus **Tree-Selection**, nicht Intake; vollständiger Run-Context; sichtbarer rc/Report.
+- DoD: Report: alle `.bat` + Referenzen; entfernen/archivieren; keine produktiven Callsites.
+- DoD: Scan letzte Reports; dedup Root-Causes; Vorschläge Lane/Priority; kein Auto-Write.
+- DoD: Smoke grün nach jedem APPLY; Report + Exitcodes.
+- DoD: Top-level Imports sauber; keine überraschenden Side-Effects.
+- DoD: alle RUN-Actions holen Context aus Selection; Intake nur Preview/Defaults.
+- DoD: keine Runner-Startlogik direkt im UI; 1 definierte `run_runner(...)`-Entry; UI bleibt responsiv.
+- DoD: keine doppelten Popup-Overlays; konsistentes Verhalten.
+- DoD: neu, klein, stabil: `run(cmd, args, cwd)` + logging + rc; optional threading sauber getrennt; Smoke-Tests.
+- DoD: weniger Tiefe im Runner-Cluster; Verhalten unverändert.
+- Docking incident resolved (legacy INI state).
+- Doku als Feature
+- Domain-Strategie (1 Domain = 1 Nische?)
+- Done-for-you Service
+- Drift Scanner (UI + duplicate code detection)
+- Dump archiviert/ersetzt, um Dubletten zu vermeiden.
+- Eigene PDFs (Decision Guides)
+- Eigene Workflows automatisieren
+- Einfügen = Clipboard ONLY (kein Datei-Load)
+- Einfügen:
+- Eingetragen: 2026-03-01 08:20
+- Entscheidungs-Matrix-Vorlagen
+- Entscheidungs-PDFs
+- Erfolgsdefinition Phase 1 (Indexierung, nicht Umsatz)
+- Erfolgsdefinition Phase 2 (Conversion, nicht Traffic)
+- Erkennen triggern
+- Erkennen:
+- Error Explainer
+- Error Heatmap
+- Evergreen Auto-Refresh (Preis/Verfügbarkeit)
+- Excel Automation Toolkit
+- Excel Macro Visualizer
+- Excel Tools Sales (DISPO/ASM)
+- Exceptions werden best-effort geloggt, aber UX kann „wirkt tot“ aussehen
+- Executor-Seite: cmd.exe-wrapper/timeout/cwd Themen bereits angefasst (siehe Snapshot/Reports).
+- Explain My Codebase
+- Explain this UI Button
+- Export must be **allowlist-based** (explicit include patterns).
+- Export must write/update `docs/Public_Contract.md` in the public repo.
+- Fairness 'Cnt bleibt 1' ist für EINEN Tag plausibel; >1 entsteht erst über mehrere Tage oder mehrfach gleiche Aufgabe pro MA am selben Tag.
+- Fairness Delta: `t_Fairness_Day` (Snapshot) → `t_Fairness` (Totals)
+- Fairness Reset: All-to-zero oder ab Stichtag (Rollback)
+- Fake Review Detector
+- Feedback Loop
+- Fehlerklasse: 'Mehrdeutiger Name' durch doppelte Helper-Funktionen (ColIx/ColIxSafe/IsJa/IsWahr etc.).
+- Fehlerklasse: Fehler 9 ('Index außerhalb des gültigen Bereichs') bei ListObject-Operationen mit Name-Lookup/Unlist/Delete → Loop-basierte Suche + lo.Delete ist stabiler.
+- File Chaos Cleaner
+- File Intent Analyzer
+- Forbidden in public: backups, reports, debug captures, registry/state, internal pipeline, internal master rules, internal journals.
+- Frage: **Warum werden Fairness-Punkte nicht gutgeschrieben, obwohl Snapshot gefüllt ist?**
+- Freemium
+- Frontmatter-Validator
+- GUI Tab "Status"
+- GUI neu starten
+- Geld entsteht über Output, nicht über ShrimpDev
+- Generator/Exporter aus docs/websites/pages
+- Global Runner Entry Mapping fehlt
+- Google Search Console Beobachtung
+- Governance Toolkit
+- Harte Regel: 1× Aufgabe pro MA/Tag (keine Doppelvergabe z. B. T08)
+- Header-Fix: `logic_tools.py` (**R8397**)
+- Header-Fix: `toolbar_runner_exec.py` (**R8402**)
+- Hinweis-Idee: Wenn `Final` (Name) gefüllt ist ⇒ MA ist geplant ⇒ 1 Punkt auf MA-ID (nur wenn Regel/Contract das so will).
+- Hub-Seiten
+- Hub-Seiten-Template
+- Hub/Spoke-Autogenerator
+- In `modules/module_runner_popup.py`:
+- Indexierungsstatus
+- Indexing-Helper
+- Internationale Expansion (DE → EN?)
+- Interne-Link-Standards
+- Jede Stufe: Backup + Report
+- Jede Änderung an Pipeline: **Backup + Report**.
+- Job Tools Platform
+- KEINE Seiteneffekte
+- Kein Angebot
+- Kein Bau neuer Produkte
+- Kein Einfluss auf Kernarchitektur
+- Kein Entwicklungsziel
+- Kein Risiko-Patch ohne eindeutigen Gatekeeper
+- Kein Vertrieb
+- Kein Zeitdruck
+- Keine Blind-Patches gemäß MasterRules
+- Keine Heuristik über `cwd`, keine „guess roots“
+- Keine Mass-Patches/Regex über Core-Module.
+- Keine Migration bestehender Aufrufer (bewusst vertagt)
+- Keine Refactors (Popup/Output/Toolbar) ohne Plan.
+- Keine Registry-/Allowlist-Annahmen (runner_ids = SSOT via Konstanten)
+- Keine Runner patchen → neue Runner bauen
+- Keine Verhaltensänderung, reine Entkopplung
+- Keine Voll-Rewrites, keine radikalen Strukturänderungen
+- Kill-Entscheidung dokumentieren
+- Kill-Kriterien für Websites (wann beenden?)
+- Klick startet R3677 mit korrektem Root
+- LEDs reset
+- LEDs setzen
+- Layout final
+- LearningJournal AI Analyse Layer
+- Liste refresh
+- Local AI Assistant
+- Local AI Dev Assistant
+- Longtail Keyword Expansion
+- MVP in 2–4 Wochen
+- Mail-Export ohne Outlook-Abhängigkeit (HTML-Datei/Entwurf)
+- Marketplace Revenue
+- Markiert am 2026-02-14 08:08:17
+- Meeting → Task Converter
+- Micro Habit Tracker
+- Micro-SaaS Tools
+- Migration einzelner Aufrufer erfolgt als separater Pipeline-Punkt.
+- Mini CRM (Teamleiter)
+- Minimal Fitness
+- Mode togglen
+- Modularität
+- Monetarisierung
+- Monetarisierung ohne Cookie-Hölle
+- Monetarisierung pro Feature
+- Monetarisierungs-Reihenfolge (Affiliate → Own Product → Bundle)
+- Monetarisierungs-Richtlinien
+- Money Visualizer
+- Multi-Agent Mode
+- Multi-Domain-Deploy
+- Multi-Site-Orchestrierung vs. Single-Mega-Site
+- Nach Neustart werden undocked Tabs nicht wiederhergestellt.
+- Nachsorge-Report: `Reports/Report_R8724_20260218_234504.md`
+- Name/Ext = erkannt
+- Name/Ext erkennen
+- Naming- & Branding-System für Sites
+- Neu triggern
+- Neu:
+- Next: **Function-Replacement** `BuildNachlassStatusTable` (1:1), danach visuelle Abnahme
+- Niche Finder
+- Nische statt Masse
+- No further action required.
+- No-Gos: keine optionalen KPI, keine stillen Fallbacks
+- Normalisierte Keys gewertet: **223**
+- Nur Markierung & Sammlung
+- Nur als potenziell wertvolle Struktur markiert
+- Offene Punkte priorisiert
+- Open: `os.startfile(path)` (Windows) / fallback.
+- Option 1: New API `execute_runner_capture(...) -> (rc, out, err)` (or dict).
+- Option 2: Extend `execute_runner(..., capture=True)` with explicit return type.
+- Optional: Outlook Classic Add-on (wenn Policy/Client passt)
+- Output/Check: Fairness-Delta muss deterministisch sein (gleiches Input → gleiches Ergebnis).
+- P3 NOTE converted to non-tasks: 31
+- P3 OBSOLETE auto-closed: 6
+- P3 items scanned: 69
+- Page-Metadata-Standard
+- Page-Speed-Baseline
+- Parser erkennt Report-Pfade in Runner-Output, z. B. `Report:` / `OK: Report:` (absolute Pfade).
+- Patch Assistant (1-Fix Rule Enforcer)
+- Pay-per-Automation
+- Performance-basierte Content-Optimierung
+- Persist (INI): OK
+- Pfad normalisieren (Windows).
+- Pipeline Executor
+- Pipeline-Fortschritt
+- Pipeline-Markierung via R3348
+- Pipeline-Review ist verpflichtend, aber nicht chaotisch: Prioritäten werden angepasst, wenn Brisanz steigt/fällt.
+- Planung stabil (Vorschlag/Override/Final), Final als Wahrheit
+- Playlist Converter (HIGH POTENTIAL)
+- Plugin Marketplace
+- Popup-Runner delegiert Execution an `modules/runner_executor.execute_runner` (SSOT).
+- Potenzielle Dubletten (Keys mit >1 Vorkommen): **4**
+- Preflight noch nicht SSOT-gekoppelt
+- Preflight-Modul vorhanden (modules/preflight_checks.py)
+- Preis-Experimente
+- Price History Pages
+- Private Repo Root: per UI „…“-Button auswählbar, in INI gespeichert
+- Pro Dublette: 1 kanonischen Task definieren, Rest als Referenz/Archived markieren oder zusammenführen.
+- Problem first
+- Problem→Solution Finder
+- Produkt-Bundles
+- Produktdaten SSOT (Zentrale DB)
+- Programmatic SEO (Template + Daten)
+- Projektstatus (Dispo, ASM, Clarivoo, Apps)
+- Prompt Library
+- Public Root: automatisch ableitbar (z. B. `ShrimpDev_REPO` → `ShrimpDev_PUBLIC_EXPORT`), optional autocreate des Ordners
+- Purge ist zur Laufzeit **gated** (bewusst): Button-Enablement hängt u. a. an `tools/R2218.cmd|py` und Busy-Guard / canonical keep-file checks.
+- Purge ruft `action_purge_one` auf
+- Purge/Housekeeping ist produktiv: räumt real auf (Archiv statt Delete), Relevanz-Policy aktiv (`tools/` zählt nicht als runtime).
+- Push ruft `action_autopush_both` (Autopush Both) auf
+- Push/Purge bleiben funktional (keine Verluste)
+- QA-Runner für Veröffentlichungs-Gates
+- R3677 bleibt purge-protected
+- R8609: Trace-DIAG „Click → Dispatch → Runner resolve → subprocess → rc → Popup“
+- Refactor Engine
+- Regression-Guard: DIAG-Runner als dauerhafte Prüfung „keine aktiven `'R####'` Literale mehr“ (ohne `runner_ids.py` + ohne Artefakte).
+- Rein beobachtend
+- Release- & Update-Workflow
+- Repo/Registry/Action-Routing in eigene Module ausgelagert (testbar)
+- Report Aggregator (Weekly Meta Reports)
+- Report erstellen
+- Report wird angezeigt
+- Report: `Excel-Projekte\Reports\Report_R8605_20260216_092823.md`
+- Reset-Mechanismus für neue Mitarbeitende
+- Restart:
+- Restore (Startup): OK
+- Reuse statt Neubau
+- Review Synthesizer
+- Review-Checklisten
+- Risiko-Reduktion (nicht alles verlinken)
+- Rule: *Pipeline items with missing runner artifacts must be tagged as Phantom/Archived until materialized.*
+- Run-Flow weiterhin **instabil / no-op** (GUI → Bridge/Logic → Executor unklar).
+- Runner Heatmap (Error/Run Frequency Analyse)
+- Runner Sandbox Mode
+- Runner Simulation Mode
+- Runner Template Marketplace
+- Runner-ID erkennen
+- Runner-Popup zeigt:
+- Runner-Presence / Pfad / Repo-Root / keep-file / Busy-Guard blockiert
+- Runner-Sequenz: DIAG wiring → APPLY DirectRun (ein Einklinkpunkt) → DIAG End-to-End.
+- SEO Content Monetization
+- SEO Gap Finder
+- SEO-Guidelines
+- SOLL: `DMS` + `Mails` als 2 Body-Zeilen direkt über `Summe` (Spalte 1)
+- SaaS Landing Generator
+- Sandbox Mode
+- Schrittweise Migration einzelner Aufrufer auf `execute_runner()`
+- Scope: **Planung** (keine Implementierung in diesem Schritt).
+- Self-Healing (LJ v2)
+- Self-Healing Runner Generator
+- Session Replay System
+- Shared Smart Calendar
+- ShrimpDev (future SaaS)
+- ShrimpHub Lite Distribution
+- Single Writer etabliert
+- Sitemap-Generator
+- Skalierungs-Trigger definieren
+- Smart Buying Assistant
+- Smart Changelog Generator
+- Smart Notification Filter
+- Smart Screenshot Tool
+- Smoke-Test **GREEN** (R8417)
+- Smoke-Test/Import-Check Runner vorhanden
+- Snapshot: `_Backups/R8724_20260218_234504`
+- Software Pain Scanner
+- Speichern:
+- Stability Score Display
+- Stand: 2026-02-21 21:12:44
+- Static-Site-Ansatz evaluieren
+- Step-Listenpunkte beginnen mit `-` und sind korrekt eingerückt
+- Syntax = Code valide
+- System Complexity Visualizer
+- Systemstatus (GUI, Runner, Compile, Git)
+- Tageswechsel sauber (Neuer Tag / Reset)
+- Tasknamen statt IDs
+- Tasks gescannt (task-like): **241**
+- Team-Lizenzen
+- Tech-Debt / Risiken
+- Template Sales
+- Template Store
+- Templates
+- Templates (Matrix, Checklisten)
+- The public repo is **not a mirror**. It is a curated export.
+- Tool Bundles
+- Tool Comparison Platform
+- Top-10 Generator
+- Treat these as **ARCH/HISTORICAL** unless we explicitly *materialize* missing runners.
+- Treeview Sort Engine (Name / Date / Time)
+- UI Layout Visualizer
+- UI enthält KEINE Logik → nur Bindings
+- UI-Wiring ist vorhanden:
+- Umlaute/Encoding sauber
+- Undo Everything System
+- Undo:
+- Undock / Redock: OK
+- Universal Config Sync
+- Update-Frequenz vs. Ranking
+- Ursache: DISPO!C2 war optisch Datum, aber technisch Text → IsDate() schlägt fehl; robustes Parsing nötig.
+- Ursache: String/Concatenation-Brüche in `BuildNachlassStatusTable` (Insert/Patch Drift)
+- Vergleichsseiten (v1, v2, vX)
+- Vergleichsseiten-Template
+- Verhalten (Zielbild):
+- Verify FINAL dokumentiert (R3431)
+- Verify-Lauf grün: R3413 (Exit 0)
+- Verify-Runner ohne Crash
+- Verify: R3413 Exit=0
+- Vertrauens- & Ethik-Regeln (wann bewusst NICHT monetarisieren)
+- Voice-to-Task
+- Vorschlagslogik stabil (Primär/Sekundär) + reproduzierbar
+- Website-Portfolio-Strategie (viele kleine vs. wenige große)
+- Weiterer Abbau = eigenes Refactoring-Projekt
+- Wenn Fix nicht direkt verifiziert: Diagnose zuerst (MR)
+- Wenn Runner-Artefakte fehlen: Phantom/Archived taggen (bestehende Regel beibehalten).
+- Wenn kein Report gefunden: UI-Elemente deaktiviert/ausgeblendet.
+- White-Label
+- Widget-Hierarchie
+- Wiedereinstieg definiert (R9301)
+- Workflow Memory
+- Workflow Recorder
+- Workflow-Denken
+- Zentrale Executor-Schnittstelle vorhanden (`modules/runner_executor.py`)
+- Zentraler Hook NICHT gesetzt (bewusste Entscheidung nach DIAG)
+- Zentraler Hook bleibt Tech-Debt Task
+- Zentraler, minimaler Einstiegspunkt `modules/runner_executor.py` eingeführt
+- Ziel: 1 Klick-Workflow, klare Ownership, keine Side-Writes in Formelspalten.
+- Ziel: KPI immer in Mail (t_Status_Zahlen) + Zuteilungen aus t_DISPO_Slots
+- Zielpfad = gültig
+- Zustand stabilisiert
+- Zweck: Ein-Klick-Ausführung von `R3677` (Hugo build + interne Deadlink/Target-Prüfung).
+- [ ] (LOW) Runner-WARN `venv python not found` / Template-Policy: WARN ist kosmetisch; Templates greifen nur bei Neugenerierung; optional später `REQUIRE_VENV`-Flag (WARN nur wenn explizit verlangt).
+- [ ] (P3) **Codex CLI Setup** (Installation + local smoke: `codex --version`)
+- [ ] (P3) **Pilot: DIAG-only Worker** (Workspace-Isolation, Diff/Report, kein Auto-Apply)
+- [ ] (P3) **Security/Controls**: strikt nur im Workspace, Report-Gate, keine direkten Änderungen am Haupttree
+- [ ] (P3) **WE-20: Multi-Site-Orchestrierung** (Vorlagen, Deployment, Tracking)
+- [ ] (P3) **WE-21: KPI-Tracking** (Impressions/Clicks/CTR/Revenue; wöchentliche Review)
+- [ ] (P3) Local SEO Seiten
+- [ ] (P3) Nischen-Wiki Systeme
+- [ ] (P3) Tool Library (ShrimpLib Bundle)
+- [ ] (P3) [CORE] AutoFix AI — Diagnose Tool (skalierbar, später)
+- [ ] (P3) [CORE] Digital Declutter — File Cleanup Tool (ShrimpDev Integration möglich)
+- [ ] (P3) [CORE] JobHelper — Excel Automation Tools (Monetarisierung schnell möglich)
+- [ ] (P3) [CORE] SecondBrain Lite — Minimal Tracking (LJ Integration möglich)
+- [ ] (P3) [STRAT] DealRadar — echte Deals mit Preisverlauf + Affiliate
+- [ ] (P3) [STRAT] FoodOptimizer — Zutaten → Rezept (Content + Affiliate)
+- [ ] (P3) [STRAT] KidSignal — Kinderverhalten verstehen (Premium Content)
+- [ ] (P3) [STRAT] QuickSite Builder — 1-Klick Affiliate Seiten (Langfrist-Plattform)
+- [ ] (P3) [STRAT] RealityCheck — ehrliche Zielbewertung (viral Potential)
+- [ ] (P3) [STRAT] Was lohnt sich heute — Mikro-Entscheidungs-App (lokal + Affiliate)
+- [ ] (P3) [STRAT] Website-MVP: Entscheidung dokumentieren (skalieren oder verwerfen)
+- [ ] (P3) [STRAT] Website-MVP: Indexierung & Impressions beobachten (Search Console)
+- [ ] **Anchor-Patch Prinzip:** 1 Runner = 1 klarer Fehler, keine Multi-Patches
+- [ ] **Baustein-/Snippet-Spec (1 Seite) inkl. DoD, No-Gos, Escape-Hatches**
+- [ ] **Call-Site DIAG:** echten Intake-Builder finden (Name/Ort/Signatur) + Call-Sites belegen
+- [ ] **Codex CLI installieren & Projekt-Trust setzen** (lokal) + Basiskonfig (read-only default)
+- [ ] **Diagnose zuerst erzwingen:** Wenn Fix nicht beim 1. Versuch verifiziert → Diagnose-Runner Pflicht
+- [ ] **Doppelte UI-Blöcke:** erst entfernen, wenn neue Verdrahtung verifiziert ist (Smoke grün)
+- [ ] **Intake: Button „Gate: R3677“ (Pipeline)**
+- [ ] **Kritische Runner absichern:** Wiederherstellung + Schutzregeln (z. B. T666 & Co.)
+- [ ] **Layout-Fix (nur 1 Patch):** LEFT=Intake, RIGHT=Output+Toolbar+Tree (erst messen, dann fixen)
+- [ ] **Pre-Start Gate:** Import/Syntax/Smoke vor GUI-Work (Reportpflicht)
+- [ ] **Projekt-Konfig:** `.codex/config.toml` im Repo (read-only → workspace-write nur für Fix-Runner)
+- [ ] **Purge strikt Whitelist (Exact-only)**, keine Patterns
+- [ ] **Reports erweitern:** Diff-Übersicht, betroffene Dateien, Tests, „Was wurde NICHT geändert“
+- [ ] **Runbook:** `docs/CODEX_RUNBOOK.md` (No-Gos: keine Rewrites, DIAG first, max 1 Fix, Smoke Pflicht)
+- [ ] **Runner-Set (cmd+py):** `codex_readonly`, `codex_diag`, `codex_fix_one`
+- [ ] **Schutz-Count normalisieren:** Ursachen dauerhaft abstellen (Scan-Breite/Doku-Effekt)
+- [ ] **Smoke-Runner:** `smoke_min` (Start/Import/GUI sanity, Exit-Codes, Report)
+- [ ] 1 Referenz-Action-Baustein (Hello/Diag)
+- [ ] Adapter statt Rewrite (Mastermodus: minimal-invasiv, rueckbaubar)
+- [ ] Add a short “when this warning appears” troubleshooting snippet (docs-only)
+- [ ] Architektur-Prinzipien ergänzt (R3569)
+- [ ] Audit: alle Code-Stellen, die `workspace_*` referenzieren → entfernen/migrieren
+- [ ] Baustein-/Snippet-Spec (1 Seite)
+- [ ] Buttons call logic_actions → executor
+- [ ] Crash-Heatmap, Wiederholquote, Zeit-of-Pain
+- [ ] Danach: RUN Button wiring DIAG → 1 Fix → Funktionstest (cmd/py Dispatch).
+- [ ] Define one canonical entrypoint (e.g. `runner_exec.run_by_id(app, "R####")` or `app.run_runner_by_id("R####")`)
+- [ ] Definition of Done (Baustein)
+- [ ] Dokumentation: Architektur + MasterRules + Pipeline referenzieren
+- [ ] Empfehlung: Lane/Phase + nächster Runner-Typ (DIAG/APPLY)
+- [ ] Ergebnis als Agent-Report schreiben (kein Auto-Schreiben in PIPELINE)
+- [ ] Executor responsibilities:
+- [ ] Explicitly enforce: DIAG → one APPLY → stop; no “runner fixes runner fixes runner”
+- [ ] Extract pure helper pieces if needed (icons/layout/widgets) into small modules
+- [ ] FAIL/WARN/ExitCodes + Keywords clustern (Dedup)
+- [ ] Hot/Cold Modul-Matrix
+- [ ] INI redirects -> trend to zero (canonical path: `registry/ShrimpDev.ini`, remove hardcoded root INI reads/writes)
+- [ ] INI: `[Repo] private_root`, `[Repo] public_root`, `[Repo] public_autocreate`
+- [ ] Intake Build stabilisieren (keine geschluckten Exceptions).
+- [ ] Keine Migration als Ziel (nur Standard fuer Neues)
+- [ ] Left/Right (Paned) korrekt: `paned.add(...)`, keine `left/right.pack(...)` Restlinien.
+- [ ] MR-Block vorhanden (R3568) ✅
+- [ ] Nachsorge-Runner immer: Backups + Report + marker-basierte Docs-Updates
+- [ ] No UI module calls subprocess directly
+- [ ] No-Gos & Escape-Hatches (80/20, Fail-soft, kein Magie-Scanning ohne Whitelist)
+- [ ] Nur wenn bestehende Module ohnehin angefasst werden
+- [ ] One Push button + one Purge button in code (no duplicates)
+- [ ] One place to change behavior (Single Source of Truth)
+- [ ] Optional: 1 Referenz-GUI-Tab-Baustein (Notebook-Tab)
+- [ ] Phantom runner references: must be tagged/archived until materialized (already started)
+- [ ] Pipeline-Eintraege fuer neue Features referenzieren eine Baustein-ID
+- [ ] Pipeline-Tasks vorhanden (R3569)
+- [ ] Public Root ableiten; Ordner bei Bedarf anlegen; **kein erzwungenes `git init`**
+- [ ] Push uses executor, Purge uses executor
+- [ ] RUN soll **ausführen**, nicht Generator eskalieren (cmd+py Standard bleibt)
+- [ ] Rechte Seite wieder aufbauen: Tree/Toolbar/OutputDisplay wieder einhängen.
+- [ ] Reduced repair cascades; fixes are measured & bounded
+- [ ] Replace any ad-hoc subprocess/runner wiring in UI code to call the executor only
+- [ ] Report vorhanden (R3568 + R3569)
+- [ ] Runner, die künftig wieder genutzt werden, müssen **protected/whitelisted** werden
+- [ ] RunnerExec/DirectRun Regeln dokumentieren + enforced
+- [ ] ShrimpHub uebernimmt Baustein-Standard schrittweise per Produkt-Pipeline
+- [ ] Stabilitäts-Score in GUI
+- [ ] UI: „…“ Button zum Setzen von `private_root`
+- [ ] Warning indicates NEW redirects, not historical noise
+- [ ] Weitere Produkte uebernehmen Standard nach Bedarf
+- [ ] Wenn Funktion ersetzt wird: **modularer Ersatz**, Alt-Runner erst nach Stabilitätsnachweis aus der kritischen Nutzung nehmen
+- [ ] Workspace als Root-Quelle deaktivieren (UI/Logic dürfen `workspace_root` nicht mehr als Default verwenden)
+- [ ] `Reports/` scannen (z. B. letzte 30)
+- [ ] `modules/baustein_contract.py` (Result/Contract)
+- [ ] `modules/baustein_registry.py` (Registry, fail-soft)
+- [ ] `ui_project_tree.enable_*` Calls: `hasattr`-guard oder entfernen.
+- [ ] log report path and exit code (no Tk callback explosions)
+- [ ] no INI writes
+- [ ] no duplicate button builders
+- [ ] no runner wiring logic beyond calling logic_actions/executor
+- [ ] py_compile green
+- [ ] resolve cmd path deterministically
+- [ ] run in a robust way (cwd/root consistent)
+- [ ] ui_toolbar becomes UI-only:
+- [ ] validate runner id format
+- [ ] „Übernimm Todo #X“ schreibt **genau einen** Pipeline-Eintrag (dedupe-sicher, Token Pflicht)
+- [2026-02-12 13:32] R8488: DISPO Layout manuell finalisiert (Nachsorge-Report: Report_R8488_20260212_133247.md)
+- [TD] Consolidate duplicated Output-Capture blocks in `logic_actions.py` (L1428/L1698) into one internal helper (no behavior change).
+- [TD] Define **return contract** / capture-mode for runner execution:
+- [TD] Document SSOT boundary: UI-triggered runner starts must use SSOT; Output-Capture exec may stay local unless capture-API exists.
+- [x] (DONE) **Intake/Intake.py / Runner-Thema fallen gelassen (Nutzerwunsch)**
+- [x] (DONE) APPLY: Fix: Runner-ID mismatch (py = cmd-1) (R3351)
+- [x] (DONE) APPLY: config_loader INI writes -> ini_writer.write() (R3349)
+- [x] (DONE) APPLY: module_docking cfg.write(f) -> ini_writer.write() (R3354)
+- [x] (DONE) Agent-Tab Empfehlungen stabilisiert: R2086 baseline/delta + R1802 Stamp (Agent_LastDiag.json) + robust anchors (R3837–R3844).
+- [x] (DONE) DIAG: INI write offenders scan (R3347) → Report_R3347_20260112_125757.md
+- [x] (DONE) Docs: Runner Architecture – Lessons Learned (R3346)
+- [x] Rotate/truncate INI redirect log (R3517) so warnings represent real deltas
+- `.cmd` ist Standard-Runnerformat (keine `.bat`).
+- `R2374 / R2375 / R2377 / R2378` are **referenced historically** (docs/pipeline), but **no active runner files** were found in the repo scan.
+- `R2379` exists as tools runner files, but other references are largely docs/reports.
+- `ShrimpDev.ini` `[Docking]` bleibt unverändert trotz undocked Tabs / App close.
+- `_persist_one()` enthält try/except-Leichen; Writer-Pfad nicht robust/diagnostizierbar.
+- `call_action(app, name)` robust + logging
+- `docs/CHANGELOG.md`, `docs/VERSION.txt`
+- `docs/FILE_MAP.md`, `docs/SYSTEM_MAP.md` (falls vorhanden)
+- `docs/MasterRules.md`
+- `docs/PIPELINE.md`
+- `docs/SHORTCODES.md`
+- `docs/templates/*`
+- `jobs:` → darunter müssen Job-IDs **eingerückt** sein (z. B. ` lint:`)
+- `logic_actions.py` direkte `subprocess.run([cmd_path])` Blöcke bewusst **nicht** umgestellt: benötigt `rc/out/err` (Output-Capture); `execute_runner` ist fire-and-forget (siehe `_r1851/_r1852`).
+- `modules/module_docking.py`: `DockManager.persist_all()` führt keinen finalen Write/Commit aus (Legacy/Fragment; kein zuverlässiger Save).
+- `python -c "import modules.ui_toolbar"` (und optional GUI-smoke, wenn vorhanden)
+- `read_registry_path()`, `is_git_repo()`, `repo_pushable()`
+- `runs-on:` / `steps:` sind **unter dem Job** eingerückt
+- `ui_toolbar.py` wird deutlich dünner (Orchestrator)
+- abweichender Parent-Frame
+- auf `skip` gesetzt
+- gemerged
+- gesetzt am 2026-01-12 14:14
+- gesplittet
+- keine #NAME? / Spill-Fehler / „schreibt sonstwo hin“
+- klar als **Gate** gekennzeichnet (protected/whitelisted)
+- letzten Zustand wiederherstellen
+- listet Funktionen, nested helper, after()-ticks, referenced actions, risk lines
+- neue Runner-ID vorbereiten
+- nur Orchestrator-Aufrufe, keine Logikvermischung
+- nutzt den kanonischen Runner-Executor
+- oder als `obsolet` markiert werden.
+- optional Report / CLI
+- owner: Dom
+- priorisiert
+- report: Report_R3349_*.md | pipeline mark: R3350 | 2026-01-12 14:26
+- report: Report_R3351_*.md | pipeline mark: R3352 | 2026-01-12 14:39
+- report: Report_R3354_20260112_145514.md | pipeline mark: R3355 | 2026-01-12 15:02
+- reproduzierbare Ergebnisse (gleiches Input → gleiches Output)
+- since: 2026-01-26 08:41
+- stabile Datenstruktur / klare Tabellen
+- stdout/stderr nach bekannten Mustern scannen (Regex).
+- ttk.Button vs. tk.Button
+- zeigt nach Run den neuesten Report (Report-Viewer, kein Log-Popup)
+- Änderungen müssen docs-konsistent sein (MasterRules, FILE_MAP, PIPELINE, SHORTCODES).
+- Übersichtsseiten
+- ✅ **P6P/P&P Buttons stabil** (Push/Purge): Bridge→logic_actions→runner_exec, PP_DIAG entfernt. (Nachsorge: `Report_R8651_20260216_233513.md`)
+- (P0) **A-P0-01: RUN wieder funktionsfähig via Direct-Run Bypass**
+- (P0) **A-P0-02: Compile-Gate blockierend vor RUN & APPLY (Code)**
+- (P0) **NEXT (P0):** Compile-Gate Pflicht bei jedem GUI-Patch (py_compile + Report).
+- (P0) **NEXT (P0):** GUI-Integration Codex-Buttons über Anchors (kein main_gui Wild-Patching).
+- (P0) **P0**: Central BAT Guard (1 Chokepoint, rc=7 + Report), keine Massenedits
+- (P0) **P0**: R8485 Rollback/Restore (zu breite Änderungen; MR-H1/H7)
+- (P0) **P0**: Smoke-Test RUN (DirectRun + Compile-Gate)
+- (P0) **P0.A Runner-Execution isolieren**: Threading/Subprocess aus `ui_toolbar.py` hinter eine klare API; UI ruft nur noch Orchestrator auf. — DONE (verified) (Report_R3402_20260112_233849.md) (Report_R3403_20260112_234334.md)
+- (P0) **P0.B Smoke/Crash-Schutz**: Read-only Smoke-Runner vor APPLY-Stufen (Import + minimaler Toolbar-Aufbau wenn möglich). — DONE (verified via R3390 on 2026-01-12) (Verification: Report_R3390_20260112_210110.md)
+- (P0) **P0.C Central Dispatch Entry-Point**: toolbar actions laufen über `_dispatch_action(...)` (minimaler Router-Einstieg, keine Behavior-Änderung). (Verification: Report_R3409_20260113_095743.md) — DONE (verified 2026-01-13)
+- (P0) Each remaining P0 must state a *crash/start symptom* and a *clear DoD*.
+- (P0) Only items that **block app start** or **cause crashes in default flows** remain P0.
+- (P0) P0: Kumulierung über Tage verifizieren: PlanDate wirklich wechseln (>) und dann Fairness Totals prüfen (Cnt > 1 muss vorkommen).
+- (P0) Separater Pipeline-Punkt, kein Bestandteil dieses P0
+- (P0) [ ] (P0) (AFTER DISPO V1.0) **FIX: Push + Purge Buttons ohne Funktion (Verdrahtung/Action-Routing defekt)**
+- (P0) [ ] (P0) **A: Fairness/Snapshot stabilisieren (Ursache final isolieren, kein Trial-&-Error)**
+- (P0) [ ] (P0) **DISPO Mail: feste KPI finalisieren (View → Mail → fertig)**
+- (P0) [ ] (P0) **DISPO-Tool V1 stabilisieren (produktiver Einsatz)**
+- (P0) [ ] Priorität P0–P2 vergeben
+- (P0) [P0] Compile-Gate-Pflicht für UI-Patch-Runner (`python -m py_compile ...`)
+- (P0) [P0] Compile-Gate: zusätzlicher Guard “broken try/except/finally” (blockierend rc=7) – zentral, eine Stelle
+- (P0) [P0] Purge auf Whitelist-SSOT umstellen (Exact-only) – Scan nur Diagnose
+- (P0) [P0] R3106 entschärfen oder deaktivieren (kein Scan-driven Entscheidungs-Purge)
+- (P0) [P0] Safe UI-Polish (Spacing/Alignment/Buttons) **ohne** große Block-Rewrites in `main_gui.py`
+- (P0) [P0] Smoke-Test Routine: (1) Import-Check (R8502) (2) GUI-Start (3) RUN (dry)
+- (P0) [x] (P0) [CORE] **main_gui.py Stabilität: Silent-Exceptions sichtbar gemacht** (R3333; DIAG: R3331/R3332)
+- (P0) [x] (P0) [CORE] CI Syntax-Gate scoped + YAML valid (R2653/R2654)
+- (P1) **A-P1-01: RunnerExec Clean-Rebuild (minimal, testbar)**
+- (P1) **A-P1-02: Protected-Files Schutzglas (Infra-Runner only)**
+- (P1) **B-P1-01: SSOT-Refactor RUN (Selection-only)**
+- (P1) **C-P1-01: Legacy Sweep — BAT-Reste inventarisieren & neutralisieren**
+- (P1) **C-P1-02: Report-Agent MVP (Reports → Todos → Priorisierung, read-only)**
+- (P1) **D-P1-01: MR-Update Block “Stop-the-line / Protected / SSOT / Bypass”**
+- (P1) **D-P1-02: PIPELINE-Schärfung für diese RUN-Stabi-Serie**
+- (P1) **P1**: BAT-Entkopplung vervollständigen (nach Guard)
+- (P1) **P1.A Popup/Report-Handling konsolidieren**: ein kanonischer Pfad für Report-Anzeige (Push/Purge gemäß Standard). — DONE (verified) (Report_R3393_20260112_221547.md) (Report_R3394_20260112_222242.md)
+- (P1) **P1.B Import-Hygiene/Verantwortlichkeiten**: redundante/verteile Imports reduzieren (nur minimal, ohne Semantikänderung).
+- (P1) Historical/architectural items or feature hardening belong to P1/P2.
+- (P1) P1: Diagnose-first: Fairness-Run soll 3 Zahlen loggen (Rows gelesen / Keys gezählt / PlanDate serial).
+- (P1) P1: Slot-Tabelle robust referenzieren (t_SLOTS vs t_DISPO_Slots) – keine harten Namen ohne Fallback.
+- (P1) [ ] (P1) **B: Assign/Override/Final-Flow konsolidieren + Orchestrator „Neue Planung“**
+- (P1) [ ] (P1) **C: View/Mail finalisieren**
+- (P1) [ ] (P1) **DIAG-Standard vereinheitlichen** (SOLL/IST, Ursachen, Next Steps, Pfadchecks)
+- (P1) [ ] (P1) **FAIL-Report-Header standardisieren** (Fail-Reason, Top-3 Ursachen, Next Runner)
+- (P1) [ ] (P1) **Governance-Schärfung (R3568/R3569):** Pipeline-SSOT, Diagnose-first (Enforcement), Runner Scope-Lock, Definition of Done, Stop-Kriterien
+- (P1) [ ] (P1) **Last-Known-Good Marker** nach grünem Smoke-Test
+- (P1) [ ] (P1) **Report-Agent: Reports-Auswertung → Todos ableiten → priorisieren → Pipeline-Einsortierung (MVP DIAG, optional APPLY)** <!-- TASK_REPORT_AGENT__R3755_NACHSORGE_RUNNER_PROTECT --> - **Quelle/Referenz:** R3755 (Agent-Report), R3753 (Output-Guard), Nachsorge-Regeln (MR-NG*) - **MVP (DIAG / read-only):**
+- (P1) [ ] (P1) **Report-Index** (letzte Reports, OK/FAIL, Links)
+- (P1) [ ] (P1) **Runner-Preflight zentralisieren** (python/venv/git/node/rights/root)
+- (P1) [ ] (P1) Auto-Runner Generator (KI-basiert)
+- (P1) [ ] (P1) Crash Analyzer (Logs clustern + Ursachen)
+- (P1) [ ] (P1) DISPO Flexibilität (Config Fields + Regeln)
+- (P1) [ ] (P1) Dynamische Views (Auto-Anpassung)
+- (P1) [ ] (P1) Fix Engine (Scan → Analyse → Auto-Fix)
+- (P1) [ ] (P1) Idea Incubator (Ideen sammeln + bewerten)
+- (P1) [ ] (P1) KI Code Fixer
+- (P1) [ ] (P1) KI Log Analyzer
+- (P1) [ ] (P1) Lokale KI Integration (Ollama API Bridge)
+- (P1) [ ] (P1) Pipeline Auto-Optimizer
+- (P1) [ ] (P1) Project DNA System (Ziel / Aufwand / ROI)
+- (P1) [ ] (P1) ShrimpCore: Command-System (plan/fix/build)
+- (P1) [ ] (P1) ShrimpDev Brain (Decision + Pattern Recognition)
+- (P1) [ ] (P1) State Engine + Session Snapshot
+- (P1) [ ] (P1) [CORE] **Prüfen/Plan: modules/ui_toolbar.py modularisieren** (Import-kritisch) — Ziel: kleine Module (builders/actions/hooks), weniger Seiteneffekte, bessere Testbarkeit
+- (P1) [ ] (P1) [CORE] CI: Reports wieder als GitHub Actions Artefakte anzeigen (Runner R2656)
+- (P1) [ ] (P1) [PROD] ShrimpDev: Artefakte-Tab prüfen/reaktivieren, falls Anzeige fehlt
+- (P1) [ ] (P1) [STRAT] Website-Portfolio: Domain-Strategie festlegen (1 Domain pro Nische)
+- (P1) [ ] (P1) [STRAT] Website-Portfolio: Erfolgskriterien Phase 1 definieren (Indexierung/Impressions)
+- (P1) [ ] (P1) [STRAT] Website-Portfolio: Scope definieren (viele kleine Sites, kein Monolith)
+- (P1) [ ] (P1) [STRAT] Website: 1 MVP-Nische final auswählen und begründen
+- (P1) [ ] (P1) [STRAT] Website: Ideenliste mit 20–30 konkreten Produkt-/Problem-Nischen erstellen
+- (P1) [ ] (P1) [STRAT] Website: Priorisierungsmatrix definieren (Volumen × Konkurrenz × Monetarisierung)
+- (P1) [ ] (P1) [STRAT] Website: Suchlücken-Check (Suchintention + Konkurrenz grob bewerten)
+- (P1) [P1] Autopush repo-only finalized: GUI uses R2691/R2692/R2693; legacy R2692/R2691 deprecated; gitignore ignores only Report_R269{1..3}_*.md.
+- (P1) [P1] Debug Output: SSOT `root/debug_output.txt` + GUI Log-Tab/View (statt Runner-Popup)
+- (P1) [P1] Purge-Reports standardisieren (was bleibt/was geht/warum), ohne Docs/Reports als Referenzquelle
+- (P1) [P1] UI-Layout-Konsolidierung (pack/grid nicht mischen) — nur nach Diagnose + klarer Strategie
+- (P1) [x] (P1) [CORE] **INI Redirect Logging Noise gedrosselt (Callsite-Gating)** (R3334)
+- (P1) [x] (P1) [CORE] Docking: **Konsolidierung der Undock-Overrides** (R3302–R3315) in eine kanonische Implementierung — DONE (verified) (Report_R3397_20260112_224300.md) (Report_R3398_20260112_225641.md)
+- (P1) [x] (P1) [CORE] Docking: **Verify-Runner** für Undock/Restore/UI-Integration (inkl. Log-Tab Button-Row)
+- (P1) id: P1-R2086-baseline-and-pipeline-active-flag
+- (P2) **P2 Nested-def Reduktion (nur wo nötig)**: kritische nested Worker/Callbacks testbarer machen (ohne Vollrewrite).
+- (P2) P2 (UX/Workflow), nach Stabilität/CI-Blockern.
+- (P2) P2: Abwesenheit (AbwesendHeute=Ja) → Button 'Replan (Safe)' triggert Replan + Delta-Update (Totals = Totals - Alt + Neu).
+- (P2) [ ] (P2) **Automatisierungskonzept**: ShrimpDev-gestützt planen/tracken; später Trigger/Deploy prüfen (Hosting: netcup)
+- (P2) [ ] (P2) **Decision-/Rejected-Ideas-Log** minimal pflegen (1 Satz „warum nicht“ statt Vergessen)
+- (P2) [ ] (P2) **Hybrid-Seitenkonzept**: plain + hochwertiger Mehrwert-Content (nicht nur Tabellen)
+- (P2) [ ] (P2) **Public/Private Repo Audit-Rhythmus** definieren (z. B. alle 10 Runner oder wöchentlich): „was darf public / was nie“
+- (P2) [ ] (P2) **Update-Routine**: regelmäßige Content-Aktualisierung (Fälligkeiten, Sichtbarkeit „lebt“)
+- (P2) [ ] (P2) **WE-01: Marken-/Domain-Strategie festlegen** (eine Marke vs. viele; Namenssystem)
+- (P2) [ ] (P2) **WE-02: Technik-Stack festlegen** (Static/Hybrid/CMS; Generierungs-Workflow)
+- (P2) [ ] (P2) **WE-03: Nischen-Funnel definieren** (Idee → Validierung → Content-Cluster → Launch)
+- (P2) [ ] (P2) **WE-04: “Suchlücken”-Validierungscheckliste** (Suchintention, Konkurrenz, Monetarisierung, Aufwand)
+- (P2) [ ] (P2) **WE-10: 10 Nischenideen sammeln** (kurz, messbar)
+- (P2) [ ] (P2) **WE-11: Top 3 Nischen validieren** (SERP-Check, Konkurrenz grob, Monetarisierungsweg)
+- (P2) [ ] (P2) **WE-12: Erste Site auswählen + Scope 1** (Start: 1 Thema, 1 Struktur)
+- (P2) [ ] (P2) **WE-13: Content-Cluster Plan** (Pillar + 10 Supporting Posts)
+- (P2) [ ] (P2) **WE-14: Produktions-Template für Inhalte** (vergleichbar/entscheidungshilfe-orientiert)
+- (P2) [ ] (P2) Affiliate Funnel (Tool → Website → Conversion)
+- (P2) [ ] (P2) Anti-Chaos Engine (Fokus/Task-Lock)
+- (P2) [ ] (P2) Clarivoo Content Factory (Batch Seiten)
+- (P2) [ ] (P2) Data Cleaner Tool
+- (P2) [ ] (P2) Decision Engines (Website + Tool Kombi)
+- (P2) [ ] (P2) Decision Log (Rejected Ideas Tracking)
+- (P2) [ ] (P2) Decision Websites (Produktentscheidungen)
+- (P2) [ ] (P2) Execution Engine (Idee → Runner-Kette)
+- (P2) [ ] (P2) Externe Produktversion vorbereiten
+- (P2) [ ] (P2) Feedback Loop System (Learnings → MR)
+- (P2) [ ] (P2) Fix-as-a-Product (Mini Tools verkaufen)
+- (P2) [ ] (P2) Folder Organizer Tool
+- (P2) [ ] (P2) KI Content Generator
+- (P2) [ ] (P2) KI Decision Engine
+- (P2) [ ] (P2) KPI Dashboard Ausbau
+- (P2) [ ] (P2) LearningJournal 2.0 (Auto-Learn aus Fehlern)
+- (P2) [ ] (P2) Mail Automation Engine
+- (P2) [ ] (P2) Routine Builder
+- (P2) [ ] (P2) Simulation Mode
+- (P2) [ ] (P2) System Health Score (Module/Runner Bewertung)
+- (P2) [ ] (P2) [CORE] LearningJournal Auto-Write: Diagnose + Guard (nach CI stabil)
+- (P2) [ ] (P2) [STRAT] Website-MVP: Minimale Seitenstruktur definieren (Start + 1–3 Kernseiten)
+- (P2) [ ] (P2) [STRAT] Website-MVP: SEO-Basics als Checkliste dokumentieren (URLs, H1/H2, interne Links)
+- (P2) [ ] (P2) [STRAT] Website-MVP: Tech-Setup festlegen (Static/CMS/Hybrid – bewusst simpel)
+- (P2) [P2][IDEA] Clarivoo Conversion Booster Pages (Top3/Use-Case Seiten → höhere CTR/CVR)
+- (P2) [P2][IDEA] Clarivoo Evergreen Engine (evergreen Kategorien identifizieren & priorisieren)
+- (P2) [P2][IDEA] Clarivoo Money Radar (Trends/Suchintention → Content-Priorisierung)
+- (P2) [P2][IDEA] DISPO Fairness Score 2.0 (Index über Wochen, schwere Aufgaben, Schichten)
+- (P2) [P2][IDEA] DISPO Reality Mode (Abwesenheiten/Änderungen simulieren → Replan Vorschläge)
+- (P2) [P2][IDEA] ShrimpDev AutoFix Engine (LearningJournal → Auto-Fix Vorschläge aus Logs/Patterns)
+- (P2) [P2][IDEA] ShrimpDev Crash Heatmap (häufigste Crashes nach Modul/Runner/Zeit)
+- (P2) [P2][IDEA] ShrimpDev Runner DNA System (Analyse erfolgreicher Runner-Strukturen → Best Practices)
+- (P2) [P2][IDEA] ShrimpHub Asset Brain (Wiederverwendung: Assets/Skripte/VO intelligent matchen)
+- (P2) [P2][IDEA] ShrimpHub Storyboard → AutoVideo Pipeline (Script/Szenen/Prompts/VO/Struktur)
+
+## Lane A
+
+- (P0) **Lane A — Stabilität / Crash / Startfähigkeit (P0/P1)**
+- (P0) **Regel:** Solange relevante P0/P1 (Lane A/B) offen sind, werden keine neuen Produkte/Repros gestartet.
+- (P0) DoD: DoD & Runner-Sequenzen klar; P0 Lane A hat Vorrang.
+
+## Lane B
+
+- **Lane B – DONE** (Nachsorge & Hardening: R3770, R3772, R3773, R3774, R3775) — Hardening / Guardrails (post-P&P, post-R3510..R3517)
+- [x] Lane B: UI Purge Guard enforces canonical `registry/tools_keep.txt` (R3566).
+- (P1) **Lane B — Core Features (P1/P2)**
+
+## Lane C
+
+- (P1) **Lane C — Tooling / Automationen (P1/P2)**
+
+## Lane D
+
+- (P1) **Lane D — Doku / Regeln / Konsistenz (P1/P2)**
+
+## Lane E
+
+- (P2) **Lane E — Website / SEO-Netzwerk (P2/P3)**
+
+## Lane G
+
+- Tasks sind pro Lane gruppiert.

@@ -177,6 +177,11 @@
 ---
 
 ## Lane A — Stabilität & Core
+<!-- R9316_A_IDEAS_BEGIN -->
+### Lane A — Stabilität / Core — ergänzt durch R9316
+
+- [ ] (P1) [CORE] **System Health Dashboard** — Stabilitätsmetriken aus Logs, Reports und Crash-Signalen.
+<!-- R9316_A_IDEAS_END -->
 <!-- R3512_LANE_A_P0_START -->
 **R3512 NOTE – Lane A P0 Clarification (post-phantom cleanup):**
 - Only items that **block app start** or **cause crashes in default flows** remain P0.
@@ -958,6 +963,12 @@ Damit ist der gesamte P1-Docking-Komplex formal abgeschlossen.
 
 ## Lane E — Websites / SEO / Monetarisierung (Ideen-Dump)
 **Hinweis:** Konsolidiert nach `## Lane E — Websites / SEO / Monetarisierung (konsolidiert)` durch R3555 (2026-01-17 23:39).
+<!-- R9316_E_IDEAS_BEGIN -->
+### Lane E — Websites / Monetarisierung — ergänzt durch R9316
+
+- [ ] (P2) [STRAT] **Review Analyzer** — Vor- und Nachteile aus Bewertungen konsolidieren.
+- [ ] (P3) [STRAT] **Evergreen Content Scanner** — Veraltete Content-Seiten identifizieren.
+<!-- R9316_E_IDEAS_END -->
 - Dump archiviert/ersetzt, um Dubletten zu vermeiden.
 
 ## Lane E — Websites / SEO / Monetarisierung (konsolidiert)
@@ -1123,6 +1134,38 @@ Damit ist der gesamte P1-Docking-Komplex formal abgeschlossen.
   von Regeln, Lernen, Dokumentation und Pipeline-Anpassungen.
 
 ## Backlog
+
+<!-- BEGIN_R9316_IDEAS 2026-03-06 09:41:49 -->
+## 🧠 Neue Ideen (auto-insert R9316, 2026-03-06 09:41:49)
+
+> Eingesortiert & priorisiert (P0/P1/P2). Block ist marker-basiert und kann später manuell verschoben werden.
+
+### General
+- [P2] **Clipboard History Manager Pro** — Kategorie/Favoriten/Suche; offline.
+- [P2] **Folder/Repo Cleaner (Smart Folder Cleaner)** — Findet Müll/alte Versionen; Archiv-Vorschläge.
+- [P2] **Log Analyzer Tool** — Fehlercluster & Muster; hilfreich für Support/QA.
+- [P2] **PDF Toolkit / Bulk Image Optimizer** — Klassische Utility-Bundles, gut verkaufbar.
+- [P2] **Shared Household Organizer (App)** — Familienkalender + Aufgaben + Einkaufsliste.
+- [P2] **Subscription Tracker/Canceller (App)** — Abo-Erkennung + Reminder vor Verlängerung.
+- [P2] **Universal Playlist Converter (App)** — Playlist-Transfer zwischen Streamingdiensten.
+
+### Lane A
+- [P0] **Doc–Code Drift Checker** — Checks: Docs vs. Realität (Files/Module/Runner/Maps) + Report.
+- [P0] **Runner Simulation Mode (Dry-Run)** — Runner laufen ohne echte Änderungen; reduziert Risiko/Drift.
+- [P0] **System Health Dashboard** — Stabilitäts-Score aus Logs/Crashes/Runner-Reports; zentrale Ampel.
+- [P1] **Crash Replay / Crash Chain Analyzer** — Crash-Ketten nachvollziehen, Wiederholungsquote, Hotspots.
+- [P1] **Module Ownership / Hot-Cold Matrix** — Ownership + Risiko-Matrix für schnelle Diagnose.
+- [P1] **Runner Dependency Graph** — Visualisiert Abhängigkeiten/Impact von Runnern.
+- [P1] **Silent Failure Detector** — Findet „grüne“ Runs mit versteckten Fehlern/fehlenden Outputs.
+
+### Lane D
+- [P1] **Affiliate Keyword Finder + Competitor Gap Finder** — Keywords, Lücken, Priorisierung für neue Seiten.
+- [P1] **Auto Comparison Table Generator** — Erzeugt Vergleichstabellen aus Produktdaten; Hugo-ready.
+- [P1] **Review Analyzer (Pros/Cons Extractor)** — Aggregiert Reviews, extrahiert häufige Vor-/Nachteile.
+- [P2] **Auto FAQ Builder + Internal Linking Engine** — FAQ/Interlinking automatisch; Evergreen-Refresh.
+- [P2] **Evergreen Content Scanner** — Findet veraltete Artikel + Update-Vorschläge.
+
+<!-- END_R9316_IDEAS -->
 ### Brainstorming 2026-02-23 (10 Ideen)
 - [P2][IDEA] ShrimpDev AutoFix Engine (LearningJournal → Auto-Fix Vorschläge aus Logs/Patterns)
 - [P2][IDEA] Clarivoo Money Radar (Trends/Suchintention → Content-Priorisierung)
@@ -1390,6 +1433,13 @@ Lane-C-Bewertung:
 ---
 
 ### Lane C — Tools / Automationen (P1–P2)
+<!-- R9316_C_IDEAS_BEGIN -->
+### Lane C — Tooling / Automationen — ergänzt durch R9316
+
+- [ ] (P2) [CORE] **Auto Changelog Generator** — Commits/Reports in strukturierte Changelogs überführen.
+- [ ] (P2) [CORE] **Screenshot Organizer mit KI-Tags** — Screenshots automatisch thematisch ordnen.
+- [ ] (P2) [CORE] **Local API Tester GUI** — Leichtgewichtige lokale Test-GUI für APIs/Endpoints.
+<!-- R9316_C_IDEAS_END -->
 
 - [ ] (P1) Fix Engine (Scan → Analyse → Auto-Fix)
 - [ ] (P1) Crash Analyzer (Logs clustern + Ursachen)
@@ -1651,3 +1701,175 @@ Zentrale Statusübersicht für das gesamte System
 
 **Begründung**
 Verbesserte Übersicht und Steuerung, aber nicht betriebskritisch
+
+---
+
+# 🆕 R9067 – IDEA BATCH (Codex-Era Expansion)
+
+## 🦐 ShrimpDev (P1–P2)
+- Auto-DIAG Engine (Codex-driven)
+- AST Guard System
+- UI Layout Visualizer
+- Runner Simulation Mode
+- Auto-Fix Library
+- Crash Replay System
+- Pipeline Executor
+- Dependency Map (visual)
+- Multi-Agent Mode
+- Self-Healing (LJ v2)
+
+## 💻 Software (P2)
+- Universal Config Sync
+- Explain My Codebase
+- Smart Changelog Generator
+- Error Heatmap
+- Clipboard Intelligence
+- Local AI Dev Assistant
+- Workflow Recorder
+- File Intent Analyzer
+- Bug Probability Scanner
+- Refactor Engine
+
+## 📱 Apps (P2–P3)
+- Shared Smart Calendar
+- AI Food Planner
+- Micro Habit Tracker
+- Voice-to-Task
+- Money Visualizer
+- Playlist Converter (HIGH POTENTIAL)
+- Minimal Fitness
+- Daily Reflection
+- Chaos-to-Order
+- Smart Buying Assistant
+
+## 🌐 Clarivoo (P1)
+- Auto-Content Engine (CRITICAL)
+- Comparison Matrix Generator
+- Affiliate Opportunity Scanner
+- Auto-Update Bot
+- SEO Gap Finder
+- Review Synthesizer
+- Top-10 Generator
+- Niche Finder
+- CTR Optimizer
+- Bulk Page Creator
+
+## 🌍 Webseiten (P2)
+- Tool Comparison Platform
+- Problem→Solution Finder
+- App Comparison Hub
+- Configurator Pages
+- SaaS Landing Generator
+- Job Tools Platform
+- Prompt Library
+- Fake Review Detector
+- Price History Pages
+- Alternatives Pages
+
+## 💰 Monetarisierung (P0–P1)
+- Clarivoo Affiliate (PRIMARY)
+- Excel Tools Sales (DISPO/ASM)
+- ShrimpDev (future SaaS)
+- Micro-SaaS Tools
+- Template Sales
+- Automation Freelancing
+- SEO Content Monetization
+- Digital Products
+- Tool Bundles
+- B2B Internal Tools
+
+
+
+## [R9300] Nachsorge abgeschlossen — 20260304_001527
+
+- Zustand stabilisiert
+- Offene Punkte priorisiert
+- Architekturentscheidung dokumentiert (PanedWindow → Grid)
+- Wiedereinstieg definiert (R9301)
+
+
+
+
+# R9067 – Pipeline Idea Insert
+
+## Lane A – Core / Stabilität
+
+P0
+- Runner Heatmap (Error/Run Frequency Analyse)
+- Drift Scanner (UI + duplicate code detection)
+
+P1
+- Crash Timeline Analyzer
+- Report Aggregator (Weekly Meta Reports)
+
+P2
+- Session Replay System
+- Config Integrity Guard
+
+
+## Lane B – Features
+
+P0
+- Treeview Sort Engine (Name / Date / Time)
+
+P1
+- Runner Sandbox Mode
+- Dependency Graph Viewer
+
+P2
+- Patch Assistant (1-Fix Rule Enforcer)
+- Stability Score Display
+
+
+## Lane C – Vision / Research
+
+P1
+- LearningJournal AI Analyse Layer
+- System Complexity Visualizer
+
+P2
+- Self-Healing Runner Generator
+- Code Drift Prediction
+
+
+## Lane D – Monetarisierung
+
+P0
+- DISPO Tool Produktisierung
+
+P1
+- Excel Automation Toolkit
+- ShrimpHub Lite Distribution
+
+P2
+- Runner Template Marketplace
+- Governance Toolkit
+
+
+<!-- R9316_IDEA_INSERT_BEGIN -->
+
+## ShrimpDev Stabilität Erweiterungen
+
+- [ ] (P1) [CORE] System Health Dashboard — Stabilitätsmetriken aus Logs/Runner Reports
+- [ ] (P1) [CORE] Runner Simulation Mode (Dry Run)
+- [ ] (P1) [CORE] Doc-Code Drift Checker
+
+## Tooling Erweiterungen
+
+- [ ] (P2) [CORE] Log Analyzer Tool
+- [ ] (P2) [CORE] Runner Dependency Graph
+- [ ] (P2) [CORE] Crash Replay Analyzer
+
+## Clarivoo Automatisierung
+
+- [ ] (P2) [STRAT] Auto Comparison Table Generator
+- [ ] (P2) [STRAT] Review Analyzer (Pros/Cons Extractor)
+- [ ] (P3) [STRAT] Affiliate Keyword Finder
+
+## App Ideen
+
+- [ ] (P3) [STRAT] Universal Playlist Converter
+- [ ] (P3) [STRAT] Shared Household Organizer
+- [ ] (P3) [STRAT] Subscription Tracker
+
+<!-- R9316_IDEA_INSERT_END -->

@@ -1201,3 +1201,10 @@ Ein CLI-Tool gilt als integriert wenn:
 **Regel:** In `modules/logic_actions.py` darf es **nur eine** aktive `def action_save(...)` geben.
 Legacy-Varianten müssen umbenannt oder entfernt werden, sonst entsteht Drift durch Überschreiben beim Import.
 <!-- R9250_END -->
+
+
+## Ergänzung R9300 — UI-Stabilität
+
+- PanedWindow vermeiden für zentrale Layouts (führt zu visuellen Artefakten)
+- Spacer-Frames müssen visuell neutral sein (kein height/border sichtbar)
+- UI-Änderungen nur nach DIAG, niemals blind
