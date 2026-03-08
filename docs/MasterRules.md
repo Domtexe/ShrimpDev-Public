@@ -111,6 +111,32 @@ _added 2026-01-08 12:26 via R3147_
 - Delegation: `config_manager.get().save()` (Fallback: `ini_writer.write_configparser_atomic`).
 - Ziel: **eine** zentrale Schreibstelle für `ShrimpDev.ini`.
 
+<!-- R9355_BEGIN -->
+## MR-R9355 — Idea Inbox / Import / Intake-Drift Guards
+
+- `docs/IDEA_INBOX.md` + `docs/IDEA_INBOX_SPEC.md` sind produktive Brainstorm-SSOT.
+- Inbox-Statusanzeige (Titelindikator) ist verpflichtender Runtime-Hinweis: `leer / X NEW / invalide`.
+- Import-Flow bleibt Einpunkt-Orchestrierung: `GUI -> R9341 -> interne Runner-Kette`.
+- Status-Transition `NEW -> IMPORTED` nur bei vollständig erfolgreichem Gesamtlauf.
+- Produktiver Import-Flow ohne `shell=True` (nur direkte Prozessaufrufe).
+
+## MR-R9355 — Intake / Runner Output / Toolbar Actions
+
+- Intake-Build darf nicht mehrfach laufen: `_build_intake()` mit Instanz-Guard gegen Mehrfachaufbau-Drift.
+- Rechte Stack-Reihenfolge bleibt strikt: `Output -> Toolbar -> Tree` (gleiches Parent-Cluster).
+- Runner-Output-Capture ist Pflicht: `stdout/stderr` von Runnern müssen live in GUI-Output und Log sichtbar sein.
+- Rechte Toolbar-Actions müssen funktionale Zielhandler haben (kein stilles Return): Delete/Rename/Push/Purge/Service-Wrapper.
+- Delete ist konservativ: Verschieben nach `tools/_trash/` statt hartes Löschen.
+
+## MR-R9355 — Purge Schutzlisten (SSOT)
+
+- Aktive GUI-/Inbox-/Import-Runner müssen purge-geschützt bleiben.
+- SSOT-Schutzstellen bleiben:
+  - `registry/tools_keep.txt`
+  - `registry/runner_whitelist.txt`
+- Für diese Session explizit relevant: `R9325`, `R9326`, `R9331`, `R9332`, `R9333`, `R9341`.
+<!-- R9355_END -->
+
 ## [R3175] Docking-Persistenz: immer zentrale INI-Quelle
 Marker: R3175-DOCKING-CFG-MERGE
 

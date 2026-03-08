@@ -12,6 +12,17 @@
 - `Reports/` — Reports output ✅
 - `Backups/` — Backups output ✅
 
+## Ergänzung (R9355, manuell)
+- `docs/IDEA_INBOX.md` — Standardisierte Brainstorm-Inbox (NEW/IMPORTED Workflow).
+- `docs/IDEA_INBOX_SPEC.md` — Vertrags-/Format-Spezifikation der Inbox.
+- `modules/idea_inbox_status.py` — Inbox-Statuslogik (`leer / X NEW / invalide`) für GUI-Titelindikator.
+- `modules/idea_inbox_gui.py` — GUI-Integration für Inbox-Status im App-Kontext.
+- `modules/idea_import_button.py` — Import-Ideas-Entry (`GUI -> R9341` Orchestrierung).
+- `tools/R9341.cmd` — Import-Orchestrator Entry (cmd).
+- `tools/R9341.py` — Import-Orchestrator Logik.
+- `main_gui.py` — Intake-Aufbau/Right-Stack, Import-Button Mount, Runner-Output-Capture.
+- `modules/logic_actions.py` — rechte Toolbar-Action-Logik (Delete/Rename/Push/Purge/Service-Wrapper).
+
 Generated: 2026-02-28 20:43:26.902390
 
 📁 %~dp0
@@ -18094,4 +18105,3 @@ Generated: 2026-02-28 20:43:26.902390
 <!-- R9241_FILEMAP -->
 - `modules/cmd_writer.py` — Safe CMD writer (ASCII+CRLF+atomic+guard) + template renderer.
 - `docs/templates/Runner_CMD_Template.cmd` — SSOT runner CMD template.
-

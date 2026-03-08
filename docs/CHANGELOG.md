@@ -81,3 +81,11 @@ Lane-C-Bewertung:
 
 ## Nachsorge
 - 2026-02-28 00:21 Nachsorge R9107: Stabilisierung/Backups + SyntaxGate. Drift-Risiko bestätigt; nächster Schritt: Call-Site-DIAG für Intake-Builder (kein Raten nach _build_intake).
+
+## 2026-03-08 — Intake/Runner/Inbox Stabilisierung
+- Intake stabilization: `_build_intake()` Guard gegen Mehrfachaufbau, Right-Stack stabil (`Output -> Toolbar -> Tree`), R9207-DIAG zeitlich korrigiert.
+- Run wiring fix: R9256-Methoden als echte `ShrimpDevApp`-Methoden eingehängt; Run E2E verifiziert.
+- Runner output capture: `stdout/stderr` live in OutputDisplay + Log gespiegelt.
+- Tree search restored: Suche + Runner-Counter/Trefferanzeige wieder aktiv.
+- Right toolbar actions implemented: `_cmd_trash`, `_cmd_rename`, `action_autopush_both`, `action_purge_one`, `action_guard_futurefix_safe`, `action_r9998`, `action_r9999`.
+- Idea inbox/orchestrator introduced: `docs/IDEA_INBOX.md`, `docs/IDEA_INBOX_SPEC.md`, `modules/idea_inbox_status.py`, Import-Flow `GUI -> R9341`.

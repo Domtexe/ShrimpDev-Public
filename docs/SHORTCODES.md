@@ -244,3 +244,69 @@ Vollständiger Tagesabschluss **nur per Runner**, damit nichts verloren geht.
 - Kein “nur Text”-Feierabend mehr.
 - Keine neuen Features im Feierabend-Runner.
 <!-- FEIERABEND_END -->
+
+<!-- FEIERABEND:START -->
+
+## Feierabend
+
+Der Shortcode **Feierabend** dient als strukturierter Abschluss eines Arbeitstags.
+
+### Zweck
+
+- Tagesabschluss
+- kreativer Ideenspeicher
+- Inspiration für neue Projekte
+- Vorbereitung für Priorisierung und Pipeline-Einsortierung
+
+### Brainstorming-Prinzip
+
+- Wiederholtes Brainstorming ist ausdrücklich **erwünscht und wertvoll**.
+- Mehrere Ideenrunden gelten als produktiver Bestandteil des Workflows.
+- Wiederholung ist hier kein Fehler, sondern Teil der Ideengenerierung.
+- Neue Brainstorm-Ideen sollen standardisiert in `docs/IDEA_INBOX.md` erfasst werden (Inbox-SSOT).
+
+### Typische Ideenblöcke
+
+- 10 wilde Ideen
+- 10 realistische Ideen
+- 10 Ideen mit schnellem MVP
+- 10 Ideen mit Geldpotenzial
+- 10 Ideen nur für ShrimpDev
+- 10 Ideen nur für Apps
+- 10 Ideen nur für Websites
+- 10 Ideen für Automatisierung
+- 10 Ideen für Fehler- und Drift-Vermeidung
+- 10 Ideen für selten gebaute, aber stark nachgefragte Software
+
+### Aufbereitung
+
+Ideen können direkt:
+
+- priorisiert
+- nach Aufwand sortiert
+- nach Nutzen bewertet
+- nach Monetarisierungschance bewertet
+- nach Realismus sortiert
+- pipeline-ready aufbereitet
+
+### Kosten-Strategie
+
+Ideen sollen vorerst bevorzugt auf **kostenlos verfügbarer Infrastruktur** basieren:
+
+- Open Source Software
+- Free-/Freemium-Angebote
+- lokale Tools
+- Self-Hosted Lösungen
+
+Ziel:
+
+- möglichst geringe laufende Kosten
+- schneller MVP
+- bezahlte APIs oder Dienste erst nach validiertem Nutzen
+
+### Folgeprozess
+
+- Auf Wunsch werden die Ideen anschließend priorisiert in `docs/PIPELINE.md` einsortiert.
+- Dafür können eigene Import- oder Pflege-Runner verwendet werden.
+
+<!-- FEIERABEND:END -->
