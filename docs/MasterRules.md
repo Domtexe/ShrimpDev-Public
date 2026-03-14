@@ -426,6 +426,11 @@ Ein **ThreadCut** ist ein verpflichtender Abschlussmechanismus für ShrimpDev-Th
   - Dokumentation
   - Lernsystem (LearningJournal / Reports)
 - Ein neuer Thread muss ohne Kontextverlust startfähig sein.
+- Thread-Titel-Regel:
+  - Alter/bisheriger Thread wird zu `alt - <Titel>`
+  - Vor `alt - ` wird ein vorhandenes Prefix `Aktiv - ` entfernt
+  - Neuer Fortsetzungs-Thread wird zu `Aktiv - <Titel>`
+  - Mehrere `Aktiv - ` Threads sind zulässig
 
 **Grundsatz**
 > Ein ThreadCut beendet Denken und beginnt Ordnung.

@@ -54,6 +54,7 @@
 - [ ] Undo-System für Tree-Aktionen weiter ausbauen (persistenter/robuster Undo-Stack)
 - [ ] Trash-Manager/Restore-Flow für `tools/_trash/` ergänzen
 - [ ] Auto-Disable für Toolbar-Buttons bei fehlenden Preconditions (Selection/Runner-Presence)
+- [ ] Import-Ideas-Button in den Tab `Pipeline` verschieben (minimal-invasiv, bestehende Handler/Flow beibehalten)
 
 ### Neu priorisiert (Intake/GUI/Stabilität)
 1. [P1] Drift Radar for GUI Hooks / Runner Wiring
@@ -1985,7 +1986,7 @@ _Automatisch importiert durch R9317 am 20260307_213929_
 
 ### Priority Import (R9325)
 
-_Automatisch importiert am 20260307_231534 aus `Idea_Priority_Report_20260307_224453.md`._
+_Automatisch importiert am 20260309_181923 aus `Idea_Priority_Report_20260307_224453.md`._
 
 **Regeln**
 
@@ -2052,43 +2053,52 @@ _Automatisch importiert am 20260307_231534 aus `Idea_Priority_Report_20260307_22
 <!-- R9326:TASKS:START -->
 
 ### Priority Tasks (R9326)
-_Generated 20260307_231837_
+_Generated 20260309_181923_
 
 #### Lane X – Misc
 
-- Markerbasierter ManagedBlock
-- Top priorisierte Ideen aus dem letzten PriorityReport
+- P1: Markerbasierter ManagedBlock
+- P1: Top priorisierte Ideen aus dem letzten PriorityReport
+- P1: Keine Änderungen außerhalb dieses Blocks
 
 #### Lane D – Clarivoo
 
-- Affiliate Funnel (Tool → Website → Conversion)
-- Affiliate Keyword Finder
-- Affiliate Keyword Finder + Competitor Gap Finder
-- Affiliate Product Comparison Generator
-- AffiliateAbhängigkeiten & Risiken
-- AffiliateLink Manager
-- AffiliatePerformance
-- AffiliateProgramme (Mapping)
-- Auto Comparison Table Generator
-- ContentSkeletonGenerator
-- KI Content Generator
-- MonetarisierungsReihenfolge (Affiliate → Own Product → Bundle)
-- Evergreen Content Scanner
-- Clarivoo Money Radar (Trends/Suchintention → ContentPriorisierung)
+- P1: Affiliate Opportunity Scanner
+- P1: Affiliate Einnahmen
+- P1: Affiliate Funnel (Tool → Website → Conversion)
+- P1: Affiliate Keyword Finder
+- P1: Affiliate Keyword Finder + Competitor Gap Finder
+- P1: Affiliate Page Generator
+- P1: Affiliate Product Comparison Generator
+- P1: AffiliateAbhängigkeiten & Risiken
+- P1: AffiliateLink Manager
+- P1: AffiliatePerformance
+- P1: AffiliateProgramme (Mapping)
+- P1: Auto Comparison Table Generator
+- P1: Clarivoo Affiliate (PRIMARY)
+- P1: Comparison Matrix Generator
+- P1: ContentSkeletonGenerator
+- P1: Fokus: Vergleichsseiten (Affiliate/SEO)
+- P1: KI Content Generator
+- P1: MonetarisierungsReihenfolge (Affiliate → Own Product → Bundle)
+- P1: Evergreen Content Scanner
+- P1: Clarivoo Money Radar (Trends/Suchintention → ContentPriorisierung)
+- P1: AI Content Pipeline (Keyword → AI → QC)
 
 #### Lane A – ShrimpDev Core
 
-- Erlaubt: gemeinsame ToolingRunner (Scanner/Generator/Reports) ohne Shared State.
-- AutoRunner Generator (KIbasiert)
-- AP101: RunnerExec CleanRebuild (minimal, testbar)
-- Diagnose zuerst, dann minimaler APPLY, dann Stop (kein FixCascade).
-- P0.B Smoke/CrashSchutz: Readonly SmokeRunner vor APPLYStufen (Import + minimaler ToolbarAufbau wenn möglich).
-- ShrimpDev AutoFix Engine (LearningJournal → AutoFix Vorschläge aus Logs/Patterns)
-- ShrimpDev Crash Heatmap (häufigste Crashes nach Modul/Runner/Zeit)
-- ShrimpDev Runner DNA System (Analyse erfolgreicher RunnerStrukturen → Best Practices)
-- ShrimpHub Storyboard → AutoVideo Pipeline (Script/Szenen/Prompts/VO/Struktur)
+- P1: Erlaubt: gemeinsame ToolingRunner (Scanner/Generator/Reports) ohne Shared State.
+- P1: AutoRunner Generator (KIbasiert)
+- P1: AP101: RunnerExec CleanRebuild (minimal, testbar)
+- P1: Diagnose zuerst, dann minimaler APPLY, dann Stop (kein FixCascade).
+- P1: P0.B Smoke/CrashSchutz: Readonly SmokeRunner vor APPLYStufen (Import + minimaler ToolbarAufbau wenn möglich).
+- P1: ShrimpDev AutoFix Engine (LearningJournal → AutoFix Vorschläge aus Logs/Patterns)
+- P1: ShrimpDev Crash Heatmap (häufigste Crashes nach Modul/Runner/Zeit)
+- P1: ShrimpDev Runner DNA System (Analyse erfolgreicher RunnerStrukturen → Best Practices)
+- P1: ShrimpHub Storyboard → AutoVideo Pipeline (Script/Szenen/Prompts/VO/Struktur)
 
 <!-- R9326:TASKS:END -->
+
 
 
 <!-- R9330:PROJECTS:START -->

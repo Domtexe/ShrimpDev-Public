@@ -88,6 +88,12 @@ Saubere Übergabe zwischen Threads / Arbeitssessions.
   - klare „Next Step“-Anweisung (1–3 Schritte)
   - falls im Thread Änderungen entstanden: Hinweis „Nachsorge folgt/ist Pflicht“
 
+## Thread-Titel-Regel
+- Alter/bisheriger Thread wird zu `alt - <Titel>`
+- Vor dem Setzen von `alt - ` wird ein vorhandenes Prefix `Aktiv - ` entfernt
+- Neuer Fortsetzungs-Thread wird zu `Aktiv - <Titel>`
+- Mehrere `Aktiv - ` Threads sind gleichzeitig erlaubt
+
 ---
 
 # Nachsorge

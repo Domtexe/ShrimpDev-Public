@@ -1,252 +1,103 @@
-# Architektur – ShrimpDev
-
-## Current architecture anchors
-- **Docking Persist/Restore (Current)** → `docs/Architecture/Current/Docking_Persist_Current.md`
-
-<!-- R3316_ARCH_ANCHOR_INSERT -->
-- **Docking Undock UI (Current)** → `docs/Architecture/Current/Docking_Undock_Current.md`
-<!-- /R3316_ARCH_ANCHOR_INSERT -->
-
-
-
-## Ziel
-
-<!-- R3569_ARCH_WORK_PRINCIPLES_BEGIN -->
-## Arbeitsprinzipien (verbindlich)
-
-- **Pipeline ist SSOT:** Planung und Priorisierung laufen über `docs/PIPELINE.md` (nicht über Chat/Notizen).
-- **Diagnose-first (enforced):** Vor Fixes wird gemessen/geloggt; bei Fehlversuch sofort Diagnose-Modus (keine Trial-&-Error-Kaskade).
-- **Definition of Done:** “Fertig” ist definiert (Doku/Pipeline/Verifikation/Report), nicht Gefühlssache.
-- **Scope-Lock:** Runner arbeiten minimal-invasiv im klaren Scope; unsichere Anchors → ABORT.
-- **Bewusst beenden:** Themen bekommen Status (`skip/obsolet/archived`) statt still zu verrotten.
-<!-- R3569_ARCH_WORK_PRINCIPLES_END -->
-Stabiles, nachvollziehbares Entwickeln/Diagnostizieren/Reparieren komplexer Projekte über Runner.
-
-## Hauptbereiche (typisch)
-- `main_gui.py` – App-Einstieg, Tab-Aufbau, GUI-Orchestrierung
-- `modules/` – UI-Module, Logikmodule, Actions/Utilities
-- `tools/` – Runner (R####.cmd + R####.py)
-- `docs/` – Architektur, Regeln, Briefings
-- `registry/` – Register/Inventar (falls genutzt)
-- `_Archiv/` (lokal) – Backups
-- `_Reports/` (lokal) – Runner-Reports/Logs
-- `_Snapshots/` (lokal) – Tages-Snapshots (Slim)
-
-## Runner-Konzept
-- Jeder Runner löst **ein klar umrissenes Problem**.
-- Jede Änderung: Backup(s) + Log + (falls relevant) Doku-Update.
-- Keine Voll-Rewrites ohne explizite Zustimmung.
-
-## Start/Diagnose
-- Start: `python main_gui.py`
-- Runner: Doppelklick `tools\R####.cmd`
-- Logs: `_Reports/`
-
-## MasterRules Tab (R2143)
-- Eigener Notebook-Tab "MasterRules" zeigt Inhalte aus `docs/Master/`.
-- Einstieg: `MasterRules.md` (Fallback: `MasterRules_Core.md`, sonst Dateiliste).
-- Implementierung: `modules/ui_masterrules_tab.py`, Tab-Hook in `main_gui.py`.
-
-## MasterRules Tab (R2143)
-- Eigener Notebook-Tab "MasterRules" zeigt Inhalte aus `docs/Master/`.
-- Einstieg: `MasterRules.md` (Fallback: `MasterRules_Core.md`, sonst Dateiliste).
-- Implementierung: `modules/ui_masterrules_tab.py`, Tab-Hook in `main_gui.py`.
-
-## Hotfix MasterRules Tab Import (R2144)
-- Fix: ui_masterrules_tab.py Fallback-Block korrigiert (unterminated string literal entfernt).
-- Ziel: Start/Import-Stabilität von ShrimpDev.
-
-## R2148 – Log Auto-Tail
-- Log-Tab laedt neue debug_output.txt Eintraege automatisch nach (append only, sichtbarkeitsbasiert).
-
-## R2153 – Pipeline Tab: Done/Offen sichtbar + Auto-Reload
-- build_pipeline_tab Block ersetzt (weil Syntax gebrochen war).
-- Summary: Erledigt/Offen + Hervorhebung von Checkbox-Zeilen.
-
-## R2154 – Pipeline Checkbox Toggle
-- Pipeline-Tab: Klick auf Task-Zeile toggelt [ ] / [x] und speichert in docs/PIPELINE.md.
-
-## R2155 – Pipeline Tab UX (Treeview)
-- Pipeline-Tab nutzt Treeview: Status/Prio/Task/Section, Toggle, Filter, Summary, Auto-Reload.
-
-## R2156 – Pipeline Tab Debug+Parser
-- Diagnose (Pfad/exists) + robustes Task-Parsing (+ Explorer-Button).
-
-## R2158 – Pipeline Tab Recovery
-- Rollback auf R2157-Backup + sauberer Parser-Replace (Indent stabil) + import re.
-
-## R2162 – Exception Logger Install Fix
-- Patched: main_gui.py main() detection robust (supports -> None) + installs exception_logger.
-
-## R2165 – Runner Guard
-- Added: tools/runner_guard.py
-- All new runners MUST use run_guarded(main, runner_id).
-
-## R2166 – Pipeline Tab UX
-- Added: Search field + zebra rows + done/high emphasis + column sorting.
-- Scope: modules/ui_pipeline_tab.py only.
-
-## R2166 – Pipeline Tab UX
-- Added: Search field + zebra rows + done/high emphasis + column sorting.
-- Scope: modules/ui_pipeline_tab.py only.
-
-## R2167a – Agent Vertrag & Legacy bereinigt
-- Agent-Tab ist verbindlich: modules/module_agent.py -> build_agent_tab(parent, app)
-- modules/module_agent_ui.py als LEGACY/UNUSED markiert (nicht löschen/umbenennen).
-- docs/TABS.md als zentrale Tab-Vertragsdatei gepflegt.
-
-## R2167 – Tab-Verträge dokumentiert
-- Added/Updated: docs/TABS.md als zentrale Wahrheit für Tab→Builder Mapping.
-- Agent-Vertrag festgehalten: modules.module_agent.build_agent_tab(parent, app).
-
-## R2173 – Agent UI klickbar
-- Agent-Tab: Empfehlungen als Liste + Aktionen (Ausführen, Pfad kopieren, In Pipeline).
-- Pipeline-Pfad fest: docs/PIPELINE.md (mit Nachfrage).
-
-## R2174 – Zentrale Popup-Policy
-- Alle Popup-Dialoge im Agent-Tab sind zentriert (parent=app.root).
-- Keine direkten messagebox-Aufrufe mehr im Agent-Code.
-
-
-## Canonical Paths
-Zeitpunkt: 2025-12-23 23:26:41
-
-## Kanonische Pfade (verbindlich)
-- **Reports/** → alle Reports (einziger Zielort)
-- **docs/PIPELINE.md** → ShrimpDev-Pipeline
-- **docs/pipelines/** → Produktpipelines (ShrimpHub, ShrimpBridge, …)
-- **docs/Architecture/** → Architektur & Systemdesign
-- **tools/** → Runner
-- **modules/** → Runtime-Code
-
-## Nicht-kanonisch (Legacy / Archiv)
-- `_Reports/`
-- `docs/Report_*`
-- `_Pipeline/`
-- `_Archiv/`
-- `_Snapshots/`
-
-Nicht-kanonische Pfade dürfen existieren, werden aber **nicht mehr aktiv beschrieben oder ausgewertet**.
-
-## CI & Style
-
-CI ist bewusst **runtime-fokussiert** (Stabilität der App). `tools/` ist **Runner-/Learning-Sandbox** und darf CI nicht blockieren.
-
-**Kanonische Regeln:** siehe `docs/DEVELOPMENT_RULES.md` → Abschnitt **“CI & Ruff – Scope (Runtime-only)”**.
-
-## TechDebt hotspots
-- `modules/ui_runner_products_tab.py`: legacy UI handler clustering (deeply nested try/except). Prefer small helper functions and shallow, well-closed error scopes.
-
----
-### CI / Ruff Legacy-Zonen (20251225_174811)
-- Marker: `R2638_RUFF_LEGACY_ZONES`
-- Policy: UI/Tools/LJ gelten als Legacy-Zonen und blockieren CI nicht mit Stil-/Modernisierungsregeln.
-- Umsetzung: `pyproject.toml` per-file-ignores für `modules/ui_*.py`, `modules/tools/*.py`, `modules/module_learningjournal.py`.
-- Ziel: CI prüft Stabilität (Syntax/echte Fehler), nicht Legacy-Style.
----
-
-
-
-<!-- SHRIMPDEV_POLICY_REPO_LAYERS -->
-## Policy: Repo-Layers (Production vs Archive) & CI Scope
-
-**New insight (R2652/R2653):** Dieses Repo enthält bewusst mehrere Schichten.
-
-- **Production layer (must be syntactically clean):** `modules/**`, `main_gui.py` (und nur ausdrücklich freigegebene Prod-Tools)
-- **Archive/Legacy layer (may be broken):** `_OldStuff/**`, `_Trash/**`, `tools/Archiv/**`, historische Runner/Friedhof
-
-**Rule:** CI-/Syntax-Gates (compileall, Ruff E9) dürfen **nur** auf dem Production-Layer laufen.
-
-**Reason:** Archive/Legacy enthält absichtlich kaputte/inkompatible Dateien (Syntax/Encoding/Indent), die nicht als Blocker gelten.
-
-**Implementation standard:**
-
-```text
-python -m compileall -q main_gui.py modules
-ruff check modules main_gui.py --select E9
-```
-
-**Exclude standard (lint/ci):** `_OldStuff/**`, `_Trash/**`, `tools/Archiv/**`, `modules/snippets/**`, Outputs (`Reports/**`, `_Archiv/**`, `_Exports/**`).
-
-
-
-<!-- SHRIMPDEV_POLICY_CI_WORKFLOW_YAML -->
-## Policy: CI-Workflow zuerst auf YAML-Validität prüfen
-
-**Rule:** Wenn GitHub Actions **„Invalid workflow file“** oder **„You have an error in your yaml syntax“** meldet, wird **immer zuerst** die YAML-Struktur geprüft (Indentation/Mapping), bevor Tooling (ruff/compileall/etc.) debuggt wird.
-
-**Reason:** Bei YAML-Parsefehlern werden **keine Steps** ausgeführt – Tool-Logs sind dann irrelevant.
-
-**Quick checklist:**
-- `jobs:` → darunter müssen Job-IDs **eingerückt** sein (z. B. `  lint:`)
-- `runs-on:` / `steps:` sind **unter dem Job** eingerückt
-- Step-Listenpunkte beginnen mit `-` und sind korrekt eingerückt
-
-<!-- SHRIMPDEV_POLICY_PIPELINE_TASKS_REQUIRED -->
-## Rule: PIPELINE.md benötigt einen Tasks-Block (GUI-Sichtbarkeit)
-
-**New insight:** Der ShrimpDev-Tab *Pipeline* parst **nur Aufgaben** aus `docs/PIPELINE.md`.
-Text-/Policy-Abschnitte sind sinnvoll, erzeugen aber **keine** Einträge in der Task-Liste.
-
-**Rule:** `docs/PIPELINE.md` muss einen klaren Aufgabenbereich enthalten, z. B.:
-
-```md
-## Pipeline Tasks
-- [ ] (P1) ...
-- [x] (P0) ...
-```
-
-**Reason:** Ohne parsebare Tasks bleibt die Pipeline in der GUI leer (0/0), obwohl das Dokument existiert.
-
-## Autopush (Repo-only)
-- Canonical autopush backend (OneDrive repo-only): `tools/R2691` (Private), `tools/R2692` (Public), `tools/R2693` (Both).
-- Deprecated: `R2692/R2691` legacy autopush runners (workspace-bound). Do not wire GUI buttons to them.
-- Autopush reports are generated locally under `Reports/` and are not versioned in git.
-
-
-## UI-Fehlerbehandlung (verbindlich)
-
-- Jeder UI-Flow ist **diagnostizierbar**
-- Keine stillen Abbrüche
-- Button → Log → Aktion → Report
-
-## Purge Popup Flow (Option A) – R3086
-
-**Ist-Soll:**
-- Purge klickt → UI startet `tools\R2224.cmd`
-- R2224 schreibt Ergebnis als TXT: `_Reports\R2224_*.txt`
-- UI zeigt Ergebnis in einem **dedizierten TXT-Popup** (kein Bridge-Wrapper, keine Abhängigkeit von r1851)
-
-**Begründung:**
-R1851 ist für Standard-Reports (typisch Markdown). R2224 liefert TXT → Format-Mismatch → leere Wrapper-Anzeige.  
-Option A hält das System stabil, minimal-invasiv und wartbar.
-
-### Doku-Notiz (R3154, 2026-01-08 17:27:15)
-- MR-REF (Refactoring/Cleanup) ergänzt: Obsoleter Code darf raus, **aber Funktion bleibt**; belegt entfernen; minimal-invasive Runner; Backup+Report+Smoke-Test; keine riskanten Auto-Edits in Funktionskörpern.
-
-### Runner Identity & Execution Model
-
-Details und gewonnene Erkenntnisse zur Runner-Architektur
-(Erzeugung, Identität, Ausführungspfade, Lessons Learned)
-finden sich in:
-
-→ `Architecture_Lessons_Learned.md`
-
-
-## Runner-Whitelist & NextFree-Logik
-
-- `tools/runner_whitelist.txt` ist die **Quelle der Wahrheit**
-  für **SR-/Reserved-Runner-IDs**.
-- **NextFree-Logik**:
-  - zählt **nur normale Runner**
-  - **ignoriert alle IDs** aus `runner_whitelist.txt`
-  - **keine Hardcodes**, keine Sonderbereiche im Code
-- Ziel: stabile, deterministische Runner-Nummerierung.
-
-
-## Runner-Whitelist (Quelle der Wahrheit)
-
-- Die **einzige Quelle der Wahrheit** für SR/Reserved-Runner-IDs ist:
-  `registry/runner_whitelist.txt`
-- Runner-Scans / NextFree-Logik **müssen ausschließlich diesen Pfad lesen**.
-- Keine Kopien unter `tools/`.
+# Architecture Overview
+
+This file is the canonical high-level architecture overview for `ShrimpDev_REPO`.
+
+Use it to understand repository layers, key entrypoints, and patch boundaries.
+Detailed subsystem documents remain authoritative for their own topic.
+For navigation across architecture documents, see [ARCH_INDEX.md](ARCH_INDEX.md).
+For repository navigation and ownership orientation, see [FILE_MAP.md](FILE_MAP.md).
+For technical entrypoints and relationships, see [FILE_MAP_TECH.md](FILE_MAP_TECH.md).
+
+## Scope and Role
+
+This overview is intentionally curated.
+It does not replace subsystem documents such as docking, runner execution, persistence, tools, or workspace architecture.
+
+## Repository Layers
+
+### Governance and docs layer
+- `docs/MasterRules.md` defines repo-wide governance and working rules.
+- `docs/PIPELINE.md` is the planning and prioritization SSOT.
+- `docs/SHORTCODES.md` captures recurring workflow patterns.
+- `AGENTS.md` defines Codex operating rules for this repository.
+
+### Main GUI layer
+- `main_gui.py` is the primary application entrypoint and top-level UI orchestrator.
+- The GUI composes tabs, shared panels, and runtime wiring across the module layer.
+
+### Module layer
+- `modules/` contains the runtime Python modules.
+- Major responsibilities include UI composition, runner execution, persistence, tree handling, and domain-specific actions.
+
+### Runner and tooling layer
+- `tools/` contains numbered runners in the `R####.cmd` + `R####.py` pattern.
+- Runners are used for diagnosis, minimal patches, verification, repo tooling, exports, and automation support.
+
+### Reports, backups, and archive layer
+- `Reports/` stores runner and task reports.
+- `Backups/`, `_Archiv/`, and similar areas hold historical or recovery artifacts.
+- These areas are operationally important, but they are not primary architecture entrypoints.
+
+### Excel/VBA layer
+- `Excel-Projekte/` contains Excel-based subprojects with workbook and VBA logic.
+- `Excel-Projekte/Dispo-Tool` is a major domain area with workbook-driven logic and modules such as `modDispoAssign`, `modMail`, and related planning/status code.
+
+### Subproject layer
+- The repository also contains subprojects, experiments, and product-specific document areas.
+- These should be treated as bounded contexts rather than folded into the main GUI/runtime architecture.
+
+## Major Architectural Areas
+
+- GUI shell and runtime orchestration: `main_gui.py`, `modules/ui_*`, selected `modules/module_*`
+- Runner execution and gating: `tools/`, `modules/toolbar_runner_exec.py`, runner governance docs
+- Persistence and registry/INI behavior: documented in persistence and INI architecture docs
+- Docking and window lifecycle: documented in docking architecture docs
+- Tools, purge, and cleanup policy: documented in tools and purge architecture docs
+- Workspaces, context state, and project surfaces: documented in workspace/project/context docs
+- Excel/VBA workflows: workbook-specific and intentionally separate from the Python runtime
+
+## Key Debugging Entrypoints
+
+- `main_gui.py` for application startup issues
+- `modules/ui_toolbar.py` for runner launch wiring
+- `modules/ui_project_tree.py` for tool tree behavior
+- `modules/toolbar_runner_exec.py` for canonical runner execution flow
+- `tools/R####*.cmd` and `tools/R####*.py` for runner-specific diagnosis/fix flows
+- `Excel-Projekte/Dispo-Tool` for workbook/VBA-specific troubleshooting
+
+## High-Risk Areas
+
+- `main_gui.py`
+  - central runtime entrypoint; changes can affect broad UI behavior
+- `modules/ui_toolbar.py`
+  - sensitive because toolbar layout and runner wiring are tightly governed
+- `modules/toolbar_runner_exec.py`
+  - canonical execution path for runners
+- persistence and docking code
+  - small regressions can break restore state, window behavior, or configuration writes
+- `Excel-Projekte/Dispo-Tool`
+  - workbook logic is stateful and patch-sensitive; keep Python and VBA scopes clearly separated
+
+## Detailed Architecture Documents
+
+Use [ARCH_INDEX.md](ARCH_INDEX.md) as the document map.
+Important detail documents include:
+
+- `Architecture_RunnerExecution.md`
+- `ARCHITECTURE_PERSISTENCE.md`
+- `Architecture_Docking.md`
+- `Architecture_ContextMenus.md`
+- `Architecture_ProjectTab.md`
+- `Architecture_Tools.md`
+- `Architecture_Workspaces.md`
+- `Architecture_Actions_and_Gating.md`
+
+## Maintenance
+
+Refresh this file when:
+- architecture layers change
+- entrypoints change
+- new major subsystems are added
+- runner workflows change materially
+- Excel/VBA project structure changes
+- major UI structure changes
