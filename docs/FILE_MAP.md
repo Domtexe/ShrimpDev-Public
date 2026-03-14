@@ -323,3 +323,10 @@ Refresh this file when:
 - runner workflows change
 - Excel/VBA project structure changes
 - major UI structure changes
+# Dispo-Tool Release Notes
+
+`Excel-Projekte/Dispo-Tool/Dispo-Tool 2.0.xlsm` ist die stabile Produktionsversion.
+
+`Excel-Projekte/Dispo-Tool/Dispo-Tool 3.0.xlsm` ist der Entwicklungszweig.
+
+`Excel-Projekte/Dispo-Tool/DispoHistory.sqlite` ist die Historien-Datenbank fuer die 3.0-Entwicklung.

@@ -2854,3 +2854,24 @@ _Generated 20260309_181923_
 - Einzelkandidaten später separat priorisieren.
 
 <!-- R9330:PROJECTS:END -->
+## Dispo-Tool Release Status
+
+### DONE / RELEASED
+
+`Dispo-Tool 2.0`  
+Status: `RELEASE`  
+Datum: `2026-03-16`  
+Beschreibung: stabile operative Planung
+
+### DONE
+
+- Historienbasis vorbereitet
+- SQLite DB erstellt
+- Dispo-Tool 3.0 compile stabilisiert
+
+### PAUSED
+
+- Decision History
+- Explainability
+- Analysefunktionen
+- Dispo-Tool 3.0 Ausbau

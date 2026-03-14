@@ -89,3 +89,21 @@ Lane-C-Bewertung:
 - Tree search restored: Suche + Runner-Counter/Trefferanzeige wieder aktiv.
 - Right toolbar actions implemented: `_cmd_trash`, `_cmd_rename`, `action_autopush_both`, `action_purge_one`, `action_guard_futurefix_safe`, `action_r9998`, `action_r9999`.
 - Idea inbox/orchestrator introduced: `docs/IDEA_INBOX.md`, `docs/IDEA_INBOX_SPEC.md`, `modules/idea_inbox_status.py`, Import-Flow `GUI -> R9341`.
+## Version 2.0 - 2026-03-16
+
+### Added
+
+- stabile Dispo-Planungslogik
+- Nachlasssteuerung
+- Mail/DMS Zuteilung
+- HTML Mail Preview
+
+### Technical
+
+- Historienbasis vorbereitet (3.0)
+- SQLite Datenbank erstellt
+
+### Paused
+
+- Decision History
+- Analysefunktionen
