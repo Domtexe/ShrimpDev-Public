@@ -6,6 +6,15 @@
 > - IMPORTED  = bereits verarbeitet
 > - PARKED    = bewusst geparkt / zurückgestellt
 
+## Canonical Flow
+
+- Kanonische Quelle fuer das Ideen-System ist nur diese Datei: `docs/IDEA_INBOX.md`.
+- Der reguläre Importpfad ist: `GUI -> modules/idea_import_button.py -> tools/R9341.cmd -> tools/R9341.py`.
+- `modules/idea_inbox_status.py` liest `NEW`-/`IMPORTED`-Status direkt aus dieser Datei.
+- `tools/R9418.py` bereitet Thread-/Batch-Ideen als `## ENTRY`-Bloecke mit `Status: NEW` in dieser Datei vor.
+- `docs/ideas/ideas_inbox_*.md` ist nur optionales Archivmaterial und kein Importziel.
+- Neue automatische Feeder muessen `## ENTRY`-Bloecke erzeugen; historische Freitext-/Listenbloecke darunter sind Altbestand und nicht das Ziel-Format fuer neue Imports.
+
 ## ENTRY
 
 Title: Affiliate Opportunity Scanner
@@ -21,7 +30,6 @@ Brainstorm
 
 Status:
 IMPORTED
-
 
 ## ENTRY
 
@@ -180,8 +188,8 @@ Hinweis: Additiver Import, Duplikate nach einfacher Text-Normalisierung überspr
 
 <!-- R9361_IDEA_IMPORT_END -->
 
-
 ## ENTRY
+
 Title: Excel Reverse Engineering Tool
 Description:
   Analyse-Tool für XLSM/XLSX-Projekte zur technischen Bestandsaufnahme.
@@ -191,3 +199,803 @@ Description:
 Tags: excel, xlsm, vba, analysis, reverse-engineering, tooling
 Source: R9394 2026-03-09 18:19
 Status: NEW
+
+## ENTRY
+
+Title: Runner Dependency Map
+
+Description:
+Kategorie: ShrimpDev
+
+Tags:
+SHRIMPDEV
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Runner Risk Score
+
+Description:
+Kategorie: ShrimpDev
+
+Tags:
+SHRIMPDEV
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Pipeline Heatmap
+
+Description:
+Kategorie: ShrimpDev
+
+Tags:
+SHRIMPDEV
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: MR Compliance Checker
+
+Description:
+Kategorie: ShrimpDev
+
+Tags:
+SHRIMPDEV
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: GUI State Recorder
+
+Description:
+Kategorie: ShrimpDev
+
+Tags:
+SHRIMPDEV
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Runner Sandbox Mode
+
+Description:
+Kategorie: ShrimpDev
+
+Tags:
+SHRIMPDEV
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Failure Pattern Detector
+
+Description:
+Kategorie: ShrimpDev
+
+Tags:
+SHRIMPDEV
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Runner Performance Tracker
+
+Description:
+Kategorie: ShrimpDev
+
+Tags:
+SHRIMPDEV
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Smart Runner Suggestions
+
+Description:
+Kategorie: ShrimpDev
+
+Tags:
+SHRIMPDEV
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: System Health Dashboard
+
+Description:
+Kategorie: ShrimpDev
+
+Tags:
+SHRIMPDEV
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Universal Log Viewer
+
+Description:
+Kategorie: Tools
+
+Tags:
+TOOLS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Directory Drift Scanner
+
+Description:
+Kategorie: Tools
+
+Tags:
+TOOLS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Markdown Knowledge Explorer
+
+Description:
+Kategorie: Tools
+
+Tags:
+TOOLS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Config Diff Tool
+
+Description:
+Kategorie: Tools
+
+Tags:
+TOOLS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Automation Script Builder
+
+Description:
+Kategorie: Tools
+
+Tags:
+TOOLS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Local API Tester
+
+Description:
+Kategorie: Tools
+
+Tags:
+TOOLS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Simple Cron GUI
+
+Description:
+Kategorie: Tools
+
+Tags:
+TOOLS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Codebase Search Engine
+
+Description:
+Kategorie: Tools
+
+Tags:
+TOOLS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: File Dependency Scanner
+
+Description:
+Kategorie: Tools
+
+Tags:
+TOOLS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Git Repo Cleaner
+
+Description:
+Kategorie: Tools
+
+Tags:
+TOOLS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Shared Task Radar
+
+Description:
+Kategorie: Android Apps
+
+Tags:
+ANDROID_APPS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Aquarium Logger
+
+Description:
+Kategorie: Android Apps
+
+Tags:
+ANDROID_APPS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Plant Growth Tracker
+
+Description:
+Kategorie: Android Apps
+
+Tags:
+ANDROID_APPS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Micro Habit Tracker
+
+Description:
+Kategorie: Android Apps
+
+Tags:
+ANDROID_APPS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Simple Budget Splitter
+
+Description:
+Kategorie: Android Apps
+
+Tags:
+ANDROID_APPS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Minimal Pomodoro
+
+Description:
+Kategorie: Android Apps
+
+Tags:
+ANDROID_APPS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Playlist Converter
+
+Description:
+Kategorie: Android Apps
+
+Tags:
+ANDROID_APPS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Local File Sync
+
+Description:
+Kategorie: Android Apps
+
+Tags:
+ANDROID_APPS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Offline Knowledge Notebook
+
+Description:
+Kategorie: Android Apps
+
+Tags:
+ANDROID_APPS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Daily Brainstorm App
+
+Description:
+Kategorie: Android Apps
+
+Tags:
+ANDROID_APPS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: ShrimpDev Plugin Marketplace
+
+Description:
+Kategorie: Monetization
+
+Tags:
+MONETIZATION
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Premium Runner Packs
+
+Description:
+Kategorie: Monetization
+
+Tags:
+MONETIZATION
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Excel Business Tool Suite
+
+Description:
+Kategorie: Monetization
+
+Tags:
+MONETIZATION
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Affiliate Website Network
+
+Description:
+Kategorie: Monetization
+
+Tags:
+MONETIZATION
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Developer Utility Pack
+
+Description:
+Kategorie: Monetization
+
+Tags:
+MONETIZATION
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: ShrimpHub Automation Suite
+
+Description:
+Kategorie: Monetization
+
+Tags:
+MONETIZATION
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Small Business Templates
+
+Description:
+Kategorie: Monetization
+
+Tags:
+MONETIZATION
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Automation Consulting
+
+Description:
+Kategorie: Monetization
+
+Tags:
+MONETIZATION
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Script Marketplace
+
+Description:
+Kategorie: Monetization
+
+Tags:
+MONETIZATION
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Developer Productivity Toolkit
+
+Description:
+Kategorie: Monetization
+
+Tags:
+MONETIZATION
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Automation Platform for SMB
+
+Description:
+Kategorie: High Potential Projects
+
+Tags:
+HIGH_POTENTIAL_PROJECTS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: AI Content Automation Engine
+
+Description:
+Kategorie: High Potential Projects
+
+Tags:
+HIGH_POTENTIAL_PROJECTS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: No-Code Automation Builder
+
+Description:
+Kategorie: High Potential Projects
+
+Tags:
+HIGH_POTENTIAL_PROJECTS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Universal Playlist Migration Tool
+
+Description:
+Kategorie: High Potential Projects
+
+Tags:
+HIGH_POTENTIAL_PROJECTS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Excel Business Tool Marketplace
+
+Description:
+Kategorie: High Potential Projects
+
+Tags:
+HIGH_POTENTIAL_PROJECTS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Personal Automation OS
+
+Description:
+Kategorie: High Potential Projects
+
+Tags:
+HIGH_POTENTIAL_PROJECTS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Local Knowledge System
+
+Description:
+Kategorie: High Potential Projects
+
+Tags:
+HIGH_POTENTIAL_PROJECTS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Developer Automation Platform
+
+Description:
+Kategorie: High Potential Projects
+
+Tags:
+HIGH_POTENTIAL_PROJECTS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Website Content Factory
+
+Description:
+Kategorie: High Potential Projects
+
+Tags:
+HIGH_POTENTIAL_PROJECTS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED
+
+## ENTRY
+
+Title: Small Business Operating System
+
+Description:
+Kategorie: High Potential Projects
+
+Tags:
+HIGH_POTENTIAL_PROJECTS
+
+Source:
+R9418 THREAD_BATCH 20260315_181635
+
+Status:
+IMPORTED

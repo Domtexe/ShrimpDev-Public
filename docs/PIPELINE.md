@@ -40,6 +40,7 @@
   - Brainstorm-Inbox (`docs/IDEA_INBOX.md`, `docs/IDEA_INBOX_SPEC.md`) produktiv
   - Import-Flow vereinfacht auf `GUI -> R9341 -> interne Kette`
   - `NEW -> IMPORTED` nur bei vollständigem Erfolg
+  - `R9418` dient als Feeder fuer `docs/IDEA_INBOX.md`; `docs/ideas/ideas_inbox_*.md` ist nur optionales Archiv
 - DONE: Rechte Toolbar Actions repariert:
   - `_cmd_trash`, `_cmd_rename`
   - `action_autopush_both`, `action_purge_one`
@@ -49,6 +50,10 @@
   - `registry/tools_keep.txt`
   - `registry/runner_whitelist.txt`
   - relevante IDs: `R9325`, `R9326`, `R9331`, `R9332`, `R9333`, `R9341`
+- DONE: Protected special runners erweitert:
+  - geschuetzte IDs: `R9418`, `R9419`, `R9420`, `R9421`, `R9999`, `R1802`
+  - GUI-Quick-Launch fuer `R9418` bis `R9421` im bestehenden Service-Bereich
+  - Delete-Guard blockiert geschuetzte Runner im normalen Trash-Pfad
 
 ### Offene Folgepunkte (sauber markiert)
 - [ ] Undo-System für Tree-Aktionen weiter ausbauen (persistenter/robuster Undo-Stack)
@@ -1986,7 +1991,7 @@ _Automatisch importiert durch R9317 am 20260307_213929_
 
 ### Priority Import (R9325)
 
-_Automatisch importiert am 20260309_181923 aus `Idea_Priority_Report_20260307_224453.md`._
+_Automatisch importiert am 20260316_000114 aus `Idea_Priority_Report_20260307_224453.md`._
 
 **Regeln**
 
@@ -2053,7 +2058,7 @@ _Automatisch importiert am 20260309_181923 aus `Idea_Priority_Report_20260307_22
 <!-- R9326:TASKS:START -->
 
 ### Priority Tasks (R9326)
-_Generated 20260309_181923_
+_Generated 20260316_000114_
 
 #### Lane X – Misc
 
@@ -2098,6 +2103,13 @@ _Generated 20260309_181923_
 - P1: ShrimpHub Storyboard → AutoVideo Pipeline (Script/Szenen/Prompts/VO/Struktur)
 
 <!-- R9326:TASKS:END -->
+
+
+
+
+
+
+
 
 
 

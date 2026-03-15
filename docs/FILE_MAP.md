@@ -33,7 +33,9 @@ Useful companion docs in the same area:
 - `docs/UI_MAP.md`
 - `docs/Runner_Index.md`
 - `docs/IDEA_INBOX.md`
+  Kanonische Quelle fuer das bestehende Ideen-System; `NEW`/`IMPORTED` werden hier gelesen.
 - `docs/IDEA_INBOX_SPEC.md`
+  Format- und Feeder-Regeln fuer Inbox-Eintraege; `docs/ideas/` ist nicht-kanonisch.
 
 ## 2. Main application entrypoints
 
@@ -76,6 +78,9 @@ The `modules/` directory is the main application layer. It contains many files, 
 - `modules/runner_executor.py`
   Additional runner execution support; likely legacy/adjacent to the main executor.
 - `modules/toolbar_runner_exec.py`
+  Central toolbar runner gateway; `run_by_id(...)` is the canonical launch path for protected/special runners.
+- `modules/runner_ids.py`
+  Canonical runner-id constants plus protected-runner SSOT used by GUI quick-launch and delete guards.
   Toolbar-triggered runner execution helpers.
 - `modules/logic_actions.py`
   Toolbar / action routing for delete, rename, push, purge, and related commands.
@@ -124,11 +129,11 @@ The `modules/` directory is the main application layer. It contains many files, 
 - `modules/idea_inbox_gui.py`
   GUI integration for the idea inbox.
 - `modules/idea_inbox_status.py`
-  Idea inbox status computation.
+  Idea inbox status computation against `docs/IDEA_INBOX.md`.
 - `modules/idea_import_button.py`
-  Import-Ideas action entry.
+  Import-Ideas action entry; triggers the existing `GUI -> R9341` import flow.
 - `modules/idea_editor_gui.py`
-  GUI/editor for idea handling.
+  GUI/editor for adding `## ENTRY` blocks into the canonical inbox.
 
 If a module is not listed here, it is usually either:
 - a smaller helper
@@ -188,6 +193,8 @@ Low-value directories intentionally summarized only:
 - `__pycache__/`
 - `.ruff_cache/`
 - scratch/temp/trash style folders such as `_Temp/`, `_Scratch/`, `_Trash/`
+- `docs/ideas/`
+  Optional archive snapshots for idea batches; not a canonical import source.
 
 ## 6. Excel-Projekte
 

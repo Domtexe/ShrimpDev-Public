@@ -1,4 +1,14 @@
 # Changelog
+## 2026-03-15 – Protected Runners / Special Buttons
+- Protected runner SSOT erweitert: `R9418`, `R9419`, `R9420`, `R9421`, `R9999`, `R1802`.
+- GUI: neue Sonderrunner-Buttons `Ideas Feed`, `Ideas Scan`, `Ideas Decision`, `RunnerGuard`.
+- Schutz: normale Delete-/Trash-Logik blockiert geschuetzte Runner; Purge-Schutzlisten erweitert.
+
+## 2026-03-15 – R9418
+- Ideas import path clarified: canonical source remains `docs/IDEA_INBOX.md`.
+- `R9418` corrected to feed `NEW` `## ENTRY` blocks into the existing inbox flow.
+- `docs/ideas/ideas_inbox_*.md` retained only as optional archive evidence, not as an import path.
+
 ## 2025-12-18 – R2373
 - Neues Modul: modules/ini_writer.py (merge + atomic)
 - Pipeline: Defactoring obsoleter Dateien nach erfolgreicher Umstellung einsortiert
