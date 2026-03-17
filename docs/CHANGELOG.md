@@ -117,3 +117,30 @@ Lane-C-Bewertung:
 
 - Decision History
 - Analysefunktionen
+
+
+---
+
+## R9426 Nachsorge
+
+## 2026-03-16 22:54:26 - R9426 - Nachsorge Clean Run
+
+- Neuer unabhängiger Nachsorge-Runner erstellt
+- Doku-Nachsorge für Stabilisierungslauf ergänzt
+- Report-Generierung und Backup-Verhalten integriert
+- optionale Compile-Prüfung zentraler Dateien durchgeführt
+
+## R9425 Nachsorge (2026-03-17 14:28:31)
+
+- Runner-Startpfad vereinheitlicht und gehärtet.
+- Standard-GUI-Runner schreiben Output ins zentrale Display statt in Standard-Popups.
+- Output-Marker ergänzt:
+  - `RUNNER START: RXXXX`
+  - `RUNNER END:   RXXXX (rc=...)`
+- Protected Runner sind zentral abgesichert und in der GUI verdrahtet.
+- `R9421` RunnerGuard, `R9423` SystemHealth und `R9424` RunnerFailureWatch sind angelegt und lauffähig.
+- Purge-Standardpfad wurde auf den passenden Apply-Runner umgebogen; Schutzlogik bleibt aktiv.
+- Offene Punkte:
+  - Tk-`after`-Callbacks beim GUI-Destroy sauber aufräumen
+  - R9424 Failure-Signal-Noise reduzieren
+  - Intake Auto-Refresh gezielt gegenprüfen

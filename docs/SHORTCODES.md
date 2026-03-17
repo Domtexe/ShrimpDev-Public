@@ -316,3 +316,18 @@ Ziel:
 - Dafür können eigene Import- oder Pflege-Runner verwendet werden.
 
 <!-- FEIERABEND:END -->
+
+
+---
+
+## R9426 Nachsorge
+
+**2026-03-16 22:54:26 – Nachsorge-Shortcode-Hinweis via R9426**
+
+Nachsorge umfasst in diesem Block mindestens:
+
+- Status-Snapshot festhalten
+- offene Punkte priorisieren
+- relevante Doku mitpflegen
+- Wiedereinstiegspunkt sauber benennen
+- Report im `Reports/`-Ordner erzeugen

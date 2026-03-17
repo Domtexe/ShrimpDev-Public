@@ -1991,7 +1991,7 @@ _Automatisch importiert durch R9317 am 20260307_213929_
 
 ### Priority Import (R9325)
 
-_Automatisch importiert am 20260316_000114 aus `Idea_Priority_Report_20260307_224453.md`._
+_Automatisch importiert am 20260317_172133 aus `Idea_Priority_Report_20260307_224453.md`._
 
 **Regeln**
 
@@ -2058,7 +2058,7 @@ _Automatisch importiert am 20260316_000114 aus `Idea_Priority_Report_20260307_22
 <!-- R9326:TASKS:START -->
 
 ### Priority Tasks (R9326)
-_Generated 20260316_000114_
+_Generated 20260317_172133_
 
 #### Lane X – Misc
 
@@ -2103,6 +2103,8 @@ _Generated 20260316_000114_
 - P1: ShrimpHub Storyboard → AutoVideo Pipeline (Script/Szenen/Prompts/VO/Struktur)
 
 <!-- R9326:TASKS:END -->
+
+
 
 
 
@@ -2887,3 +2889,48 @@ Beschreibung: stabile operative Planung
 - Explainability
 - Analysefunktionen
 - Dispo-Tool 3.0 Ausbau
+
+
+---
+
+## R9426 Nachsorge
+
+**2026-03-16 22:54:26 – Nachsorge via R9426**
+
+Abgeschlossen / bestätigt:
+- Runner-System stabilisiert
+- OutputDisplay-Standardpfad aktiv
+- Gate-Verhalten transparent
+- Purge repariert
+- Protected Runner eingeführt
+- Intake/Ini-Rebind aktiv
+- TreeView Smooth Refresh bestätigt
+
+Nächste sinnvolle Schritte:
+1. Tk-after Cleanup
+2. R9424 Noise reduzieren
+3. optional Gate-UX polish
+
+## R9425 Nachsorge (2026-03-17 14:28:31)
+
+### Stabilisiert
+- Runner-Startpfad ist vereinheitlicht.
+- `run_by_id(...)` ist zentrale GUI-Startschicht.
+- Inflight-Guard blockiert Mehrfachstarts desselben Runners.
+- Standard-GUI-Runner laufen popup-frei ins zentrale OutputDisplay.
+- Purge-Standardpfad wurde auf den passenden Apply-Runner korrigiert.
+- Protected Runner sind zentral definiert und gegen Standard-Purge/Delete abgesichert.
+
+### Neue/aktive Diagnose-Runners
+- `R9421` RunnerGuard
+- `R9423` SystemHealth
+- `R9424` RunnerFailureWatch
+
+### Offene Punkte / nächste sinnvolle Schritte
+1. Tk-`after`-Cleanup beim GUI-Destroy sauber machen.
+2. R9424 Failure-Signale entrauschen (historische Reports konservativer auswerten).
+3. Intake-Auto-Refresh gezielt im echten Dateitest verifizieren.
+
+### Wiedereinstieg
+Neuer Fokus-Thread:
+**ShrimpDev – Tk-after-Cleanup + R9424 Signal-Noise reduzieren**

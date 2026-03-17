@@ -1239,3 +1239,18 @@ Legacy-Varianten müssen umbenannt oder entfernt werden, sonst entsteht Drift du
 - PanedWindow vermeiden für zentrale Layouts (führt zu visuellen Artefakten)
 - Spacer-Frames müssen visuell neutral sein (kein height/border sichtbar)
 - UI-Änderungen nur nach DIAG, niemals blind
+
+
+---
+
+## R9426 Nachsorge
+
+**2026-03-16 22:54:26 – Operative Nachsorge-Notiz via R9426**
+
+Bestätigte Arbeitsweise für diesen Block:
+
+- Standardpfad für GUI-Runner bleibt Executor + OutputDisplay
+- kein Rückbau auf Popup-Standardpfad
+- keine Hardcoding-Rückfälle statt Ini-Bindung
+- Diagnose zuerst, dann minimal-invasive Fixes
+- Nachsorge wird als eigener Runner ausgeführt, nicht als improvisierter Chat-Patch

@@ -337,3 +337,50 @@ Refresh this file when:
 `Excel-Projekte/Dispo-Tool/Dispo-Tool 3.0.xlsm` ist der Entwicklungszweig.
 
 `Excel-Projekte/Dispo-Tool/DispoHistory.sqlite` ist die Historien-Datenbank fuer die 3.0-Entwicklung.
+
+
+---
+
+## R9426 Nachsorge
+
+**2026-03-16 22:54:26 – Nachsorge-Hinweis via R9426**
+
+Relevante Dateien aus dem Stabilisierungslauf:
+
+- `main_gui.py`
+- `modules/toolbar_runner_exec.py`
+- `modules/module_runner_exec.py`
+- `modules/module_runner_popup.py`
+- `modules/ui_toolbar.py`
+- `modules/logic_actions.py`
+- `modules/runner_ids.py`
+- `modules/ui_filters.py`
+- `registry/ShrimpDev.ini`
+- `tools/R9421.py`
+- `tools/R9423.py`
+- `tools/R9424.py`
+- `tools/R9425.py`
+- `tools/R9426.py`
+- `tools/R9426.cmd`
+
+## R9425 Nachsorge / Diagnostics & Health
+
+Zusätzliche Diagnose-/Health-Entrypoints aus dem jüngsten Stabilisierungslauf:
+
+- `tools/R9421.cmd` / `tools/R9421.py`
+  RunnerGuard – prüft aktiven Runner-Bestand, cmd/py-Paare, Compile-Status und Namensschema.
+- `tools/R9423.cmd` / `tools/R9423.py`
+  SystemHealth – kompakter Gesamtzustandsbericht für Runner, Reports, Protected Runner, GUI-Startschicht und Idea-System.
+- `tools/R9424.cmd` / `tools/R9424.py`
+  RunnerFailureWatch – konservativer Frühwarn-Runner für Compile-Fails, Failure-Signale und Protected-Runner-Status.
+
+Aktueller GUI-Standardpfad für Runner:
+GUI → `modules/toolbar_runner_exec.py` → `run_by_id(...)` → Executor/UI-Sinks → OutputDisplay
+
+OutputDisplay-Standardmarker:
+- `RUNNER START: RXXXX`
+- `RUNNER END:   RXXXX (rc=...)`
+
+Bekannte offene Punkte:
+- Tk-`after`-Cleanup beim GUI-Schließen
+- R9424 Signal-Noise reduzieren
