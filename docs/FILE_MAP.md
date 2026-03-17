@@ -41,6 +41,7 @@ Useful companion docs in the same area:
 
 - `main_gui.py`
   Main Tkinter application entrypoint and app bootstrap.
+  Aktiver SSOT fuer den rechten Stack `Output -> Toolbar -> Tree`, den Intake-Runner-Tree, dessen Sort-/Refresh-State, das OutputDisplay-Binding und das Rechtsklick-Kontextmenue des aktiven Runner-/Intake-Trees.
 - `RUNBABYRUN.CMD`
   Windows launcher shortcut for the local app workflow.
 - `learning_engine.py`
@@ -78,9 +79,10 @@ The `modules/` directory is the main application layer. It contains many files, 
 - `modules/runner_executor.py`
   Additional runner execution support; likely legacy/adjacent to the main executor.
 - `modules/toolbar_runner_exec.py`
-  Central toolbar runner gateway; `run_by_id(...)` is the canonical launch path for protected/special runners.
+  Central toolbar runner gateway; `run_by_id(...)` is the canonical launch path for GUI-triggered runners.
+  Beherbergt Inflight-Guard, `app=None`-Fallback, defensive Guards fuer `runner_id`, sowie die Popup-vs-OutputDisplay-Entscheidung auf Basis der INI-Policy.
 - `modules/runner_ids.py`
-  Canonical runner-id constants plus protected-runner SSOT used by GUI quick-launch and delete guards.
+  Canonical runner-id constants plus protected-runner SSOT used by GUI quick-launch, delete guards und T666-/Special-Runner-Schutz.
   Toolbar-triggered runner execution helpers.
 - `modules/logic_actions.py`
   Toolbar / action routing for delete, rename, push, purge, and related commands.
@@ -164,6 +166,16 @@ Important supporting files:
   Patch-oriented helper tooling.
 - `tools/compile_gate.py`
   Compile / validation gate support.
+
+Important current runners from the stabilization block:
+- `tools/R9417.py`
+  AI Patch Validator / Gate. Bewertet den angeforderten Runner inzwischen differenzierter statt globalen Worktree-Schmutz stumpf zu blockieren.
+- `tools/R9425.py`
+  Nachsorge-Runner fuer den Stabilisierungs-/Konsolidierungsblock.
+- `tools/T666.py`
+  Kleine Universal Runner Engine fuer `diag`, `smoke`, `filecheck <path>`, `echo <text>`.
+- `tools/T666.cmd`
+  Launcher fuer `T666.py`; reicht `%*` an die Python-Logik durch.
 
 Runner workflow in practice:
 1. Diagnose the current state.
@@ -275,6 +287,10 @@ The GUI is centered around:
 - `modules/ui_project_tree.py`
 
 This matters because many tasks are really layout/wiring changes, not broad refactors.
+
+Current active nuance:
+- der produktive Runner-/Intake-Tree wird im laufenden GUI-Pfad aktuell aus `main_gui.py` heraus aufgebaut und dort auch fuer Sort-/Refresh-/Kontextmenue-Verhalten stabilisiert
+- `modules/ui_project_tree.py` bleibt relevant als Helper-/Altpfad, ist aber derzeit nicht die alleinige SSOT fuer den aktiven rechten Tree
 
 ### Right-panel rule
 

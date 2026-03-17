@@ -135,6 +135,13 @@ _added 2026-01-08 12:26 via R3147_
   - `registry/tools_keep.txt`
   - `registry/runner_whitelist.txt`
 - Für diese Session explizit relevant: `R9325`, `R9326`, `R9331`, `R9332`, `R9333`, `R9341`.
+
+## MR-R9435 — Validator-/Tree-Nachsorge Guards
+
+- `R9417` bleibt aktiver Gatekeeper, darf aber Meta-/Maintenance-Runner und normale GUI-Runner nicht allein wegen global dirty worktree pauschal blockieren.
+- Harte Gate-FAILs sollen sich an runner-spezifischem Risiko orientieren; `tmp/`, `.git/`, `__pycache__/` sind keine eigenstaendigen Hochrisiko-Zonen.
+- Der aktive Runner-/Intake-Tree muss seinen Sort-State, Refresh-State und Kontextaktionen auf dem bestehenden SSOT-Pfad behalten; keine zweite Tree-/Run-Architektur fuer Rechtsklick-Menues.
+- Rechtsklick-Kontextaktionen duerfen nur bestehende Run-/Refresh-/Open-Helfer wiederverwenden; keine neuen Direktstart-/Popup-Sonderpfade.
 <!-- R9355_END -->
 
 ## [R3175] Docking-Persistenz: immer zentrale INI-Quelle

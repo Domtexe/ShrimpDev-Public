@@ -1,4 +1,18 @@
 # Changelog
+## 2026-03-17 – Pipeline-Ideen konsolidiert
+- Neue Ideen gegen die bestehende Pipeline dedupliziert und als kanonische Cluster nach Lanes eingeordnet.
+- Strategisch wichtige Punkte sauber verankert: `Docs Consistency Check`, `Regression Radar`, `Patch / Runner Compliance Gate`, `Clarivoo Factory`, `Idea Inbox Normalizer`, `Pipeline Quick Add`, `Excel Rescue AI / Makro-Wiederbelebungs-Toolkit`.
+- Breite/überlappende Ideen wurden bewusst gebündelt statt mehrfach eingetragen.
+- `docs/SHORTCODES.md` schärft jetzt explizit, dass Thread-Ideen vor Pipeline-Übernahme dedupliziert, geclustert und priorisiert werden sollen.
+
+## 2026-03-17 – Intake / Validator / Popup / T666 Nachsorge-Konsolidierung
+- Validator/Gate differenziert: `R9417` blockiert Meta-/Maintenance-Runner und normale GUI-Runner nicht mehr stumpf wegen global dirty worktree; `tmp/`, `.git/`, `__pycache__/` zaehlen nicht als harte Zusatz-Zonen.
+- Intake/Tree stabilisiert: Sort-State persistent, Rebuild/Refresh deterministischer, Reentry-/Inflight-Probleme entschaerft, Rechtsklick-Kontextmenue fuer den aktiven Runner-/Intake-Tree ergänzt.
+- Popup-/Executor-Pfade konsolidiert: Standard-GUI-Runner sowie `Push`/`Purge` laufen ueber den sauberen Executor-/OutputDisplay-Pfad ohne unnötige Standard-Popups.
+- Verifiziert im Block: `R9425`, `R9341`, `R2693`, `R2224`, `R9419`.
+- `T666` wiederhergestellt, purge-geschützt und zur kleinen Universal Runner Engine mit `diag`, `smoke`, `filecheck <path>`, `echo <text>` ausgebaut.
+- Protected-Runner-Audit bewusst konservativ abgeschlossen: keine unüberlegte Entschützung und keine GUI-Button-Entfernung ohne klar belegte Redundanz.
+
 ## 2026-03-15 – Protected Runners / Special Buttons
 - Protected runner SSOT erweitert: `R9418`, `R9419`, `R9420`, `R9421`, `R9999`, `R1802`.
 - GUI: neue Sonderrunner-Buttons `Ideas Feed`, `Ideas Scan`, `Ideas Decision`, `RunnerGuard`.

@@ -2,6 +2,43 @@
 # PIPELINE v1 — Lanes & Turnus (Source of Truth)
 
 <!-- R9108:PIPELINE_INSERT:BEGIN -->
+
+<!-- R9433_COMPLIANCE_GATE_BEGIN -->
+## [P1] Runner Compliance Gate (Stabilität / Anti-Drift)
+
+**Ziel:** Sicherstellen, dass Runner dauerhaft MR- und Pipeline-konform bleiben.
+
+### Hintergrund
+- R9432 liefert ersten DIAG-Scan (46 Runner, 0 FAIL, 2 WARN)
+- Bedarf: systematische Hygiene-/Compliance-Prüfung
+- Ergänzung zu R9417 (Gate), kein Ersatz
+
+### Scope
+- tools/R*.py + .cmd Struktur
+- Report-/Backup-Konventionen
+- gefährliche Patterns (destructive ops, silent exceptions)
+- Basis-MR-Konformität
+
+### Architektur
+- DIAG-first (kein Auto-Fix)
+- spätere Erweiterung möglich (Preflight / Soft-Enforcer)
+- Nutzung bestehender Validator-Logik (R9417)
+
+### DoD
+- Compliance-Scan liefert reproduzierbaren Report
+- keine Eingriffe in bestehende Runner
+- klare Trennung: Diagnose vs. Fix
+
+### Status
+- R9432 implementiert (DIAG v1)
+- weitere Iteration optional (R9433+)
+
+### Nächster Schritt
+- ggf. R9434: Erweiterter DIAG (tieferer MR-Check)
+- optional später: kontrollierter Fix-Runner (nur sichere Fälle)
+
+<!-- R9433_COMPLIANCE_GATE_END -->
+
 # P0 — Codex Integration (PRIO 0, ganz vorne)
 **Ziel:** Codex als kontrollierter Runner-Worker, der konsequent `DIAG → 1 Fix → Smoke → Report` erzwingt.
 
@@ -85,6 +122,62 @@
 4. [P2] Runner Favorites / Quick Launch
 - [ ] häufig genutzte Runner direkt im GUI startbar
 - [ ] optional mit Favoritenliste / zuletzt genutzt
+
+## 2026-03-17 — Stabilisierungskonsolidierung nach Intake/Validator/Popup/T666-Block
+
+- DONE: Validator-/Gate-Pfad differenziert stabilisiert:
+  - `R9417` blockiert GUI-Runs nicht mehr stumpf wegen global dirty worktree
+  - Meta-/Maintenance-Runner werden enger und bewusster bewertet
+  - normale Runner kippen nicht mehr automatisch auf `FAIL`, wenn nur globaler Repo-Schmutz vorliegt
+  - `tmp/`, `.git/`, `__pycache__/` zählen nicht als harte Zusatz-Zonen
+- DONE: GUI-Runner-/Popup-Pfade konsolidiert:
+  - Standard-GUI-Runner laufen ueber Executor + OutputDisplay
+  - `Push` / `Purge` laufen popup-frei auf dem kanonischen Pfad
+  - Output-Marker `RUNNER START` / `RUNNER END` sind sichtbar
+- DONE: Intake-/TreeView-UX stabilisiert:
+  - Sort-State persistent
+  - Rebuild/Refresh deterministischer
+  - Reentry-/Inflight-Probleme entschärft
+  - Tree nutzt den INI-gebundenen Scope
+  - Hybrid-Refresh + ruhigeres Restore von Selection/Scroll
+  - Rechtsklick-Kontextmenue fuer den aktiven Runner-/Intake-Tree:
+    - `Run`
+    - `Copy Name`
+    - `Copy Pfad`
+    - `Datei öffnen`
+    - `Im Explorer öffnen`
+    - `Letzten Report öffnen`
+    - `Auswahl in Suche übernehmen`
+    - `Refresh`
+- DONE: Nachsorge-/Diagnose-Runner verifiziert:
+  - `R9425`
+  - `R9341`
+  - `R2693`
+  - `R2224`
+  - `R9419`
+- DONE: `T666` konsolidiert:
+  - wiederhergestellt
+  - purge-geschützt
+  - Universal Runner Engine mit `diag`, `smoke`, `filecheck <path>`, `echo <text>`
+  - `T666.cmd` reicht `%*` durch
+- DONE: Protected-Runner-Audit konservativ abgeschlossen:
+  - keine unüberlegte Entschützung
+  - keine Button-Entfernung ohne klar belegte Redundanz
+
+### Statusbewertung
+- Intake ist nicht mehr akute P0-Baustelle.
+- Runner-/Popup-/Gate-Pfade sind aktuell stabil genug fuer regulaere Pipeline-Arbeit.
+- Verbleibende Punkte sind Nachpflege/UX-Reste, keine Stop-the-line-Themen.
+
+### Offene Restpunkte (bewusst offen)
+- [ ] Tk-`after`-Callbacks beim GUI-Destroy weiter sauber beobachten/haerten
+- [ ] Failure-Signal-Noise in `R9424` spaeter reduzieren
+- [ ] Context-Menue/Tree-UX im Alltag beobachten, aber ohne neue Architektur
+
+### Naechster sinnvoller Hauptfokus
+1. [P1] Regulaere Pipeline-Arbeit auf stabilisierter GUI-/Runner-Basis fortsetzen
+2. [P1] Runner-/Report-Hygiene und kleine Follow-up-Diagnosen statt weiterer Intake-Grundsatzumbauten
+3. [P2] Nur noch gezielte UX-/Toolbar-Nachpflege, wenn echte Befunde vorliegen
 <!-- R9355_PIPELINE_END -->
 
 ---
@@ -231,6 +324,152 @@
 **Turnus (Rotation):** A → B → C → D → E → repeat  
 **Hard-Override:** Wenn in **Lane A** ein **P0** existiert, hat das Vorrang vor Rotation.  
 **Arbeitsmodus:** *Diagnose zuerst*, dann **minimal-invasiver Fix**, immer mit Backup + Report.
+
+---
+
+## 2026-03-17 — Ideen-Konsolidierung / Pipeline Intake
+
+Ziel dieses Blocks: neue Ideen kanonisch einsortieren, Dubletten bündeln und nur realistisch priorisierte Sammel-Tasks aufnehmen.
+
+Status-Konvention in diesem Block:
+- `PLANNED` = sinnvoller Kandidat fuer einen baldigen echten Arbeitslauf
+- `IDEA` = valide Idee, aber noch nicht terminiert
+- `LATER` = wertvoll, aber bewusst nachgelagert
+- `PARKED` = Vision/Portfolio, aktuell nicht in aktiver Umsetzung
+
+### Lane A — Stabilität / Diagnose / Drift-Vermeidung
+- [ ] (P1) [PLANNED] Docs Consistency Check
+  - Ausbau fuer `docs`-Konsistenz gegen `PIPELINE`, `FILE_MAP`, `MasterRules`, Runner-Reports
+  - bündelt: `Docs Consistency Check`, `Docs-Update Pflichtcheck`, `MasterRules Drift Check`
+  - Wert: Drift-/Fehlervermeidung, gute Runner-Kandidatur
+- [ ] (P1) [PLANNED] Regression Radar
+  - konservative Frühwarnung über Compile-/Report-/Runner-Signale
+  - bündelt: `Regression Radar`, `Failure Memory System`, `Failure Pattern Detector`, `Runner Failure Pattern Analyzer`, `Fehlerchronik mit Ursachenclustern`
+  - strategisch wichtig
+- [ ] (P1) [PLANNED] GUI Binding / Self-Test Audit
+  - prüft Buttons, Bindings, Auswahl-Preconditions und offensichtliche Dead-Callbacks
+  - bündelt: `GUI Button Self-Test`, `Button Binding Audit`
+- [ ] (P2) [LATER] Runner-Compliance-Ausbau (nur falls echter Bedarf belegt ist)
+  - kein pauschaler Pflicht-Overhead fuer jeden Runner
+  - nur gezielte Erweiterung bei realen Befunden aus Validator/Reports
+  - R9432 bleibt als einfacher DIAG-Baustein verfuegbar
+- [ ] (P2) [IDEA] Command Center View
+  - Ausbau des bestehenden Health-/Dashboard-Gedankens
+  - bündelt: `Command Center View`, `Pipeline Heatmap Cockpit`, `System Health Dashboard`, `Repo Time Machine` (nur read-only/report-orientiert)
+  - strategisch wichtig, aber kein P0
+- [ ] (P2) [IDEA] Output / Log Mirror Hardening
+  - konsistente Sicht auf OutputDisplay, Logs und Runner-Reports
+  - bündelt: `Output/Log Mirror`
+  - strategisch wichtig
+
+
+<!-- R9434_RUNNER_CLASSIFICATION_BEGIN -->
+## 2026-03-17 — Runner-Klassifikation / risikobasierte Compliance
+
+Ziel dieses Blocks: Runner nicht pauschal mit maximalem Overhead belasten, sondern nach Risiko- und Zweckklasse behandeln.
+
+### Grundsatz
+- Nicht jeder Runner braucht Backup + Report + Gate in voller Staerke.
+- Es gilt: **risikobasiert statt pauschal**.
+- Systemschutz erfolgt primaer ueber:
+  - `R9417` Validator / Gate
+  - Reports
+  - gezielte DIAG-Runner
+  - Pipeline-/MR-konforme Nachsorge bei echten Aenderungen
+
+### Runner-Klassen
+1. **CORE / APPLY Runner**
+   - veraendern produktive Dateien, Governance, Struktur oder kritische Ablaufe
+   - Pflicht: Backup, Report, klare Logs
+   - je nach Risiko: Compile-/Import-Gate und/oder Validator sinnvoll
+
+2. **DIAG Runner**
+   - lesen/messen/analysieren nur
+   - Pflicht: nachvollziehbarer Output, in der Regel Report
+   - kein unnoetiger Backup-/Gate-Overhead
+
+3. **UTILITY / FAST Runner**
+   - kleine Hilfsrunner, Smoke/echo/filecheck/artige Kurzlaeufer
+   - Pflicht: klarer Output
+   - Report/Backup nur wenn der konkrete Zweck es verlangt
+
+### Operative Regel
+- **APPLY = streng**
+- **DIAG = leicht**
+- **UTILITY = minimal**
+
+### Folge fuer die Pipeline
+- Ein pauschaler Ausbau eines globalen Runner-Compliance-Gates fuer *alle* Runner ist aktuell **nicht** der naechste Anchor-Task.
+- Stattdessen werden echte Befunde aus Validator, Reports und produktiven Vorfaellen gesammelt und nur dann gezielt nachgeschaerft.
+
+### Status
+- `R9432` bleibt als einfacher DIAG-Scan nuetzlich, aber ist kein Zwangs-Framework fuer jeden Runner.
+- Der vorherige breit gedachte Compliance-Gate-Task wird bewusst nach hinten gestellt.
+<!-- R9434_RUNNER_CLASSIFICATION_END -->
+
+
+### Lane B — ShrimpDev Core / GUI / Workflow
+- [ ] (P1) [PLANNED] Runner Explorer UX
+  - bündelt: `Runner-Finder mit Filtern`, `Last Report Button`, `Protected IDs Übersicht`, `Recent Files Panel`
+  - schneller GUI-/Produktivitäts-MVP
+- [ ] (P2) [IDEA] Pipeline Quick Add
+  - schneller Add-/Capture-Weg aus GUI oder Runner-Reports in die kanonische Pipeline
+  - strategisch wichtig
+- [ ] (P2) [IDEA] Dependency / Change Impact Viewer
+  - bündelt: `Dependency Map Viewer`, `Change-Impact Viewer`, `Runner Dependency Map`
+- [ ] (P2) [IDEA] NextFree-ID Wächter
+  - kleine Guard-/Produktivitätsidee für Runner-/ID-Pflege
+- [ ] (P3) [PARKED] Personal Ops / Knowledge Cluster
+  - bündelt: `Personal Ops Dashboard`, `Simple Knowledge Vault`, `Offline SOP Viewer`, `Sticky Notes für Projekte`, `Idea-to-Project App`
+
+### Lane C — Tooling / Automation / Governance-Tooling
+- [ ] (P1) [PLANNED] Idea Inbox Normalizer
+  - normalisiert/prüft Inbox-Einträge vor Import oder Review
+  - bündelt: `Idea Inbox Normalizer`
+  - strategisch wichtig
+- [ ] (P1) [PLANNED] Codex Call Wrapper Standard
+  - standardisierte Wrapper/Argumente/Report-Konventionen für Codex-Runner-Aufrufe
+  - bündelt: `Codex-Call Wrapper Standard`, `Codex-Aufruf mit Standardargumenten`
+- [ ] (P2) [IDEA] Prompt-to-Runner Engine
+  - nachgelagerte Ausbaustufe auf Basis des Codex-Wrapper-Standards
+  - bündelt: `Prompt-to-Runner Engine`
+- [ ] (P2) [IDEA] Pipeline / Nachsorge Automation
+  - bündelt: `Automatische Pipeline-Nachpflege`, `Docs-Sync nach Runner-Lauf`, `Fehlerfälle in Inbox eintragen`, `Ideen aus Chat in strukturierte Aufgaben überführen`, `Nachsorge-Assistent`
+- [ ] (P2) [IDEA] Repo Hygiene Toolkit
+  - bündelt: `Dead File Scanner`, `Repo-Aufräumläufe`, `Runner-Archivierung nach Regeln`, `Automatic Report-Ablage`
+- [ ] (P3) [PARKED] ShrimpDev Platform / Intelligence Layer
+  - bündelt: `ShrimpDev Auto-Medic`, `Runner Sandbox Mode`, `Runner Performance Tracker`, `Smart Runner Suggestions`, `Failure Memory System`, `Local Knowledge System`, `Personal Automation OS`, `Developer Automation Platform`
+  - noch zu schärfen: klarer erster Scope statt Plattform-Großbegriff
+
+### Lane E — Clarivoo / Websites / Monetarisierung
+- [ ] (P1) [PLANNED] Clarivoo Factory
+  - kanonischer Sammelpunkt für produktive Clarivoo-Skalierung
+  - bündelt: `Clarivoo Factory`, `Clarivoo Vergleichsseiten-Automat`, `Nischen-Webseiten-Fabrik`, `AI Content Automation Engine`, `Website Content Factory`
+  - strategisch wichtig
+- [ ] (P2) [IDEA] Clarivoo Vertical Pages
+  - bündelt: `Luftentfeuchter`, `Saugroboter`, `Airfryer`, `"Was lohnt sich wirklich?" Vergleichsportal`, `Tool-/Template-Download-Seite`
+- [ ] (P2) [IDEA] Knowledge / Problem-Solver Verticals
+  - bündelt: `Aquarium-/Shrimp-Wissen`, `Excel-/Office-Tool Hilfeseite`, `Zimmerpflanzen-Problemlöser`, `Arbeitsalltag / Teamlead-Ratgeber`
+- [ ] (P2) [IDEA] Runner / Automation Toolkit (Product)
+  - bündelt: `Runner/Automation Toolkit`, `Developer Utility Pack`, `Developer Productivity Toolkit`, `Fehlerdiagnose-Toolkit für Tkinter/VBA`
+- [ ] (P2) [IDEA] Services / Productization Portfolio
+  - bündelt: `ShrimpDev Lite für Einzelentwickler`, `Dokumentationspaket für kleine Firmen`, `Interne Tool-Migration Services`, `Automation Consulting`, `Script Marketplace`, `Developer Productivity Toolkit`
+- [ ] (P3) [PARKED] Mobile / Companion App Portfolio
+  - bündelt: `Mini-Planer für Schichtlogik`, `Aquarium Care Companion`, `Plant Watch Log`, `Routine Tracker`, `Batch/Script Starter Hub`, `Workday Helper für Teamleiter`
+  - bewusste Parkposition: valide Ideen, aber derzeit nicht nah an der aktiven Repo-Pipeline
+
+### Lane F — Excel / B2B / Rescue
+- [ ] (P1) [PLANNED] Excel Rescue AI / Makro-Wiederbelebungs-Toolkit
+  - bündelt: `Excel Rescue AI`, `Makro-/Excel-Wiederbelebungs-Toolkit`, `Excel-Rettungsservice`, `Legacy-Tool Stabilizer`
+  - strategisch wichtig
+- [ ] (P2) [IDEA] Dispo / ASM Productization Track
+  - bündelt: `Dispo-Tool als B2B-Lösung`, `ASM/Fairness-Reporting`, `Interne Tool-Migration Services`
+- [ ] (P2) [IDEA] SOP / Betriebswissen Toolkit
+  - bündelt: `Dokumentationspaket für kleine Firmen`, `Interne Prozess-Landkarte für kleine Firmen`, `Betriebswissen-Sammler für kleine Teams`, `SOP-Generator für reale Arbeitsabläufe`
+
+### Bewusst nicht als eigene Tasks aufgenommen
+- Wilde, sehr breite Ideen ohne klaren ersten Scope wurden nur dann übernommen, wenn sie in einen bestehenden produktiven Cluster passten.
+- Reine App-Ideen ohne direkte Repo-/Lane-Nähe wurden in Sammelcluster verschoben statt einzeln aufgeblasen.
 
 ---
 
@@ -1991,7 +2230,7 @@ _Automatisch importiert durch R9317 am 20260307_213929_
 
 ### Priority Import (R9325)
 
-_Automatisch importiert am 20260317_175202 aus `Idea_Priority_Report_20260307_224453.md`._
+_Automatisch importiert am 20260317_212556 aus `Idea_Priority_Report_20260307_224453.md`._
 
 **Regeln**
 
@@ -2058,7 +2297,7 @@ _Automatisch importiert am 20260317_175202 aus `Idea_Priority_Report_20260307_22
 <!-- R9326:TASKS:START -->
 
 ### Priority Tasks (R9326)
-_Generated 20260317_175203_
+_Generated 20260317_212557_
 
 #### Lane X – Misc
 
@@ -2103,6 +2342,7 @@ _Generated 20260317_175203_
 - P1: ShrimpHub Storyboard → AutoVideo Pipeline (Script/Szenen/Prompts/VO/Struktur)
 
 <!-- R9326:TASKS:END -->
+
 
 
 
@@ -2936,3 +3176,332 @@ Nächste sinnvolle Schritte:
 ### Wiedereinstieg
 Neuer Fokus-Thread:
 **ShrimpDev – Tk-after-Cleanup + R9424 Signal-Noise reduzieren**
+
+---
+
+## 2026-03-17 — Ideensammlung → Pipeline Integration (append-only)
+
+Quelle:
+- aktueller Chat-Thread (ShrimpDev / Tools / Automation / Monetization)
+
+Bewertungslogik:
+- Impact: 1–5
+- Effort: 1–5
+- Risk: 1–5
+- Priorität:
+  - `P0` = hoher Hebel, niedriger bis mittlerer Aufwand, direkt anschlussfähig
+  - `P1` = hoher Nutzen, aber etwas breiter oder mit Vorarbeit
+  - `P2` = längerfristig / experimentell / später zu schärfen
+
+### Core ShrimpDev
+
+[SD-001] Docs Consistency Check
+- Category: Core ShrimpDev
+- Priority: P0
+- Status: Planned
+- Impact / Effort / Risk: 5 / 2 / 2
+- Description: Prüft Konsistenz zwischen `PIPELINE`, `FILE_MAP`, `MasterRules`, relevanten Reports und markanten SSOT-Dokumenten.
+- Expected Outcome: Weniger Doku-Drift, sauberere Nachsorge, weniger widersprüchliche Arbeitsgrundlagen.
+- Next Action: Read-only DIAG-Runner definieren, der nur Abweichungen meldet.
+
+[SD-002] Regression Radar
+- Category: Core ShrimpDev
+- Priority: P0
+- Status: Planned
+- Impact / Effort / Risk: 5 / 3 / 2
+- Description: Früherkennung für Runner-/GUI-/Compile-/Report-Regressionsmuster.
+- Expected Outcome: Wiederkehrende Fehler werden schneller sichtbar und clusterbar.
+- Next Action: Auf Basis vorhandener Reports und `R9424` einen konservativen Radar-Report aufsetzen.
+
+[SD-003] Patch / Runner Compliance Gate
+- Category: Core ShrimpDev
+- Priority: P0
+- Status: Planned
+- Impact / Effort / Risk: 5 / 3 / 2
+- Description: Bündelt Validator-/Compliance-Checks wie Patch-ZIP-Validierung, Template-Compliance, Report-Fehlt-Warnung und verbotene Muster.
+- Expected Outcome: Weniger Drift, weniger riskante Runner-/Patch-Ausnahmen.
+- Next Action: Bestehende Gate-/Validator-Logik inventarisieren und einen klaren DIAG-Teil definieren.
+
+[SD-004] Idea Inbox Normalizer
+- Category: Core ShrimpDev
+- Priority: P0
+- Status: Planned
+- Impact / Effort / Risk: 4 / 2 / 1
+- Description: Normalisiert Inbox-Einträge vor Review/Import und reduziert Format-/Statusrauschen.
+- Expected Outcome: Sauberere Idee-zu-Pipeline-Verwertung.
+- Next Action: `docs/IDEA_INBOX.md` + Spec read-only analysieren und Normalisierungsregeln sammeln.
+
+[SD-005] Codex Call Wrapper Standard
+- Category: Core ShrimpDev
+- Priority: P0
+- Status: Planned
+- Impact / Effort / Risk: 4 / 2 / 2
+- Description: Standardisiert Codex-Aufrufe, Argumente, Report-Konventionen und Nachsorge-Anbindung.
+- Expected Outcome: Weniger Sonderfälle bei Codex-/Runner-Aufrufen.
+- Next Action: bestehenden `codex exec`-Einsatz und Runner-Konventionen in einen kleinen Wrapper-Standard überführen.
+
+[SD-006] Runner Explorer UX
+- Category: Core ShrimpDev
+- Priority: P1
+- Status: Idea
+- Impact / Effort / Risk: 4 / 3 / 2
+- Description: Bündelt Runner-Finder, Last-Report-Zugriff, Protected-ID-Übersicht und ähnliche GUI-Verbesserungen.
+- Expected Outcome: Schnellere Navigation im Runner-Bestand.
+- Next Action: UI-MVP für Filter + Last-Report-Zugriff abgrenzen.
+
+[SD-007] Pipeline Quick Add
+- Category: Core ShrimpDev
+- Priority: P1
+- Status: Idea
+- Impact / Effort / Risk: 4 / 3 / 2
+- Description: Schneller Weg aus Thread/Report/Inbox zu einem sauberen Pipeline-Eintrag.
+- Expected Outcome: Weniger manuelle Pipeline-Nachpflege.
+- Next Action: minimalen Add-Flow definieren, der append-only bleibt.
+
+[SD-008] Command Center View
+- Category: Core ShrimpDev
+- Priority: P1
+- Status: Idea
+- Impact / Effort / Risk: 5 / 4 / 3
+- Description: Oberflächen-Cluster für Health, Pipeline-Hitze, Runner-Zustand und wichtige Diagnose-Signale.
+- Expected Outcome: Höhere Systemtransparenz.
+- Next Action: vorhandene Health-/Guard-/Failure-Runner als Datenquellen inventarisieren.
+
+### Tools
+
+[TL-001] Dependency / Change Impact Viewer
+- Category: Tools
+- Priority: P1
+- Status: Idea
+- Impact / Effort / Risk: 4 / 3 / 2
+- Description: Visualisiert Datei-/Runner-Abhängigkeiten und grobe Change-Impact-Signale.
+- Expected Outcome: Sicherere Patches und bessere Scope-Einschätzung.
+- Next Action: bestehende Dependency-Ideen und vorhandene Maps bündeln.
+
+[TL-002] Repo Hygiene Toolkit
+- Category: Tools
+- Priority: P1
+- Status: Idea
+- Impact / Effort / Risk: 4 / 3 / 2
+- Description: Bündelt Dead File Scanner, Runner-Archivierungsregeln und Report-Ablage-/Repo-Hygiene.
+- Expected Outcome: Weniger Repo-Rauschen, besserer Überblick.
+- Next Action: klare read-only Diagnose-Unterpunkte definieren.
+
+[TL-003] NextFree-ID Wächter
+- Category: Tools
+- Priority: P1
+- Status: Idea
+- Impact / Effort / Risk: 3 / 2 / 1
+- Description: Prüft freie Runner-IDs und verhindert Kollisionen.
+- Expected Outcome: Sicherere Runner-Erstellung.
+- Next Action: vorhandene Runner-ID-SSOT und Tools-Scan koppeln.
+
+[TL-004] Output / Log Mirror Hardening
+- Category: Tools
+- Priority: P1
+- Status: Idea
+- Impact / Effort / Risk: 4 / 3 / 2
+- Description: Konsolidiert Anzeige und Spiegelung zwischen OutputDisplay, Logs und Reports.
+- Expected Outcome: Weniger Diagnose-Lücken.
+- Next Action: vorhandene Output-Sinks inventarisieren.
+
+### Automation
+
+[AU-001] Pipeline / Nachsorge Automation
+- Category: Automation
+- Priority: P1
+- Status: Idea
+- Impact / Effort / Risk: 4 / 3 / 2
+- Description: Bündelt automatische Pipeline-Nachpflege, Docs-Sync, Fehlerfälle in Inbox und Thread-zu-Task-Überführung.
+- Expected Outcome: Weniger manuelle Nachsorgearbeit.
+- Next Action: einen klaren read-only Vorstufen-Runner definieren.
+
+[AU-002] Prompt-to-Runner Engine
+- Category: Automation
+- Priority: P2
+- Status: Later
+- Impact / Effort / Risk: 4 / 4 / 3
+- Description: Ausbaustufe auf Basis des Codex-Wrapper-Standards.
+- Expected Outcome: Schnellere Übersetzung von Anweisungen in Runner-Ketten.
+- Next Action: erst nach `SD-005` weiter schärfen.
+
+[AU-003] GUI Binding / Self-Test Audit
+- Category: Automation
+- Priority: P0
+- Status: Planned
+- Impact / Effort / Risk: 5 / 2 / 2
+- Description: Prüft Buttons, Bindings, Precondition-Fehler und tote GUI-Actions.
+- Expected Outcome: Weniger „Button tut nichts“-Regressionsfälle.
+- Next Action: read-only Audit-Runner für GUI-Handler und Tree-/Toolbar-Wiring aufsetzen.
+
+### Monetization
+
+[MO-001] Clarivoo Factory
+- Category: Monetization
+- Priority: P1
+- Status: Planned
+- Impact / Effort / Risk: 5 / 4 / 3
+- Description: Kanonischer Sammelpunkt für produktive Clarivoo-Skalierung und Content-/Vergleichsseiten-Automation.
+- Expected Outcome: Klarer Ausbaupfad für Website-/Affiliate-Hebel.
+- Next Action: bestehende Clarivoo-Blöcke als einen produktionsnahen Arbeitsstrang konsolidieren.
+
+[MO-002] Excel Rescue AI / Makro-Wiederbelebungs-Toolkit
+- Category: Monetization
+- Priority: P1
+- Status: Planned
+- Impact / Effort / Risk: 5 / 4 / 3
+- Description: Produkt-/Service-Cluster rund um Excel-/Makro-Rettung und Legacy-Stabilisierung.
+- Expected Outcome: Starker B2B-/Service-Hebel mit Anschluss an vorhandene Repo-Kompetenz.
+- Next Action: Service-, Toolkit- und Runner-Komponenten als einen realen Angebotsstrang beschreiben.
+
+[MO-003] Services / Productization Portfolio
+- Category: Monetization
+- Priority: P2
+- Status: Later
+- Impact / Effort / Risk: 4 / 4 / 3
+- Description: Bündelt ShrimpDev Lite, Dokumentationspakete, Migration Services und Toolkit-Angebote.
+- Expected Outcome: Späterer Produkt-/Service-Baukasten.
+- Next Action: erst nach klareren Kernprodukten schärfen.
+
+### Experimental
+
+[EX-001] ShrimpDev Platform / Intelligence Layer
+- Category: Experimental
+- Priority: P2
+- Status: Parked
+- Impact / Effort / Risk: 5 / 5 / 4
+- Description: Sammelpunkt für Auto-Medic, Smart Suggestions, Platform-/OS-/Knowledge-System-Ideen.
+- Expected Outcome: Visionärer Ausbaupfad ohne aktuelle Überlastung der Pipeline.
+- Next Action: vor echter Planung einen engen ersten Scope definieren.
+
+[EX-002] Mobile / Companion App Portfolio
+- Category: Experimental
+- Priority: P2
+- Status: Parked
+- Impact / Effort / Risk: 3 / 4 / 3
+- Description: Bündelt die App-/Companion-Ideen aus dem Thread.
+- Expected Outcome: Ideen bleiben erhalten, ohne die Kernpipeline zu verstopfen.
+- Next Action: erst bei klarer Kapazität oder Produktstrategie schärfen.
+
+### Runner-Kandidaten für P0
+- `SD-001` Docs Consistency Check -> Diagnose-Runner
+- `SD-002` Regression Radar -> Diagnose-Runner
+- `SD-003` Patch / Runner Compliance Gate -> Diagnose-/Gate-Runner
+- `SD-004` Idea Inbox Normalizer -> Diagnose-/Normalizer-Runner
+- `SD-005` Codex Call Wrapper Standard -> kleiner infra-/wrapper-Runner
+- `AU-003` GUI Binding / Self-Test Audit -> Diagnose-Runner
+
+---
+
+## 2026-03-17 — Ideensammlung aus aktuellem Thread (append-only)
+
+### P0
+
+**Docs Consistency Check**
+- Kategorie: Core ShrimpDev
+- Priorität: P0
+- Kurzbeschreibung: Prüft wichtige SSOT-Dokumente und markante Projektpfade auf erkennbare Widersprüche oder fehlende Nachpflege.
+- Erwarteter Nutzen: Weniger Doku-Drift und klarere Arbeitsgrundlagen.
+- Nächster sinnvoller Schritt: Read-only Prüfumfang und klare Vergleichsquellen definieren.
+
+**GUI Consistency Checker**
+- Kategorie: Core ShrimpDev
+- Priorität: P0
+- Kurzbeschreibung: Prüft zentrale GUI-Bindings, Buttons, Tree-/Output-Zustände und offensichtliche Verdrahtungsdrift.
+- Erwarteter Nutzen: Frühere Erkennung von UI-/Wiring-Fehlern.
+- Nächster sinnvoller Schritt: Kanonische GUI-Hotspots und erwartete Handlerlisten festlegen.
+
+**Report Aggregator**
+- Kategorie: Tools
+- Priorität: P0
+- Kurzbeschreibung: Bündelt wichtige Reports in einer nutzbaren Übersicht mit Status- und Trendfokus.
+- Erwarteter Nutzen: Schnellere Lagebeurteilung und weniger Report-Suche.
+- Nächster sinnvoller Schritt: Minimalen Aggregationsumfang und Zielansicht festlegen.
+
+**Runner Health Dashboard**
+- Kategorie: Automation
+- Priorität: P0
+- Kurzbeschreibung: Verdichtet Runner-Zustand, Compile-/Gate-Signale und grobe Failure-Hinweise in einer kompakten Health-Sicht.
+- Erwarteter Nutzen: Höhere Transparenz über den Zustand des Runner-Systems.
+- Nächster sinnvoller Schritt: Vorhandene Diagnose-Runner und ihre Signale als Datenquellen inventarisieren.
+
+**Pipeline Auto-Priorizer**
+- Kategorie: Automation
+- Priorität: P0
+- Kurzbeschreibung: Hilft dabei, neue Ideen oder Befunde anhand einfacher Heuristiken priorisiert in die Pipeline zu überführen.
+- Erwarteter Nutzen: Weniger manuelle Priorisierungsarbeit und konsistentere Pipeline-Einträge.
+- Nächster sinnvoller Schritt: Kleine Scoring-Regeln für Impact / Aufwand / Risiko definieren.
+
+### P1
+
+**Runner Impact Preview**
+- Kategorie: Tools
+- Priorität: P1
+- Kurzbeschreibung: Gibt vor einem Runner-Lauf einen groben Eindruck, welche Bereiche/Artefakte wahrscheinlich betroffen sind.
+- Erwarteter Nutzen: Bessere Scope-Klarheit vor riskanteren Läufen.
+- Nächster sinnvoller Schritt: Bestehende Runner-Metadaten und Reports auf wiederverwendbare Signale prüfen.
+
+**Error Pattern Finder**
+- Kategorie: Automation
+- Priorität: P1
+- Kurzbeschreibung: Sucht in Reports und Ausgaben nach wiederkehrenden Fehlermustern.
+- Erwarteter Nutzen: Schnellere Clusterung häufiger Probleme.
+- Nächster sinnvoller Schritt: Einfache, konservative Pattern-Liste definieren.
+
+**Quick Restore Tool**
+- Kategorie: Tools
+- Priorität: P1
+- Kurzbeschreibung: Unterstützt schnelle Wiederherstellung aus klar definierten Sicherungs-/Restore-Pfaden.
+- Erwarteter Nutzen: Weniger Reibung bei kleinen Rücknahmen.
+- Nächster sinnvoller Schritt: Tatsächlich vorhandene Backup-/Restore-Quellen sauber inventarisieren.
+
+**Task -> Runner Generator**
+- Kategorie: Automation
+- Priorität: P1
+- Kurzbeschreibung: Leitet aus gut formulierten Aufgaben einen standardisierten Runner-Startpunkt oder Runner-Stub ab.
+- Erwarteter Nutzen: Schnellere Operationalisierung wiederkehrender Aufgaben.
+- Nächster sinnvoller Schritt: Minimalen Zielumfang für generierbare Runner-Strukturen definieren.
+
+**Repo Cleaner Pro**
+- Kategorie: Tools
+- Priorität: P1
+- Kurzbeschreibung: Erweiterte Repo-Hygiene für Altdateien, Reports, Runner-Reste und ähnliche Aufräumfälle.
+- Erwarteter Nutzen: Weniger Repo-Rauschen und besserer Überblick.
+- Nächster sinnvoller Schritt: Klaren read-only Diagnose-Modus als erste Stufe definieren.
+
+### P2
+
+**Digital Twin**
+- Kategorie: Experimental
+- Priorität: P2
+- Kurzbeschreibung: Gedankliches Modell eines beobachtbaren Spiegelbilds des Systems für Zustands- und Strukturtransparenz.
+- Erwarteter Nutzen: Langfristig bessere Übersicht über komplexe Zusammenhänge.
+- Nächster sinnvoller Schritt: Erst einen sehr kleinen beobachtbaren Kern-Scope definieren.
+
+**Auto-Healer**
+- Kategorie: Experimental
+- Priorität: P2
+- Kurzbeschreibung: Vision für automatisierte, konservative Selbstheilungs- oder Korrekturvorschläge.
+- Erwarteter Nutzen: Langfristig weniger manuelle Nachsorge.
+- Nächster sinnvoller Schritt: Zuerst nur Diagnose-/Vorschlagsmodus statt Auto-Fix denken.
+
+**Local AI Brain**
+- Kategorie: Experimental
+- Priorität: P2
+- Kurzbeschreibung: Lokaler Wissens- und Entscheidungskontext für Repo, Runner, Reports und Ideen.
+- Erwarteter Nutzen: Langfristig bessere Wiederverwendung von Repo-Wissen.
+- Nächster sinnvoller Schritt: Bestehende lokale Wissensquellen und minimalen Nutzenfall benennen.
+
+**Code-zu-Geld-Mapper**
+- Kategorie: Monetization
+- Priorität: P2
+- Kurzbeschreibung: Verknüpft technische Assets, Runner oder Tools mit realistischen Monetarisierungswegen.
+- Erwarteter Nutzen: Klarere Brücke zwischen Technik und Produkt-/Service-Hebel.
+- Nächster sinnvoller Schritt: Einfache Mapping-Kategorien für Tool / Service / Produkt / Website definieren.
+
+**Dead Code Reanimator**
+- Kategorie: Experimental
+- Priorität: P2
+- Kurzbeschreibung: Idee für konservative Wiederbelebung oder Neubewertung stillgelegter, aber potenziell wertvoller Artefakte.
+- Erwarteter Nutzen: Nützliche Altteile gehen seltener verloren.
+- Nächster sinnvoller Schritt: Klare Grenze zwischen Archiv, Restore und produktivem Re-Use definieren.

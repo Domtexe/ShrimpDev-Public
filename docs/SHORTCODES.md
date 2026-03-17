@@ -313,10 +313,25 @@ Ziel:
 ### Folgeprozess
 
 - Auf Wunsch werden die Ideen anschließend priorisiert in `docs/PIPELINE.md` einsortiert.
+- Vor der Pipeline-Einsortierung sollen Ideen dedupliziert, geclustert und realistisch priorisiert werden; starke Sammel-Tasks sind dabei besser als viele schwache Doppler.
 - Dafür können eigene Import- oder Pflege-Runner verwendet werden.
 
 <!-- FEIERABEND:END -->
 
+
+---
+
+## Ideensammlung
+
+**Beschreibung:**
+Verwerte den aktuellen Thread per Codex in Richtung Pipeline.
+
+**Verhalten:**
+- Extrahiere alle relevanten Ideen aus dem aktuellen Thread
+- Strukturierung in Kategorien (P0 / P1 / P2)
+- Priorisierung nach Impact / Aufwand / Risiko
+- Überführung in `PIPELINE.md`
+- Optional: Erstellung vorbereiteter Runner-Tasks
 
 ---
 
