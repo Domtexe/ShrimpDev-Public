@@ -1,4 +1,9 @@
 # Changelog
+## 2026-03-18 – R9417 / R9447 Nachsorge
+- `R9417` nachgeschaerft: Git-Status Parsing korrigiert, keine Fake-`other`-Eintraege mehr, Root-Dateien als `repo-root/` klassifiziert und DIAG/Meta-Runner im belegten Wide-Scope-Fall auf `WARNING` statt `FAIL` abgesenkt.
+- `R9447` Hook Inventory korrigiert: `delete` wird ueber den gueltigen Alias-/Fallback-Pfad sauber als vorhandener Handler erkannt; `missing: 0`.
+- Systemstatus nach Verify: Validator OK, DIAG OK, Hook Inventory OK, keine blockierenden Befunde aus diesem Nachsorge-Scope.
+
 ## 2026-03-17 – Pipeline-Ideen konsolidiert
 - Neue Ideen gegen die bestehende Pipeline dedupliziert und als kanonische Cluster nach Lanes eingeordnet.
 - Strategisch wichtige Punkte sauber verankert: `Docs Consistency Check`, `Regression Radar`, `Patch / Runner Compliance Gate`, `Clarivoo Factory`, `Idea Inbox Normalizer`, `Pipeline Quick Add`, `Excel Rescue AI / Makro-Wiederbelebungs-Toolkit`.

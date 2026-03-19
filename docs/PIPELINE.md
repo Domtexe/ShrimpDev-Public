@@ -3,6 +3,7 @@
 
 <!-- R9108:PIPELINE_INSERT:BEGIN -->
 
+
 <!-- R9433_COMPLIANCE_GATE_BEGIN -->
 ## [P1] Runner Compliance Gate (Stabilität / Anti-Drift)
 
@@ -38,6 +39,7 @@
 - optional später: kontrollierter Fix-Runner (nur sichere Fälle)
 
 <!-- R9433_COMPLIANCE_GATE_END -->
+
 
 # P0 — Codex Integration (PRIO 0, ganz vorne)
 **Ziel:** Codex als kontrollierter Runner-Worker, der konsequent `DIAG → 1 Fix → Smoke → Report` erzwingt.
@@ -178,6 +180,34 @@
 1. [P1] Regulaere Pipeline-Arbeit auf stabilisierter GUI-/Runner-Basis fortsetzen
 2. [P1] Runner-/Report-Hygiene und kleine Follow-up-Diagnosen statt weiterer Intake-Grundsatzumbauten
 3. [P2] Nur noch gezielte UX-/Toolbar-Nachpflege, wenn echte Befunde vorliegen
+
+## 2026-03-18 — Lane A Nachsorge R9417 / R9447
+
+- DONE: `R9417` Validator Parsing Fix
+  - Git-Status Parsing korrigiert
+  - keine Fake-`other`-Eintraege mehr
+  - `repo-root/` sauber klassifiziert
+  - DIAG/Meta-Runner kippen im belegten Fall auf `WARNING` statt `FAIL`
+  - Wirkung:
+    - Validator blockiert das System nicht mehr unnoetig
+    - Scope ist korrekt bestimmbar
+- DONE: `R9447` Hook Inventory Fix
+  - Alias/Fallback fuer `delete` beruecksichtigt
+  - Inventory erkennt vorhandene Handler korrekt
+  - `missing: 0`
+  - Wirkung:
+    - Hook-System und Inventory sind konsistent
+    - keine False-Negatives mehr fuer `delete`
+
+### Systemstatus
+- Validator: OK
+- DIAG: OK
+- Hook Inventory: OK
+- Blocking Issues: NONE
+
+### Wiedereinstieg
+1. [P1] Pipeline -> Lane A -> naechster offener Task
+2. [P1] bestaetigte Stabilitaets-/Diagnosepunkte weiter priorisieren statt neue Architekturarbeit zu starten
 <!-- R9355_PIPELINE_END -->
 
 ---

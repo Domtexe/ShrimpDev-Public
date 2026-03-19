@@ -170,6 +170,8 @@ Important supporting files:
 Important current runners from the stabilization block:
 - `tools/R9417.py`
   AI Patch Validator / Gate. Bewertet den angeforderten Runner inzwischen differenzierter statt globalen Worktree-Schmutz stumpf zu blockieren.
+- `tools/R9447.py`
+  Hook Inventory DIAG fuer erkannte GUI-/Toolbar-Actions; beruecksichtigt den gueltigen `delete`-Alias/Fallback jetzt korrekt und meldet dadurch keine False-Negatives mehr fuer diesen Hook.
 - `tools/R9425.py`
   Nachsorge-Runner fuer den Stabilisierungs-/Konsolidierungsblock.
 - `tools/T666.py`
