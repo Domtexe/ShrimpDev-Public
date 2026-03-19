@@ -1,8 +1,0 @@
-R2089 – Agent-Tab-Aktivierung
-Einbau einer einfachen systemweiten Analyseanzeige in den Agent-Tab.
-Analysiert LearningJournal und zeigt:
-- Anzahl Einträge
-- Häufigkeiten
-- letzte Events
-- Fehler-Scans
-Keine Änderung an bestehenden Modulen außer minimaler Patch in main_gui.py.

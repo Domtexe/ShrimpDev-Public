@@ -1,5 +1,0 @@
-R2093 – Syntax-Fix main_gui.py (Agent_Empfehlung_Ausfuehren)
-
-- Kein kaputter Agent-try/except Block erkannt. Keine Aenderung.
-- Syntaxcheck (vorher): PyCompileError('  File "D:\\ShrimpDev\\main_gui.py", line 185\n    try:\n    ^^^\nSyntaxError: expected \'except\' or \'finally\' block\n', 'SyntaxError', SyntaxError("expected 'except' or 'finally' block", ('D:\\ShrimpDev\\main_gui.py', 185, 13, '            try:\n', 185, 16)), 'D:\\ShrimpDev\\main_gui.py')
-

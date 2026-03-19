@@ -1,8 +1,0 @@
-R2088 – Agent Bootstrap
-Neue Dateien:
-  modules/module_agent.py
-Änderungen:
-  main_gui.py: Agent-Tab zeigt nun Systemanalyse (agent_summary)
-Funktion:
-  Der Agent liest LearningJournal.json, erkennt Häufigkeiten, Fehler, Muster.
-  Ausgabe erfolgt im Agent-Tab als Text-Dashboard.
