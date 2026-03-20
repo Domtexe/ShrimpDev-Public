@@ -1,31 +1,20 @@
-# ShrimpDev Public Export
+# ShrimpDev
 
-This repository is a curated public export and lightweight showcase of ShrimpDev.
+ShrimpDev is a runner-driven Python/Tkinter project with a deliberately small public surface.
 
-It is intended for:
-- external readers who want a concise project overview
-- contributors who need a lightweight public contract
-- technical stakeholders who want a high-level architecture summary
-- reviewers who want a minimal, tangible code surface instead of a docs-only mirror
+This repository is a curated public export:
+- showcase-oriented
+- minimal by design
+- not a full mirror of the internal working repository
 
-This is not a full internal mirror.
+The public export exists to present selected files and the overall direction without exposing the complete internal workspace.
 
-Public entry points:
-- `app.py`
-- `tools/demo_runner.py`
-- `docs/Public_Contract.md`
-- `docs/Public_Roadmap.md`
-- `docs/Public_Architecture.md`
+## Public Notes
+- curated public export
+- showcase / minimal public surface
+- no complete internal mirror
 
-Included in this public export:
-- a small public-safe entry file
-- a tiny helper module surface
-- one demo runner with no internal repo coupling
-- concise public documentation
-
-Excluded from the public export:
-- internal pipeline planning
-- internal governance and operating rules
-- reports, debug traces, audits, and aftercare history
-- local paths, internal runner history, and private state artifacts
-- internal repository operation mechanics
+## Runner Model
+- wrapper entrypoints use `tools/R####.cmd`
+- runner logic lives in `tools/R####.py`
+- changes are intended to stay controlled, reviewable, and report-backed
